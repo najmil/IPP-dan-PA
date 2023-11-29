@@ -109,7 +109,7 @@
                                     <div class="alert alert-success sukses" role="alert" style="display: none;"></div>
                                 
                                     <div class="mb-3 row">
-                                        <label for="start_period" class="col-sm-2">Start Date</label>
+                                        <label for="start_period_midyear" class="col-sm-2">Start Date</label>
                                         <div class="col-sm-10">
                                             <input type="datetime-local" class="form-control" id="start_period_midyear" name="start_period_midyear">
                                         </div>
@@ -161,7 +161,7 @@
                                     <div class="alert alert-success sukses" role="alert" style="display: none;"></div>
                                 
                                     <div class="mb-3 row">
-                                        <label for="start_period" class="col-sm-2">Start Date</label>
+                                        <label for="start_period_oneyear" class="col-sm-2">Start Date</label>
                                         <div class="col-sm-10">
                                             <input type="datetime-local" class="form-control" id="start_period_oneyear" name="start_period_oneyear">
                                         </div>

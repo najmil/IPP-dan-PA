@@ -541,64 +541,101 @@ class IppModel extends Model{
                         ->orWhere('main.approval_presdir IS NULL')
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && ($npk == null || $npk == 0)) {
-            $builder->where(
-                '(' .
-                '(
-                    `main`.`is_submitted_ipp` = 1 
-                    AND (
-                        (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                        OR
-                        (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                    )
-                )
-                OR
-                (
-                    (`main`.`periode` LIKE "%Mid Year" OR `main`.`periode` LIKE "%MID YEAR") 
-                    AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                    AND `main`.`is_submitted_ipp_mid` = 1 
-                    AND (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                )
-                OR
-                (
-                    (`main`.`periode` LIKE "%One Year" OR `main`.`periode` LIKE "%ONE YEAR") 
-                    AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp` IS NULL)
-                    AND (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL) 
-                    AND `main`.`is_submitted_ipp_one` = 1
-                )'.
-            ')');
-            $builder->where(
-                '(
-                    (
-                        `main`.`kode_jabatan` = 8 
-                        AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                        AND (`main`.`approval_kasie` = 0 OR `main`.`approval_kasie` IS NULL) 
-                        AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL)
-                    )
-                    OR
-                    (
-                        (`main`.`kode_jabatan` = 4 
-                        OR (
-                            `main`.`kode_jabatan` = 8 
-                            AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                        ))
-                        AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL) 
-                        AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL)
-                    )
-                    OR
-                    (
-                        `main`.`kode_jabatan` = 3
-                        AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL) 
-                        AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                    )
-                    OR
-                    (
-                        `main`.`kode_jabatan` = 2
-                        AND (`main`.`approval_presdir` = 0 OR `main`.`approval_presdir` IS NULL) 
-                        AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                    )
-                )'
-            );
-        }        
+            $builder->groupStart()
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp', 1)
+                            ->groupStart()
+                                ->groupStart()
+                                    ->where('main.is_submitted_ipp_mid', 0)
+                                    ->orWhere('main.is_submitted_ipp_mid', null)
+                                ->groupEnd()
+                                ->orGroupStart()
+                                    ->where('main.is_submitted_ipp_one', 0)
+                                    ->orWhere('main.is_submitted_ipp_one', null)
+                                ->groupEnd()
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.periode LIKE', '%Mid Year')
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp', 0)
+                                ->orWhere('main.is_submitted_ipp', null)
+                            ->groupEnd()
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp_one', 0)
+                                ->orWhere('main.is_submitted_ipp_one', null)
+                            ->groupEnd()
+                            ->where('main.is_submitted_ipp_mid', 1)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.periode LIKE', '%One Year')
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp', 0)
+                                ->orWhere('main.is_submitted_ipp', null)
+                            ->groupEnd()
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp_mid', 0)
+                                ->orWhere('main.is_submitted_ipp_mid', null)
+                            ->groupEnd()
+                            ->where('main.is_submitted_ipp_one', 1)
+                        ->groupEnd()
+                    ->groupEnd();
+            $builder->groupStart()
+                        ->groupStart()
+                            ->where('main.kode_jabatan', 8)
+                            ->groupStart()
+                                ->where('main.created_by', 3651)
+                                ->orWhere('main.created_by', 3659)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_kasie', 0)
+                                ->orWhere('main.approval_kasie', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->groupStart()
+                                ->where('main.kode_jabatan', 4)
+                                ->orGroupStart()
+                                    ->where('main.kode_jabatan', 8)
+                                    ->groupStart()
+                                        ->where('main.created_by', 3659)
+                                        ->orWhere('main.created_by', 3659)
+                                    ->groupEnd()
+                                ->groupEnd()
+                            ->groupEnd()
+                            ->groupStart()
+                                ->where('main.approval_kadept', 0)
+                                ->orWhere('main.approval_kadept', null)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_kadiv', 0)
+                                ->orWhere('main.approval_kadiv', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 3)
+                            ->groupStart()
+                                ->where('main.approval_kadiv', 0)
+                                ->orWhere('main.approval_kadiv', null)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_bod', 0)
+                                ->orWhere('main.approval_bod', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 2)
+                            ->groupStart()
+                                ->where('main.approval_presdir', 0)
+                                ->orWhere('main.approval_presdir', null)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_bod', 0)
+                                ->orWhere('main.approval_bod', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd();
+        }                          
 
         $count = $builder->countAllResults();
         return $count;
@@ -610,72 +647,110 @@ class IppModel extends Model{
         $id_section    = session()->get('id_section');
         $kode_jabatan  = session()->get('kode_jabatan');
         $npk           = session()->get('npk');
-
+        
         $builder = $this->db->table('main')
-                ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
-                ->where('main.id_division', 4);
-        $builder->where(
-            '(' .
-            '(
-                `main`.`is_submitted_ipp` = 1 
-                AND (
-                    (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                    OR
-                    (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                )
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%Mid Year" OR `main`.`periode` LIKE "%MID YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                AND `main`.`is_submitted_ipp_mid` = 1 
-                AND (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%One Year" OR `main`.`periode` LIKE "%ONE YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp` IS NULL)
-                AND (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL) 
-                AND `main`.`is_submitted_ipp_one` = 1
-            )'.
-        ')');
-        $builder->where(
-            '(
-                (
-                    `main`.`kode_jabatan` = 8 
-                    AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    AND (`main`.`approval_kasie` = 0 OR `main`.`approval_kasie` IS NULL) 
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL)
-                )
-                OR
-                (
-                    (`main`.`kode_jabatan` = 4 
-                    OR (
-                        `main`.`kode_jabatan` = 8 
-                        AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    ))
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL) 
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 3
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 2
-                    AND (`main`.`approval_presdir` = 0 OR `main`.`approval_presdir` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-            )'
-        );
-
+            ->select('main.*')
+            ->join('users', 'users.npk = main.created_by', 'left')
+            ->where('main.id_division', 4);
+        
+            $builder->groupStart()
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp', 1)
+                            ->groupStart()
+                                ->groupStart()
+                                    ->where('main.is_submitted_ipp_mid', 0)
+                                    ->orWhere('main.is_submitted_ipp_mid', null)
+                                ->groupEnd()
+                                ->orGroupStart()
+                                    ->where('main.is_submitted_ipp_one', 0)
+                                    ->orWhere('main.is_submitted_ipp_one', null)
+                                ->groupEnd()
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.periode LIKE', '%Mid Year')
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp', 0)
+                                ->orWhere('main.is_submitted_ipp', null)
+                            ->groupEnd()
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp_one', 0)
+                                ->orWhere('main.is_submitted_ipp_one', null)
+                            ->groupEnd()
+                            ->where('main.is_submitted_ipp_mid', 1)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.periode LIKE', '%One Year')
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp', 0)
+                                ->orWhere('main.is_submitted_ipp', null)
+                            ->groupEnd()
+                            ->groupStart()
+                                ->where('main.is_submitted_ipp_mid', 0)
+                                ->orWhere('main.is_submitted_ipp_mid', null)
+                            ->groupEnd()
+                            ->where('main.is_submitted_ipp_one', 1)
+                        ->groupEnd()
+                    ->groupEnd();
+            $builder->groupStart()
+                        ->groupStart()
+                            ->where('main.kode_jabatan', 8)
+                            ->groupStart()
+                                ->where('main.created_by', 3651)
+                                ->orWhere('main.created_by', 3659)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_kasie', 0)
+                                ->orWhere('main.approval_kasie', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->groupStart()
+                                ->where('main.kode_jabatan', 4)
+                                ->orGroupStart()
+                                    ->where('main.kode_jabatan', 8)
+                                    ->groupStart()
+                                        ->where('main.created_by', 3659)
+                                        ->orWhere('main.created_by', 3659)
+                                    ->groupEnd()
+                                ->groupEnd()
+                            ->groupEnd()
+                            ->groupStart()
+                                ->where('main.approval_kadept', 0)
+                                ->orWhere('main.approval_kadept', null)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_kadiv', 0)
+                                ->orWhere('main.approval_kadiv', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 3)
+                            ->groupStart()
+                                ->where('main.approval_kadiv', 0)
+                                ->orWhere('main.approval_kadiv', null)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_bod', 0)
+                                ->orWhere('main.approval_bod', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 2)
+                            ->groupStart()
+                                ->where('main.approval_presdir', 0)
+                                ->orWhere('main.approval_presdir', null)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('main.approval_bod', 0)
+                                ->orWhere('main.approval_bod', null)
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd();
+        
         return $builder->countAllResults();
     }
-
+    
     public function getPendingFin() {
         $id_department = session()->get('id_department');
         $id_division   = session()->get('id_division');
@@ -687,65 +762,100 @@ class IppModel extends Model{
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 2);
-        $builder->where(
-            '(' .
-            '(
-                `main`.`is_submitted_ipp` = 1 
-                AND (
-                    (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                    OR
-                    (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                )
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%Mid Year" OR `main`.`periode` LIKE "%MID YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                AND `main`.`is_submitted_ipp_mid` = 1 
-                AND (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%One Year" OR `main`.`periode` LIKE "%ONE YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp` IS NULL)
-                AND (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL) 
-                AND `main`.`is_submitted_ipp_one` = 1
-            )'.
-        ')');
-        $builder->where(
-            '(
-                (
-                    `main`.`kode_jabatan` = 8 
-                    AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    AND (`main`.`approval_kasie` = 0 OR `main`.`approval_kasie` IS NULL) 
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL)
-                )
-                OR
-                (
-                    (`main`.`kode_jabatan` = 4 
-                    OR (
-                        `main`.`kode_jabatan` = 8 
-                        AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    ))
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL) 
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 3
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 2
-                    AND (`main`.`approval_presdir` = 0 OR `main`.`approval_presdir` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-            )'
-        );
-
-        return $builder->countAllResults();
+                $builder->groupStart()
+                ->groupStart()
+                    ->where('main.is_submitted_ipp', 1)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp_mid', 0)
+                            ->orWhere('main.is_submitted_ipp_mid', null)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.is_submitted_ipp_one', 0)
+                            ->orWhere('main.is_submitted_ipp_one', null)
+                        ->groupEnd()
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%Mid Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_one', 0)
+                        ->orWhere('main.is_submitted_ipp_one', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_mid', 1)
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%One Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_mid', 0)
+                        ->orWhere('main.is_submitted_ipp_mid', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_one', 1)
+                ->groupEnd()
+            ->groupEnd();
+    $builder->groupStart()
+                ->groupStart()
+                    ->where('main.kode_jabatan', 8)
+                    ->groupStart()
+                        ->where('main.created_by', 3651)
+                        ->orWhere('main.created_by', 3659)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kasie', 0)
+                        ->orWhere('main.approval_kasie', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->groupStart()
+                        ->where('main.kode_jabatan', 4)
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 8)
+                            ->groupStart()
+                                ->where('main.created_by', 3659)
+                                ->orWhere('main.created_by', 3659)
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.approval_kadept', 0)
+                        ->orWhere('main.approval_kadept', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 3)
+                    ->groupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 2)
+                    ->groupStart()
+                        ->where('main.approval_presdir', 0)
+                        ->orWhere('main.approval_presdir', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+            ->groupEnd();
     }
 
     public function getPendingAdm() {
@@ -759,63 +869,100 @@ class IppModel extends Model{
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 1);
-        $builder->where(
-            '(' .
-            '(
-                `main`.`is_submitted_ipp` = 1 
-                AND (
-                    (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                    OR
-                    (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                )
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%Mid Year" OR `main`.`periode` LIKE "%MID YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                AND `main`.`is_submitted_ipp_mid` = 1 
-                AND (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%One Year" OR `main`.`periode` LIKE "%ONE YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp` IS NULL)
-                AND (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL) 
-                AND `main`.`is_submitted_ipp_one` = 1
-            )'.
-        ')');
-        $builder->where(
-            '(
-                (
-                    `main`.`kode_jabatan` = 8 
-                    AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    AND (`main`.`approval_kasie` = 0 OR `main`.`approval_kasie` IS NULL) 
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL)
-                )
-                OR
-                (
-                    (`main`.`kode_jabatan` = 4 
-                    OR (
-                        `main`.`kode_jabatan` = 8 
-                        AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    ))
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL) 
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 3
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 2
-                    AND (`main`.`approval_presdir` = 0 OR `main`.`approval_presdir` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-            )'
-        );
+                $builder->groupStart()
+                ->groupStart()
+                    ->where('main.is_submitted_ipp', 1)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp_mid', 0)
+                            ->orWhere('main.is_submitted_ipp_mid', null)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.is_submitted_ipp_one', 0)
+                            ->orWhere('main.is_submitted_ipp_one', null)
+                        ->groupEnd()
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%Mid Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_one', 0)
+                        ->orWhere('main.is_submitted_ipp_one', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_mid', 1)
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%One Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_mid', 0)
+                        ->orWhere('main.is_submitted_ipp_mid', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_one', 1)
+                ->groupEnd()
+            ->groupEnd();
+    $builder->groupStart()
+                ->groupStart()
+                    ->where('main.kode_jabatan', 8)
+                    ->groupStart()
+                        ->where('main.created_by', 3651)
+                        ->orWhere('main.created_by', 3659)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kasie', 0)
+                        ->orWhere('main.approval_kasie', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->groupStart()
+                        ->where('main.kode_jabatan', 4)
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 8)
+                            ->groupStart()
+                                ->where('main.created_by', 3659)
+                                ->orWhere('main.created_by', 3659)
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.approval_kadept', 0)
+                        ->orWhere('main.approval_kadept', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 3)
+                    ->groupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 2)
+                    ->groupStart()
+                        ->where('main.approval_presdir', 0)
+                        ->orWhere('main.approval_presdir', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+            ->groupEnd();
 
         return $builder->countAllResults();
     }
@@ -831,63 +978,100 @@ class IppModel extends Model{
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 5);
-        $builder->where(
-            '(' .
-            '(
-                `main`.`is_submitted_ipp` = 1 
-                AND (
-                    (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                    OR
-                    (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                )
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%Mid Year" OR `main`.`periode` LIKE "%MID YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                AND `main`.`is_submitted_ipp_mid` = 1 
-                AND (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%One Year" OR `main`.`periode` LIKE "%ONE YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp` IS NULL)
-                AND (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL) 
-                AND `main`.`is_submitted_ipp_one` = 1
-            )'.
-        ')');
-        $builder->where(
-            '(
-                (
-                    `main`.`kode_jabatan` = 8 
-                    AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    AND (`main`.`approval_kasie` = 0 OR `main`.`approval_kasie` IS NULL) 
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL)
-                )
-                OR
-                (
-                    (`main`.`kode_jabatan` = 4 
-                    OR (
-                        `main`.`kode_jabatan` = 8 
-                        AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    ))
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL) 
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 3
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 2
-                    AND (`main`.`approval_presdir` = 0 OR `main`.`approval_presdir` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-            )'
-        );
+                $builder->groupStart()
+                ->groupStart()
+                    ->where('main.is_submitted_ipp', 1)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp_mid', 0)
+                            ->orWhere('main.is_submitted_ipp_mid', null)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.is_submitted_ipp_one', 0)
+                            ->orWhere('main.is_submitted_ipp_one', null)
+                        ->groupEnd()
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%Mid Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_one', 0)
+                        ->orWhere('main.is_submitted_ipp_one', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_mid', 1)
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%One Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_mid', 0)
+                        ->orWhere('main.is_submitted_ipp_mid', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_one', 1)
+                ->groupEnd()
+            ->groupEnd();
+    $builder->groupStart()
+                ->groupStart()
+                    ->where('main.kode_jabatan', 8)
+                    ->groupStart()
+                        ->where('main.created_by', 3651)
+                        ->orWhere('main.created_by', 3659)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kasie', 0)
+                        ->orWhere('main.approval_kasie', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->groupStart()
+                        ->where('main.kode_jabatan', 4)
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 8)
+                            ->groupStart()
+                                ->where('main.created_by', 3659)
+                                ->orWhere('main.created_by', 3659)
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.approval_kadept', 0)
+                        ->orWhere('main.approval_kadept', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 3)
+                    ->groupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 2)
+                    ->groupStart()
+                        ->where('main.approval_presdir', 0)
+                        ->orWhere('main.approval_presdir', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+            ->groupEnd();
 
         return $builder->countAllResults();
     }
@@ -903,63 +1087,100 @@ class IppModel extends Model{
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 3);
-        $builder->where(
-            '(' .
-            '(
-                `main`.`is_submitted_ipp` = 1 
-                AND (
-                    (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                    OR
-                    (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                )
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%Mid Year" OR `main`.`periode` LIKE "%MID YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                AND `main`.`is_submitted_ipp_mid` = 1 
-                AND (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%One Year" OR `main`.`periode` LIKE "%ONE YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp` IS NULL)
-                AND (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL) 
-                AND `main`.`is_submitted_ipp_one` = 1
-            )'.
-        ')');
-        $builder->where(
-            '(
-                (
-                    `main`.`kode_jabatan` = 8 
-                    AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    AND (`main`.`approval_kasie` = 0 OR `main`.`approval_kasie` IS NULL) 
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL)
-                )
-                OR
-                (
-                    (`main`.`kode_jabatan` = 4 
-                    OR (
-                        `main`.`kode_jabatan` = 8 
-                        AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    ))
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL) 
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 3
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 2
-                    AND (`main`.`approval_presdir` = 0 OR `main`.`approval_presdir` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-            )'
-        );
+                $builder->groupStart()
+                ->groupStart()
+                    ->where('main.is_submitted_ipp', 1)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp_mid', 0)
+                            ->orWhere('main.is_submitted_ipp_mid', null)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.is_submitted_ipp_one', 0)
+                            ->orWhere('main.is_submitted_ipp_one', null)
+                        ->groupEnd()
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%Mid Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_one', 0)
+                        ->orWhere('main.is_submitted_ipp_one', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_mid', 1)
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%One Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_mid', 0)
+                        ->orWhere('main.is_submitted_ipp_mid', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_one', 1)
+                ->groupEnd()
+            ->groupEnd();
+    $builder->groupStart()
+                ->groupStart()
+                    ->where('main.kode_jabatan', 8)
+                    ->groupStart()
+                        ->where('main.created_by', 3651)
+                        ->orWhere('main.created_by', 3659)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kasie', 0)
+                        ->orWhere('main.approval_kasie', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->groupStart()
+                        ->where('main.kode_jabatan', 4)
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 8)
+                            ->groupStart()
+                                ->where('main.created_by', 3659)
+                                ->orWhere('main.created_by', 3659)
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.approval_kadept', 0)
+                        ->orWhere('main.approval_kadept', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 3)
+                    ->groupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 2)
+                    ->groupStart()
+                        ->where('main.approval_presdir', 0)
+                        ->orWhere('main.approval_presdir', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+            ->groupEnd();
 
         return $builder->countAllResults();
     }
@@ -975,63 +1196,100 @@ class IppModel extends Model{
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_department', 5);
-        $builder->where(
-            '(' .
-            '(
-                `main`.`is_submitted_ipp` = 1 
-                AND (
-                    (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                    OR
-                    (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-                )
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%Mid Year" OR `main`.`periode` LIKE "%MID YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL)
-                AND `main`.`is_submitted_ipp_mid` = 1 
-                AND (`main`.`is_submitted_ipp_one` = 0 OR `main`.`is_submitted_ipp_one` IS NULL)
-            )
-            OR
-            (
-                (`main`.`periode` LIKE "%One Year" OR `main`.`periode` LIKE "%ONE YEAR") 
-                AND (`main`.`is_submitted_ipp` = 0 OR `main`.`is_submitted_ipp` IS NULL)
-                AND (`main`.`is_submitted_ipp_mid` = 0 OR `main`.`is_submitted_ipp_mid` IS NULL) 
-                AND `main`.`is_submitted_ipp_one` = 1
-            )'.
-        ')');
-        $builder->where(
-            '(
-                (
-                    `main`.`kode_jabatan` = 8 
-                    AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    AND (`main`.`approval_kasie` = 0 OR `main`.`approval_kasie` IS NULL) 
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL)
-                )
-                OR
-                (
-                    (`main`.`kode_jabatan` = 4 
-                    OR (
-                        `main`.`kode_jabatan` = 8 
-                        AND (`main`.`created_by` != 3651 OR `main`.`created_by` != 3659)
-                    ))
-                    AND (`main`.`approval_kadept` = 0 OR `main`.`approval_kadept` IS NULL) 
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 3
-                    AND (`main`.`approval_kadiv` = 0 OR `main`.`approval_kadiv` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-                OR
-                (
-                    `main`.`kode_jabatan` = 2
-                    AND (`main`.`approval_presdir` = 0 OR `main`.`approval_presdir` IS NULL) 
-                    AND (`main`.`approval_bod` = 0 OR `main`.`approval_bod` IS NULL)
-                )
-            )'
-        );
+                $builder->groupStart()
+                ->groupStart()
+                    ->where('main.is_submitted_ipp', 1)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp_mid', 0)
+                            ->orWhere('main.is_submitted_ipp_mid', null)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('main.is_submitted_ipp_one', 0)
+                            ->orWhere('main.is_submitted_ipp_one', null)
+                        ->groupEnd()
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%Mid Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_one', 0)
+                        ->orWhere('main.is_submitted_ipp_one', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_mid', 1)
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.periode LIKE', '%One Year')
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 0)
+                        ->orWhere('main.is_submitted_ipp', null)
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp_mid', 0)
+                        ->orWhere('main.is_submitted_ipp_mid', null)
+                    ->groupEnd()
+                    ->where('main.is_submitted_ipp_one', 1)
+                ->groupEnd()
+            ->groupEnd();
+    $builder->groupStart()
+                ->groupStart()
+                    ->where('main.kode_jabatan', 8)
+                    ->groupStart()
+                        ->where('main.created_by', 3651)
+                        ->orWhere('main.created_by', 3659)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kasie', 0)
+                        ->orWhere('main.approval_kasie', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->groupStart()
+                        ->where('main.kode_jabatan', 4)
+                        ->orGroupStart()
+                            ->where('main.kode_jabatan', 8)
+                            ->groupStart()
+                                ->where('main.created_by', 3659)
+                                ->orWhere('main.created_by', 3659)
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->groupStart()
+                        ->where('main.approval_kadept', 0)
+                        ->orWhere('main.approval_kadept', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 3)
+                    ->groupStart()
+                        ->where('main.approval_kadiv', 0)
+                        ->orWhere('main.approval_kadiv', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where('main.kode_jabatan', 2)
+                    ->groupStart()
+                        ->where('main.approval_presdir', 0)
+                        ->orWhere('main.approval_presdir', null)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('main.approval_bod', 0)
+                        ->orWhere('main.approval_bod', null)
+                    ->groupEnd()
+                ->groupEnd()
+            ->groupEnd();
 
         return $builder->countAllResults();
     }
@@ -1089,8 +1347,8 @@ class IppModel extends Model{
         } elseif ($kode_jabatan == 4) {
             $builder->where('users.kode_jabatan', 8)
                     ->groupStart()
-                        ->where('users.npk', '!=', 3651)
-                        ->where('users.npk', '!=', 3659)
+                        ->where('users.npk <>', 3651)
+                        ->where('users.npk <>', 3659)
                     ->groupEnd()
                     ->where('main.id_section', $id_section)
                     ->groupStart()
@@ -1191,8 +1449,8 @@ class IppModel extends Model{
                     ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_midyear', 0)
                             ->orWhere('main.approval_kasie_midyear', 0)
@@ -1256,8 +1514,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_midyear', 0)
                             ->orWhere('main.approval_kasie_midyear', 0)
@@ -1319,8 +1577,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_midyear', 0)
                             ->orWhere('main.approval_kasie_midyear', 0)
@@ -1380,8 +1638,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_midyear', 0)
                             ->orWhere('main.approval_kasie_midyear', 0)
@@ -1443,8 +1701,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_midyear', 0)
                             ->orWhere('main.approval_kasie_midyear', 0)
@@ -1506,8 +1764,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_midyear', 0)
                             ->orWhere('main.approval_kasie_midyear', 0)
@@ -1569,8 +1827,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_midyear', 0)
                             ->orWhere('main.approval_kasie_midyear', 0)
@@ -1772,8 +2030,8 @@ class IppModel extends Model{
                     ->groupStart()
                         ->groupStart()
                             ->where('main.kode_jabatan', 8)
-                            ->where('main.created_by', '!=', 3651)
-                            ->where('main.created_by', '!=', 3659)
+                            ->where('main.created_by <>', 3651)
+                            ->where('main.created_by <>', 3659)
                             ->groupStart()
                                 ->where('main.approval_kadept_oneyear', 0)
                                 ->orWhere('main.approval_kasie_oneyear', 0)
@@ -1842,8 +2100,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_oneyear', 0)
                             ->orWhere('main.approval_kasie_oneyear', 0)
@@ -1910,8 +2168,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_oneyear', 0)
                             ->orWhere('main.approval_kasie_oneyear', 0)
@@ -1978,8 +2236,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_oneyear', 0)
                             ->orWhere('main.approval_kasie_oneyear', 0)
@@ -2046,8 +2304,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_oneyear', 0)
                             ->orWhere('main.approval_kasie_oneyear', 0)
@@ -2114,8 +2372,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_oneyear', 0)
                             ->orWhere('main.approval_kasie_oneyear', 0)
@@ -2182,8 +2440,8 @@ class IppModel extends Model{
                 ->groupStart()
                     ->groupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.created_by', '!=', 3651)
-                        ->where('main.created_by', '!=', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                         ->groupStart()
                             ->where('main.approval_kadept_oneyear', 0)
                             ->orWhere('main.approval_kasie_oneyear', 0)

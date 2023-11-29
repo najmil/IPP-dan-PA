@@ -209,7 +209,14 @@ class Ipp extends BaseController
             $kode_jabatan = session()->get('kode_jabatan');
             $nama = session()->get('nama');
 
-            $this->ippModel->insert([
+            if (!$file->isValid()) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Failed to upload the file. Please try again.',
+                ]);
+            }
+
+            $inserted = $this->ippModel->insert([
                 'periode' => $periode,
                 'file'    => $fileData,
                 'created_at' => $created_at,
@@ -266,6 +273,18 @@ class Ipp extends BaseController
                 'is_approved_kasie_oneyear'  => 1,
                 'approval_date_kasie_oneyear'=> date('Y-m-d'),
             ]);
+
+            if ($inserted) {
+                return $this->response->setJSON([
+                    'success' => true,
+                    'message' => 'Data has been successfully saved.',
+                ]);
+            } else {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Failed to save data. Please try again.',
+                ]);
+            }
         }
     }
 
