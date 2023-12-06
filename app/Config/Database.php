@@ -26,11 +26,11 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => '10.19.16.27',
+        'hostname'     => 'DESKTOP-RA29D2S\SQLEXPRESS',
         'username'     => 'sa',
-        'password'     => 'User@new1',
+        'password'     => '1234',
         'database'     => 'portal_ipp',
-        'DBDriver'     => 'SQLSRV',
+        'DBDriver'     => 'sqlsrv',
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,

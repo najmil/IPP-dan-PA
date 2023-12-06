@@ -508,19 +508,19 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="30%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '30%' : '') .'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="35%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '35%' : '') .'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="40%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '40%' : '') .'" readonly>';
                                                         break;
                                                     case 8:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="50%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '50%' : '') .'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="40%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '40%' : '') .'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
@@ -549,16 +549,16 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="20%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b2_average'] !== null ? '20%' : '') .'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="15%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average'] !== null ? '15%' : '') .'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="10%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average'] !== null ? '10%' : '') .'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="10%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average'] !== null ? '10%' : '') .'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
@@ -625,26 +625,26 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="30%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '30%' : '').'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="35%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '35%' : '').'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="40%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '40%' : '') .'" readonly>';
                                                         break;
                                                     case 8:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="50%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '50%' : '').'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="40%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '40%' : '').'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
                                         </td>
                                         <td>=</td>
                                         <td>
-                                            <input type="number" class="form-control pdca_one" value="<?= isset($procsum['pdca_one']) ? $procsum['pdca_one'] : ''; ?>" readonly>
+                                            <input type="number" class="form-control pdca_one" value="<?= isset($procsum['pdca_one']) && $procsum['pdca_one'] !== null ? $procsum['pdca_one'] : ''; ?>" readonly>
                                         </td>
                                     </tr>
                                     <?php
@@ -667,16 +667,16 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="20%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '20%' : '') .'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="15%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '15%' : '') .'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="10%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '10%' : '') .'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="10%" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '10%' : '') .'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
@@ -1565,18 +1565,18 @@
             var b1_average = parseFloat($(".b1_average").val()) || 0;
             var b2_average = parseFloat($(".b2_average").val()) || 0;
 
-            $(".b1_average").val(b1_average.toFixed(2));
-            $(".b2_average").val(b2_average.toFixed(2));
-            $(".sum_midyear_total").val(sum_midyear_total.toFixed(2));
+            b1_average !== 0 ? $(".b1_average").val(b1_average.toFixed(2)) : '';
+            b2_average !== 0 ? $(".b2_average").val(b2_average.toFixed(2)) : '';
+            sum_midyear_total !== 0 ? $(".sum_midyear_total").val(sum_midyear_total.toFixed(2)) : '';
 
             // Untuk One Year
             var sum_oneyear_total = parseFloat($(".sum_oneyear_total").val()) || 0;
             var b1_average_one = parseFloat($(".b1_average_one").val()) || 0;
             var b2_average_one = parseFloat($(".b2_average_one").val()) || 0;
 
-            $(".b1_average_one").val(b1_average_one.toFixed(2));
-            $(".b2_average_one").val(b2_average_one.toFixed(2));
-            $(".sum_oneyear_total").val(sum_oneyear_total.toFixed(2));
+            b1_average_one !== 0 ? $(".b1_average_one").val(b1_average_one.toFixed(2)) : '';
+            b2_average_one !== 0 ?$(".b2_average_one").val(b2_average_one.toFixed(2)) : '';
+            sum_oneyear_total !== 0 ? $(".sum_oneyear_total").val(sum_oneyear_total.toFixed(2)) : '';
             
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
 
@@ -1611,20 +1611,26 @@
             var result_one = sum_oneyear_total * 0.5;
 
             // Tampilkan hasil di input yang sesuai
-            $(".pdca_mid").val(pdca_mid.toFixed(2));
-            $(".pm_mid").val(pm_mid.toFixed(2));
-            $(".result_mid").val(result_mid.toFixed(2));
-            $(".pdca_one").val(pdca_one.toFixed(2));
-            $(".pm_one").val(pm_one.toFixed(2));
-            $(".result_one").val(result_one.toFixed(2));
+            // $(".pdca_mid").val(pdca_mid.toFixed(2));
+            // $(".pm_mid").val(pm_mid.toFixed(2));
+            // $(".result_mid").val(result_mid.toFixed(2));
+            // $(".pdca_one").val(pdca_one.toFixed(2));
+            // $(".pm_one").val(pm_one.toFixed(2));
+            // $(".result_one").val(result_one.toFixed(2));
+            pdca_mid !== 0 ? $(".pdca_mid").val(pdca_mid.toFixed(2)) : '';
+            pm_mid !== 0 ? $(".pm_mid").val(pm_mid.toFixed(2)) : '';
+            result_mid !== 0 ? $(".result_mid").val(result_mid.toFixed(2)) : '';
+            pdca_one !== 0 ? $(".pdca_one").val(pdca_one.toFixed(2)) : '';
+            pm_one !== 0 ? $(".pm_one").val(pm_one.toFixed(2)) : '';
+            result_one !== 0 ? $(".result_one").val(result_one.toFixed(2)) : '';
 
             // Hitung dan tampilkan nilai Mid Year Value
             var midyear_value = pdca_mid + pm_mid + result_mid;
-            $(".midyear_value").val(midyear_value.toFixed(2));
+            midyear_value !== 0 ? $(".midyear_value").val(midyear_value.toFixed(2)) : '';
 
             // Hitung dan tampilkan nilai One Year Value
             var oneyear_value = pdca_one + pm_one + result_one;
-            $(".oneyear_value").val(oneyear_value.toFixed(2));
+            oneyear_value !== 0 ? $(".oneyear_value").val(oneyear_value.toFixed(2)) : '';
 
             function calculateGrade(midyear_value) {
                 if (midyear_value < 2) {

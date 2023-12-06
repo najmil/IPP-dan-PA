@@ -20,7 +20,7 @@ class Home extends BaseController
         // dd($npk);
         // dd(session()->get('kode_jabatan'));
         $data = [
-            'tittle' => 'Portal IPP dan IDP',
+            'tittle' => 'Portal IPP dan PA',
             'countPending' => $this->ippModel->getDataPending(),
             'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
             'countPendingAdm' => $this->ippModel->getPendingAdm(),

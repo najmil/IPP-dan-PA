@@ -54,8 +54,8 @@ class ProcsumMainModel extends Model
                     ->orWhere('users.kode_jabatan', 4)
                     ->groupEnd();
                 $builder->groupStart()
-                    ->orWhere('procsum_main.id_department', 3)
-                    ->orWhere('procsum_main.id_department', 4)
+                    ->orWhere('procsum_main.id_department', 20)
+                    ->orWhere('procsum_main.id_department', 20)
                     ->groupEnd();
                 $builder->where('procsum_main.is_submitted_midyear', 1);
             }
@@ -86,7 +86,7 @@ class ProcsumMainModel extends Model
                         ->groupEnd()
                         ->orGroupStart()
                             ->where('procsum_main.kode_jabatan', 8)
-                            ->where('procsum_main.id_department', 5)
+                            ->where('procsum_main.id_department', 27)
                         ->groupEnd()
                     ->groupEnd()
                     ->where('procsum_main.id_division', $id_division);
@@ -121,7 +121,7 @@ class ProcsumMainModel extends Model
                             ->where('procsum_main.id_division', 3)
                             ->orWhere('procsum_main.id_division', 4)
                             ->orWhere('procsum_main.id_division', 5)
-                            ->orWhere('procsum_main.id_department', 5)
+                            ->orWhere('procsum_main.id_department', 27)
                         ->groupEnd()
                         ->where('procsum_main.kode_jabatan', 3)
                     ->groupEnd()
@@ -135,7 +135,7 @@ class ProcsumMainModel extends Model
                     ->groupEnd()
                     ->orGroupStart()
                         ->groupStart()
-                            ->where('procsum_main.id_department', 5)
+                            ->where('procsum_main.id_department', 27)
                         ->groupEnd()
                         ->groupStart()
                             ->where('procsum_main.kode_jabatan', 4)
@@ -144,7 +144,7 @@ class ProcsumMainModel extends Model
                     ->groupEnd()
                     ->orGroupStart()
                         ->where('procsum_main.kode_jabatan', 8)
-                        ->where('procsum_main.id_department', 5)
+                        ->where('procsum_main.id_department', 27)
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
             $builder->where('users.kode_jabatan', 2);
@@ -217,8 +217,8 @@ class ProcsumMainModel extends Model
                             ->orWhere('users.kode_jabatan', 4)
                         ->groupEnd()
                         ->groupStart()
-                            ->where('procsum_main.id_department', 3)
-                            ->orWhere('procsum_main.id_department', 4)
+                            ->where('procsum_main.id_department', 20)
+                            ->orWhere('procsum_main.id_department', 20)
                         ->groupEnd()
                         ->groupStart()
                             ->groupStart()
@@ -364,7 +364,7 @@ class ProcsumMainModel extends Model
                                     ->where('procsum_main.id_division', 3)
                                     ->orWhere('procsum_main.id_division', 4)
                                     ->orWhere('procsum_main.id_division', 5)
-                                    ->orWhere('procsum_main.id_department', 5)
+                                    ->orWhere('procsum_main.id_department', 27)
                                 ->groupEnd()
                                 ->where('procsum_main.kode_jabatan', 3)
                             ->groupEnd()
@@ -378,7 +378,7 @@ class ProcsumMainModel extends Model
                             ->groupEnd()
                             ->orGroupStart()
                                 ->groupStart()
-                                    ->where('procsum_main.id_department', 5)
+                                    ->where('procsum_main.id_department', 27)
                                 ->groupEnd()
                                 ->groupStart()
                                     ->where('procsum_main.kode_jabatan', 4)
@@ -1104,7 +1104,7 @@ class ProcsumMainModel extends Model
         $builder = $this->db->table('procsum_main')
                 ->select('procsum_main.*')
                 ->join('users', 'users.npk = procsum_main.created_by', 'left')
-                ->where('procsum_main.id_department', 5)
+                ->where('procsum_main.id_department', 27)
                 ->groupStart()
                     ->groupStart()
                         ->where('procsum_main.is_submitted_midyear', 1)

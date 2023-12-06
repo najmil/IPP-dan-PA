@@ -5,10 +5,10 @@
 <div class="container">
     <div class="row">
         <?php if ($kode_jabatan != 8 ) : ?>
-            <div class="card">
+            <div class="card" style="overflow-y: auto;">
         <?php elseif ($kode_jabatan == 8) :?>
             <div class="col">
-                <div class="card">
+                <div class="card" style="overflow-y: auto;">
             </div>
         <?php endif ?>
             <div class="card-body">
@@ -739,7 +739,7 @@
                                     }
                                 } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && !$is_approved && !$is_approved_before) {
                                     if($is_submitted_oneyear == 1){
-                                        // dd($daftarprocsum);
+                                        dd($daftarprocsum);
                                         echo'<button type="button" id="edit-one" class="btn btn-warning btn-sm mb-2 mr-2" style="width: 100px; height: 30px;">
                                                 Edit All
                                             </button>

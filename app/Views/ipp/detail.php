@@ -15,6 +15,7 @@
                         <?php
                             $periodeModel = new \App\Models\PeriodeModel();
                             $periodeIPP = $periodeModel->getLatestIPPeriode();
+                            $periodeIPPNull = $periodeModel->getLatestIPPeriodeNull();
                             $periodeIPPMid = $periodeModel->getLatestMidPeriode();
                             $periodeIPPOne = $periodeModel->getLatestOnePeriode();
                             $isWithinIPPeriode = false;
@@ -221,7 +222,7 @@
                                     <td class="oneyear" data-id="<?= $d['id']; ?>"><?= $d['oneyear']; ?></td>
                                     <td class="duedate" data-id="<?= $d['id']; ?>">
                                         <?= $d['duedate']; ?>
-                                        <input type="hidden" class="form-control input-sm text-center edit-mode" id="duedate" name="duedate[]" value="<?= $d['duedate']; ?>">
+                                        <input type="hidden" class="form-control input-sm text-center edit-mode" id="duedate" name="duedate[]" value="<?= $d['duedate']; ?>"; ?>">
                                     </td>
                                     <?php
                                         $periodeModel = new \App\Models\PeriodeModel();
@@ -275,6 +276,29 @@
     // });
     var isDataSaved = false;
     var isSubmitted = false;
+
+    <?php //dd($periodeIPP); ?>
+    
+
+    function validateDate(input) {
+        <?php if ($periodeIPP !== null) : ?>
+            const minDate = '<?= substr($periodeIPP['start_period'], 0, 10); ?>';
+            const selectedDate = input.value;
+
+            if (selectedDate < minDate) {
+                alert('Tidak dapat memilih tanggal sebelum periode dimulai.');
+                input.value = minDate;
+            }
+        <?php elseif ($periodeIPP == null) : ?>
+            const minDate = '<?= substr($periodeIPPNull['start_period'], 0, 10); ?>';
+            const selectedDate = input.value;
+
+            if (selectedDate < minDate) {
+                alert('Tidak dapat memilih tanggal sebelum periode dimulai.');
+                input.value = minDate;
+            }
+        <?php endif ?>
+    }
 
     function checkDataSaved() {
         if (!isDataSaved) {
@@ -418,7 +442,7 @@
             row.find('.weight').html('<input type="number" class="form-control weight-input"data-id-main="<?= $id_main; ?>" value="' + row.find('.weight').text().trim() + '">');
             row.find('.midyear').html('<textarea class="form-control midyear-input" data-id-main="<?= $id_main; ?>">' + row.find('.midyear').text().trim() + '</textarea>');
             row.find('.oneyear').html('<textarea class="form-control oneyear-input" data-id-main="<?= $id_main; ?>">' + row.find('.oneyear').text().trim() + '</textarea>');
-            row.find('.duedate').html('<input type="date" class="form-control duedate-input" data-id-main="<?= $id_main; ?>" value="' + row.find('.duedate').text().trim() + '">');
+            row.find('.duedate').html('<input type="date" class="form-control duedate-input" data-id-main="<?= $id_main; ?>" value="' + row.find('.duedate').text().trim() + ' oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?> ">');
 
             // Menambahkan atribut data-id dengan ID yang sesuai
             row.find('.save-btn').data('id', row.find('.program').data('id'));
@@ -698,7 +722,7 @@
                 '<td><input type="number" class="form-control weight-input edit-mode"></td>' +
                 '<td style="width: 400px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>' +
                 '<td style="width: 400px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>' +
-                '<td><input type="date" class="form-control duedate-input edit-mode"></td>' +
+                '<td><input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>"></td>' +
                 '<td class="text-center">' +
                 '<button type="button" class="btn btn-warning btn-sm edit-btn" style="idth: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>'+
                 '<button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>' +
