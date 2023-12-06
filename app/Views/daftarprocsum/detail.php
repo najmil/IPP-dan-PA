@@ -283,6 +283,7 @@
 
                                     if (session()->get('npk') != 0 && $isWithinMidPeriode && !$is_approved && !$is_approved_before) {
                                         if ($is_submitted){
+                                            // dd($isWithinOnePeriode);
                                             echo'
                                                 <button type="button" id="edit" class="btn btn-warning btn-sm mb-2 mr-2" style="width: 100px; height: 30px;">
                                                     Edit All
@@ -379,6 +380,7 @@
                                         };
                                     } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && !$is_approved && !$is_approved_before) {
                                         if($is_submitted_oneyear == 1){
+                                            // dd($isWithinOnePeriode);
                                             echo'<button type="button" id="edit-one" class="btn btn-warning btn-sm mb-2 mr-2" style="width: 100px; height: 30px;">
                                                     Edit All
                                                 </button>

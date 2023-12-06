@@ -28,6 +28,15 @@
 
                                 <!-- Modal Body -->
                                 <div class="modal-body">
+                                    <?php if (!empty($error)): ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?= $error ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- Jika gagal masukkan data -->
+                                    <div class="alert alert-danger gagal" role="alert" style="display: none;"></div>
+                                    <!-- Jika suskes masukkan data -->
+                                    <div class="alert alert-success sukses" role="alert" style="display: none;"></div>
                                     <div class="mb-3 row">
                                         <label for="periodeInput" class="col-sm-6">Periode One Year</label>
                                         <div class="col-sm-4">
@@ -229,7 +238,7 @@
             formData.append('file', file);
 
             $.ajax({
-                url: '<?= base_url('ipp/datalama'); ?>',
+                url: '<?= base_url('oneyear/datalama'); ?>',
                 type: 'POST',
                 data: formData,
                 processData: false, 
@@ -237,12 +246,21 @@
                 beforeSend: function(){
                     $('#simpanLama').html('<i class="fas fa-spinner fa-spin"></i>');
                 },
-                complete: function(){
-                    $('#simpanLama').hide();
+                complete: function () {
+                    $('#simpanLama').prop('disabled', false).html('Simpan');
                 },
-                success: function(response) {
-                    console.log(response); 
-                    location.reload();
+                success:  function(hasil){
+                    var $obj = $.parseJSON(hasil);
+                    if ($obj.sukses == false){
+                        $('.sukses').hide();
+                        $('.gagal').show();
+                        $('.gagal').html($obj.gagal);
+                    } else {
+                        $('.gagal').hide();
+                        $('.sukses').show();
+                        $('.sukses').html($obj.sukses);
+                        location.reload();
+                    }
                 },
                 error: function() {
                     console.log("Gagal mengirim data ke server");

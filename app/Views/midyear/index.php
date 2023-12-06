@@ -29,6 +29,15 @@
 
                                 <!-- Modal Body -->
                                 <div class="modal-body">
+                                    <?php if (!empty($error)): ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?= $error ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- Jika gagal masukkan data -->
+                                    <div class="alert alert-danger gagal" role="alert" style="display: none;"></div>
+                                    <!-- Jika suskes masukkan data -->
+                                    <div class="alert alert-success sukses" role="alert" style="display: none;"></div>
                                     <div class="mb-3 row">
                                         <label for="periodeInput" class="col-sm-6">Periode Mid Year</label>
                                         <div class="col-sm-4">
@@ -117,7 +126,7 @@
                                     <td>
                                         <?php if ($allowAccess): ?>
                                             <?php if (preg_match('/2023/', $m['periode'])): ?>
-                                                <a href="<?= base_url('midyear/detail/' . $m['id']) ?>" class="btn btn-primary btn-sm">Detail</a>
+                                                <a href="<?= base_url('midyear/detail/' . $m['id']) ?>" class="btn btn-primary btn-sm" style="width: 55px;">Detail</a>
                                             <?php endif; ?>
                                             <?php
                                                 $allowAccessPdf = false;
@@ -151,10 +160,10 @@
                                                 }
                                             ?>
                                             <?php if (preg_match('/2023/', $m['periode'])): ?>
-                                                <a href="<?= base_url('midyear/logchanges/'.$m['id']) ?>" class="btn btn-secondary btn-sm">Log</a>
+                                                <a href="<?= base_url('midyear/logchanges/'.$m['id']) ?>" class="btn btn-secondary btn-sm" style="width: 55px;">Log</a>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <button class="btn btn-secondary btn-sm" disabled>Detail</button>
+                                            <button class="btn btn-secondary btn-sm" style="width: 55px;" disabled>Detail</button>
                                         <?php endif; ?>
                                     </td>
                                     <td>
@@ -224,35 +233,44 @@
             pagingType: "simple"
         });
 
-        $("#simpanLama").click(function() {
-            var periode = $("#year").val();
-            console.log(periode);
-            var file = $("#midFile")[0].files[0];
+        $('#simpanLama').click(function () {
+            var periode = $('#year').val();
+            var fileInput = $('#midFile')[0].files[0];
 
-            var formData = new FormData();
-            formData.append('periode', periode);
-            formData.append('file', file);
+            if (!fileInput || periode === '') {
+                alert('File must be filled.');
+            } else {
+                var formData = new FormData();
+                formData.append('periode', periode);
+                formData.append('file', fileInput);
 
-            $.ajax({
-                url: '<?= base_url('ipp/datalama'); ?>',
-                type: 'POST',
-                data: formData,
-                processData: false, 
-                contentType: false,
-                beforeSend: function(){
-                    $('#simpanLama').html('<i class="fas fa-spinner fa-spin"></i>');
-                },
-                complete: function(){
-                    $('#simpanLama').hide();
-                },
-                success: function(response) {
-                    console.log(response); 
-                    location.reload();
-                },
-                error: function() {
-                    console.log("Gagal mengirim data ke server");
-                }
-            });
+                $.ajax({
+                    url: '<?= base_url('/midyear/datalama') ?>',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#simpanLama').html('<i class="fas fa-spinner fa-spin"></i>');
+                    },
+                    complete: function () {
+                        $('#simpanLama').prop('disabled', false).html('Simpan');
+                    },
+                    success: function(hasil){
+                        var $obj = $.parseJSON(hasil);
+                        if ($obj.sukses == false){
+                            $('.sukses').hide();
+                            $('.gagal').show();
+                            $('.gagal').html($obj.gagal);
+                        } else {
+                            $('.gagal').hide();
+                            $('.sukses').show();
+                            $('.sukses').html($obj.sukses);
+                            location.reload();
+                        }
+                    }
+                });
+            }
         });
     });
 

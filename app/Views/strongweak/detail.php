@@ -36,7 +36,7 @@
                                     <!-- STRONG POINT -->
                                     <div class="card col-md-6">
                                         <div class="card-header text-center">
-                                            <b for="strong_mid">Strong Point</b>
+                                            <b for="strong_mid">Strength Point</b>
                                         </div>
                                         <div class="card-body">
                                             <!-- Sembunyikan input jika data sudah ada -->
@@ -103,7 +103,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" oninput="limitCharacters('strong_mid_alc-input', 71)"></textarea>
+                                                    <textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" oninput="limitCharacters('strong_mid_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL STRONG POINT -->
@@ -571,7 +571,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Strong Point (Technical Competency)" oninput="limitCharacters('technical_value_mid-input', 71)"></textarea>
+                                                    <textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Strong Point (Technical Competency)" oninput="limitCharacters('technical_value_mid-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['strong_mid'])): ?>
@@ -652,7 +652,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_mid_alc-input" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" oninput="limitCharacters('weak_mid_alc-input', 71)"></textarea>
+                                                    <textarea name="weak_mid_alc-input" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" oninput="limitCharacters('weak_mid_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL WEAK POINT -->
@@ -1102,7 +1102,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_technical_value_mid-input"id="weak_technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Weakness Point (Technical Competency)" oninput="limitCharacters('weak_technical_value_mid-input', 71)"></textarea>
+                                                    <textarea name="weak_technical_value_mid-input"id="weak_technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Weakness Point (Technical Competency)" oninput="limitCharacters('weak_technical_value_mid-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['weak_mid'])): ?>
@@ -1119,7 +1119,7 @@
                                     <?php if (isset($strongweak['note_mid'])): ?>
                                         <textarea class="form-control" id="note_input" style="margin: 0; width: 100%; height: 300px;" name="note_mid" readonly><?= $strongweak['note_mid']; ?></textarea>
                                     <?php else: ?>
-                                        <textarea name="note_mid" id="note_mid_input" cols="30" rows="10" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters('note_mid_input', 376)"></textarea>
+                                        <textarea name="note_mid" id="note_mid_input" cols="30" rows="10" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters('note_mid_input', 71)"></textarea>
                                         <!-- Tampilkan validation error jika ada -->
                                         <?php // if (isset($errors['note_mid'])): ?>
                                             <div class="invalid-feedback"><?= $validation->getError('note_mid'); ?></div>
@@ -1143,7 +1143,8 @@
                                     <!-- STRENGTH POINT -->
                                     <div class="card col-md-6">
                                         <div class="card-header text-center">
-                                            <label class="form-label">Strong Point</label>
+                                            <b for="strong_one">Strength Point</b>
+                                            <!-- <label class="form-label">Strong Point</label> -->
                                         </div>
                                         <div class="card-body">
                                             <?php if (isset($strongweak['alc_one'])):?>
@@ -1207,7 +1208,9 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)"<?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('strong_one_alc-input', 71)"></textarea>
+                                                <div class="col-sm-12">
+                                                    <textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('strong_one_alc-input', 201)"></textarea>
+                                                </div>
                                                 
                                                 <!-- TECHNICAL STRONG POINT -->
                                                 <div class="form-group row">
@@ -1682,11 +1685,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Strong Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : '' ?> oninput="limitCharacters('technical_value_one-input', 71)"></textarea>
+                                                    <textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Strong Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : '' ?> oninput="limitCharacters('technical_value_one-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
-                                                <?php // if (isset($errors['strong_one'])): ?>
-                                                    <div class="invalid-feedback"><?= $validation->getError('technical_value_one'); ?></div>
+                                                <?php // if (isset($errors['note_mid'])): ?>
+                                                    <div class="invalid-feedback"><?= $validation->getError('strong_one'); ?></div>
                                                 <?php // endif; ?>
                                             <?php endif; ?>
                                         </div>
@@ -1695,7 +1698,7 @@
                                     <!-- WEAKNESS POINT -->
                                     <div class="card col-md-6">
                                         <div class="card-header text-center">
-                                            <label class="form-label" for="weak_one">Weak Point</label>
+                                            <label class="form-label" for="weak_one">Weakness Point</label>
                                         </div>
 
                                         <div class="card-body">
@@ -1725,7 +1728,7 @@
                                                     <span class="col-sm-4"><b>Technical</b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
-                                                        <span id="weak_one_alc_text"><?= $strongweak['weak_technical_one']; ?></span>
+                                                        <span id="weak_technical_one_text"><?= $strongweak['weak_technical_one']; ?></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1762,7 +1765,9 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <textarea name="weak_one_alc-input" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Weak Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('weak_one_alc-input', 71)"></textarea>
+                                                <div class="col-sm-12">
+                                                    <textarea name="weak_one_alc-input" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?php //echo isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Weak Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('weak_one_alc-input', 201)"></textarea>
+                                                </div>
                                                 
                                                 <!-- TECHNICAL WEAK POINT -->
                                                 <div class="form-group row mt-3">
@@ -2220,11 +2225,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Weak Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : ''?> oninput="limitCharacters('weak_technical_value_one-input', 71)"></textarea>
+                                                    <textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Weak Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : ''?> oninput="limitCharacters('weak_technical_value_one-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
-                                                <?php // if (isset($errors['weak_one'])): ?>
-                                                    <div class="invalid-feedback"><?= $validation->getError('weak_technical_value_one-input'); ?></div>
+                                                <?php // if (isset($errors['note_mid'])): ?>
+                                                    <div class="invalid-feedback"><?= $validation->getError('weak_one'); ?></div>
                                                 <?php // endif; ?>
                                             <?php endif; ?>
                                         </div>
@@ -2237,7 +2242,7 @@
                                     <?php if (isset($strongweak['note_one'])): ?>
                                         <textarea class="form-control" id="note_one_input" style="margin: 0; width: 100%; height: 300px;" name="note_one_input" readonly><?= $strongweak['note_one']; ?></textarea>
                                     <?php else: ?>
-                                        <textarea name="note_one" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('note_one_input', 376)"></textarea>
+                                        <textarea name="note_one" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('note_one_input', 71)"></textarea>
                                         <!-- Tampilkan validation error jika ada -->
                                         <?php // if (isset($errors['note_one'])): ?>
                                             <div class="invalid-feedback"><?= $validation->getError('note_one'); ?></div>
@@ -2794,7 +2799,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('sub_alc_mid_text').outerHTML = subAlcMidSelect;
                 
-                document.getElementById('strong_mid_alc_text').outerHTML = '<textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'strong_mid_alc-input\', 71)"><?= isset($strongweak['strong_mid_alc']) ? htmlspecialchars(($strongweak['strong_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('strong_mid_alc_text').outerHTML = '<textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'strong_mid_alc-input\', 201)"><?= isset($strongweak['strong_mid_alc']) ? htmlspecialchars(($strongweak['strong_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
                 var departmentId = <?= $strongweakmain['id_department']; ?>;
 
@@ -2838,7 +2843,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('technical_mid_text').outerHTML = technicalSelectHTML;
                 
-                document.getElementById('technical_value_mid_text').outerHTML = '<textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'technical_value_mid-input\', 71)"><?= isset($strongweak['technical_value_mid']) ? htmlspecialchars(($strongweak['technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('technical_value_mid_text').outerHTML = '<textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'technical_value_mid-input\', 201)"><?= isset($strongweak['technical_value_mid']) ? htmlspecialchars(($strongweak['technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             //END OF STRENGTH
 
             // WEAKNESS
@@ -2936,7 +2941,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('weak_sub_alc_mid_text').outerHTML = weakSubAlcMidSelect;
                 
-                document.getElementById('weak_mid_alc_text').outerHTML = '<textarea name="weak_mid_alc_text" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_mid_alc-input\', 71)"s><?= isset($strongweak['weak_mid_alc']) ? htmlspecialchars(($strongweak['weak_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_mid_alc_text').outerHTML = '<textarea name="weak_mid_alc_text" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_mid_alc-input\', 201)"s><?= isset($strongweak['weak_mid_alc']) ? htmlspecialchars(($strongweak['weak_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
                 var weakTechOpts = {
                     6: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
@@ -2978,11 +2983,11 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('weak_technical_mid_text').outerHTML = weakSelectMid;
 
-                document.getElementById('weak_technical_value_mid_text').outerHTML = '<textarea name="weak_technical_value_mid" id="weak_technical_value_mid-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_technical_value_mid-input\', 71)"><?= isset($strongweak['weak_technical_value_mid']) ? htmlspecialchars(($strongweak['weak_technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_technical_value_mid_text').outerHTML = '<textarea name="weak_technical_value_mid" id="weak_technical_value_mid-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_technical_value_mid-input\', 201)"><?= isset($strongweak['weak_technical_value_mid']) ? htmlspecialchars(($strongweak['weak_technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             // END OF WEAKNESS
 
             // NOTES
-            document.getElementById('note_input').outerHTML = '<textarea name="note_input" id="note_mid_input" cols="30" rows="10" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'note_mid_input\', 376)"><?= isset($strongweak['note_mid']) ? htmlspecialchars(($strongweak['note_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+            document.getElementById('note_input').outerHTML = '<textarea name="note_input" id="note_mid_input" cols="30" rows="10" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'note_mid_input\', 71)"><?= isset($strongweak['note_mid']) ? htmlspecialchars(($strongweak['note_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
             $('#edit').hide();
             $('#submitBtn').hide();
@@ -3118,7 +3123,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('sub_alc_one_text').outerHTML = subAlconeSelect;
                 
-                document.getElementById('strong_one_alc_text').outerHTML = '<textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'strong_one_alc-input\', 71)"><?= isset($strongweak['strong_one_alc']) ? htmlspecialchars(($strongweak['strong_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('strong_one_alc_text').outerHTML = '<textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'strong_one_alc-input\', 201)"><?= isset($strongweak['strong_one_alc']) ? htmlspecialchars(($strongweak['strong_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
                 var departmentId = <?= $strongweakmain['id_department']; ?>;
                 <?php $selectedtechnicalOne = isset($strongweak['technical_one']) ? $strongweak['technical_one'] : ''; ?>
@@ -3162,7 +3167,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('technical_one_text').outerHTML = techSelectOne;
 
-                document.getElementById('technical_value_one_text').outerHTML = '<textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'technical_value_one-input\', 71)"><?= isset($strongweak['technical_value_one']) ? htmlspecialchars(($strongweak['technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('technical_value_one_text').outerHTML = '<textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'technical_value_one-input\', 201)"><?= isset($strongweak['technical_value_one']) ? htmlspecialchars(($strongweak['technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             //END OF STRENGTH
 
             // WEAKNESS
@@ -3260,9 +3265,10 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('weak_sub_alc_one_text').outerHTML = weakSubAlconeSelect;
                 
-                document.getElementById('weak_one_alc_text').outerHTML = '<textarea name="weak_one_alc_text" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_one_alc-input\', 71)"><?= isset($strongweak['weak_one_alc']) ? htmlspecialchars(($strongweak['weak_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_one_alc_text').outerHTML = '<textarea name="weak_one_alc_text" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_one_alc-input\', 201)"><?= isset($strongweak['weak_one_alc']) ? htmlspecialchars(($strongweak['weak_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
-                <?php $selectedWeakTechnicalOne = isset($strongweak['weak_technical_one']) ? $strongweak['weak_technical_one'] : ''; ?>
+                var departmentId = <?= $strongweakmain['id_department']; ?>;
+                <?php $weakSelectedTechnicalOne = isset($strongweak['weak_technical_one']) ? $strongweak['weak_technical_one'] : ''; ?>
 
                 var weakTechOptsOne = {
                     6: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
@@ -3283,34 +3289,34 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                     16: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"]
                 };
 
-                var selectedWeakTechOne = '<?= $selectedWeakTechOne; ?>';
-                var weakSelectMid = '';
+                var weakSelectedTechnicalOne = '<?= $weakSelectedTechnicalOne; ?>';
+                var weakTechSelectOne = '';
 
                 if (weakTechOptsOne.hasOwnProperty(departmentId)) {
                     var options = weakTechOptsOne[departmentId];
 
-                    weakSelectMid += '<select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one" style="width: 100%;">';
+                    weakTechSelectOne += '<select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one" style="width: 100%;">';
 
                     options.forEach(function (option) {
-                        var isSelected = selectedWeakTechOne === option ? 'selected' : '';
-                        weakSelectMid += '<option value="' + option + '" ' + isSelected + '>' + option + '</option>';
+                        var isSelected = weakSelectedTechnicalOne === option ? 'selected' : '';
+                        weakTechSelectOne += '<option value="' + option + '" ' + isSelected + '>' + option + '</option>';
                     });
 
-                    weakSelectMid += '</select>';
+                    weakTechSelectOne += '</select>';
                 } else {
-                    weakSelectMid = '<select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one" style="width: 100%;"><option value="" disable>-- Pilih Technical Competency --</option></select>';
+                    weakTechSelectOne = '<select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one" style="width: 100%;"><option value="" disable>-- Pilih Technical Competency --</option></select>';
                 }
 
-                document.getElementById('weak_technical_one_text').outerHTML = weakSelectMid;
+                document.getElementById('weak_technical_one_text').outerHTML = weakTechSelectOne;
 
-                document.getElementById('weak_technical_value_one_text').outerHTML = '<textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_technical_value_one-input\', 71)"><?= isset($strongweak['weak_technical_value_one']) ? htmlspecialchars(($strongweak['weak_technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_technical_value_one_text').outerHTML = '<textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_technical_value_one-input\', 201)"><?= isset($strongweak['weak_technical_value_one']) ? htmlspecialchars(($strongweak['weak_technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             // END OF WEAKNESS
 
             // NOTES
-            document.getElementById('note_one_text').outerHTML = '<textarea name="note_one_input" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'note_one_input\', 376)"><?= isset($strongweak['note_one']) ? htmlspecialchars(($strongweak['note_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+            document.getElementById('note_one_input').outerHTML = '<textarea name="note_one_input" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'note_one_input\', 71)"><?= isset($strongweak['note_one']) ? htmlspecialchars(($strongweak['note_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
             $('#edit-one').hide();
-            $('#submitBtn').hide();
+            $('#submitone').hide();
             $('.approve-button').hide();
             $('#save-edit-one').show();
         });        
@@ -3589,6 +3595,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 },
                 complete: function(){
                     $('#submitone').hide();
+                    $('#edit-one').hide();
                 },
                 success: function (response) {
                     console.log('data submitted');

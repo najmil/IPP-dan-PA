@@ -176,10 +176,14 @@
                                                 <?php else: ?>
                                                     <?php if (!empty($p['approval_date_kasie_oneyear'])): ?>
                                                         <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kasie_oneyear']; ?></div>
+                                                        <span class="badge <?= $p['approval_kasie_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                            <?= $p['approval_kasie_oneyear'] ? "Approved" : "Pending" ?>
+                                                        </span>
+                                                    <?php else: ?>
+                                                        <span class="badge <?= $p['approval_kasie_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                            <?= $p['approval_kasie_oneyear'] ? "Approved" : "Pending" ?>
+                                                        </span>
                                                     <?php endif; ?>
-                                                    <span class="badge <?= $p['approval_kasie_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                        <?= $p['approval_kasie_oneyear'] ? "Approved" : "Pending" ?>
-                                                    </span>
                                                 <?php endif; ?>
                                             <?php else: ?>
                                                 
@@ -396,7 +400,7 @@
                                             <?php endif; ?>
                                             <?php if ($p['kode_jabatan'] == 3): ?>
                                                 <?php $disableDetail = true; ?>
-                                                <?php if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv_oneyear'])): ?>
+                                                <?php if (empty($p['approval_kadiv_oneyear'])): ?>
                                                     <?php $disableDetail = true; ?>
                                                     <?php if (!empty($p['approval_date_kadiv_oneyear'])): ?>
                                                         <div class="text-muted" style="font-size: 8px">
@@ -407,19 +411,18 @@
                                                         <i class="fas fa-check-circle" style="color: green;"></i>
                                                     </a> -->
                                                     <span class="badge badge-secondary btn-sm">Pending</span>
-                                                    <?php elseif (empty($p['approval_kadiv_oneyear'])): ?>
-                                                        <span class="badge badge-secondary btn-sm">Pending</span>
+                                                <?php else: ?>
+                                                    <?php if (!empty($p['approval_date_kadiv_oneyear'])): ?>
+                                                        <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_oneyear']; ?></div>
+                                                        <span class="badge <?= $p['approval_kadiv_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                            <?= $p['approval_kadiv_oneyear'] ? "Approved" : "Pending" ?>
+                                                        </span>
                                                     <?php else: ?>
-                                                        <?php if (!empty($p['approval_date_kadiv_oneyear'])): ?>
-                                                            <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_oneyear']; ?></div>
-                                                            <span class="badge <?= $p['approval_kadiv_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                                <?= $p['approval_kadiv_oneyear'] ? "Approved" : "Pending" ?>
-                                                            </span>
-                                                        <?php endif; ?>
                                                         <span class="badge <?= $p['approval_kadiv_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                                             <?= $p['approval_kadiv_oneyear'] ? "Approved" : "Pending" ?>
                                                         </span>
                                                     <?php endif; ?>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         </td>
                                         <td class="text-center">
@@ -465,10 +468,11 @@
                                                         <span class="badge <?= $p['approval_bod_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                                             <?= $p['approval_bod_oneyear'] ? "Approved" : "Pending" ?>
                                                         </span>
+                                                    <?php else: ?>
+                                                        <span class="badge <?= $p['approval_bod_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                            <?= $p['approval_bod_oneyear'] ? "Approved" : "Pending" ?>
+                                                        </span>
                                                     <?php endif; ?>
-                                                    <span class="badge <?= $p['approval_bod_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                        <?= $p['approval_bod_oneyear'] ? "Approved" : "Pending" ?>
-                                                    </span>
                                                 <?php endif; ?>
                                             <?php endif; ?>
                                             <?php if ($p['kode_jabatan'] == 2): ?>
@@ -491,10 +495,11 @@
                                                             <span class="badge <?= $p['approval_bod_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                                                 <?= $p['approval_bod_oneyear'] ? "Approved" : "Pending" ?>
                                                             </span>
+                                                        <?php else: ?>
+                                                            <span class="badge <?= $p['approval_bod_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                                <?= $p['approval_bod_oneyear'] ? "Approved" : "Pending" ?>
+                                                            </span>
                                                         <?php endif; ?>
-                                                        <span class="badge <?= $p['approval_bod_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                            <?= $p['approval_bod_oneyear'] ? "Approved" : "Pending" ?>
-                                                        </span>
                                                     <?php endif; ?>
                                             <?php endif; ?>
                                         </td>
@@ -540,10 +545,11 @@
                                                     <span class="badge <?= $p['approval_presdir_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                                         <?= $p['approval_presdir_oneyear'] ? "Approved" : "Pending" ?>
                                                     </span>
+                                                <?php else: ?>
+                                                    <span class="badge <?= $p['approval_presdir_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                        <?= $p['approval_presdir_oneyear'] ? "Approved" : "Pending" ?>
+                                                    </span>
                                                 <?php endif; ?>
-                                                <span class="badge <?= $p['approval_presdir_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                    <?= $p['approval_presdir_oneyear'] ? "Approved" : "Pending" ?>
-                                                </span>
                                             <?php endif; ?>
                                         </td>
                                     <?php endif; ?>

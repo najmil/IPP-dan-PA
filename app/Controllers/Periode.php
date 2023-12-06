@@ -95,11 +95,14 @@ class Periode extends BaseController
         $id           = $this->request->getVar('id');
         $start_period = $this->request->getVar('start_period');
         $end_period   = $this->request->getVar('end_period');
+
+        $formatted_start_period = (new \DateTime($start_period))->format('Y-m-d H:i:s');
+        $formatted_end_period = (new \DateTime($end_period))->format('Y-m-d H:i:s');
     
         // Lakukan pembaruan data berdasarkan $id
         $this->periodeModel->set([
-            'start_period' => $start_period,
-            'end_period'   => $end_period
+            'start_period' => $formatted_start_period,
+            'end_period'   => $formatted_end_period
         ])->where(['id' => $id])->update();
 
         dd($id, $start_period, $end_period);

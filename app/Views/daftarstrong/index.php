@@ -261,7 +261,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <?php if ($p['kode_jabatan'] == 3 || $p['kode_jabatan'] == 4): ?>
+                                        <?php if (($p['kode_jabatan'] == 3 && $p['id_department'] != 5) || $p['kode_jabatan'] == 4): ?>
                                             <?php if (empty($p['approval_kadiv_strongweak'])): ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
                                             <?php else: ?>
@@ -343,7 +343,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <?php if ($p['kode_jabatan'] == 3 || $p['kode_jabatan'] == 4): ?>
+                                        <?php if (($p['kode_jabatan'] == 3 && $p['id_department'] != 5) || $p['kode_jabatan'] == 4): ?>
                                             <?php if (empty($p['approval_kadiv_oneyear'])): ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
                                             <?php else: ?>
@@ -625,7 +625,7 @@
                             <?php if (session()->get('kode_jabatan') == 2): ?>
                                 <!-- MID YEAR -->
                                 <td class="text-center">
-                                    <?php if ($p['kode_jabatan'] == 4 || ($p['created_by'] == [3651, 3659])): ?>
+                                    <?php if (($p['kode_jabatan'] == 4 && $p['id_department'] != 5) || ($p['created_by'] == [3651, 3659])): ?>
                                         <?php if ($p['approval_kadept_strongweak'] == 1): ?>
                                             <?php $disableDetail = true; ?>
                                             <span class="badge badge-primary btn-sm">Approved</span>
@@ -637,7 +637,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])): ?>
+                                    <?php if (($p['kode_jabatan'] == 4 && $p['id_department'] != 5) || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])): ?>
                                         <?php if ($p['approval_kadept_strongweak'] == 1 && empty($p['approval_kadiv_strongweak'])): ?>
                                             <?php $disableDetail = true; ?>
                                             <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_strongweak']; ?></div>
@@ -659,7 +659,7 @@
                                     <?php endif; ?>
                                     <?php if ($p['kode_jabatan'] == 3): ?>
                                         <?php $disableDetail = true; ?>
-                                        <?php if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv_strongweak'])): ?>
+                                        <?php if (empty($p['approval_kadiv_strongweak'])): ?>
                                             <?php if (!empty($p['approval_date_kadiv_strongweak'])): ?>
                                                 <div class="text-muted" style="font-size: 8px">
                                                     approved at: <?= $p['approval_date_kadiv_strongweak']; ?>
@@ -707,7 +707,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if ($p['kode_jabatan'] == 4 || ($p['created_by'] == [3651, 3659])): ?>
+                                    <?php if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])): ?>
                                         <?php if ($p['approval_kadept_oneyear'] == 1 && empty($p['approval_kadiv_oneyear'])): ?>
                                             <?php $disableDetail = true; ?>
                                             <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_oneyear']; ?></div>
@@ -729,7 +729,8 @@
                                     <?php endif; ?>
                                     <?php if ($p['kode_jabatan'] == 3): ?>
                                         <?php $disableDetail = true; ?>
-                                        <?php if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv_oneyear'])): ?>
+                                        <?php if (empty($p['approval_kadiv_oneyear'])): ?>
+                                            <span class="badge badge-secondary btn-sm">Pending</span>
                                             <?php if (!empty($p['approval_date_kadiv_oneyear'])): ?>
                                                 <div class="text-muted" style="font-size: 8px">
                                                     approved at: <?= $p['approval_date_kadiv_oneyear']; ?>
@@ -738,16 +739,16 @@
                                             <!-- <a href="<?php// base_url("/daftarprocsum/approveKadiv/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
-                                            <?php elseif (empty($p['approval_kadiv_oneyear'])): ?>
-                                                <span class="badge badge-secondary btn-sm">Pending</span>
-                                            <?php else: ?>
-                                                <?php if (!empty($p['approval_date_kadiv_oneyear'])): ?>
-                                                    <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_oneyear']; ?></div>
-                                                <?php endif; ?>
-                                                <span class="badge <?= $p['approval_kadiv_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                    <?= $p['approval_kadiv_oneyear'] ? "Approved" : "Pending" ?>
-                                                </span>
+                                            <?php //elseif (empty($p['approval_kadiv_oneyear'])): ?>
+                                                <!-- <span class="badge badge-secondary btn-sm">Pending</span> -->
+                                        <?php else: ?>
+                                            <?php if (!empty($p['approval_date_kadiv_oneyear'])): ?>
+                                                <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_oneyear']; ?></div>
                                             <?php endif; ?>
+                                            <span class="badge <?= $p['approval_kadiv_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                <?= $p['approval_kadiv_oneyear'] ? "Approved" : "Pending" ?>
+                                            </span>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </td>
                                 <td class="text-center">
@@ -785,7 +786,6 @@
                                             <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
-                                        <?php elseif (empty($p['approval_bod_strongweak'])): ?>
                                             <span class="badge badge-secondary btn-sm">Pending</span>
                                         <?php else: ?>
                                             <?php if (!empty($p['approval_date_bod_strongweak'])): ?>
@@ -798,7 +798,7 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if ($p['kode_jabatan'] == 2): ?>
-                                        <?php if (session()->get('kode_jabatan') == 1 && empty($p['approval_bod_strongweak'])): ?>
+                                        <?php if (empty($p['approval_bod_strongweak'])): ?>
                                             <?php if (!empty($p['approval_date_bod_strongweak'])): ?>
                                                 <div class="text-muted" style="font-size: 8px">
                                                     approved at: <?= $p['approval_date_bod_strongweak']; ?>
@@ -807,8 +807,7 @@
                                             <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
-                                            <?php elseif (empty($p['approval_bod_strongweak'])): ?>
-                                                <span class="badge badge-secondary btn-sm">Pending</span>
+                                            <span class="badge badge-secondary btn-sm">Pending</span>
                                             <?php else: ?>
                                                 <?php if (!empty($p['approval_date_bod_strongweak'])): ?>
                                                     <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_bod_strongweak']; ?></div>
@@ -852,7 +851,7 @@
                                             <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
-                                        <?php elseif (empty($p['approval_bod_oneyear'])): ?>
+                                        <?php //elseif (empty($p['approval_bod_oneyear'])): ?>
                                             <span class="badge badge-secondary btn-sm">Pending</span>
                                         <?php else: ?>
                                             <?php if (!empty($p['approval_date_bod_oneyear'])): ?>

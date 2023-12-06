@@ -9,7 +9,7 @@ class ProcsumMainModel extends Model
     protected $table = 'procsum_main';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['periode', 'is_submitted_midyear', 'is_submitted_oneyear', 'is_approved_presdir', 'is_approved_bod', 'is_approved_kadiv', 'is_approved_kadept', 'is_approved_kasie', 'created_by', 'kode_jabatan', 'nama', 'created_at', 'updated_at', 'id_department', 'id_division', 'id_section', 'approval_kadept_procsum', 'approval_kadiv_procsum', 'approval_kasie_procsum', 'approval_bod_procsum', 'approval_presdir_procsum', 'approval_date_kasie_procsum', 'approval_date_kadept_procsum', 'approval_date_kadiv_procsum', 'approval_date_bod_procsum', 'approval_date_presdir_procsum', 'approved_presdir_by', 'approved_bod_by', 'approved_kadiv_by', 'approved_kadept_by', 'approved_kasie_by', 'date_submitted', 'is_submitted_oneyear', 'date_submitted_oneyear', 'is_approved_presdir_oneyear', 'is_approved_bod_oneyear', 'is_approved_kadiv_oneyear', 'is_approved_kadept_oneyear', 'is_approved_kasie_oneyear', 'approval_kadept_midyear', 'approval_kadiv_midyear', 'approval_kasie_midyear', 'approval_bod_midyear', 'approval_presdir_midyear', 'approval_date_presdir_midyear', 'approval_date_bod_midyear', 'approval_date_kadiv_midyear', 'approval_date_kadept_midyear', 'approval_date_kasie_midyear', 'approval_kadept_oneyear', 'approval_kadiv_oneyear', 'approval_kasie_oneyear', 'approval_bod_oneyear', 'approval_presdir_oneyear', 'approval_date_presdir_oneyear', 'approval_date_bod_oneyear', 'approval_date_kadiv_oneyear', 'approval_date_kadept_oneyear', 'approval_date_kasie_oneyear', 'presdir_by_oneyear', 'bod_by_oneyear', 'kadiv_by_oneyear', 'kadept_by_oneyear', 'kasie_by_oneyear', 'department', 'division', 'section', 'file'];
+    protected $allowedFields = ['periode', 'is_submitted_midyear', 'is_submitted_oneyear', 'is_approved_presdir', 'is_approved_bod', 'is_approved_kadiv', 'is_approved_kadept', 'is_approved_kasie', 'created_by', 'kode_jabatan', 'nama', 'created_at', 'updated_at', 'id_department', 'id_division', 'id_section', 'approval_kadept_procsum', 'approval_kadiv_procsum', 'approval_kasie_procsum', 'approval_bod_procsum', 'approval_presdir_procsum', 'approval_date_kasie_procsum', 'approval_date_kadept_procsum', 'approval_date_kadiv_procsum', 'approval_date_bod_procsum', 'approval_date_presdir_procsum', 'approved_presdir_by', 'approved_bod_by', 'approved_kadiv_by', 'approved_kadept_by', 'approved_kasie_by', 'date_submitted','date_submitted_oneyear', 'is_approved_presdir_oneyear', 'is_approved_bod_oneyear', 'is_approved_kadiv_oneyear', 'is_approved_kadept_oneyear', 'is_approved_kasie_oneyear', 'approval_kadept_midyear', 'approval_kadiv_midyear', 'approval_kasie_midyear', 'approval_bod_midyear', 'approval_presdir_midyear', 'approval_date_presdir_midyear', 'approval_date_bod_midyear', 'approval_date_kadiv_midyear', 'approval_date_kadept_midyear', 'approval_date_kasie_midyear', 'approval_kadept_oneyear', 'approval_kadiv_oneyear', 'approval_kasie_oneyear', 'approval_bod_oneyear', 'approval_presdir_oneyear', 'approval_date_presdir_oneyear', 'approval_date_bod_oneyear', 'approval_date_kadiv_oneyear', 'approval_date_kadept_oneyear', 'approval_date_kasie_oneyear', 'presdir_by_oneyear', 'bod_by_oneyear', 'kadiv_by_oneyear', 'kadept_by_oneyear', 'kasie_by_oneyear', 'department', 'division', 'section', 'files'];
 
     public function getSavedData($id) {
         return $this->where('id', $id)->first();
@@ -57,6 +57,7 @@ class ProcsumMainModel extends Model
                     ->orWhere('procsum_main.id_department', 3)
                     ->orWhere('procsum_main.id_department', 4)
                     ->groupEnd();
+                $builder->where('procsum_main.is_submitted_midyear', 1);
             }
             else {
                 // Approval kadept untuk staff
@@ -65,15 +66,31 @@ class ProcsumMainModel extends Model
                         ->orWhere('users.kode_jabatan', 4)
                         ->groupEnd();
                 $builder->where('procsum_main.id_department', $id_department);
+                $builder->where('procsum_main.is_submitted_midyear', 1);
             }
         } elseif ($kode_jabatan == 4) {
             $builder->where('users.kode_jabatan', 8)
                     ->whereNotIn('users.npk', $notAllowedNpk)
                     ->where('procsum_main.id_section', $id_section);
+            $builder->where('procsum_main.is_submitted_midyear', 1);
         } elseif ($kode_jabatan == 2) {
-            // Approval kadiv untuk kadept
-            $builder->whereIn('users.kode_jabatan', [3, 4])
+            // Approval kadiv
+            $builder->groupStart()
+                        ->where('procsum_main.kode_jabatan', 3)
+                        ->orGroupStart()
+                            ->where('procsum_main.kode_jabatan', 4)
+                            ->groupStart()
+                                ->where('procsum_main.id_division <>', 3651)
+                                ->orWhere('procsum_main.id_division <>', 3659)
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('procsum_main.kode_jabatan', 8)
+                            ->where('procsum_main.id_department', 5)
+                        ->groupEnd()
+                    ->groupEnd()
                     ->where('procsum_main.id_division', $id_division);
+            $builder->where('procsum_main.is_submitted_midyear', 1);
             // $builder->groupStart()
             //     ->where('users.kode_jabatan', 8)
             //     ->whereNotIn('users.npk', $notAllowedNpk)
@@ -81,18 +98,57 @@ class ProcsumMainModel extends Model
             //     ->groupEnd();
         } elseif ($kode_jabatan == 1 && $npk == 3944 ) {
             // Approval BoD untuk kadept untuk yang di bawah divisi 3944
-            $builder->where('users.kode_jabatan', 2)
-                    ->whereIn('procsum_main.id_division', [1, 2])
-                    ->orWhere('users.kode_jabatan', 3)
-                    ->whereIn('procsum_main.id_division', [1, 2]);                  
+            $builder->where('procsum_main.is_submitted_midyear', 1)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('procsum_main.id_division', 1)
+                            ->orWhere('procsum_main.id_division', 2)
+                        ->groupEnd()
+                        ->where('procsum_main.kode_jabatan', 3)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->groupStart()
+                            ->where('procsum_main.id_division', 1)
+                            ->orWhere('procsum_main.id_division', 2)
+                        ->groupEnd()
+                        ->where('procsum_main.kode_jabatan', 2)
+                    ->groupEnd();       
         } elseif (($kode_jabatan == 1 && $npk == 4170 )) {
             // Approval BoD untuk kadept untuk yang di bawah divisi 4170
-            $builder->where('users.kode_jabatan', 2)
-                    ->whereIn('procsum_main.id_division', [3, 4, 5])
-                    ->orWhere('users.kode_jabatan', 3)
-                    ->whereIn('procsum_main.id_division', [3, 4, 5]);
+            $builder->where('procsum_main.is_submitted_midyear', 1)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('procsum_main.id_division', 3)
+                            ->orWhere('procsum_main.id_division', 4)
+                            ->orWhere('procsum_main.id_division', 5)
+                            ->orWhere('procsum_main.id_department', 5)
+                        ->groupEnd()
+                        ->where('procsum_main.kode_jabatan', 3)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->groupStart()
+                            ->where('procsum_main.id_division', 3)
+                            ->orWhere('procsum_main.id_division', 4)
+                            ->orWhere('procsum_main.id_division', 5)
+                        ->groupEnd()
+                        ->where('procsum_main.kode_jabatan', 2)
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->groupStart()
+                            ->where('procsum_main.id_department', 5)
+                        ->groupEnd()
+                        ->groupStart()
+                            ->where('procsum_main.kode_jabatan', 4)
+                            ->orWhere('procsum_main.kode_jabatan', 8)
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->orGroupStart()
+                        ->where('procsum_main.kode_jabatan', 8)
+                        ->where('procsum_main.id_department', 5)
+                    ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
             $builder->where('users.kode_jabatan', 2);
+            $builder->where('procsum_main.is_submitted_midyear', 1);
         } elseif ($kode_jabatan == 0 && ($npk == null || $npk == 0)) {
             // Untuk admin
         }
@@ -104,9 +160,10 @@ class ProcsumMainModel extends Model
             $builder = $this->db->table('procsum_main')
                 ->select('procsum_main.*')
                 ->join('users', 'users.npk = procsum_main.created_by', 'left')
-                ->where('procsum_main.periode NOT LIKE', 'Mid Year%')
+                ->where('procsum_main.is_submitted_midyear', 1)
                 ->whereIn('users.id_department', $iddepartment)
                 ->whereIn('procsum_main.id_department', $iddepartment);
+                // ->where('procsum_main.periode NOT LIKE', 'Mid Year%')
 
             return $builder->get()->getResultArray();
         }
@@ -117,9 +174,10 @@ class ProcsumMainModel extends Model
             $builder = $this->db->table('procsum_main')
                 ->select('procsum_main.*')
                 ->join('users', 'users.npk = procsum_main.created_by', 'left')
-                ->where('procsum_main.periode NOT LIKE', 'Mid Year%')
+                ->where('procsum_main.is_submitted_midyear', 1)
                 ->whereIn('users.id_division', $iddivision)
                 ->whereIn('procsum_main.id_division', $iddivision);
+                // ->where('procsum_main.periode NOT LIKE', 'Mid Year%')
 
             return $builder->get()->getResultArray();
         }
@@ -155,136 +213,213 @@ class ProcsumMainModel extends Model
         if ($kode_jabatan == 3) {
             if ($npk == 4210) {
                 $builder->groupStart()
-                    ->where('(procsum_main.id_department = 3 OR procsum_main.id_department = 4)')
-                    ->groupStart()
-                        ->where('(procsum_main.is_submitted_midyear = 1 AND
-                                    (
-                                        (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_kadept_midyear = 0 OR procsum_main.approval_kadept_midyear IS NULL))
-                                        OR
-                                        (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_kadept_midyear = 0 OR procsum_main.approval_kadept_midyear IS NULL))
-                                    ))'
-                                )
-                        ->orWhere('(procsum_main.is_submitted_oneyear = 1 AND
-                                    (
-                                        (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_kadept_oneyear = 0 OR procsum_main.approval_kadept_oneyear IS NULL))
-                                        OR
-                                        (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_kadept_oneyear = 0 OR procsum_main.approval_kadept_oneyear IS NULL))
-                                    ))'
-                                )
-                    ->groupEnd();
+                            ->where('users.kode_jabatan', 8)
+                            ->orWhere('users.kode_jabatan', 4)
+                        ->groupEnd()
+                        ->groupStart()
+                            ->where('procsum_main.id_department', 3)
+                            ->orWhere('procsum_main.id_department', 4)
+                        ->groupEnd()
+                        ->groupStart()
+                            ->groupStart()
+                                ->where('procsum_main.is_submitted_midyear', 1)
+                                ->groupStart()
+                                    ->where('procsum_main.approval_kadept_midyear', 0)
+                                    ->orWhere('procsum_main.approval_kadept_midyear IS NULL')
+                                ->groupEnd()
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('procsum_main.is_submitted_oneyear', 1)
+                                ->groupStart()
+                                    ->where('procsum_main.approval_kadept_oneyear', 0)
+                                    ->orWhere('procsum_main.approval_kadept_oneyear IS NULL')
+                                ->groupEnd()
+                            ->groupEnd()
+                        ->groupEnd();
             } else {
-                $builder->where('procsum_main.id_department', $id_department)->where('(procsum_main.is_submitted_midyear = 1 AND
-                                    (
-                                        (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_kadept_midyear = 0 OR procsum_main.approval_kadept_midyear IS NULL))
-                                        OR
-                                        (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_kadept_midyear = 0 OR procsum_main.approval_kadept_midyear IS NULL))
-                                    ))'
-                                )
-                        ->orWhere('(procsum_main.is_submitted_oneyear = 1 AND
-                                    (
-                                        (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_kadept_oneyear = 0 OR procsum_main.approval_kadept_oneyear IS NULL))
-                                        OR
-                                        (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_kadept_oneyear = 0 OR procsum_main.approval_kadept_oneyear IS NULL))
-                                    ))'
-                                );
+                $builder->where('procsum_main.id_department', $id_department)
+                        ->groupStart()
+                            ->where('procsum_main.kode_jabatan', 8)
+                            ->orWhere('procsum_main.kode_jabatan', 4)
+                        ->groupEnd()
+                        ->groupStart()
+                            ->groupStart()
+                                ->where('procsum_main.is_submitted_midyear', 1)
+                                ->groupStart()
+                                    ->where('procsum_main.approval_kadept_midyear', 0)
+                                    ->orWhere('procsum_main.approval_kadept_midyear IS NULL')
+                                ->groupEnd()
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('procsum_main.is_submitted_oneyear', 1)
+                                ->groupStart()
+                                    ->where('procsum_main.approval_kadept_oneyear', 0)
+                                    ->orWhere('procsum_main.approval_kadept_oneyear IS NULL')
+                                ->groupEnd()
+                            ->groupEnd()
+                        ->groupEnd();
             }
         } elseif ($kode_jabatan == 4) {
             $builder->where('procsum_main.id_section', $id_section)
                     ->groupStart()
-                        ->where('(procsum_main.is_submitted_midyear = 1 AND
-                                    (
-                                        procsum_main.kode_jabatan = 8 AND procsum_main.created_by NOT IN (3569, 3651) AND
-                                        (
-                                            (procsum_main.approval_kasie_midyear = 0 OR procsum_main.approval_kasie_midyear IS NULL)
-                                            OR
-                                            (procsum_main.approval_kadept_midyear = 0 OR procsum_main.approval_kadept_midyear IS NULL)
-                                        )
-                                    ))'
-                                )
-                        ->orWhere('(procsum_main.is_submitted_oneyear = 1 AND
-                                (
-                                    procsum_main.kode_jabatan = 8 AND procsum_main.created_by NOT IN (3569, 3651) AND
-                                    (
-                                        (procsum_main.approval_kasie_oneyear = 0 OR procsum_main.approval_kasie_oneyear IS NULL)
-                                        OR
-                                        (procsum_main.approval_kadept_oneyear = 0 OR procsum_main.approval_kadept_oneyear IS NULL)
-                                    )
-                                ))'
-                            )
+                        ->where('procsum_main.kode_jabatan', 8)
+                        ->groupStart()
+                            ->where('procsum_main.created_by <>', 3651)
+                            ->orWhere('procsum_main.created_by <>', 3659)
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('procsum_main.is_submitted_midyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_kasie_midyear', 0)
+                                ->orWhere('procsum_main.approval_kasie_midyear IS NULL')
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('procsum_main.is_submitted_oneyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_kasie_oneyear', 0)
+                                ->orWhere('procsum_main.approval_kasie_oneyear IS NULL')
+                            ->groupEnd()
+                        ->groupEnd()
                     ->groupEnd();
         } elseif ($kode_jabatan == 2) {
-            $builder->where('procsum_main.id_division', $id_division)
+            $builder->groupStart()
+                        ->groupStart()
+                            ->where('procsum_main.id_division', $id_division)
+                            ->where('procsum_main.id_department <>', 5)
+                            ->where('procsum_main.kode_jabatan', 3)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('procsum_main.id_division', $id_division)
+                            ->groupStart()
+                                ->where('procsum_main.kode_jabatan', 8)
+                                ->groupStart()
+                                    ->where('procsum_main.created_by <>', 3651)
+                                    ->orWhere('procsum_main.created_by <>', 3659)
+                                ->groupEnd()
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('procsum_main.kode_jabatan', 4)
+                            ->where('procsum_main.id_division', $id_division)
+                        ->groupEnd()
+                    ->groupEnd()
+                    ->where('procsum_main.id_department <>', 5)
                     ->groupStart()
-                        ->where('(procsum_main.is_submitted_midyear = 1 AND
-                                    (
-                                        (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_kadiv_midyear = 0 OR procsum_main.approval_kadiv_midyear IS NULL))
-                                        OR
-                                        (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_kadiv_midyear = 0 OR procsum_main.approval_kadiv_midyear IS NULL))
-                                    ))'
-                                )
-                        ->orWhere('(procsum_main.is_submitted_oneyear = 1 AND
-                                    (
-                                        (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_kadiv_oneyear = 0 OR procsum_main.approval_kadiv_oneyear IS NULL))
-                                        OR
-                                        (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_kadiv_oneyear = 0 OR procsum_main.approval_kadiv_oneyear IS NULL))
-                                    ))'
-                                )
-                    ->groupEnd();
+                        ->groupStart()
+                            ->where('procsum_main.is_submitted_midyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_kadiv_midyear', 0)
+                                ->orWhere('procsum_main.approval_kadiv_midyear IS NULL')
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('procsum_main.is_submitted_oneyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_kadiv_oneyear', 0)
+                                ->orWhere('procsum_main.approval_kadiv_oneyear IS NULL')
+                            ->groupEnd()
+                    ->groupEnd()
+                ->groupEnd();
         } elseif ($kode_jabatan == 1 && $npk == 3944) {
             $builder->groupStart()
-                    ->where('(procsum_main.id_division = 1 OR procsum_main.id_division = 2)')
+                        ->groupStart()
+                            ->groupStart()
+                                ->where('procsum_main.id_division', 1)
+                                ->orWhere('procsum_main.id_division', 2)
+                            ->groupEnd()
+                            ->where('procsum_main.kode_jabatan', 3)
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->groupStart()
+                                ->where('procsum_main.id_division', 1)
+                                ->orWhere('procsum_main.id_division', 2)
+                            ->groupEnd()
+                            ->where('procsum_main.kode_jabatan', 2)
+                        ->groupEnd()
+                    ->groupEnd()
                     ->groupStart()
-                        ->where('(procsum_main.is_submitted_midyear = 1 AND
-                                (
-                                    (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_bod_midyear = 0 OR procsum_main.approval_bod_midyear IS NULL))
-                                    OR
-                                    (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_bod_midyear = 0 OR procsum_main.approval_bod_midyear IS NULL))
-                                ))'
-                            )
-                        ->orWhere('(procsum_main.is_submitted_oneyear = 1 AND
-                                (
-                                    (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_bod_oneyear = 0 OR procsum_main.approval_bod_oneyear IS NULL))
-                                    OR
-                                    (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_bod_oneyear = 0 OR procsum_main.approval_bod_oneyear IS NULL))
-                                ))'
-                            )
-                    ->groupEnd();
+                        ->groupStart()
+                            ->where('procsum_main.is_submitted_midyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_bod_midyear', 0)
+                                ->orWhere('procsum_main.approval_bod_midyear IS NULL')
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('procsum_main.is_submitted_oneyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_bod_oneyear', 0)
+                                ->orWhere('procsum_main.approval_bod_oneyear IS NULL')
+                            ->groupEnd()
+                    ->groupEnd()
+                ->groupEnd();
         } elseif ($kode_jabatan == 1 && $npk == 4170) {
             $builder->groupStart()
-                    ->where('(procsum_main.id_division = 3 OR procsum_main.id_division = 4 OR procsum_main.id_division = 5)')
-                    ->groupStart()
-                        ->where('(procsum_main.is_submitted_midyear = 1 AND
-                                (
-                                    (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_bod_midyear = 0 OR procsum_main.approval_bod_midyear IS NULL))
-                                    OR
-                                    (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_bod_midyear = 0 OR procsum_main.approval_bod_midyear IS NULL))
-                                ))'
-                            )
-                        ->orWhere('(procsum_main.is_submitted_oneyear = 1 AND
-                                (
-                                    (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_bod_oneyear = 0 OR procsum_main.approval_bod_oneyear IS NULL))
-                                    OR
-                                    (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_bod_oneyear = 0 OR procsum_main.approval_bod_oneyear IS NULL))
-                                ))'
-                            )
+                        ->groupStart()
+                            ->groupStart()
+                                ->groupStart()
+                                    ->where('procsum_main.id_division', 3)
+                                    ->orWhere('procsum_main.id_division', 4)
+                                    ->orWhere('procsum_main.id_division', 5)
+                                    ->orWhere('procsum_main.id_department', 5)
+                                ->groupEnd()
+                                ->where('procsum_main.kode_jabatan', 3)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->groupStart()
+                                    ->where('procsum_main.id_division', 3)
+                                    ->orWhere('procsum_main.id_division', 4)
+                                    ->orWhere('procsum_main.id_division', 5)
+                                ->groupEnd()
+                                ->where('procsum_main.kode_jabatan', 2)
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->groupStart()
+                                    ->where('procsum_main.id_department', 5)
+                                ->groupEnd()
+                                ->groupStart()
+                                    ->where('procsum_main.kode_jabatan', 4)
+                                    ->orWhere('procsum_main.kode_jabatan', 8)
+                                ->groupEnd()
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->groupStart()
+                            ->groupStart()
+                                ->where('procsum_main.is_submitted_midyear', 1)
+                                ->groupStart()
+                                    ->where('procsum_main.approval_bod_midyear', 0)
+                                    ->orWhere('procsum_main.approval_bod_midyear IS NULL')
+                                ->groupEnd()
+                            ->groupEnd()
+                            ->orGroupStart()
+                                ->where('procsum_main.is_submitted_oneyear', 1)
+                                ->groupStart()
+                                    ->where('procsum_main.approval_bod_oneyear', 0)
+                                    ->orWhere('procsum_main.approval_bod_oneyear IS NULL')
+                                ->groupEnd()
+                        ->groupEnd()
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280) {
-            $builder->where('(procsum_main.is_submitted_midyear = 1 AND
-                                (
-                                    (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_presdir_midyear = 0 OR procsum_main.approval_presdir_midyear IS NULL))
-                                    OR
-                                    (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_presdir_midyear = 0 OR procsum_main.approval_presdir_midyear IS NULL))
-                                )
-                            )'
-                        )
-                    ->orWhere('(procsum_main.is_submitted_oneyear = 1 AND
-                                (
-                                    (procsum_main.kode_jabatan = 4 AND (procsum_main.approval_presdir_oneyear = 0 OR procsum_main.approval_presdir_oneyear IS NULL))
-                                    OR
-                                    (procsum_main.kode_jabatan = 8 AND procsum_main.created_by IN (3569, 3651) AND (procsum_main.approval_presdir_oneyear = 0 OR procsum_main.approval_presdir_oneyear IS NULL))
-                                )
-                            )'
-                    );
+            $builder->where('procsum_main.kode_jabatan', 2)
+                    ->groupStart()
+                        ->groupStart()
+                            ->where('procsum_main.is_submitted_midyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_presdir_midyear', 0)
+                                ->orWhere('procsum_main.approval_presdir_midyear IS NULL')
+                            ->groupEnd()
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('procsum_main.is_submitted_oneyear', 1)
+                            ->groupStart()
+                                ->where('procsum_main.approval_presdir_oneyear', 0)
+                                ->orWhere('procsum_main.approval_presdir_oneyear IS NULL')
+                            ->groupEnd()
+                        ->groupEnd()
+                    ->groupEnd();
         }
          elseif ($kode_jabatan == 0 && ($npk == null || $npk == 0)) {
             // Untuk admin
@@ -626,15 +761,19 @@ class ProcsumMainModel extends Model
                     ->groupStart()
                         ->where('procsum_main.is_submitted_midyear', 1)
                         ->groupStart()
-                            ->where('procsum_main.kode_jabatan', 8)
                             ->groupStart()
-                                ->where('procsum_main.created_by <>', 3569)
-                                ->where('procsum_main.created_by <>', 3561)
+                                ->where('procsum_main.kode_jabatan', 8)
+                                ->groupStart()
+                                    ->where('procsum_main.created_by <>', 3569)
+                                    ->where('procsum_main.created_by <>', 3561)
+                                ->groupEnd()
                             ->groupEnd()
-                            ->where('procsum_main.approval_kasie_midyear', 0)
-                            ->orWhere('procsum_main.approval_kadept_midyear', 0)
-                            ->orWhere('procsum_main.approval_kasie_midyear', null)
-                            ->orWhere('procsum_main.approval_kadept_midyear', null)
+                            ->groupStart()
+                                ->where('procsum_main.approval_kasie_midyear', 0)
+                                ->orWhere('procsum_main.approval_kadept_midyear', 0)
+                                ->orWhere('procsum_main.approval_kasie_midyear', null)
+                                ->orWhere('procsum_main.approval_kadept_midyear', null)
+                            ->groupEnd()
                         ->groupEnd()
                         ->orGroupStart()
                             ->groupStart()
@@ -653,7 +792,10 @@ class ProcsumMainModel extends Model
                             ->groupEnd()
                         ->groupEnd()
                         ->orGroupStart()
-                            ->where('procsum_main.kode_jabatan', 3)
+                            ->groupStart()
+                                ->where('procsum_main.kode_jabatan', 3)
+                                ->where('procsum_main.id_department <>', 5)
+                            ->groupEnd()
                             ->groupStart()
                                 ->where('procsum_main.approval_kadiv_midyear', 0)
                                 ->orWhere('procsum_main.approval_bod_midyear', 0)
@@ -679,10 +821,12 @@ class ProcsumMainModel extends Model
                                 ->where('procsum_main.created_by <>', 3569)
                                 ->where('procsum_main.created_by <>', 3561)
                             ->groupEnd()
-                            ->orWhere('procsum_main.approval_kasie_oneyear', 0)
-                            ->orWhere('procsum_main.approval_kadept_oneyear', 0)
-                            ->orWhere('procsum_main.approval_kasie_oneyear', null)
-                            ->orWhere('procsum_main.approval_kadept_oneyear', null)
+                            ->groupStart()
+                                ->orWhere('procsum_main.approval_kasie_oneyear', 0)
+                                ->orWhere('procsum_main.approval_kadept_oneyear', 0)
+                                ->orWhere('procsum_main.approval_kasie_oneyear', null)
+                                ->orWhere('procsum_main.approval_kadept_oneyear', null)
+                            ->groupEnd()
                         ->groupEnd()
                         ->orGroupStart()
                             ->groupStart()

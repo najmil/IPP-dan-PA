@@ -294,24 +294,90 @@ class Oneyear extends BaseController
         $dompdf->stream('IPP '. session()->get('nama') .'.pdf', ['Attachment' => 0]);
     }
 
+    public function datalama(){
+        if ($this->request->isAJAX()) {
+            $created_at = date('Y-m-d');
+            $periode = $this->request->getVar('periode');
+            // $file = $this->request->getFile('file');
+            // $fileData = file_get_contents($file->getTempName());
+            $file = $this->request->getFile('file');
+            $newName = 'OneYear' . '_' . $periode . '_' . session()->get('nama');
+            $file->move(WRITEPATH . 'uploads', $newName);
+            $created_by = session()->get('npk');
+            $id_division = session()->get('id_division');
+            $id_department = session()->get('id_department');
+            $id_section = session()->get('id_section');
+            $division = session()->get('division');
+            $department = session()->get('department');
+            $section = session()->get('section');
+            $kode_jabatan = session()->get('kode_jabatan');
+            $nama = session()->get('nama');
+
+            $existingIpp = $this->ippModel->where('periode', $periode)
+            ->where('created_by', $created_by)
+            ->first();
+
+            if($existingIpp) {
+                $hasil['sukses'] = false;
+                $hasil['gagal'] = "Periode ini sudah ada.";
+            } else {
+                $inserted = $this->ippModel->insert([
+                    'periode' => $periode,
+                    'files'    => $newName,
+                    'created_at' => $created_at,
+                    'created_by' => $created_by,
+                    'nama' => $nama,
+                    'id_department' => $id_department,
+                    'id_division' => $id_division,
+                    'id_section' => $id_section,
+                    'department' => $department,
+                    'division' => $division,
+                    'section' => $section,
+                    'kode_jabatan' => $kode_jabatan,
+                    'approval_bod_oneyear'     => 1,
+                    'is_approved_bod_oneyear'  => 1,
+                    'approval_date_bod_oneyear'=> date('Y-m-d'),
+                    'approval_presdir_oneyear'   => 1,
+                    'is_approved_presdir_oneyear'=> 1,
+                    'approval_date_presdir_oneyear'=> date('Y-m-d'),
+                    'approval_kadiv_oneyear'     => 1,
+                    'is_approved_kadiv_oneyear'  => 1,
+                    'approval_date_kadiv_oneyear'=> date('Y-m-d'),
+                    'approval_kadept_oneyear'    => 1,
+                    'is_approved_kadept_oneyear' => 1,
+                    'approval_date_kadept_oneyear'=> date('Y-m-d'),
+                    'approval_kasie_oneyear'     => 1,
+                    'is_approved_kasie_oneyear'  => 1,
+                    'approval_date_kasie_oneyear'=> date('Y-m-d'),
+                ]);
+
+                $hasil['sukses'] = "Berhasil memasukkan data";
+                $hasil['gagal'] = true;
+            }
+
+            return json_encode($hasil);
+        }
+    }
+
     public function viewPdf($id) {
-        // dd($id);
-        // Retrieve the binary data from the database based on the $id
-        // $fileData = $this->lampau->getIppData($id);
-        $fileData = $this->ippModel->getIppData($id);
-    
-        if ($fileData) {
-            // Send appropriate headers
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: inline; filename="MidYear_'. session()->get("nama") .'.pdf"');
-            header('Content-Length: ' . strlen($fileData['file']));
-    
-            // Output the PDF data
-            echo $fileData['file'];
-            exit;
+        $mainData = $this->ippModel->find($id);
+        $file_name = $mainData['files'];
+        $pdf_path = WRITEPATH . 'uploads/' . $file_name;
+        $display_name = 'OneYear' . '_' . $mainData['periode'] . '_' . $mainData['nama'] . '.pdf';
+
+        if (file_exists($pdf_path)) {
+            // Membaca isi file
+            $file_content = file_get_contents($pdf_path);
+
+            return $this->response
+                ->setHeader('Content-Type', 'application/pdf')
+                ->setHeader('Content-Disposition', 'inline; filename="' . $display_name . '"')
+                ->setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+                ->setHeader('Cache-Control', 'post-check=0, pre-check=0')
+                ->setHeader('Pragma', 'no-cache')
+                ->setBody($file_content);
         } else {
-            // Handle if data is not found
-            echo "File PDF tidak ditemukan.";
+            return $this->response->setStatusCode(404)->setJSON(['error' => 'File not found']);
         }
     }
     
