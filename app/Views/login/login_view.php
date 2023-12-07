@@ -17,13 +17,13 @@
             }
         </style>
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="/css/plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>css/plugins/fontawesome-free/css/all.min.css">
         <!-- icheck bootstrap -->
-        <link rel="stylesheet" href="/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>css/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="/css/adminlte.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>css/adminlte.min.css">
         <!-- Toastr -->
-        <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>plugins/toastr/toastr.min.css">
     </head>
 
     <body class="hold-transition login-page">
@@ -74,13 +74,13 @@
         <!-- /.login-box -->
 
         <!-- jQuery -->
-        <script src="/plugins/jquery/jquery.min.js"></script>
+        <script src="<?=base_url()?>plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
-        <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="<?=base_url()?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="/js/adminlte.min.js"></script>
+        <script src="<?=base_url()?>js/adminlte.min.js"></script>
         <!-- Toastr -->
-        <script src="/plugins/toastr/toastr.min.js"></script>
+        <script src="<?=base_url()?>plugins/toastr/toastr.min.js"></script>
 
         <script>
             $(document).ready(function () {

@@ -25,25 +25,25 @@
   <!-- Google Font: Source Sans Pro -->
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="<?=base_url()?>plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
-  <link href="/css/plugins/bootstrap-5/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/plugins/datatables/jquery.dataTables.css" />
+  <link rel="stylesheet" href="<?=base_url()?>plugins/summernote/summernote-bs4.min.css">
+  <link href="<?=base_url()?>css/plugins/bootstrap-5/bootstrap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>css/plugins/datatables/jquery.dataTables.css" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -792,40 +792,40 @@
 </script>
 
 <!-- jQuery -->
-<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="<?=base_url()?>plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?=base_url()?>plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="/css/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=base_url()?>css/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Sparkline -->
-<script src="/plugins/sparklines/sparkline.js"></script>
+<script src="<?=base_url()?>plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="<?=base_url()?>plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?=base_url()?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- daterangepicker -->
-<script src="/plugins/moment/moment.min.js"></script>
-<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?=base_url()?>plugins/moment/moment.min.js"></script>
+<script src="<?=base_url()?>plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?=base_url()?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
-<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<?=base_url()?>plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="<?=base_url()?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/js/adminlte.js"></script>
+<script src="<?=base_url()?>js/adminlte.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
-<script src="/css/plugins/sweetalert/sweetalert2@10"></script>
+<script src="<?=base_url()?>css/plugins/sweetalert/sweetalert2@10"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
-<script src="/css/plugins/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script src="<?=base_url()?>css/plugins/bootstrap-5/js/bootstrap.bundle.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
-<script src="/plugins/jquery/jquery-3.6.0.min.js"></script>
+<script src="<?=base_url()?>plugins/jquery/jquery-3.6.0.min.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- <script src="/ajax/jquery.min.js"></script> -->
-<script src="/css/plugins/datatables/jquery.dataTables.js"></script> <!-- datatype -->
+<script src="<?=base_url()?>css/plugins/datatables/jquery.dataTables.js"></script> <!-- datatype -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 
 <?= $this->renderSection('script'); ?>
