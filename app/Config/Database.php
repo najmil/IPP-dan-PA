@@ -30,7 +30,7 @@ class Database extends Config
         'username'     => 'sa',
         'password'     => 'User@new1',
         'database'     => 'portal_ipp',
-        'DBDriver'     => 'sqlsrv',
+        'DBDriver'     => 'SQLSRV',
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,
