@@ -5,7 +5,7 @@ use App\Models\IppModel;
 use App\Models\LoginModel;
 use App\Models\IsiModel;
 use App\Models\OneyearModel;
-use App\Models\StrongweakMainModel;
+use App\Models\StrongWeakMainModel;
 use App\Models\ProcsumMainModel;
 use App\Models\LogModel;
 use Dompdf\Dompdf;
@@ -17,7 +17,7 @@ class DaftarOne extends BaseController
         $this->ippModel = new IppModel();
         $this->isiModel = new IsiModel();      
         $this->oneyearisi = new OneyearModel();   
-        $this->strongweakmain = new StrongweakMainModel();      
+        $this->strongweakmain = new StrongWeakMainModel();      
         $this->procsummain = new ProcsumMainModel();      
         $this->logModel = new LogModel();      
     }
