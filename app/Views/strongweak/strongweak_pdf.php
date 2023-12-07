@@ -111,7 +111,7 @@
                         <tr>
                             <td style="width: 80px;">Hal</td>
                             <td style="width: 5px;">:</td>
-                            <td style="width: 100px;">3 dari 3</td>
+                            <td style="width: 80px;">3 dari 3</td>
                         </tr>
                         <tr>
                             <td style="width: 80px;">Revisi ke</td>
@@ -180,7 +180,7 @@
                 <td class="table-colapse" colspan=2 style="width: 100%; font-size: 14px; text-align: center;">Note:</td>
             </tr>
             <tr style="border-right: 2px black solid; border-left: 2px black solid;">
-                <td class="table-colapse" colspan=2 style="height: 60px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;"><?= $s['note_mid'] ?></td>
+                <td class="table-colapse" colspan=2 style="height: 40px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;"><?= $s['note_mid'] ?></td>
             </tr>
             <?php endforeach ?>
         </table>
@@ -202,61 +202,60 @@
                     // dd($approval['kode_jabatan']);
                     if ($approval['kode_jabatan'] == 8 && $approval['created_by'] != [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592]) { 
                         echo '
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['date_submitted'])) . '</span>'.'
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Approved By '. ucwords(strtolower($approval['approved_kasie_by'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_kasie_strongweak'])) . '</span>'.'
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Approved By '. ucwords(strtolower($approval['approved_kasie_by'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_kadept_strongweak'])) . '</span>'.'
                             </td>
                         '; 
                     } elseif ($approval['kode_jabatan'] == 4 || ($approval['kode_jabatan'] == 8 && in_array($approval['created_by'], [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592]))) {
                         echo '
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['date_submitted'])) . '</span>'.'
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Approved By ' . ucwords(strtolower($approval['approved_kadept_by'])) . '</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_kadept_strongweak'])) . '</span>
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Approved By ' . ucwords(strtolower($approval['approved_kadiv_by'])) . '</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_kadiv_strongweak'])) . '</span>
                             </td>
                         ';
                     } elseif ($approval['kode_jabatan'] == 3){ 
                         echo '
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['date_submitted'])) . '</span>'.'
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;"> 
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;"> 
                                 <span style="text-align: center">Approved By '. ucwords(strtolower($approval['approved_kadiv_by'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_kadiv_strongweak'])) . '</span>'.'
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
-                            class="table-colapse"
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Approved By '. ucwords(strtolower($approval['approved_bod_by'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_bod_strongweak'])) . '</span>'.'
                             </td>
                         ';
                     } elseif ($approval['kode_jabatan'] == 2){ 
                         echo '
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['date_submitted'])) . '</span>'.'
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Approved By '. ucwords(strtolower($approval['approved_bod_by'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_bod_strongweak'])) . '</span>'.'
                             </td>
-                            <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                            <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 <span style="text-align: center">Approved By '. ucwords(strtolower($approval['approved_presdir_by'])) .'</span>
                                 <span style="position: absolute; bottom: 0; left: 0;">  Date: ' . date("d F Y", strtotime($approval['approval_date_presdir_strongweak'])) . '</span>'.'
                             </td>
@@ -323,34 +322,34 @@
                     if ($approval['kode_jabatan'] == 8 && $approval['created_by'] != [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592]) { 
                         if ($approval['approval_kasie_oneyear'] == 1 && $approval['approval_kadept_oneyear'] == 1){
                             echo '
-                                <td class="table-colapse" colspan=2 style="height: 60px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
+                                <td class="table-colapse" colspan=2 style="height: 40px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
                             ';
                         } else {
-                            echo '<td colspan=2 class="table-colapse" style="height: 60px; vertical-align: top; width: 100%; padding: 10px;"></td>';
+                            echo '<td colspan=2 class="table-colapse" style="height: 40px; vertical-align: top; width: 100%; padding: 10px;"></td>';
                         }
                     } elseif ($approval['kode_jabatan'] == 4 || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])) {
                         if($approval['approval_kadept_oneyear'] == 1 && $approval['approval_kadiv_oneyear'] == 1){
                             echo '
-                                <td class="table-colapse" colspan=2 style="height: 60px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
+                                <td class="table-colapse" colspan=2 style="height: 40px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
                             ';
                         } else {
-                            echo '<td colspan=2 class="table-colapse" style="height: 60px; vertical-align: top; width: 100%; padding: 10px;"></td>';
+                            echo '<td colspan=2 class="table-colapse" style="height: 40px; vertical-align: top; width: 100%; padding: 10px;"></td>';
                         }
                     } elseif ($approval['kode_jabatan'] == 3){ 
                         if($approval['approval_kadiv_oneyear'] == 1 && $approval['approval_bod_oneyear'] == 1){
                             echo '
-                                <td class="table-colapse" colspan=2 style="height: 60px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
+                                <td class="table-colapse" colspan=2 style="height: 40px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
                             ';
                         } else {
-                            echo '<td colspan=2 class="table-colapse" style="height: 60px; vertical-align: top; width: 100%; padding: 10px;"></td>';
+                            echo '<td colspan=2 class="table-colapse" style="height: 40px; vertical-align: top; width: 100%; padding: 10px;"></td>';
                         }
                     } elseif ($approval['kode_jabatan'] == 2){ 
                         if($approval['approval_bod_oneyear'] == 1 && $approval['approval_presdir_oneyear'] == 1){
                             echo '
-                                <td class="table-colapse" colspan=2 style="height: 60px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
+                                <td class="table-colapse" colspan=2 style="height: 40px; padding: 10px; text-align: left; vertical-align: top; width: 100%; font-size: 13px;">'. $s['note_one'] .'</td>
                             ';
                         } else {
-                            echo '<td colspan=2 class="table-colapse" style="height: 60px; vertical-align: top; width: 100%; padding: 10px;"></td>';
+                            echo '<td colspan=2 class="table-colapse" style="height: 40px; vertical-align: top; width: 100%; padding: 10px;"></td>';
                         }
                     } 
                 ?>
@@ -376,28 +375,28 @@
                     if ($approval['kode_jabatan'] == 8 && $approval['created_by'] != [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592]) { 
                         if ($approval['approval_kasie_oneyear'] == 1 && $approval['approval_kadept_oneyear'] == 1){
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['date_submitted_one'] !== null ? date("d F Y", strtotime($approval['date_submitted_one'])) : '') . '</span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">'. ($approval['kasie_by_oneyear'] !== null ? 'Approved By '. ucwords(strtolower($approval['kasie_by_oneyear'])) : '') .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_kasie_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_kasie_oneyear'])) : '') . '</span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">'. ($approval['kadept_by_oneyear'] !== null ? 'Approved By ' . ucwords(strtolower($approval['kadept_by_oneyear'])) : '') .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_kadept_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_kadept_oneyear'])) : '') . '</span>'.'
                                 </td>
                             '; 
                         } else{
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
                             ';
@@ -406,28 +405,28 @@
                         if ($approval['approval_kadiv_oneyear'] == 1 && $approval['approval_kadept_oneyear'] == 1){
                         // dd($approval['kadept_by_oneyear']);
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['date_submitted_one'] !== null ? date("d F Y", strtotime($approval['date_submitted_one'])) : '') . '</span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">' . ($approval['approved_kadept_by'] !== null ? 'Approved By ' . ucwords(strtolower($approval['approved_kadept_by'])) : '') . '</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_kadept_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_kadept_oneyear'])) : '') . '</span>
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">' . ($approval['approved_kadiv_by'] !== null ? 'Approved By ' . ucwords(strtolower($approval['approved_kadiv_by'])) : '') . '</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_kadiv_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_kadiv_oneyear'])) : '') . '</span>
                                 </td>
                             ';
                         } else {
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
                             ';
@@ -435,15 +434,15 @@
                     } elseif ($approval['kode_jabatan'] == 3){ 
                         if ($approval['approval_kadiv_oneyear'] == 1 && $approval['approval_bod_oneyear'] == 1){
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['date_submitted_one'] !== null ? date("d F Y", strtotime($approval['date_submitted_one'])) : '') . '</span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;"> 
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;"> 
                                     <span style="text-align: center">'. ($approval['kadept_by_oneyear'] !== null ? 'Approved By ' . ucwords(strtolower($approval['kadept_by_oneyear'])) : '') .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_kadiv_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_kadiv_oneyear'])) : '') . '</span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                 class="table-colapse"
                                     <span style="text-align: center">'. ($approval['bod_by_oneyear'] !== null ? 'Approved By ' . ucwords(strtolower($approval['bod_by_oneyear'])) : '') .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_bod_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_bod_oneyear'])) : '') . '</span>'.'
@@ -451,13 +450,13 @@
                             '; 
                         } else{
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
                             ';
@@ -465,28 +464,28 @@
                     } elseif ($approval['kode_jabatan'] == 2){ 
                         if ($approval['approval_bod_oneyear'] == 1 && $approval['approval_presdir_oneyear'] == 1){
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">Signed By '. ucwords(strtolower($approval['nama'])) .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['date_submitted_one'] !== null ? date("d F Y", strtotime($approval['date_submitted_one'])) : '') . '</span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">'. ($approval['bod_by_oneyear'] !== null ? 'Approved By ' . ucwords(strtolower($approval['bod_by_oneyear'])) : '') .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_bod_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_bod_oneyear'])) : '') . '</span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="text-align: center">'. ($approval['presdir_by_oneyear'] !== null ? 'Approved By ' . ucwords(strtolower($approval['presdir_by_oneyear'])) : '') .'</span>
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: ' . ($approval['approval_date_presdir_oneyear'] !== null ? date("d F Y", strtotime($approval['approval_date_presdir_oneyear'])) : '') . '</span>'.'
                                 </td>
                             '; 
                         } else{
                             echo '
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>'.'
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
-                                <td class="table-colapse" style="width: 33.3%; height: 100px; text-align: center; position: relative;">
+                                <td class="table-colapse" style="width: 33.3%; height: 80px; text-align: center; position: relative;">
                                     <span style="position: absolute; bottom: 0; left: 0;"> Date: </span>
                                 </td>
                             ';

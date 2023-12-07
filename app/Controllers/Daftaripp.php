@@ -1122,7 +1122,7 @@ class DaftarIpp extends BaseController
             }
             $is_approved = $mainData['is_approved_kadiv'];
         } elseif (session()->get('kode_jabatan') == 1) {
-            if($mainData['kode_jabatan'] == 3){
+            if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
                 $is_approved_before = !$mainData['is_approved_kadiv'];
             }
             $is_approved = $mainData['is_approved_bod'];

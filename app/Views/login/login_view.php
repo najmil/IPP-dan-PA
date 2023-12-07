@@ -27,12 +27,21 @@
     </head>
 
     <body class="hold-transition login-page">
+        <?php
+        // $db = db_connect();
+
+        // $query = $db->query("SELECT * FROM periode");
+
+        // foreach($query->getResult() as $row){
+        //     echo $row->name;
+        // }
+        ?>
         <div class="login-box">
         <div class="card custom-font">
             <div class="card-body login-card-body">
                 <div class="text-center mb-4">
                     <h1 class="align-center">SIGN IN</h1>
-                    <p>Individual Perforamnce Planning</p>
+                    <p>Individual Performnce Planning</p>
                 </div>
 
             <form action="<?= base_url("/login/loginToExternalApi") ?>" method="post">

@@ -464,6 +464,7 @@
         });
 
         $('.approve-button').click(function (event) {
+            var alerted = false;
             console.log('clicked');
             event.preventDefault();
 
@@ -474,6 +475,15 @@
             var weight = row.data('weight');
             var midyear = row.data('midyear');
             var duedate = row.data('duedate');
+
+            var totalWeight = parseFloat($('#total_weight').val());
+            if (isNaN(totalWeight) || totalWeight !== 100.00) {
+                if (!alerted) {
+                    alert('Total Weight must be 100%. Currently, the total is ' + totalWeight + '%. Please check again.');
+                    alerted = true; 
+                }
+                return false;
+            }
 
             row.prop('disabled', true);
 
@@ -521,8 +531,10 @@
             row.find('.save-btn').data('id', row.find('.duedate').data('id'));
 
             row.find('.edit-btn').hide(); 
-            // $('.btn-hapus').hide();
+            row.find('.btn-hapus').hide();
             row.find('.save-btn').show();
+            $('.approve-button').hide();
+            $('#addRowButton').hide();
         });
 
         // Fungsi yang dijalankan saat tombol "Simpan" pada halaman detail diklik
@@ -582,6 +594,8 @@
                         row.find('.midyear-input').hide();
                         row.find('.oneyear-input').hide();
                         row.find('.duedate-input').hide();
+
+                        location.reload();
                     } else {
                         alert('Gagal menyimpan data: ' + result.message);
                     }

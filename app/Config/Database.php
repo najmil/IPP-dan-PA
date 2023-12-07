@@ -43,8 +43,11 @@ class Database extends Config
         'failover'     => [],
         'port'         => 1433,
         'numberNative' => false,
+        'options'      => [
+            'CharacterSet' => 'UTF-8',
+        ],
     ];
-
+    
     /**
      * This database connection is used when
      * running PHPUnit database tests.

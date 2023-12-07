@@ -428,7 +428,7 @@
             row.find('.save-btn').data('id', row.find('.duedate').data('id'));
 
             row.find('.edit-btn').hide(); 
-            // row.find('.btn-hapus').hide(); 
+            row.find('.btn-hapus').hide(); 
             row.find('.save-btn').show();
             $('#addRowButton').hide();
             $('#saveAllButton').hide();
@@ -607,10 +607,12 @@
                         var row = $(this);
                         var id = row.find('.program').data('id');
                         var program = row.find('.program').text();
-                        var weight = row.find('.weight').text();
+                        var weight = row.find('#weight').val();
                         var midyear = row.find('.midyear').text();
                         var oneyear = row.find('.oneyear').text();
-                        var duedate = row.find('.duedate').text();
+                        // var duedate = row.find('.duedate').text();
+                        var formattedDueDate = new Date(row.find('#duedate').val()).toLocaleDateString('en-US');
+                        console.log('formattedDueDate: ', formattedDueDate);
                         console.log(id);
 
                         $.ajax({
@@ -624,7 +626,7 @@
                                 weight: weight,
                                 midyear: midyear,
                                 oneyear: oneyear,
-                                duedate: duedate
+                                duedate: formattedDueDate
                             },
                             beforeSend: function(){
                                 $('.edit-btn-mid').html('<i class="fas fa-spinner fa-spin"></i>');

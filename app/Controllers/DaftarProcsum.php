@@ -59,7 +59,7 @@ class DaftarProcsum extends BaseController
         if(session()->get('npk') == 0){
             if ($content == 'plantserv') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $plantserv,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -107,7 +107,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($content == 'fin') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $fin,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -155,7 +155,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($content == 'adm') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $adm,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -204,7 +204,7 @@ class DaftarProcsum extends BaseController
                 // dd($data);
             } elseif ($content == 'plant') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $plant, 
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -252,7 +252,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($content == 'eng') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $eng,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -300,7 +300,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($content == 'isd') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $isd,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -351,7 +351,7 @@ class DaftarProcsum extends BaseController
             // By Department
             if ($contentdept == 'ehs') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $ehs,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -399,7 +399,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'mtc') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $mtc,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -447,7 +447,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'mkt') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $mkt,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -495,7 +495,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'fincont') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $fincont,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -543,7 +543,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'mis') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $mis, 
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -591,7 +591,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'hr') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $hr,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -639,7 +639,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'procurement') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $procurement,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -687,7 +687,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'productsatu') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $productsatu,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -735,7 +735,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'productdua') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $productdua,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -783,7 +783,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'ppic') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $ppic,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -831,7 +831,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'spv') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $spv,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -879,7 +879,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'qa') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $qa,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -927,7 +927,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'producteng') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $producteng,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -975,7 +975,7 @@ class DaftarProcsum extends BaseController
                 ];
             } elseif ($contentdept == 'processeng') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Process And Summary Karyawan',
                     'daftarprocsum'=> $processeng,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -1025,7 +1025,7 @@ class DaftarProcsum extends BaseController
         
         } else {
             $data = [
-                'tittle' => 'Daftar IPP Karyawan',
+                'tittle' => 'Daftar Process And Summary Karyawan',
                 'daftarprocsum'=> $mainData,
                 'countPending' => $this->ippModel->getDataPending(),
             'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
@@ -1133,6 +1133,7 @@ class DaftarProcsum extends BaseController
                     $is_approved_before = !$mainData['is_approved_kadiv'];
                 }
                 $is_approved = $mainData['is_approved_bod'];
+                // dd($is_approved);
             } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
                 $is_approved_before = !$mainData['is_approved_bod'];
                 $is_approved = !$mainData['is_approved_presdir'];
@@ -1156,6 +1157,7 @@ class DaftarProcsum extends BaseController
                     $is_approved_before = !$mainData['is_approved_kadiv_oneyear'];
                 }
                 $is_approved = $mainData['is_approved_bod_oneyear'];
+                // dd($is_approved);
             } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
                 $is_approved_before = !$mainData['is_approved_bod_oneyear'];
                 $is_approved = !$mainData['is_approved_presdir_oneyear'];
@@ -1325,7 +1327,7 @@ class DaftarProcsum extends BaseController
     }
 
     public function approveKasieOne($id) {
-        if (session()->get('kode_jabatan') != 2) {
+        if (session()->get('kode_jabatan') != 4) {
             return redirect()->back()->with('error', 'You do not have permission to approve.');
         }
     
@@ -1363,7 +1365,7 @@ class DaftarProcsum extends BaseController
     }
 
     public function approvePresdirOne($id) {
-        if (session()->get('kode_jabatan') != 2) {
+        if (session()->get('kode_jabatan') != 0) {
             return redirect()->back()->with('error', 'You do not have permission to approve.');
         }
     
@@ -1401,7 +1403,7 @@ class DaftarProcsum extends BaseController
     }
 
     public function approveBodOne($id) {
-        if (session()->get('kode_jabatan') != 2) {
+        if (session()->get('kode_jabatan') != 1) {
             return redirect()->back()->with('error', 'You do not have permission to approve.');
         }
     

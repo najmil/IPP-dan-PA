@@ -969,7 +969,7 @@
             $('#edit').hide();
             $('#edit-one').hide();
             $('#save-edit').show();
-            $('#submit').hide();
+            $('#submit-one').hide();
         });
 
         // Function to save the edit input

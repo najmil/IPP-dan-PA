@@ -168,7 +168,8 @@
                                 // Approval BoD
                                 if (session()->get('kode_jabatan') == 1) {
                                     if ($midmain['kode_jabatan'] == 3) {
-                                        if ($midmain['approval_kadiv_midyear'] == 1 && empty($midmain['approval_bod'])) {
+                                        // dd($midmain['approval_bod_midyear']);
+                                        if ($midmain['approval_kadiv_midyear'] == 1 && empty($midmain['approval_bod_midyear'])) {
                                             echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
@@ -176,7 +177,7 @@
                                     }
 
                                     if ($midmain['kode_jabatan'] == 2) {
-                                        if (session()->get('kode_jabatan') == 1 && empty($midmain['approval_bod'])) {
+                                        if (session()->get('kode_jabatan') == 1 && empty($midmain['approval_bod_midyear'])) {
                                             echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';

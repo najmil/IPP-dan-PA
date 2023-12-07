@@ -95,6 +95,15 @@
 
                                 <!-- Modal Body -->
                                 <div class="modal-body">
+                                    <?php if (!empty($error)): ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?= $error ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- Jika gagal masukkan data -->
+                                    <div class="alert alert-danger gagal" role="alert" style="display: none;"></div>
+                                    <!-- Jika suskes masukkan data -->
+                                    <div class="alert alert-success sukses" role="alert" style="display: none;"></div>
                                     <div class="mb-3 row">
                                         <label for="periodeInput" class="col-sm-6">Periode IPP</label>
                                         <div class="col-sm-4">
@@ -276,29 +285,47 @@
         // Mengisi inputan periode dengan format "IPP tahun saat ini"
         periodeInput.value = 'IPP ' + tahunSaatIni;
 
-        $("#simpanLama").click(function() {
-            var periode = $("#year").val();
-            console.log(periode);
-            var file = $("#ippFile")[0].files[0];
+        $('#simpanLama').click(function () {
+            var periode = $('#year').val();
+            var fileInput = $('#ippFile')[0].files[0];
 
-            var formData = new FormData();
-            formData.append('periode', periode);
-            formData.append('file', file);
+            if (!fileInput || periode === '') {
+                alert('File must be filled.');
+            } else {
+                var formData = new FormData();
+                formData.append('periode', periode);
+                formData.append('ippFile', fileInput);
 
-            $.ajax({
-                url: '<?= base_url('ipp/datalama'); ?>',
-                type: 'POST',
-                data: formData,
-                processData: false, 
-                contentType: false,
-                success: function(response) {
-                    console.log(response); 
-                    location.reload();
-                },
-                error: function() {
-                    console.log("Gagal mengirim data ke server");
-                }
-            });
+                $.ajax({
+                    url: '<?= base_url('/ipp/datalama') ?>',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#simpanLama').html('<i class="fas fa-spinner fa-spin"></i>');
+                    },
+                    complete: function () {
+                        $('#simpanLama').prop('disabled', false).html('Simpan');
+                    },
+                    success: function(hasil){
+                        var $obj = $.parseJSON(hasil);
+                        if ($obj.sukses == false){
+                            $('.sukses').hide();
+                            $('.gagal').show();
+                            $('.gagal').html($obj.gagal);
+                        } else {
+                            $('.gagal').hide();
+                            $('.sukses').show();
+                            $('.sukses').html($obj.sukses);
+                            location.reload();
+                        }
+                    },
+                    error: function () {
+                        alert('Terjadi kesalahan saat menyimpan data');
+                    }
+                });
+            }
         });
     });
     

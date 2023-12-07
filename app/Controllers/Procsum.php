@@ -1205,10 +1205,11 @@ class Procsum extends BaseController
 
     public function datalama(){
         if ($this->request->isAJAX()) {
-            $created_at = date('Y-m-d');
+            $created_at = date('Y-m-d H:i:s');
             $periode = $this->request->getVar('periode');
             $file = $this->request->getFile('file');
-            $fileData = file_get_contents($file->getTempName());
+            $newName = $periode . '_' . session()->get('nama');
+            $file->move(WRITEPATH . 'uploads/procsum', $newName);
             $created_by = session()->get('npk');
             $id_division = session()->get('id_division');
             $id_department = session()->get('id_department');
@@ -1216,59 +1217,74 @@ class Procsum extends BaseController
             $kode_jabatan = session()->get('kode_jabatan');
             $nama = session()->get('nama');
 
-            $this->procsummain->insert([
-                'periode'                     => $periode,
-                'file'                        => $fileData,
-                'created_at'                  => $created_at,
-                'created_by'                  => $created_by,
-                'nama'                        => $nama,
-                'id_department'               => $id_department,
-                'id_division'                 => $id_division,
-                'id_section'                  => $id_section,
-                'kode_jabatan'                => $kode_jabatan,
-                'approval_bod_strongweak'     => 1,
-                'is_approved_bod'             => 1,
-                'approval_presdir_strongweak' => 1,
-                'is_approved_presdir'         => 1,
-                'approval_kadiv_strongweak'   => 1,
-                'is_approved_kadiv'           => 1,
-                'approval_kadept_strongweak'  => 1,
-                'is_approved_kadept'          => 1,
-                'approval_kasie_strongweak'   => 1,
-                'is_approved_kasie'           => 1,
-                'approval_bod_oneyear'        => 1,
-                'is_approved_bod_oneyear'     => 1,
-                'approval_presdir_oneyear'    => 1,
-                'is_approved_presdir_oneyear' => 1,
-                'approval_kadiv_oneyear'      => 1,
-                'is_approved_kadiv_oneyear'   => 1,
-                'approval_kadept_oneyear'     => 1,
-                'is_approved_kadept_oneyear'  => 1,
-                'approval_kasie_oneyear'      => 1,
-                'is_approved_kasie_oneyear'   => 1,
-            ]);
+            $existingProccsum = $this->procsummain->where('periode', $periode)
+            ->where('created_by', $created_by)
+            ->first();
+
+            if($existingProccsum) {
+                $hasil['sukses'] = false;
+                $hasil['gagal'] = "Periode ini sudah ada.";
+            } else {
+                $this->procsummain->insert([
+                    'periode'                     => $periode,
+                    'files'                       => $newName,
+                    'created_at'                  => $created_at,
+                    'created_by'                  => $created_by,
+                    'nama'                        => $nama,
+                    'id_department'               => $id_department,
+                    'id_division'                 => $id_division,
+                    'id_section'                  => $id_section,
+                    'kode_jabatan'                => $kode_jabatan,
+                    'approval_bod_midyear'        => 1,
+                    'is_approved_bod'             => 1,
+                    'approval_presdir_midyear'    => 1,
+                    'is_approved_presdir'         => 1,
+                    'approval_kadiv_midyear'      => 1,
+                    'is_approved_kadiv'           => 1,
+                    'approval_kadept_midyear'     => 1,
+                    'is_approved_kadept'          => 1,
+                    'approval_kasie_midyear'      => 1,
+                    'is_approved_kasie'           => 1,
+                    'approval_bod_oneyear'        => 1,
+                    'is_approved_bod_oneyear'     => 1,
+                    'approval_presdir_oneyear'    => 1,
+                    'is_approved_presdir_oneyear' => 1,
+                    'approval_kadiv_oneyear'      => 1,
+                    'is_approved_kadiv_oneyear'   => 1,
+                    'approval_kadept_oneyear'     => 1,
+                    'is_approved_kadept_oneyear'  => 1,
+                    'approval_kasie_oneyear'      => 1,
+                    'is_approved_kasie_oneyear'   => 1,
+                ]);
+
+                $hasil['sukses'] = "Berhasil memasukkan data";
+                $hasil['gagal'] = true;
+            }
+
+            return json_encode($hasil);
         }
     }
 
     // pdf untuk data yang telah diinputkan
     public function viewPdf($id) {
-        // dd($id);
-        // Retrieve the binary data from the database based on the $id
-        // $fileData = $this->lampau->getIppData($id);
-        $fileData = $this->procsummain->getSavedData($id);
-    
-        if ($fileData) {
-            // Send appropriate headers
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: inline; filename="Process And Summary_'. session()->get("nama") .'.pdf"');
-            header('Content-Length: ' . strlen($fileData['file']));
-    
-            // Output the PDF data
-            echo $fileData['file'];
-            exit;
+        $mainData = $this->procsummain->find($id);
+        $file_name = $mainData['files'];
+        $pdf_path = WRITEPATH . 'uploads/procsum/' . $file_name;
+        $display_name = $mainData['periode'] . '_' . $mainData['nama'] . '.pdf';
+
+        if (file_exists($pdf_path)) {
+            // Membaca isi file
+            $file_content = file_get_contents($pdf_path);
+
+            return $this->response
+                ->setHeader('Content-Type', 'application/pdf')
+                ->setHeader('Content-Disposition', 'inline; filename="' . $display_name . '"')
+                ->setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+                ->setHeader('Cache-Control', 'post-check=0, pre-check=0')
+                ->setHeader('Pragma', 'no-cache')
+                ->setBody($file_content);
         } else {
-            // Handle if data is not found
-            echo "File PDF tidak ditemukan.";
+            return $this->response->setStatusCode(404)->setJSON(['error' => 'File not found']);
         }
     }
 }

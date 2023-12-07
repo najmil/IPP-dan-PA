@@ -264,7 +264,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <?php if ($p['kode_jabatan'] == 3 || $p['kode_jabatan'] == 4): ?>
+                                        <?php if (($p['kode_jabatan'] == 3 && $p['id_department'] != 5) || ($p['kode_jabatan'] == 4 && $p['id_department'] != 5)): ?>
                                             <?php if (empty($p['approval_kadiv_midyear'])): ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
                                             <?php else: ?>
@@ -660,7 +660,7 @@
                                             <?php endif; ?>
                                             <?php endif; ?>
                                         <?php endif; ?>
-                                        <?php if ($p['kode_jabatan'] == 3): ?>
+                                        <?php if ($p['kode_jabatan'] == 3 && $p['id_department'] != 5): ?>
                                             <?php $disableDetail = true; ?>
                                             <?php if (session()->get('kode_jabatan') == 2): ?>
                                                     <?php if (!empty($p['approval_date_kadiv_midyear'])): ?>
@@ -747,7 +747,7 @@
                                 <?php if (session()->get('kode_jabatan') == 1): ?>
                                     <!-- MID YEAR -->
                                     <td class="text-center">
-                                        <?php if ($p['kode_jabatan'] == 3): ?>
+                                        <?php if ($p['kode_jabatan'] == 3 && $p['id_department'] != 5): ?>
                                             <?php if ($p['approval_kadiv_midyear'] == 1): ?>
                                                 <?php $disableDetail = true; ?>
                                                 <span class="badge badge-primary btn-sm">Approved</span>
@@ -766,7 +766,7 @@
                                                 <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
-                                            <?php elseif (empty($p['approval_bod_midyear'])): ?>
+                                            <?php //elseif (empty($p['approval_bod_midyear'])): ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
                                             <?php else: ?>
                                                 <?php if (!empty($p['approval_date_bod_midyear'])): ?>
@@ -833,7 +833,7 @@
                                                 <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
-                                            <?php elseif (empty($p['approval_bod_oneyear'])): ?>
+                                            <?php// elseif (empty($p['approval_bod_oneyear'])): ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
                                             <?php else: ?>
                                                 <?php if (!empty($p['approval_date_bod_oneyear'])): ?>
@@ -855,7 +855,7 @@
                                                 <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
-                                                <?php elseif (empty($p['approval_bod_oneyear'])): ?>
+                                                <?php// elseif (empty($p['approval_bod_oneyear'])): ?>
                                                     <span class="badge badge-secondary btn-sm">Pending</span>
                                                 <?php else: ?>
                                                     <?php if (!empty($p['approval_date_bod_oneyear'])): ?>

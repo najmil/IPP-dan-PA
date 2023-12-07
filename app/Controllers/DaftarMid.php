@@ -57,7 +57,7 @@ class DaftarMid extends BaseController
         if(session()->get('npk') == 0){
             if ($content == 'plantserv') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $plantserv,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -106,7 +106,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($content == 'fin') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $fin,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -154,7 +154,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($content == 'adm') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $adm,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -203,7 +203,7 @@ class DaftarMid extends BaseController
                 // dd($data);
             } elseif ($content == 'plant') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $plant, 
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -251,7 +251,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($content == 'eng') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $eng,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -299,7 +299,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($content == 'isd') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $isd,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -350,7 +350,7 @@ class DaftarMid extends BaseController
             // By Department
             if ($contentdept == 'ehs') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $ehs,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -398,7 +398,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'mtc') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $mtc,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -446,7 +446,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'mkt') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $mkt,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -494,7 +494,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'fincont') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $fincont,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -542,7 +542,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'mis') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $mis, 
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -590,7 +590,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'hr') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $hr,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -638,7 +638,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'procurement') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $procurement,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -686,7 +686,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'productsatu') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $productsatu,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -734,7 +734,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'productdua') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $productdua,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -782,7 +782,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'ppic') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $ppic,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -830,7 +830,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'spv') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $spv,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -878,7 +878,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'qa') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $qa,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -926,7 +926,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'producteng') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $producteng,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -974,7 +974,7 @@ class DaftarMid extends BaseController
                 ];
             } elseif ($contentdept == 'processeng') {
                 $data = [
-                    'tittle' => 'Daftar IPP Karyawan',
+                    'tittle' => 'Daftar Mid Year Result Karyawan',
                     'daftarmid'=> $processeng,
                     'maindata' => $mainData,
                     'content'  => $content,
@@ -1024,7 +1024,7 @@ class DaftarMid extends BaseController
         
         } else {
             $data = [
-                'tittle' => 'Daftar IPP Karyawan',
+                'tittle' => 'Daftar Mid Year Result Karyawan',
                 'daftarmid'=> $filteredMidData,
                 'maindata' => $mainData,
                 'countPending' => $this->ippModel->getDataPending(),
@@ -1100,7 +1100,7 @@ class DaftarMid extends BaseController
             }
             $is_approved = $mainData['is_approved_kadiv_mid'];
         } elseif (session()->get('kode_jabatan') == 1) {
-            if($mainData['kode_jabatan'] == 3){
+            if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
                 $is_approved_before = !$mainData['is_approved_kadiv_mid'];
             }
             $is_approved = $mainData['is_approved_bod_mid'];
@@ -1122,24 +1122,24 @@ class DaftarMid extends BaseController
             'is_approved' => $is_approved,
             'is_approved_before' => $is_approved_before,
             'countPending' => $this->ippModel->getDataPending(),
-                    'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
-                    'countPendingAdm' => $this->ippModel->getPendingAdm(),
-                    'countPendingFin' => $this->ippModel->getPendingFin(),
-                    'countPendingPlant' => $this->ippModel->getPendingPlant(),
-                    'countPendingEng' => $this->ippModel->getPendingEng(),
-                    'countPendingIsd' => $this->ippModel->getPendingIsd(),
-            
+            'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
+            'countPendingAdm' => $this->ippModel->getPendingAdm(),
+            'countPendingFin' => $this->ippModel->getPendingFin(),
+            'countPendingPlant' => $this->ippModel->getPendingPlant(),
+            'countPendingEng' => $this->ippModel->getPendingEng(),
+            'countPendingIsd' => $this->ippModel->getPendingIsd(),
+    
             'countPendingMid' => $this->ippModel->getDataPendingMid(),
-                    'countPendingPlantSMid' => $this->ippModel->getPendingPlantSMid(),
-                    'countPendingAdmMid' => $this->ippModel->getPendingAdmMid(),
-                    'countPendingFinMid' => $this->ippModel->getPendingFinMid(),
-                    'countPendingPlantMid' => $this->ippModel->getPendingPlantMid(),
-                    'countPendingEngMid' => $this->ippModel->getPendingEngMid(),
-                    'countPendingIsdMid' => $this->ippModel->getPendingIsdMid(),
-                    
+            'countPendingPlantSMid' => $this->ippModel->getPendingPlantSMid(),
+            'countPendingAdmMid' => $this->ippModel->getPendingAdmMid(),
+            'countPendingFinMid' => $this->ippModel->getPendingFinMid(),
+            'countPendingPlantMid' => $this->ippModel->getPendingPlantMid(),
+            'countPendingEngMid' => $this->ippModel->getPendingEngMid(),
+            'countPendingIsdMid' => $this->ippModel->getPendingIsdMid(),
+            
             'countPendingOne' => $this->ippModel->getDataPendingOne(),
-                    'countPendingPlantSOne' => $this->ippModel->getPendingPlantSOne(),
-                    'countPendingAdmOne' => $this->ippModel->getPendingAdmOne(),
+            'countPendingPlantSOne' => $this->ippModel->getPendingPlantSOne(),
+            'countPendingAdmOne' => $this->ippModel->getPendingAdmOne(),
             'countPendingFinOne' => $this->ippModel->getPendingFinOne(),
             'countPendingPlantOne' => $this->ippModel->getPendingPlantOne(),
             'countPendingEngOne' => $this->ippModel->getPendingEngOne(),
@@ -1151,7 +1151,7 @@ class DaftarMid extends BaseController
             'countPendingPlantSw' => $this->strongweakmain->getPendingPlantSw(),
             'countPendingEngSw' => $this->strongweakmain->getPendingEngSw(),
             'countPendingIsdSw' => $this->strongweakmain->getPendingIsdSw(),
-                    
+            
             // 'countPendingSOne' => $this->strongweakmain->getDataPendingOne(),
             'countPendingPMid' => $this->procsummain->getDataPendingMid(),
             'countPendingPlantSProc' => $this->procsummain->getPendingPlantSProc(),
