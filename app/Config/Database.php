@@ -26,9 +26,9 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => 'DESKTOP-RA29D2S\SQLEXPRESS',
+        'hostname'     => '10.19.16.27',
         'username'     => 'sa',
-        'password'     => '1234',
+        'password'     => 'User@new1',
         'database'     => 'portal_ipp',
         'DBDriver'     => 'sqlsrv',
         'DBPrefix'     => '',
