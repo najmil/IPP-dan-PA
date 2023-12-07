@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use App\Models\ProcsumModel;
 use App\Models\ProcsumMainModel;
-use App\Models\StrongweakMainModel;
+use App\Models\StrongWeakMainModel;
 use App\Models\IsiModel;
 use App\Models\IppModel;
 use App\Models\MidyearModel;
@@ -16,7 +16,7 @@ class DaftarProcsum extends BaseController
     public function __construct(){
         $this->procsummodel= new ProcsumModel();
         $this->procsummain = new ProcsumMainModel();    
-        $this->strongweakmain = new StrongweakMainModel();    
+        $this->strongweakmain = new StrongWeakMainModel();    
         $this->ippModel    = new IppModel();  
         $this->isiModel    = new IsiModel(); 
         $this->midyearisi  = new MidyearModel();  

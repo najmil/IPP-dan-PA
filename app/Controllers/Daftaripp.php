@@ -7,7 +7,7 @@ use App\Models\IsiModel;
 use App\Models\MidyearModel;
 use App\Models\OneyearModel;
 use App\Models\ProcsumMainModel;
-use App\Models\StrongweakMainModel;
+use App\Models\StrongWeakMainModel;
 use App\Models\LogModel;
 use App\Models\PeriodeModel;
 use Dompdf\Dompdf;
@@ -21,7 +21,7 @@ class DaftarIpp extends BaseController
         $this->midyearisi= new MidyearModel();  
         $this->oneyearisi= new OneyearModel();  
         $this->logModel  = new LogModel();  
-        $this->strongweakmain= new StrongweakMainModel();  
+        $this->strongweakmain= new StrongWeakMainModel();  
         $this->procsummain= new ProcsumMainModel();  
         $this->periodeModel = new PeriodeModel();     
     }

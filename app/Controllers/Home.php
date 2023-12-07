@@ -3,13 +3,13 @@
 namespace App\Controllers;
 use App\Models\IppModel;
 use App\Models\ProcsumMainModel;
-use App\Models\StrongweakMainModel;
+use App\Models\StrongWeakMainModel;
 
 class Home extends BaseController
 {
     public function __construct(){
         $this->ippModel  = new IppModel();
-        $this->strongweakmain  = new StrongweakMainModel();
+        $this->strongweakmain  = new StrongWeakMainModel();
         $this->procsummain  = new ProcsumMainModel();
     }
 

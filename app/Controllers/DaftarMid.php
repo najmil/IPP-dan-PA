@@ -6,7 +6,7 @@ use App\Models\LoginModel;
 use App\Models\LogModel;
 use App\Models\IsiModel;
 use App\Models\MidyearModel;
-use App\Models\StrongweakMainModel;
+use App\Models\StrongWeakMainModel;
 use App\Models\ProcsumMainModel;
 use Dompdf\Dompdf;
 use Config\Paths;
@@ -18,7 +18,7 @@ class DaftarMid extends BaseController
         $this->isiModel = new IsiModel();      
         $this->logModel = new LogModel();      
         $this->midyearisi = new MidyearModel();      
-        $this->strongweakmain = new StrongweakMainModel();      
+        $this->strongweakmain = new StrongWeakMainModel();      
         $this->procsummain = new ProcsumMainModel();      
     }
 
