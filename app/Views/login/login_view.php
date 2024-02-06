@@ -92,6 +92,88 @@
         <!-- Toastr -->
         <script src="/plugins/toastr/toastr.min.js"></script>
 
-        
+        <script>
+            $(document).ready(function () {
+                // Add input event listeners to dynamically clear 'is-invalid' class and feedback messages
+                $('#username').on('input', function () {
+                    $(this).removeClass('is-invalid');
+                    $('#username-feedback').html('');
+                });
+
+                $('#password').on('input', function () {
+                    $(this).removeClass('is-invalid');
+                    $('#password-feedback').html('');
+                });
+
+                $('form').on('submit', function (event) {
+                    event.preventDefault();
+
+                    // Serialize form data
+                    var formData = $(this).serialize();
+
+                    // Check if username and password are empty
+                    var username = $('#username').val().trim();
+                    var password = $('#password').val().trim();
+
+                    // Remove 'is-invalid' class and clear feedback messages
+                    $('.form-control').removeClass('is-invalid');
+                    $('.invalid-feedback').html('');
+
+                    // Check for empty values and display error messages
+                    if (username === '') {
+                        $('#username').addClass('is-invalid');
+                        $('#username-feedback').html('Username is required.');
+                    }
+
+                    if (password === '') {
+                        $('#password').addClass('is-invalid');
+                        $('#password-feedback').html('Password is required.');
+                    }
+
+                    // If either username or password is empty, return without submitting the form
+                    if (username === '' || password === '') {
+                        return;
+                    }
+
+                    // Perform AJAX request
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: 'POST',
+                        data: formData,
+                        beforeSend: function () {
+                            $('.btn-block').html('<i class="fas fa-spinner fa-spin"></i>');
+                        },
+                        complete: function () {
+                            $('.btn-block').html('Sign In');
+                        },
+                        statusCode: {
+                            400: function (error) {
+                                if (error.responseJSON) {
+                                    $.each(error.responseJSON, function (field, params) {
+                                        $('#' + field).addClass('is-invalid');
+                                        $('#' + field + '-feedback').html(params);
+                                    });
+                                } else {
+                                    toastr.error('Validation failed. Please check your input.');
+                                }
+                            },
+                            404: function (error) {
+                                if (error.responseJSON && error.responseJSON.error) {
+                                    toastr.error(error.responseJSON.error);
+                                } else {
+                                    toastr.error('Authentication failed');
+                                }
+                            }
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            toastr.success('Log In Successful!');
+                            // Redirect to the desired page
+                            window.location = '<?= base_url('home/index'); ?>';
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

@@ -64,7 +64,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item d-none d-sm-inline-block mr-2">
-          <p class="nav-link">Halo, <?= session()->get('nama'); ?> </p>
+          <p class="nav-link">Halo, <?= ucwords(strtolower(session()->get('nama'))); ?> </p>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">

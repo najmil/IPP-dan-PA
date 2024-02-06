@@ -68,9 +68,9 @@
                     <div class="text-left"style="margin-right: 8px;">
                     <!-- Logo -->
                         <?php
-                            $path = 'C:/xampp/htdocs/ipp/public/img/astra-logo.png';
-                            $approved = 'C:/xampp/htdocs/ipp/public/img/approved-check.png';
-                            $approved2 = 'C:/xampp/htdocs/ipp/public/img/approved-check-2.png';
+                            $path = FCPATH.'/img/astra-logo.png';
+                            $approved = FCPATH.'/img/approved-check.png';
+                            $approved2 = FCPATH.'/img/approved-check-2.png';
                             $type = pathinfo($path, PATHINFO_EXTENSION);
                             $data = file_get_contents($path);
                             $approvedData = file_get_contents($approved);
@@ -117,6 +117,23 @@
                             <td>1 Agustus 2006</td>
                         </tr>
                     </table>
+                    <?php helper('date');
+                        $approvalDateKasie = date('j F Y', strtotime($approval['approval_date_kasie']));
+                        $approvalDateKadept = date('j F Y', strtotime($approval['approval_date_kadept']));
+                        $approvalDateKadiv = date('j F Y', strtotime($approval['approval_date_kadiv']));
+                        $approvalDateBod = date('j F Y', strtotime($approval['approval_date_bod']));
+                        $dateSubmittedIpp = date('j F Y', strtotime($approval['date_submitted_ipp']));
+                        $dateSubmittedIppMid = date('j F Y', strtotime($approval['date_submitted_ipp_mid']));
+                        $dateSubmittedIppOne = date('j F Y', strtotime($approval['date_submitted_ipp_one']));
+
+                        $translatedDateKasie = translate_date($approvalDateKasie);
+                        $translatedDateKadept = translate_date($approvalDateKadept);
+                        $translatedDateKadiv = translate_date($approvalDateKadiv);
+                        $translatedDateBod = translate_date($approvalDateBod);
+                        $translatedDateIpp = translate_date($dateSubmittedIpp);
+                        $translatedDateIppMid = translate_date($dateSubmittedIppMid);
+                        $translatedDateIppOne = translate_date($dateSubmittedIppOne);
+                    ?>
                     <table class="info-table" style="font-size: 9px; margin: 5px auto;">
                         <tr>
                             <th style="text-align: left; width: 80px;">Company</th>
@@ -128,14 +145,14 @@
                             <th style="text-align: left;">:</th>
                             <th style="text-align: left;">
                                 <?php 
-                                    if($approval['kode_jabatan'] == 8 && $approval['created_by'] != [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592]){
-                                        echo date("d F Y", strtotime(date("d F Y", strtotime($approval['approval_date_kasie']))));
-                                    } elseif($approval['kode_jabatan'] == 4 || $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592]){
-                                        echo date("d F Y", strtotime(date("d F Y", strtotime($approval['approval_date_kadept']))));
+                                    if($approval['kode_jabatan'] == 8){
+                                        $translatedDateKasie;
+                                    } elseif($approval['kode_jabatan'] == 4){
+                                        $translatedDateKadept;
                                     } elseif($approval['kode_jabatan'] == 3){
-                                        echo date("d F Y", strtotime($approval['approval_date_kadiv']));
+                                        $translatedDateKadiv;
                                     } elseif($approval['kode_jabatan'] == 2){
-                                        echo date("d F Y", strtotime(date("d F Y", strtotime($approval['approval_date_bod']))));
+                                        $translatedDateBod;
                                     }
                                 ?>
                             </th>
@@ -413,54 +430,54 @@
                         if ($approval['approval_kasie'] == 1 && $approval['approval_kadept'] == 1){
                         echo '
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
-                                <span>Date: ' . date("d F Y", strtotime($approval['approval_date_kadept'])) . '</span>'.'
+                                <span>Date: ' . $translatedDateKadept . '</span>'.'
                             </td>
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
-                                <span>Date: ' . date("d F Y", strtotime($approval['approval_date_kasie'])) . '</span>'.'
+                                <span>Date: ' . $translatedDateKasie . '</span>'.'
                             </td>
                             <td class="table-colapse" style="border-top: 0px;">Date: ';
                                 if ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] == NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp']));
+                                    $translatedDateIpp;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_mid']));
+                                    $translatedDateIppMid;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] != NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_one']));
+                                    $translatedDateIppOne;
                                 }
                         echo '</td>';} 
                     } elseif ($approval['kode_jabatan'] == 4 || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])){ 
                         if ($approval['approval_kadept'] == 1 && $approval['approval_kadiv'] == 1){
                         echo '
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
-                                <span class="text-left">Date: ' . date("d F Y", strtotime($approval['approval_date_kadiv'])) . '</span>'.'
+                                <span class="text-left">Date: ' . $translatedDateKadiv . '</span>'.'
                             </td>
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
-                                <span class="text-left">Date: ' . date("d F Y", strtotime($approval['approval_date_kadept'])) . '</span>'.'
+                                <span class="text-left">Date: ' . $translatedDateKadept . '</span>'.'
                             </td>
                             <td class="table-colapse" style="border-top: 0px;">Date: ';
                                 if ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] == NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp']));
+                                    $translatedDateIpp;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_mid']));
+                                    $translatedDateIppMid;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] != NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_one']));
+                                    $translatedDateIppOne;
                                 }
                         echo '</td>';} 
                     } elseif ($approval['kode_jabatan'] == 3){ 
                         if ($approval['approval_kadiv'] == 1 && $approval['approval_bod'] == 1){
                         echo '
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;; position: relative;">                                     
-                                <span>Date: ' . date("d F Y", strtotime($approval['approval_date_bod'])) . '</span>'.'
+                                <span>Date: ' . $translatedDateBod . '</span>'.'
                             </td>
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;; position: relative;">                                      
-                                <span>Date: ' . date("d F Y", strtotime($approval['approval_date_kadiv'])) . '</span>'.'
+                                <span>Date: ' . $translatedDateKadiv . '</span>'.'
                             </td>
                             <td class="table-colapse" style="border-top: 0px;">Date: ';
                                 if ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] == NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp']));
+                                    $translatedDateIpp;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_mid']));
+                                    $translatedDateIppMid;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] != NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_one']));
+                                    $translatedDateIppOne;
                                 }
                         echo '</td>';} 
                     } elseif ($approval['kode_jabatan'] == 2){ 
@@ -470,15 +487,15 @@
                                 <span>Date: ' . date("d F Y", strtotime($approval['approval_date_presdir'])) . '</span>'.'
                             </td>
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
-                                <span>Date: ' . date("d F Y", strtotime($approval['approval_date_bod'])) . '</span>'.'
+                                <span>Date: ' . $translatedDateBod . '</span>'.'
                             </td>
                             <td class="table-colapse" style="border-top: 0px;">Date: ';
                                 if ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] == NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp']));
+                                    $translatedDateIpp;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] == NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_mid']));
+                                    $translatedDateIppMid;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] != NULL) {
-                                    echo date("d F Y", strtotime($approval['date_submitted_ipp_one']));
+                                    $translatedDateIppOne;
                                 }
                         echo '</td>';} 
                     } 

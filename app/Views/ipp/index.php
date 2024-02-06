@@ -260,6 +260,7 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>
@@ -318,7 +319,7 @@
                             $('.gagal').hide();
                             $('.sukses').show();
                             $('.sukses').html($obj.sukses);
-                            location.reload();
+                            // location.reload();
                         }
                     },
                     error: function () {
