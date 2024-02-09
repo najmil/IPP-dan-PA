@@ -103,7 +103,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" oninput="limitCharacters('strong_mid_alc-input', 201)"></textarea>
+                                                    <textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strength Point (ALC)" oninput="limitCharacters('strong_mid_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL STRONG POINT -->
@@ -114,35 +114,8 @@
                                                         <?php //dd(session()->get('id_department'));?>
                                                         <?php
                                                             // dd(session()->get('id_department'));
-                                                            if (session()->get('id_department') == 6){
+                                                            if (session()->get('id_department') == 29){
                                                                 // MAINTENANCE
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Perpajakan">Perpajakan</option>
-                                                                //         <option value="Aset Management">Aset Management</option>
-                                                                //         <option value="Accounting Principles">Accounting Principles</option>
-                                                                //         <option value="Planning & Budgeting">Planning & Budgeting</option>
-                                                                //         <option value="Financial Analysis Skill">Financial Analysis Skill</option>
-                                                                //         <option value="Cash Management">Cash Management</option>
-                                                                //         <option value="Feasibility Study">Feasibility Study</option>
-                                                                //         <option value="Cost Accounting">Cost Accounting</option>
-                                                                //         <option value="Kebijakan Standar Akuntansi">Kebijakan Standar Akuntansi</option>
-                                                                //         <option value="Business Analysis Skill">Business Analysis Skill</option>
-                                                                //         <option value="Corporate Treasury">Corporate Treasury</option>
-                                                                //         <option value="Corporate Finance">Corporate Finance</option>
-                                                                //         <option value="Financial Modelling">Financial Modelling</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
                                                                         <option value="Maintenance management">Maintenance management</option>
@@ -163,30 +136,8 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 7){
+                                                            } elseif(session()->get('id_department') == 23){
                                                                 // MARKETING
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Negotiation Skill">Negotiation Skill</option>
-                                                                //         <option value="Pricing Strategy">Pricing Strategy</option>
-                                                                //         <option value="Market Analysis">Market Analysis</option>
-                                                                //         <option value="Customer Management">Customer Management</option>
-                                                                //         <option value="Branding & Promotion">Branding & Promotion</option>
-                                                                //         <option value="Kontrak Kerja">Kontrak Kerja (Customer)</option>
-                                                                //         <option value="Networking">Networking</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -205,7 +156,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 22){
                                                                 // FAC & RISK MGT CTRL
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -228,33 +179,8 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 8){
+                                                            } elseif(session()->get('id_department') == 24){
                                                                 // MIS
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="General Software">General Software</option>
-                                                                //         <option value="Database Management">Database Management</option>
-                                                                //         <option value="IoT Infrastructure">IoT Infrastructure</option>
-                                                                //         <option value="IT Infrastruktur">IT Infrastruktur</option>
-                                                                //         <option value="Human Computer Interaction">Human Computer Interaction</option>
-                                                                //         <option value="ERP System">ERP System</option>
-                                                                //         <option value="IT Security">IT Security</option>
-                                                                //         <option value="System Analyst">System Analyst</option>
-                                                                //         <option value="Programming">Programming</option>
-                                                                //         <option value="Baan Administration">Baan Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -276,27 +202,8 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 4){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // HRD
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="Organization Development">Organization Development</option>
-                                                                //         <option value="Recruitment">Recruitment</option>
-                                                                //         <option value="People Development">People Development</option>
-                                                                //         <option value="Performance & Reward Management">Performance & Reward Management</option>
-                                                                //         <option value="Training Management">Training Management</option>
-                                                                //         <option value="HR Administration">HR Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
                                                                         <option value="Industrial relation & termination">Industrial relation & termination</option>
@@ -312,27 +219,8 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 3){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // GA & IR
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="GA Administration">GA Administration</option>
-                                                                //         <option value="Infrastructure Management">Infrastructure Management</option>
-                                                                //         <option value="Security Management (ASMS)">Security Management (ASMS)</option>
-                                                                //         <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                //         <option value="Public Relation Management">Public Relation Management</option>
-                                                                //         <option value="Legal Management">Legal Management</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
                                                                         <option value="Industrial relation & termination">Industrial relation & termination</option>
@@ -348,7 +236,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 11){
+                                                            } elseif(session()->get('id_department') == 21){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -367,7 +255,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 15){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -384,7 +272,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 30){
                                                                 // EHS
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -406,7 +294,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(in_array(session()->get('id_department'), [13, 14])){
+                                                            } elseif(in_array(session()->get('id_department'), [31, 32])){
                                                                 // PRODUCTION 1 & 2
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -428,7 +316,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 9){
+                                                            } elseif(session()->get('id_department') == 33){
                                                                 // PPIC
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -450,7 +338,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 12){
+                                                            } elseif(session()->get('id_department') == 28){
                                                                 // PRODUCT ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -466,7 +354,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 26){
                                                                 // PROCESS ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -486,7 +374,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // QUALITY
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -505,7 +393,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 5){
+                                                            } elseif(session()->get('id_department') == 27){
                                                                 // ISD
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -528,7 +416,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 16){
+                                                            } elseif(session()->get('id_department') == 34){
                                                                 // SPV S2 & S3
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
@@ -571,7 +459,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Strong Point (Technical Competency)" oninput="limitCharacters('technical_value_mid-input', 201)"></textarea>
+                                                    <textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Strength Point (Technical Competency)" oninput="limitCharacters('technical_value_mid-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['strong_mid'])): ?>
@@ -652,7 +540,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_mid_alc-input" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" oninput="limitCharacters('weak_mid_alc-input', 201)"></textarea>
+                                                    <textarea name="weak_mid_alc-input" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Weaknes Point (ALC)" oninput="limitCharacters('weak_mid_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL WEAK POINT -->
@@ -662,7 +550,7 @@
                                                     <div class="col-sm-7">
                                                         <?php
                                                             // dd(session()->get('id_department'));
-                                                            if (session()->get('id_department') == 6){
+                                                            if (session()->get('id_department') == 29){
                                                                 // MAINTENANCE
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -711,7 +599,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 15){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -728,7 +616,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 7){
+                                                            } elseif(session()->get('id_department') == 23){
                                                                 // MARKETING
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -770,7 +658,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 22){
                                                                 // FAC & RISK MGT CTRL
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -793,7 +681,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 8){
+                                                            } elseif(session()->get('id_department') == 24){
                                                                 // MIS
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -841,7 +729,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 4){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // HRD
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -877,7 +765,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 3){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // GA & IR
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -913,7 +801,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 11){
+                                                            } elseif(session()->get('id_department') == 21){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -932,7 +820,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 30){
                                                                 // EHS
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -954,7 +842,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(in_array(session()->get('id_department'), [13, 14])){
+                                                            } elseif(in_array(session()->get('id_department'), [31, 32])){
                                                                 // PRODUCTION 1 & 2
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -976,7 +864,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 9){
+                                                            } elseif(session()->get('id_department') == 33){
                                                                 // PPIC
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -998,7 +886,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 12){
+                                                            } elseif(session()->get('id_department') == 28){
                                                                 // PRODUCT ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -1014,7 +902,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 26){
                                                                 // PROCESS ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -1034,7 +922,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // QUALITY
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -1053,7 +941,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 5){
+                                                            } elseif(session()->get('id_department') == 27){
                                                                 // ISD
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -1076,7 +964,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 16){
+                                                            } elseif(session()->get('id_department') == 34){
                                                                 // SPV S2 & S3
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
@@ -1134,7 +1022,8 @@
                     <?php endif;?>
 
                     <!-- ONE YEAR -->
-                    <?php if($is_saved_oneyear || $is_submitted_one || $isWithinOnePeriode): ?>
+                    <?php// dd($isWithinOnePeriode) ?>
+                    <?php if((!$is_saved_oneyear || !$is_submitted_one) && $isWithinOnePeriode): ?>
                         <div class="card" styles="margin-top: 500px;">
                             <div class="card-header text-center"><b>ONE YEAR</b></div>
                             <div class="card-body">
@@ -1209,7 +1098,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strong Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('strong_one_alc-input', 201)"></textarea>
+                                                    <textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strength Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('strong_one_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL STRONG POINT -->
@@ -1219,7 +1108,7 @@
                                                     <div class="col-sm-7">
                                                         <?php
                                                             // dd(session()->get('id_department'));
-                                                            if (session()->get('id_department') == 6){
+                                                            if (session()->get('id_department') == 29){
                                                                 // MAINTENANCE
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1269,7 +1158,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 7){
+                                                            } elseif(session()->get('id_department') == 23){
                                                                 // MARKETING
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1311,7 +1200,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 22){
                                                                 // FAC & RISK MGT CTRL
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1334,7 +1223,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 15){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1351,7 +1240,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 8){
+                                                            } elseif(session()->get('id_department') == 24){
                                                                 // MIS
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1399,7 +1288,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 4){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // HRD
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1436,7 +1325,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 3){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // GA & IR
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1473,7 +1362,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 11){
+                                                            } elseif(session()->get('id_department') == 21){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1493,7 +1382,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 30){
                                                                 // EHS
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1516,7 +1405,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(in_array(session()->get('id_department'), [13, 14])){
+                                                            } elseif(in_array(session()->get('id_department'), [31, 32])){
                                                                 // PRODUCTION 1 & 2
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1538,7 +1427,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 9){
+                                                            } elseif(session()->get('id_department') == 33){
                                                                 // PPIC
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1560,7 +1449,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 12){
+                                                            } elseif(session()->get('id_department') == 28){
                                                                 // PRODUCT ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1577,7 +1466,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 26){
                                                                 // PROCESS ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1598,7 +1487,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // QUALITY
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1617,7 +1506,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 5){
+                                                            } elseif(session()->get('id_department') == 27){
                                                                 // ISD
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1640,7 +1529,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 16){
+                                                            } elseif(session()->get('id_department') == 34){
                                                                 // SPV S2 & S3
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
@@ -1685,7 +1574,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Strong Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : '' ?> oninput="limitCharacters('technical_value_one-input', 201)"></textarea>
+                                                    <textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Strength Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : '' ?> oninput="limitCharacters('technical_value_one-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['note_mid'])): ?>
@@ -1775,7 +1664,7 @@
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <?php
-                                                            if (session()->get('id_department') == 6){
+                                                            if (session()->get('id_department') == 29){
                                                                 // MAINTENANCE
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -1825,7 +1714,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 15){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -1842,7 +1731,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 7){
+                                                            } elseif(session()->get('id_department') == 23){
                                                                 // MARKETING
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -1884,7 +1773,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 22){
                                                                 // FAC & RISK MGT CTRL
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -1907,7 +1796,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 8){
+                                                            } elseif(session()->get('id_department') == 24){
                                                                 // MIS
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -1955,7 +1844,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 4){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // HRD
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -1992,7 +1881,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 3){
+                                                            } elseif(session()->get('id_department') == 20){
                                                                 // GA & IR
                                                                 // echo '
                                                                 //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2029,7 +1918,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 11){
+                                                            } elseif(session()->get('id_department') == 21){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2049,7 +1938,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 30){
                                                                 // EHS
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2072,7 +1961,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(in_array(session()->get('id_department'), [13, 14])){
+                                                            } elseif(in_array(session()->get('id_department'), [31, 32])){
                                                                 // PRODUCTION 1 & 2
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2094,7 +1983,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 9){
+                                                            } elseif(session()->get('id_department') == 33){
                                                                 // PPIC
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2116,7 +2005,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 12){
+                                                            } elseif(session()->get('id_department') == 28){
                                                                 // PRODUCT ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2133,7 +2022,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 2){
+                                                            } elseif(session()->get('id_department') == 26){
                                                                 // PROCESS ENGINEERING
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2154,7 +2043,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 1){
+                                                            } elseif(session()->get('id_department') == 25){
                                                                 // QUALITY
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2173,7 +2062,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 5){
+                                                            } elseif(session()->get('id_department') == 27){
                                                                 // ISD
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -2196,7 +2085,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 16){
+                                                            } elseif(session()->get('id_department') == 34){
                                                                 // SPV S2 & S3
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">

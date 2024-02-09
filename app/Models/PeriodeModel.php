@@ -20,6 +20,15 @@ class PeriodeModel extends Model{
                     ->where('end_period >=', $currentDate)
                     ->first();
     }  
+
+    public function getLatestIPPeriodeNull() {
+        $currentYear = date('Y');
+        $periodeName = "Periode IPP " . $currentYear;
+        $currentDate = date('Y-m-d H:i:s');
+
+        return $this->where('name', $periodeName)
+                    ->first();
+    }  
     
     public function getLatestMidPeriode() {
         $currentYear = date('Y');

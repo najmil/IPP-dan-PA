@@ -15,6 +15,7 @@
                         <?php
                             $periodeModel = new \App\Models\PeriodeModel();
                             $periodeIPP = $periodeModel->getLatestIPPeriode();
+                            $periodeIPPNull = $periodeModel->getLatestIPPeriodeNull();
                             $periodeIPPMid = $periodeModel->getLatestMidPeriode();
                             $periodeIPPOne = $periodeModel->getLatestOnePeriode();
                             $isWithinIPPeriode = false;
@@ -40,7 +41,7 @@
                                     $isRevisiInIndex = true;
                                 } elseif (strpos($m['periode'], 'Rev. One Year') !== false){
                                     $isRevisiOne = true;
-                                } elseif (strpos($m['periode'], $currentDate)) {
+                                } elseif ($m['periode'] == $currentYear) {
                                     $isNotRevisi = true;
                                     $isRevisiInIndex = false;
                                 }
@@ -97,7 +98,7 @@
                                     </div>
                                 </div>
                                 ';
-                            } elseif ($editIppOne && ($is_submitted_ipp_mid == 1) && !$editIppMid && !$isWithinIPPeriode && ($isRevisiInIndex || $isNotRevisi) && !$isRevisiOne) {
+                            } elseif ($editIppOne && ($is_submitted_ipp == 1) && !$editIppMid && !$isWithinIPPeriode && (($isRevisiInIndex == true) || ($isRevisiOne == false))) {
                                 echo '
                                 <div class="d-flex justify-content-md-end">
                                     <div class=mr-2 mb-2" style="clear: both">
@@ -113,6 +114,7 @@
                                 </div>
                                 ';
                             };
+                            // dd($isRevisiInIndex == true);
 
 
                             if ($isRevisiInIndex && !$is_submitted_ipp_mid && strpos($periode, 'Rev. Mid Year') !== false){
@@ -276,6 +278,29 @@
     var isDataSaved = false;
     var isSubmitted = false;
 
+    <?php //dd($periodeIPP); ?>
+    
+
+    function validateDate(input) {
+        <?php if ($periodeIPP !== null) : ?>
+            const minDate = '<?= substr($periodeIPP['start_period'], 0, 10); ?>';
+            const selectedDate = input.value;
+
+            if (selectedDate < minDate) {
+                alert('Tidak dapat memilih tanggal sebelum periode dimulai.');
+                input.value = minDate;
+            }
+        <?php elseif ($periodeIPP == null) : ?>
+            const minDate = '<?= substr($periodeIPPNull['start_period'], 0, 10); ?>';
+            const selectedDate = input.value;
+
+            if (selectedDate < minDate) {
+                alert('Tidak dapat memilih tanggal sebelum periode dimulai.');
+                input.value = minDate;
+            }
+        <?php endif ?>
+    }
+
     function checkDataSaved() {
         if (!isDataSaved) {
             return "Data hasn't saved. Sure to leave this page?";
@@ -412,13 +437,17 @@
         // Fungsi yang dijalankan saat tombol "Edit" pada halaman detail diklik
         $('.edit-btn').click(function () {
             var row = $(this).closest('tr');
-            console.log('Edit button clicked');
+            // console.log('Edit button clicked');
+            var dueDateText = row.find('.duedate').text().trim();
+            console.log('Due Date Text:', dueDateText); 
+
+    
 
             row.find('.program').html('<textarea class="form-control program-input" data-id-main="<?= $id_main; ?>">' + row.find('.program').text().trim() + '</textarea>');
             row.find('.weight').html('<input type="number" class="form-control weight-input"data-id-main="<?= $id_main; ?>" value="' + row.find('.weight').text().trim() + '">');
             row.find('.midyear').html('<textarea class="form-control midyear-input" data-id-main="<?= $id_main; ?>">' + row.find('.midyear').text().trim() + '</textarea>');
             row.find('.oneyear').html('<textarea class="form-control oneyear-input" data-id-main="<?= $id_main; ?>">' + row.find('.oneyear').text().trim() + '</textarea>');
-            row.find('.duedate').html('<input type="date" class="form-control duedate-input" data-id-main="<?= $id_main; ?>" value="' + row.find('.duedate').text().trim() + '">');
+            row.find('.duedate').html('<input type="date" class="form-control duedate-input" data-id-main="<?= $id_main; ?>" value="' + dueDateText + '" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?> ">');
 
             // Menambahkan atribut data-id dengan ID yang sesuai
             row.find('.save-btn').data('id', row.find('.program').data('id'));
@@ -536,11 +565,11 @@
                         var row = $(this);
                         var id = row.find('.program').data('id');
                         var program = row.find('.program').text();
-                        var weight = row.find('.weight').text();
+                        var weight = row.find('#weight').val();
                         var midyear = row.find('.midyear').text();
                         var oneyear = row.find('.oneyear').text();
-                        var duedate = row.find('.duedate').text();
-                        console.log(id);
+                        // var duedate = row.find('.duedate').text();
+                        var formattedDueDate = new Date(row.find('#duedate').val()).toLocaleDateString('en-US');
 
                         $.ajax({
                             url: '<?= base_url('ipp/saveEditIppMid'); ?>',
@@ -553,7 +582,7 @@
                                 weight: weight,
                                 midyear: midyear,
                                 oneyear: oneyear,
-                                duedate: duedate
+                                duedate: formattedDueDate
                             },
                             beforeSend: function(){
                                 $('.edit-btn-one').html('<i class="fas fa-spinner fa-spin"></i>');
@@ -698,7 +727,7 @@
                 '<td><input type="number" class="form-control weight-input edit-mode"></td>' +
                 '<td style="width: 400px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>' +
                 '<td style="width: 400px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>' +
-                '<td><input type="date" class="form-control duedate-input edit-mode"></td>' +
+                '<td><input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>"></td>' +
                 '<td class="text-center">' +
                 '<button type="button" class="btn btn-warning btn-sm edit-btn" style="idth: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>'+
                 '<button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>' +

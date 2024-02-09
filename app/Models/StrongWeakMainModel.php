@@ -49,8 +49,8 @@ class StrongWeakMainModel extends Model{
                             ->orWhere('users.kode_jabatan', 4)
                         ->groupEnd()
                         ->groupStart()
-                            ->where('strongweak_main.id_department', 3)
-                            ->orWhere('strongweak_main.id_department', 4)
+                            ->where('strongweak_main.id_department', 20)
+                            ->orWhere('strongweak_main.id_department', 20)
                         ->groupEnd()
                         ->where('strongweak_main.is_submitted', 1);
             } else {
@@ -90,20 +90,21 @@ class StrongWeakMainModel extends Model{
             // Approval kadiv
             $builder->groupStart()
                         ->where('strongweak_main.kode_jabatan', 3)
-                        ->orGroupStart()
-                            ->where('strongweak_main.kode_jabatan', 4)
-                            ->groupStart()
-                                ->where('strongweak_main.created_by', 3651)
-                                ->orWhere('strongweak_main.created_by', 3659)
-                            ->groupEnd()
-                        ->groupEnd()
+                        // ->orGroupStart()
+                            // ->where('strongweak_main.kode_jabatan', 4)
+                            // ->groupStart()
+                            //     ->where('strongweak_main.created_by', 3651)
+                            //     ->orWhere('strongweak_main.created_by', 3659)
+                            // ->groupEnd()
+                        // ->groupEnd()
+                        ->orWhere('strongweak_main.kode_jabatan', 4)
                         ->orGroupStart()
                             ->where('strongweak_main.kode_jabatan', 8)
                             ->groupStart()
                                 ->where('strongweak_main.created_by <>', 3651)
                                 ->orWhere('strongweak_main.created_by <>', 3659)
                             ->groupEnd()
-                            ->where('strongweak_main.id_department', 5)
+                            ->where('strongweak_main.id_department', 27)
                         ->groupEnd()
                     ->groupEnd()
                     ->where('strongweak_main.id_division', $id_division)
@@ -144,11 +145,11 @@ class StrongWeakMainModel extends Model{
                             ->where('strongweak_main.id_division', 3)
                             ->orWhere('strongweak_main.id_division', 4)
                             ->orWhere('strongweak_main.id_division', 5)
-                            ->orWhere('strongweak_main.id_department', 5)
+                            ->orWhere('strongweak_main.id_department', 27)
                         ->groupEnd()
                         ->orGroupStart()
                             ->where('strongweak_main.kode_jabatan', 8)
-                            ->where('strongweak_main.id_department', 5)
+                            ->where('strongweak_main.id_department', 27)
                         ->groupEnd()
                     ->groupEnd()
                     ->where('strongweak_main.is_submitted', 1);
@@ -213,12 +214,12 @@ class StrongWeakMainModel extends Model{
             $isWithinOnePeriode = false;
         }
         
-        $id_department = session()->get('id_department');
-        $id_division = session()->get('id_division');
-        $id_section = session()->get('id_section');
+        $id_department= session()->get('id_department');
+        $id_division  = session()->get('id_division');
+        $id_section   = session()->get('id_section');
         $kode_jabatan = session()->get('kode_jabatan');
-        $npk           = session()->get('npk');
-        $npk = session()->get('npk');
+        $npk          = session()->get('npk');
+        $npk          = session()->get('npk');
     
         $builder = $this->db->table('strongweak_main');
         $builder->select('strongweak_main.*');
@@ -232,8 +233,8 @@ class StrongWeakMainModel extends Model{
                             ->orWhere('users.kode_jabatan', 4)
                         ->groupEnd()
                         ->groupStart()
-                            ->where('strongweak_main.id_department', 3)
-                            ->orWhere('strongweak_main.id_department', 4)
+                            ->where('strongweak_main.id_department', 20)
+                            ->orWhere('strongweak_main.id_department', 20)
                         ->groupEnd()
                         ->groupStart()
                             ->groupStart()
@@ -369,7 +370,7 @@ class StrongWeakMainModel extends Model{
                                 ->where('strongweak_main.id_division', 3)
                                 ->orWhere('strongweak_main.id_division', 4)
                                 ->orWhere('strongweak_main.id_division', 5)
-                                ->orWhere('strongweak_main.id_department', 5)
+                                ->orWhere('strongweak_main.id_department', 27)
                             ->groupEnd()
                             ->where('strongweak_main.kode_jabatan', 3)
                         ->groupEnd()
@@ -386,7 +387,7 @@ class StrongWeakMainModel extends Model{
                                 ->where('strongweak_main.kode_jabatan', 4)
                                 ->orWhere('strongweak_main.kode_jabatan', 8)
                             ->groupEnd()
-                            ->where('strongweak_main.id_department', 5)
+                            ->where('strongweak_main.id_department', 27)
                         ->groupEnd()
                     ->groupEnd()
                     ->groupStart()
@@ -756,139 +757,106 @@ class StrongWeakMainModel extends Model{
         $kode_jabatan  = session()->get('kode_jabatan');
         $npk           = session()->get('npk');
 
-        $builder = $this->db->table('strongweak_main')
-                ->select('strongweak_main.*')
-                ->join('users', 'users.npk = strongweak_main.created_by', 'left')
-                ->where('strongweak_main.id_division', 1)
-                ->groupStart()
-                    ->groupStart()
-                        ->where('strongweak_main.is_submitted', 1)
-                        ->groupStart()
-                            ->groupStart()
-                                ->where('strongweak_main.kode_jabatan', 8)
-                                ->groupStart()
-                                    ->where('strongweak_main.created_by <>', 3569)
-                                    ->where('strongweak_main.created_by <>', 3561)
-                                ->groupEnd()
-                            ->groupEnd()
-                            ->groupStart()
-                                ->where('strongweak_main.approval_kasie_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_kadept_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_kasie_strongweak', null)
-                                ->orWhere('strongweak_main.approval_kadept_strongweak', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->groupStart()
-                                ->where('strongweak_main.kode_jabatan', 4)
-                                ->orGroupStart()
-                                    ->where('strongweak_main.kode_jabatan', 8)
-                                    ->where('strongweak_main.created_by', 3569)
-                                    ->where('strongweak_main.created_by', 3561)
-                                ->groupEnd()
-                            ->groupEnd()
-                            ->groupStart()
-                                ->where('strongweak_main.approval_kadiv_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_kadept_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_kadiv_strongweak', null)
-                                ->orWhere('strongweak_main.approval_kadept_strongweak', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->groupStart()
-                                ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department <>', 5)
-                            ->groupEnd()
-                            ->groupStart()
-                                ->where('strongweak_main.approval_kadiv_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_bod_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_kadiv_strongweak', null)
-                                ->orWhere('strongweak_main.approval_bod_strongweak', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->where('strongweak_main.kode_jabatan', 2)
-                            ->groupStart()
-                                ->where('strongweak_main.approval_presdir_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_bod_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_presdir_strongweak', null)
-                                ->orWhere('strongweak_main.approval_bod_strongweak', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->groupStart()
-                                ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
-                            ->groupEnd()
-                            ->groupStart()
-                                ->orWhere('strongweak_main.approval_bod_strongweak', 0)
-                                ->orWhere('strongweak_main.approval_bod_strongweak', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                    ->groupEnd()
-                    ->orGroupStart()
-                        ->where('strongweak_main.is_submitted_one', 1)
-                        ->groupStart()
-                            ->where('strongweak_main.kode_jabatan', 8)
-                            ->groupStart()
-                                ->where('strongweak_main.created_by <>', 3569)
-                                ->where('strongweak_main.created_by <>', 3561)
-                            ->groupEnd()
-                            ->groupStart()
-                                ->orWhere('strongweak_main.approval_kasie_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_kadept_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_kasie_oneyear', null)
-                                ->orWhere('strongweak_main.approval_kadept_oneyear', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->groupStart()
-                                ->where('strongweak_main.kode_jabatan', 4)
-                                ->orGroupStart()
-                                    ->where('strongweak_main.kode_jabatan', 8)
-                                    ->where('strongweak_main.created_by', 3569)
-                                    ->where('strongweak_main.created_by', 3561)
-                                ->groupEnd()
-                            ->groupEnd()
-                            ->groupStart()
-                                ->orWhere('strongweak_main.approval_kadiv_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_kadept_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_kadiv_oneyear', null)
-                                ->orWhere('strongweak_main.approval_kadept_oneyear', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->where('strongweak_main.kode_jabatan', 3)
-                            ->groupStart()
-                                ->orWhere('strongweak_main.approval_kadiv_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_bod_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_kadiv_oneyear', null)
-                                ->orWhere('strongweak_main.approval_bod_oneyear', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->where('strongweak_main.kode_jabatan', 2)
-                            ->groupStart()
-                                ->orWhere('strongweak_main.approval_presdir_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_bod_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_presdir_oneyear', null)
-                                ->orWhere('strongweak_main.approval_bod_oneyear', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->orGroupStart()
-                            ->groupStart()
-                                ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
-                            ->groupEnd()
-                            ->groupStart()
-                                ->orWhere('strongweak_main.approval_bod_oneyear', 0)
-                                ->orWhere('strongweak_main.approval_bod_oneyear', null)
-                            ->groupEnd()
-                        ->groupEnd()
-                    ->groupEnd()
-                ->groupEnd();
+        $query = "SELECT COUNT(*) AS total
+        FROM strongweak_main
+        LEFT JOIN users ON users.npk = strongweak_main.created_by
+        WHERE strongweak_main.id_division = 1
+        AND (
+            (
+                strongweak_main.is_submitted = 1
+                AND (
+                    (
+                        strongweak_main.kode_jabatan = 8
+                        AND (
+                            strongweak_main.approval_kasie_strongweak = 0
+                            OR strongweak_main.approval_kadept_strongweak = 0
+                            OR strongweak_main.approval_kasie_strongweak IS NULL
+                            OR strongweak_main.approval_kadept_strongweak IS NULL
+                        )
+                    )
+                    OR
+                    (
+                        strongweak_main.kode_jabatan = 4
+                        AND (
+                            strongweak_main.approval_kadiv_strongweak = 0
+                            OR strongweak_main.approval_kadept_strongweak = 0
+                            OR strongweak_main.approval_kadiv_strongweak IS NULL
+                            OR strongweak_main.approval_kadept_strongweak IS NULL
+                        )
+                    )
+                    OR
+                    (
+                        strongweak_main.kode_jabatan = 3
+                        AND (
+                            strongweak_main.approval_kadiv_strongweak = 0
+                            OR strongweak_main.approval_bod_strongweak = 0
+                            OR strongweak_main.approval_kadiv_strongweak IS NULL
+                            OR strongweak_main.approval_bod_strongweak IS NULL
+                        )
+                    )
+                    OR
+                    (
+                        strongweak_main.kode_jabatan = 2
+                        AND (
+                            strongweak_main.approval_presdir_strongweak = 0
+                            OR strongweak_main.approval_bod_strongweak = 0
+                            OR strongweak_main.approval_presdir_strongweak IS NULL
+                            OR strongweak_main.approval_bod_strongweak IS NULL
+                        )
+                    )
+                )
+            )
+            OR
+            (
+                strongweak_main.is_submitted_one = 1
+                AND (
+                    (
+                        strongweak_main.kode_jabatan = 8
+                        AND (
+                            (strongweak_main.created_by <> 3569 AND strongweak_main.created_by <> 3561)
+                            OR strongweak_main.approval_kasie_oneyear = 0
+                            OR strongweak_main.approval_kadept_oneyear = 0
+                            OR strongweak_main.approval_kasie_oneyear IS NULL
+                            OR strongweak_main.approval_kadept_oneyear IS NULL
+                        )
+                    )
+                    OR
+                    (
+                        strongweak_main.kode_jabatan = 4
+                        AND (
+                            strongweak_main.approval_kadiv_oneyear = 0
+                            OR strongweak_main.approval_kadept_oneyear = 0
+                            OR strongweak_main.approval_kadiv_oneyear IS NULL
+                            OR strongweak_main.approval_kadept_oneyear IS NULL
+                        )
+                    )
+                    OR
+                    (
+                        strongweak_main.kode_jabatan = 3
+                        AND (
+                            strongweak_main.approval_kadiv_oneyear = 0
+                            OR strongweak_main.approval_bod_oneyear = 0
+                            OR strongweak_main.approval_kadiv_oneyear IS NULL
+                            OR strongweak_main.approval_bod_oneyear IS NULL
+                        )
+                    )
+                    OR
+                    (
+                        strongweak_main.kode_jabatan = 2
+                        AND (
+                            strongweak_main.approval_presdir_oneyear = 0
+                            OR strongweak_main.approval_bod_oneyear = 0
+                            OR strongweak_main.approval_presdir_oneyear IS NULL
+                            OR strongweak_main.approval_bod_oneyear IS NULL
+                        )
+                    )
+                )
+            )
+        )
+        ";
 
-        return $builder->countAllResults();
+        $result = $this->db->query($query)->getRow();
+        $total = $result->total;
     }
 
     public function getPendingPlantSw() {
@@ -960,7 +928,7 @@ class StrongWeakMainModel extends Model{
                         ->orGroupStart()
                             ->groupStart()
                                 ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
+                                ->where('strongweak_main.id_department', 27)
                             ->groupEnd()
                             ->groupStart()
                                 ->orWhere('strongweak_main.approval_bod_strongweak', 0)
@@ -1020,7 +988,7 @@ class StrongWeakMainModel extends Model{
                         ->orGroupStart()
                             ->groupStart()
                                 ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
+                                ->where('strongweak_main.id_department', 27)
                             ->groupEnd()
                             ->groupStart()
                                 ->orWhere('strongweak_main.approval_bod_oneyear', 0)
@@ -1102,7 +1070,7 @@ class StrongWeakMainModel extends Model{
                         ->orGroupStart()
                             ->groupStart()
                                 ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
+                                ->where('strongweak_main.id_department', 27)
                             ->groupEnd()
                             ->groupStart()
                                 ->orWhere('strongweak_main.approval_bod_strongweak', 0)
@@ -1162,7 +1130,7 @@ class StrongWeakMainModel extends Model{
                         ->orGroupStart()
                             ->groupStart()
                                 ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
+                                ->where('strongweak_main.id_department', 27)
                             ->groupEnd()
                             ->groupStart()
                                 ->orWhere('strongweak_main.approval_bod_oneyear', 0)
@@ -1185,7 +1153,7 @@ class StrongWeakMainModel extends Model{
         $builder = $this->db->table('strongweak_main')
                 ->select('strongweak_main.*')
                 ->join('users', 'users.npk = strongweak_main.created_by', 'left')
-                ->where('strongweak_main.id_department', 5)
+                ->where('strongweak_main.id_department', 27)
                 ->groupStart()
                     ->groupStart()
                         ->where('strongweak_main.is_submitted', 1)
@@ -1244,7 +1212,7 @@ class StrongWeakMainModel extends Model{
                         ->orGroupStart()
                             ->groupStart()
                                 ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
+                                ->where('strongweak_main.id_department', 27)
                             ->groupEnd()
                             ->groupStart()
                                 ->orWhere('strongweak_main.approval_bod_strongweak', 0)
@@ -1304,7 +1272,7 @@ class StrongWeakMainModel extends Model{
                         ->orGroupStart()
                             ->groupStart()
                                 ->where('strongweak_main.kode_jabatan', 3)
-                                ->where('strongweak_main.id_department', 5)
+                                ->where('strongweak_main.id_department', 27)
                             ->groupEnd()
                             ->groupStart()
                                 ->orWhere('strongweak_main.approval_bod_oneyear', 0)

@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="<?= base_url('/img/icon-cbi.png') ?>" type="image/x-icon">
         <title>Individual Performance Planning</title>
         <style>
             @font-face {

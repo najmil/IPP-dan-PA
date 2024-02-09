@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <?php
-                        // dd(!$is_submitted);
+                        // dd($mainData['id_department']);
                         $periodeModel = new \App\Models\PeriodeModel();
                         $periodeMid = $periodeModel->getLatestMidPeriode();
                         $periodeOne = $periodeModel->getLatestOnePeriode();

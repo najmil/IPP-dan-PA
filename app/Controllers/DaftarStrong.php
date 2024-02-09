@@ -23,18 +23,18 @@ class DaftarStrong extends BaseController
 
     public function index(){
         $mainData = $this->strongweakmain->getStrongweakByDepartmentAndDivision();
-        $ehs = $this->strongweakmain->getDataByDepartment(1);
-        $mtc = $this->strongweakmain->getDataByDepartment(6);
-        $mkt = $this->strongweakmain->getDataByDepartment(7);
-        $fincont = $this->strongweakmain->getDataByDepartment(2);
-        $mis = $this->strongweakmain->getDataByDepartment(8);
-        $hr = $this->strongweakmain->getDataByDepartment(3, 4);
-        $procurement = $this->strongweakmain->getDataByDepartment(11);
-        $productsatu = $this->strongweakmain->getDataByDepartment(13);
-        $productdua = $this->strongweakmain->getDataByDepartment(14);
-        $ppic = $this->strongweakmain->getDataByDepartment(9);
-        $spv = $this->strongweakmain->getDataByDepartment(16);
-        $producteng = $this->strongweakmain->getDataByDepartment(12);
+        $ehs = $this->strongweakmain->getDataByDepartment(30);
+        $mtc = $this->strongweakmain->getDataByDepartment(29);
+        $mkt = $this->strongweakmain->getDataByDepartment(23);
+        $fincont = $this->strongweakmain->getDataByDepartment(22);
+        $mis = $this->strongweakmain->getDataByDepartment(24);
+        $hr = $this->strongweakmain->getDataByDepartment(20);
+        $procurement = $this->strongweakmain->getDataByDepartment(21);
+        $productsatu = $this->strongweakmain->getDataByDepartment(31);
+        $productdua = $this->strongweakmain->getDataByDepartment(32);
+        $ppic = $this->strongweakmain->getDataByDepartment(33);
+        $spv = $this->strongweakmain->getDataByDepartment(34);
+        $producteng = $this->strongweakmain->getDataByDepartment(28);
         $processeng = $this->strongweakmain->getDataByDepartment(10);
         $isd = $this->strongweakmain->getDataByDepartment(5);
         $qa = $this->strongweakmain->getDataByDepartment(15);
@@ -1082,19 +1082,19 @@ class DaftarStrong extends BaseController
         $contentdept = $this->request->getVar('contentdept');
 
         $ehs = $this->strongweakmain->getDataByDepartment(15);
-        $mtc = $this->strongweakmain->getDataByDepartment(6);
-        $mkt = $this->strongweakmain->getDataByDepartment(7);
+        $mtc = $this->strongweakmain->getDataByDepartment(29);
+        $mkt = $this->strongweakmain->getDataByDepartment(23);
         $fincont = $this->strongweakmain->getDataByDepartment(6);
-        $mis = $this->strongweakmain->getDataByDepartment(8);
-        $hr = $this->strongweakmain->getDataByDepartment(3, 4);
-        $procurement = $this->strongweakmain->getDataByDepartment(11);
-        $productsatu = $this->strongweakmain->getDataByDepartment(13);
-        $productdua = $this->strongweakmain->getDataByDepartment(14);
-        $ppic = $this->strongweakmain->getDataByDepartment(9);
-        $spv = $this->strongweakmain->getDataByDepartment(16);
+        $mis = $this->strongweakmain->getDataByDepartment(24);
+        $hr = $this->strongweakmain->getDataByDepartment(20);
+        $procurement = $this->strongweakmain->getDataByDepartment(21);
+        $productsatu = $this->strongweakmain->getDataByDepartment(31);
+        $productdua = $this->strongweakmain->getDataByDepartment(32);
+        $ppic = $this->strongweakmain->getDataByDepartment(33);
+        $spv = $this->strongweakmain->getDataByDepartment(34);
         // $qa = $this->strongweakmain->getDataByDepartment(); BELUM ADA DATANYA
-        $producteng = $this->strongweakmain->getDataByDepartment(12);
-        $processeng = $this->strongweakmain->getDataByDepartment(5);
+        $producteng = $this->strongweakmain->getDataByDepartment(28);
+        $processeng = $this->strongweakmain->getDataByDepartment(26);
 
         $plantserv = $this->strongweakmain->getDataByDivision(4);
         $fin = $this->strongweakmain->getDataByDivision(2);
@@ -1171,7 +1171,7 @@ class DaftarStrong extends BaseController
 
         
         $data = [
-            'tittle'             => 'Detail Strength and Weakness Mid Year',
+            'tittle'             => 'Detail Strength and Weakness',
             'id_strongweak_main' => $id,
             'strongweak'         => $this->strongweakmodel->getSavedData($id),
             'strongweakmain'     => $this->strongweakmain->find($id),

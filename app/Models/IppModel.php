@@ -221,8 +221,8 @@ class IppModel extends Model{
                             ->orWhere('users.kode_jabatan', 4)
                         ->groupEnd()
                         ->groupStart()
-                            ->where('main.id_department', 3)
-                            ->orWhere('main.id_department', 4)
+                            ->where('main.id_department', 20)
+                            ->orWhere('main.id_department', 20)
                         ->groupEnd();
             }
             else {
@@ -260,7 +260,7 @@ class IppModel extends Model{
                         ->groupEnd()
                         ->orGroupStart()
                             ->where('main.kode_jabatan', 8)
-                            ->where('main.id_department', 5)
+                            ->where('main.id_department', 27)
                         ->groupEnd()
                     ->groupEnd()
                     ->where('main.id_division', $id_division);
@@ -287,7 +287,7 @@ class IppModel extends Model{
                     ->groupEnd()
                     ->orGroupStart()
                         ->where('main.kode_jabatan', 8)
-                        ->where('main.id_department', 5)
+                        ->where('main.id_department', 27)
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
             $builder->where('users.kode_jabatan', 2);
@@ -455,8 +455,8 @@ class IppModel extends Model{
                             ->orWhere('users.kode_jabatan', 4)
                         ->groupEnd()
                         ->groupStart()
-                            ->where('main.id_department', 3)
-                            ->orWhere('main.id_department', 4)
+                            ->where('main.id_department', 20)
+                            ->orWhere('main.id_department', 20)
                         ->groupEnd()
                         ->groupStart()
                             ->where('main.is_submitted_ipp', 1)
@@ -1070,7 +1070,7 @@ class IppModel extends Model{
         $builder = $this->db->table('main')
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
-                ->where('main.id_department', 5);
+                ->where('main.id_department', 27);
         $builder->where('(
                 (
                     main.is_submitted_ipp = 1 AND
@@ -1164,8 +1164,8 @@ class IppModel extends Model{
                             ->groupEnd()
                         ->groupEnd()
                         ->groupStart()
-                            ->where('main.id_department', 3)
-                            ->orWhere('main.id_department', 4)
+                            ->where('main.id_department', 20)
+                            ->orWhere('main.id_department', 20)
                         ->groupEnd()
                         ->groupStart()
                             ->where('main.is_submitted_ipp', 1)
@@ -1672,7 +1672,7 @@ class IppModel extends Model{
         $builder = $this->db->table('main')
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
-                ->where('main.id_department', 5)
+                ->where('main.id_department', 27)
                 ->where('main.is_submitted', 1)
                 ->groupStart()
                     ->groupStart()
@@ -1745,8 +1745,8 @@ class IppModel extends Model{
                             ->orWhere('users.kode_jabatan', 4)
                         ->groupEnd()
                         ->groupStart()
-                            ->where('main.id_department', 3)
-                            ->orWhere('main.id_department', 4)
+                            ->where('main.id_department', 20)
+                            ->orWhere('main.id_department', 20)
                         ->groupEnd()
                         ->groupStart()
                             ->where('main.is_submitted_ipp', 1)
@@ -2287,7 +2287,7 @@ class IppModel extends Model{
         $builder = $this->db->table('main')
                 ->select('main.*')
                 ->join('users', 'users.npk = main.created_by', 'left')
-                ->where('main.id_department', 5)
+                ->where('main.id_department', 27)
                 ->groupStart()
                     ->where('main.is_submitted_ipp', 1)
                     ->orWhere('main.is_submitted_ipp_mid', 1)

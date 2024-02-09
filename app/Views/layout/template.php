@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="<?= base_url('/img/icon-cbi.png') ?>" type="image/x-icon">
   <title>
     <?= $tittle; ?>
   </title>
@@ -27,7 +28,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?=base_url()?>plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/ionicons/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="<?=base_url()?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
@@ -63,7 +64,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item d-none d-sm-inline-block mr-2">
-          <p class="nav-link">Halo, <?= session()->get('nama'); ?> </p>
+          <p class="nav-link">Halo, <?= ucwords(strtolower(session()->get('nama'))); ?> </p>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -79,7 +80,7 @@
       <!-- Brand Logo -->
       <a href="<?php echo site_url('home/index'); ?>" class="brand-link">
         <div class="d-flex justify-content-center align-items-center">
-          <img src="/img/logo-cbi.png" alt="CBI Logo" style="width: 100%">
+          <img src="<?= base_url() ?>/img/logo-cbi.png" alt="CBI Logo" style="width: 100%">
         </div>
       </a>
 
@@ -272,7 +273,7 @@
                               <a href="<?= site_url('daftarmid/index'); ?>" class="nav-link" style="width: 250px;">
                               <i class="far fa-circle nav-icon"></i>
                               <p>
-                                Daftar Mid Year
+                                Daftar Mid Year Result
                                 <?php if ($countPendingMid > 0): ?>
                                     <span class="badge badge-danger right ml-2"><?= $countPendingMid ?></span>
                                 <?php endif; ?>
@@ -282,7 +283,7 @@
                               <a href="" class="nav-link" style="width: 250px;">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
-                                  Daftar Mid Year
+                                  Daftar Mid Year Result
                                   <?php if ($countPendingMid > 0): ?>
                                     <span class="badge badge-danger right mr-3"><?= $countPendingMid ?></span>
                                   <?php endif; ?>

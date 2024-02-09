@@ -28,21 +28,21 @@ class DaftarIpp extends BaseController
 
     public function index() {
         $ippData = $this->ippModel->getIppByDepartmentAndDivision();
-        $ehs = $this->ippModel->getDataByDepartment(1);
-        $mtc = $this->ippModel->getDataByDepartment(6);
-        $mkt = $this->ippModel->getDataByDepartment(7);
-        $fincont = $this->ippModel->getDataByDepartment(2);
-        $mis = $this->ippModel->getDataByDepartment(8);
-        $hr = $this->ippModel->getDataByDepartment(3, 4);
-        $procurement = $this->ippModel->getDataByDepartment(11);
-        $productsatu = $this->ippModel->getDataByDepartment(13);
-        $productdua = $this->ippModel->getDataByDepartment(14);
-        $ppic = $this->ippModel->getDataByDepartment(9);
-        $spv = $this->ippModel->getDataByDepartment(16);
-        $producteng = $this->ippModel->getDataByDepartment(12);
-        $processeng = $this->ippModel->getDataByDepartment(10);
-        $isd = $this->ippModel->getDataByDepartment(5);
-        $qa = $this->ippModel->getDataByDepartment(15);
+        $ehs = $this->ippModel->getDataByDepartment(30);
+        $mtc = $this->ippModel->getDataByDepartment(29);
+        $mkt = $this->ippModel->getDataByDepartment(23);
+        $fincont = $this->ippModel->getDataByDepartment(22);
+        $mis = $this->ippModel->getDataByDepartment(24);
+        $hr = $this->ippModel->getDataByDepartment(20);
+        $procurement = $this->ippModel->getDataByDepartment(21);
+        $productsatu = $this->ippModel->getDataByDepartment(31);
+        $productdua = $this->ippModel->getDataByDepartment(32);
+        $ppic = $this->ippModel->getDataByDepartment(33);
+        $spv = $this->ippModel->getDataByDepartment(34);
+        $producteng = $this->ippModel->getDataByDepartment(28);
+        $processeng = $this->ippModel->getDataByDepartment(26);
+        $isd = $this->ippModel->getDataByDepartment(27);
+        $qa = $this->ippModel->getDataByDepartment(25);
 
         $plantserv = $this->ippModel->getDataByDivision(4);
         $fin = $this->ippModel->getDataByDivision(2);
