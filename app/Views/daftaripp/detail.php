@@ -6,7 +6,7 @@
         <div class="col">
             <div class="card" style="max-width: 100%; overflow-y: auto;">
                 <div class="card-header">
-                    <h1 class="card-title">Detail IPP</h1>
+                    <h1 class="card-title">Detail IPPs</h1>
                 </div>
                 <div class="card-body">
                     <?php
@@ -27,7 +27,6 @@
                         } elseif ($periodeIPPOne !== null){
                             $editIppOne = ($currentDate >= $periodeIPPOne['start_period'] && $currentDate <= $periodeIPPOne['end_period']);
                         };
-                        // dd(session()->get('npk') == 0);
 
                         if (session()->get('npk') != 0 && $isWithinIPPeriode && !$is_approved_before && !$is_approved) {
                             echo '
@@ -162,11 +161,12 @@
                             <a href="<?= base_url('daftaripp/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
+                        // dd($is_approved);
                             if (session()->get('npk') != 0 && $isWithinIPPeriode && !$is_approved_before && !$is_approved) {
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {
-                                        if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]) {
+                                        if ($p['kode_jabatan'] == 8 || $p['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie'])) {
                                                 echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
@@ -254,7 +254,7 @@
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {
-                                        if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]) {
+                                        if ($p['kode_jabatan'] == 8 || $p['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie'])) {
                                                 echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
@@ -342,7 +342,7 @@
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {
-                                        if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]) {
+                                        if ($p['kode_jabatan'] == 8 || $p['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie'])) {
                                                 echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
