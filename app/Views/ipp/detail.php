@@ -267,19 +267,8 @@
 <?= $this->section('script'); ?>
 <script>
     var id = <?= $id_main ?>;
-    // $('#isidetail').DataTable({
-    //         lengthChange: false,
-    //         lengthMenu: [[-1], ["All"]],
-    //         pagingType: "simple",
-    //         searching: false,
-    //         "bInfo": false,
-    //         "bPaginate": false
-    // });
     var isDataSaved = false;
     var isSubmitted = false;
-
-    <?php //dd($periodeIPP); ?>
-    
 
     function validateDate(input) {
         <?php if ($periodeIPP !== null) : ?>
