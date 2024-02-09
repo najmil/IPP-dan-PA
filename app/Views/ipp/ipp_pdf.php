@@ -68,7 +68,8 @@
                     <div class="text-left"style="margin-right: 8px;">
                     <!-- Logo -->
                         <?php
-                            $path = FCPATH.'/img/astra-logo.png';
+                            $path = base_url('/img/astra-logo.png');
+                            // dd($path);
                             $approved = FCPATH.'/img/approved-check.png';
                             $approved2 = FCPATH.'/img/approved-check-2.png';
                             $type = pathinfo($path, PATHINFO_EXTENSION);
@@ -79,8 +80,6 @@
                             $approved64 = 'data:image/' . $type . ';base64,' . base64_encode($approvedData);
                             $approved264 = 'data:image/' . $type . ';base64,' . base64_encode($approvedData2);
                         ?>
-                        <!-- Logo -->
-                        <!-- <img src="C:/xampp/htdocs/ipp/public/img/astra-logo.png" alt="astra-logo" style="width: 100%;"> -->
                         <img src="<?php echo $base64?>" style="width: 90%; margin: auto;">
                     </div>
                 </td>
