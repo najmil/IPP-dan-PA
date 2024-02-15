@@ -24,21 +24,21 @@ class DaftarMid extends BaseController
 
     public function index(){
         $mainData = $this->ippModel->getIppByDepartmentAndDivision();
-        $ehs = $this->ippModel->getDataByDepartment(30);
-        $mtc = $this->ippModel->getDataByDepartment(29);
-        $mkt = $this->ippModel->getDataByDepartment(23);
-        $fincont = $this->ippModel->getDataByDepartment(22);
-        $mis = $this->ippModel->getDataByDepartment(24);
-        $hr = $this->ippModel->getDataByDepartment(20);
-        $procurement = $this->ippModel->getDataByDepartment(21);
-        $productsatu = $this->ippModel->getDataByDepartment(31);
-        $productdua = $this->ippModel->getDataByDepartment(32);
-        $ppic = $this->ippModel->getDataByDepartment(33);
-        $spv = $this->ippModel->getDataByDepartment(34);
-        $producteng = $this->ippModel->getDataByDepartment(28);
-        $processeng = $this->ippModel->getDataByDepartment(26);
-        $isd = $this->ippModel->getDataByDepartment(27);
-        $qa = $this->ippModel->getDataByDepartment(25);
+        $ehs = $this->ippModel->getDataByDepartmentMid(30);
+        $mtc = $this->ippModel->getDataByDepartmentMid(29);
+        $mkt = $this->ippModel->getDataByDepartmentMid(23);
+        $fincont = $this->ippModel->getDataByDepartmentMid(22);
+        $mis = $this->ippModel->getDataByDepartmentMid(24);
+        $hr = $this->ippModel->getDataByDepartmentMid(20);
+        $procurement = $this->ippModel->getDataByDepartmentMid(21);
+        $productsatu = $this->ippModel->getDataByDepartmentMid(31);
+        $productdua = $this->ippModel->getDataByDepartmentMid(32);
+        $ppic = $this->ippModel->getDataByDepartmentMid(33);
+        $spv = $this->ippModel->getDataByDepartmentMid(34);
+        $producteng = $this->ippModel->getDataByDepartmentMid(28);
+        $processeng = $this->ippModel->getDataByDepartmentMid(26);
+        $isd = $this->ippModel->getDataByDepartmentMid(27);
+        $qa = $this->ippModel->getDataByDepartmentMid(25);
 
         $plantserv = $this->ippModel->getDataByDivisionMid(4);
         $fin = $this->ippModel->getDataByDivisionMid(2);
@@ -46,8 +46,8 @@ class DaftarMid extends BaseController
         $plant = $this->ippModel->getDataByDivisionMid(5);
         $eng = $this->ippModel->getDataByDivisionMid(3);
         $content = $this->request->getVar('content');
-        // dd($content);
         $contentdept = $this->request->getVar('contentdept');
+        // dd($contentdept);
 
         $filteredMidData = array_filter($mainData, function ($row) {
             return $row['is_submitted'] == 1;
@@ -426,6 +426,7 @@ class DaftarMid extends BaseController
                     'countPendingPlantOne' => $this->ippModel->getPendingPlantOne(),
                     'countPendingEngOne' => $this->ippModel->getPendingEngOne(),
                     'countPendingIsdOne' => $this->ippModel->getPendingIsdOne(),
+
                     'countPendingSw' => $this->strongweakmain->getDataPendingSw(),
                     'countPendingPlantSSw' => $this->strongweakmain->getPendingPlantSSw(),
                     'countPendingAdmSw' => $this->strongweakmain->getPendingAdmSw(),

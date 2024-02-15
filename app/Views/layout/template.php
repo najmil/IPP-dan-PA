@@ -57,7 +57,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?= site_url('home/index'); ?>" class="nav-link">Home</a>
+          <a href="<?= base_url('home/index'); ?>" class="nav-link">Home</a>
         </li>
       </ul>
 
@@ -78,7 +78,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="<?php echo site_url('home/index'); ?>" class="brand-link">
+      <a href="<?php echo base_url('home/index'); ?>" class="brand-link">
         <div class="d-flex justify-content-center align-items-center">
           <img src="<?= base_url() ?>/img/logo-cbi.png" alt="CBI Logo" style="width: 100%">
         </div>
@@ -100,7 +100,7 @@
                   <ul class="nav nav-treeview">
                     <?php if (in_array(session()->get('kode_jabatan'), ['2', '3', '4', '8'])): ?>
                       <li class="nav-item">
-                        <a href="<?= site_url('ipp/index'); ?>" class="nav-link ml-3">
+                        <a href="<?= base_url('ipp/index'); ?>" class="nav-link ml-3">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Individual Performance Planning</p>
                         </a>
@@ -123,7 +123,7 @@
                     <!-- Mid Year Review -->
                     <?php if (in_array(session()->get('kode_jabatan'), ['2', '3', '4', '8'])): ?>
                       <li class="nav-item">
-                        <a href="<?= site_url('midYear/index'); ?>" class="nav-link ml-3">
+                        <a href="<?= base_url('midYear/index'); ?>" class="nav-link ml-3">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Mid Year Review</p>
                         </a>
@@ -132,7 +132,7 @@
                     <!-- One Year Review -->
                     <?php if (in_array(session()->get('kode_jabatan'), ['2', '3', '4', '8'])): ?>
                       <li class="nav-item">
-                        <a href="<?= site_url('oneyear/index'); ?>" class="nav-link ml-3">
+                        <a href="<?= base_url('oneyear/index'); ?>" class="nav-link ml-3">
                           <i class="far fa-circle nav-icon"></i>
                           <p>One Year Review</p>
                         </a>
@@ -140,14 +140,14 @@
                     <?php endif; ?>
                     <!-- Strong weakness -->
                     <li class="nav-item">
-                      <a href="<?= site_url('strongweak/index'); ?>" class="nav-link ml-3">
+                      <a href="<?= base_url('strongweak/index'); ?>" class="nav-link ml-3">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Strength and Weakness</p>
                       </a>
                     </li>
                     <!-- PROC SUMMARY -->
                     <li class="nav-item">
-                      <a href="<?= site_url('procsum/index'); ?>" class="nav-link ml-3">
+                      <a href="<?= base_url('procsum/index'); ?>" class="nav-link ml-3">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Process Summary</p>
                       </a>
@@ -173,7 +173,7 @@
                           <!-- Daftar pengisi IPP -->
                           <li class="nav-item">
                             <?php if (session()->get('npk') != 0): ?>
-                              <a href="<?= site_url('daftaripp/index'); ?>" class="nav-link" style="width: 250px;">
+                              <a href="<?= base_url('daftaripp/index'); ?>" class="nav-link" style="width: 250px;">
                               <i class="far fa-circle nav-icon"></i>
                               <p>
                                 Daftar IPP
@@ -197,7 +197,7 @@
                             <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 0): ?>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftaripp/index'); ?>?content=plantserv" class="nav-link list" data-content="plantserv">
+                                  <a href="<?= base_url('daftaripp/index'); ?>?content=plantserv" class="nav-link list" data-content="plantserv">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant Service
@@ -208,7 +208,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftaripp/index'); ?>?content=fin" class="nav-link list" data-content="fin">
+                                  <a href="<?= base_url('daftaripp/index'); ?>?content=fin" class="nav-link list" data-content="fin">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       FIN, ACC, MARK & MIS
@@ -219,7 +219,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftaripp/index'); ?>?content=adm" class="nav-link list" data-content="adm">
+                                  <a href="<?= base_url('daftaripp/index'); ?>?content=adm" class="nav-link list" data-content="adm">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Administration
@@ -230,7 +230,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftaripp/index'); ?>?content=plant" class="nav-link list" data-content="plant">
+                                  <a href="<?= base_url('daftaripp/index'); ?>?content=plant" class="nav-link list" data-content="plant">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant
@@ -241,7 +241,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftaripp/index'); ?>?content=eng" class="nav-link list" data-content="eng">
+                                  <a href="<?= base_url('daftaripp/index'); ?>?content=eng" class="nav-link list" data-content="eng">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Engineering
@@ -252,7 +252,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftaripp/index'); ?>?content=isd" class="nav-link list" data-content="isd">
+                                  <a href="<?= base_url('daftaripp/index'); ?>?content=isd" class="nav-link list" data-content="isd">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Industrial System Development</p>
                                       <?php if ($countPendingIsd > 0): ?>
@@ -270,7 +270,7 @@
                           <!-- Daftar pengisi mid year result -->
                           <li class="nav-item">
                             <?php if (session()->get('npk') != 0): ?>
-                              <a href="<?= site_url('daftarmid/index'); ?>" class="nav-link" style="width: 250px;">
+                              <a href="<?= base_url('daftarmid/index'); ?>" class="nav-link" style="width: 250px;">
                               <i class="far fa-circle nav-icon"></i>
                               <p>
                                 Daftar Mid Year Result
@@ -294,7 +294,7 @@
                             <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 0): ?>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarmid/index'); ?>?content=plantserv" class="nav-link list-mid" data-content="plantserv">
+                                  <a href="<?= base_url('daftarmid/index'); ?>?content=plantserv" class="nav-link list-mid" data-content="plantserv">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant Service
@@ -305,7 +305,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarmid/index'); ?>?content=fin" class="nav-link list-mid" data-content="fin">
+                                  <a href="<?= base_url('daftarmid/index'); ?>?content=fin" class="nav-link list-mid" data-content="fin">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       FIN, ACC, MARK & MIS
@@ -316,7 +316,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarmid/index'); ?>?content=adm" class="nav-link list-mid" data-content="adm">
+                                  <a href="<?= base_url('daftarmid/index'); ?>?content=adm" class="nav-link list-mid" data-content="adm">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Administration
@@ -327,7 +327,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarmid/index'); ?>?content=plant" class="nav-link list-mid" data-content="plant">
+                                  <a href="<?= base_url('daftarmid/index'); ?>?content=plant" class="nav-link list-mid" data-content="plant">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant
@@ -338,7 +338,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarmid/index'); ?>?content=eng" class="nav-link list-mid" data-content="eng">
+                                  <a href="<?= base_url('daftarmid/index'); ?>?content=eng" class="nav-link list-mid" data-content="eng">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Engineering
@@ -349,7 +349,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarmid/index'); ?>?content=isd" class="nav-link list-mid" data-content="isd">
+                                  <a href="<?= base_url('daftarmid/index'); ?>?content=isd" class="nav-link list-mid" data-content="isd">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Industrial System Development
@@ -369,7 +369,7 @@
                           <!-- Daftar pengisi one year result -->
                           <li class="nav-item">
                             <?php if (session()->get('npk') != 0): ?>
-                              <a href="<?= site_url('daftarOne/index'); ?>" class="nav-link" style="width: 250px;">
+                              <a href="<?= base_url('daftarOne/index'); ?>" class="nav-link" style="width: 250px;">
                               <i class="far fa-circle nav-icon"></i>
                               <p>
                                 Daftar One Year Result
@@ -396,7 +396,7 @@
                             <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 0): ?>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarOne/index'); ?>?content=plantserv" class="nav-link list-one" data-content="plantserv">
+                                  <a href="<?= base_url('daftarOne/index'); ?>?content=plantserv" class="nav-link list-one" data-content="plantserv">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant Service 
@@ -407,7 +407,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarOne/index'); ?>?content=fin" class="nav-link list-one" data-content="fin">
+                                  <a href="<?= base_url('daftarOne/index'); ?>?content=fin" class="nav-link list-one" data-content="fin">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       FIN, ACC, MARK & MIS
@@ -418,7 +418,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarOne/index'); ?>?content=adm" class="nav-link list-one" data-content="adm">
+                                  <a href="<?= base_url('daftarOne/index'); ?>?content=adm" class="nav-link list-one" data-content="adm">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Administration
@@ -429,7 +429,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarOne/index'); ?>?content=plant" class="nav-link list-one" data-content="plant">
+                                  <a href="<?= base_url('daftarOne/index'); ?>?content=plant" class="nav-link list-one" data-content="plant">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant
@@ -440,7 +440,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarOne/index'); ?>?content=eng" class="nav-link list-one" data-content="eng">
+                                  <a href="<?= base_url('daftarOne/index'); ?>?content=eng" class="nav-link list-one" data-content="eng">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Engineering
@@ -451,7 +451,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarOne/index'); ?>?content=isd" class="nav-link list-one" data-content="isd">
+                                  <a href="<?= base_url('daftarOne/index'); ?>?content=isd" class="nav-link list-one" data-content="isd">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Industrial System Development
@@ -470,7 +470,7 @@
                           <!-- Daftar Strength and Weakness -->
                           <li class="nav-item">
                             <?php if (session()->get('npk') != 0): ?>
-                              <a href="<?= site_url('daftarstrong/index'); ?>" class="nav-link" style="width: 250px;">
+                              <a href="<?= base_url('daftarstrong/index'); ?>" class="nav-link" style="width: 250px;">
                               <i class="far fa-circle nav-icon"></i>
                               <p>
                                 Daftar Strength and Weakness
@@ -494,7 +494,7 @@
                             <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 0): ?>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarstrong/index'); ?>?content=plantserv" class="nav-link list-strong" data-content="plantserv">
+                                  <a href="<?= base_url('daftarstrong/index'); ?>?content=plantserv" class="nav-link list-strong" data-content="plantserv">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant Service 
@@ -505,7 +505,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarstrong/index'); ?>?content=fin" class="nav-link list-strong" data-content="fin">
+                                  <a href="<?= base_url('daftarstrong/index'); ?>?content=fin" class="nav-link list-strong" data-content="fin">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       FIN, ACC, MARK & MIS
@@ -516,7 +516,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarstrong/index'); ?>?content=adm" class="nav-link list-strong" data-content="adm">
+                                  <a href="<?= base_url('daftarstrong/index'); ?>?content=adm" class="nav-link list-strong" data-content="adm">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Administration
@@ -527,7 +527,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarstrong/index'); ?>?content=plant" class="nav-link list-strong" data-content="plant">
+                                  <a href="<?= base_url('daftarstrong/index'); ?>?content=plant" class="nav-link list-strong" data-content="plant">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant
@@ -538,7 +538,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarstrong/index'); ?>?content=eng" class="nav-link list-strong" data-content="eng">
+                                  <a href="<?= base_url('daftarstrong/index'); ?>?content=eng" class="nav-link list-strong" data-content="eng">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Engineering
@@ -549,7 +549,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarstrong/index'); ?>?content=isd" class="nav-link list-strong" data-content="isd">
+                                  <a href="<?= base_url('daftarstrong/index'); ?>?content=isd" class="nav-link list-strong" data-content="isd">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Industrial System Development
@@ -568,7 +568,7 @@
                         <div id="content-procsum">
                           <li class="nav-item">
                             <?php if (session()->get('npk') != 0): ?>
-                              <a href="<?= site_url('daftarprocsum/index'); ?>" class="nav-link" style="width: 250px;">
+                              <a href="<?= base_url('daftarprocsum/index'); ?>" class="nav-link" style="width: 250px;">
                               <i class="far fa-circle nav-icon"></i>
                               <p>
                                 Daftar Process and Summary
@@ -592,7 +592,7 @@
                             <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 0): ?>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarprocsum/index'); ?>?content=plantserv" class="nav-link list-procsum" data-content="plantserv">
+                                  <a href="<?= base_url('daftarprocsum/index'); ?>?content=plantserv" class="nav-link list-procsum" data-content="plantserv">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant Service 
@@ -603,7 +603,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarprocsum/index'); ?>?content=fin" class="nav-link list-procsum" data-content="fin">
+                                  <a href="<?= base_url('daftarprocsum/index'); ?>?content=fin" class="nav-link list-procsum" data-content="fin">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       FIN, ACC, MARK & MIS
@@ -614,7 +614,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarprocsum/index'); ?>?content=adm" class="nav-link list-procsum" data-content="adm">
+                                  <a href="<?= base_url('daftarprocsum/index'); ?>?content=adm" class="nav-link list-procsum" data-content="adm">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Administration
@@ -625,7 +625,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarprocsum/index'); ?>?content=plant" class="nav-link list-procsum" data-content="plant">
+                                  <a href="<?= base_url('daftarprocsum/index'); ?>?content=plant" class="nav-link list-procsum" data-content="plant">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant
@@ -636,7 +636,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarprocsum/index'); ?>?content=eng" class="nav-link list-procsum" data-content="eng">
+                                  <a href="<?= base_url('daftarprocsum/index'); ?>?content=eng" class="nav-link list-procsum" data-content="eng">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Engineering
@@ -647,7 +647,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= site_url('daftarprocsum/index'); ?>?content=isd" class="nav-link list-procsum" data-content="isd">
+                                  <a href="<?= base_url('daftarprocsum/index'); ?>?content=isd" class="nav-link list-procsum" data-content="isd">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Industrial System Development
@@ -669,7 +669,7 @@
                   <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 0): ?>
                     <!-- Periode edit -->
                     <li class="nav-item">
-                      <a href="<?= site_url('periode/index'); ?>" class="nav-link">
+                      <a href="<?= base_url('periode/index'); ?>" class="nav-link">
                       <i class="nav-icon fas fa-edit"></i>
                         <p>Periode Edit</p>
                       </a>
@@ -677,7 +677,7 @@
                   <?php endif; ?>
                   
             <li class="nav-item">
-              <a href="<?= site_url('login/logout'); ?>" class="nav-link">
+              <a href="<?= base_url('login/logout'); ?>" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
                   Logout | Keluar
@@ -746,7 +746,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= site_url('daftaripp/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url('daftaripp/index'); ?>?content=' + content;
     });
   });
 
@@ -757,7 +757,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= site_url('daftarmid/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url('daftarmid/index'); ?>?content=' + content;
     });
   });
   
@@ -767,7 +767,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= site_url('daftarone/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url('daftarone/index'); ?>?content=' + content;
     });
   });
   
@@ -777,7 +777,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= site_url('daftarstrong/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url('daftarstrong/index'); ?>?content=' + content;
     });
   });
 
@@ -787,7 +787,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= site_url('daftarprocsum/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url('daftarprocsum/index'); ?>?content=' + content;
     });
   });
 </script>

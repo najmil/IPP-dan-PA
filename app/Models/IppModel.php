@@ -200,6 +200,7 @@ class IppModel extends Model{
         return $this->where('main.created_by', $id)->findAll();
     } 
 
+    // Filter data untuk kasie, kadept, kadiv, bod, presdir
     public function getIppByDepartmentAndDivision() {
         $id_department = session()->get('id_department');
         $id_division   = session()->get('id_division');
@@ -215,56 +216,29 @@ class IppModel extends Model{
         $builder->where('main.periode NOT LIKE', 'Mid Year%');
         
         if ($kode_jabatan == 3) {
-            if ($npk == 4210) {
-                $builder->groupStart()
-                            ->where('users.kode_jabatan', 8)
-                            ->orWhere('users.kode_jabatan', 4)
-                        ->groupEnd()
-                        ->groupStart()
-                            ->where('main.id_department', 20)
-                            ->orWhere('main.id_department', 20)
-                        ->groupEnd();
-            }
-            else {
-                $builder->groupStart()
-                            ->where('main.kode_jabatan', 4)
-                            ->orGroupStart()
-                                ->where('main.kode_jabatan', 8)
-                                ->groupStart()
-                                    ->where('main.created_by', 3651)
-                                    ->orWhere('main.created_by', 3659)
-                                ->groupEnd()
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->where('main.id_department', $id_department);
-            }
+            $builder->groupStart()
+                        ->where('main.kode_jabatan', 4)
+                        ->orWhere('main.kode_jabatan', 5)
+                        ->orWhere('main.kode_jabatan', 8)
+                    ->groupEnd()
+                    ->where('main.id_department', $id_department);
         } elseif ($kode_jabatan == 4) {
             $builder->groupStart()
                         ->where('users.kode_jabatan', 8)
-                        ->groupStart()
-                            ->where('main.created_by <>', 3651)
-                            ->orWhere('main.created_by <>', 3659)
-                        ->groupEnd()
+                        ->orWhere('users.kode_jabatan', 5)
                     ->groupEnd()
                     ->where('main.id_section', $id_section);
         } elseif ($kode_jabatan == 2) {
             // Approval kadiv
             $builder->groupStart()
                         ->where('main.kode_jabatan', 3)
-                        ->orGroupStart()
-                            ->where('main.kode_jabatan', 4)
-                            ->groupStart()
-                                ->where('main.id_division <>', 3651)
-                                ->orWhere('main.id_division <>', 3659)
-                            ->groupEnd()
-                        ->groupEnd()
+                        ->orWhere('main.kode_jabatan', 4)
                         ->orGroupStart()
                             ->where('main.kode_jabatan', 8)
                             ->where('main.id_department', 27)
                         ->groupEnd()
                     ->groupEnd()
                     ->where('main.id_division', $id_division);
-            //     ->groupEnd();
         } elseif ($kode_jabatan == 1 && $npk == 3944 ) {
             // Approval BoD untuk kadept untuk yang di bawah divisi 3944
             $builder->groupStart()
@@ -297,6 +271,7 @@ class IppModel extends Model{
         return $builder->get()->getResultArray();
     } 
 
+    // Filter data untuk admin
     public function getDataByDepartment(...$iddepartment) {
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
@@ -331,7 +306,6 @@ class IppModel extends Model{
                                     ->groupEnd()
                                     ->where('main.is_submitted_ipp_one', 1)
                                 ->groupEnd()
-                                ->whereIn('users.id_department', $iddepartment)
                                 ->whereIn('main.id_department', $iddepartment);
 
             return $builder->get()->getResultArray();
@@ -345,7 +319,6 @@ class IppModel extends Model{
                 ->join('users', 'users.npk = main.created_by', 'left')
                 // ->where('main.periode NOT LIKE', 'Mid Year%')
                 ->where('main.is_submitted', 1)
-                ->whereIn('users.id_department', $iddepartment)
                 ->whereIn('main.id_department', $iddepartment);
 
             return $builder->get()->getResultArray();
@@ -359,7 +332,6 @@ class IppModel extends Model{
                 ->join('users', 'users.npk = main.created_by', 'left')
                 // ->where('main.periode NOT LIKE', 'Mid Year%')
                 ->where('main.is_submitted_one', 1)
-                ->whereIn('users.id_department', $iddepartment)
                 ->whereIn('main.id_department', $iddepartment);
 
             return $builder->get()->getResultArray();
@@ -449,58 +421,26 @@ class IppModel extends Model{
         $builder->where('main.periode NOT LIKE', 'Mid Year%');
 
         if ($kode_jabatan == 3) {
-            if ($npk === 4210) {
-                $builder->groupStart()
-                            ->where('users.kode_jabatan', 8)
-                            ->orWhere('users.kode_jabatan', 4)
-                        ->groupEnd()
-                        ->groupStart()
-                            ->where('main.id_department', 20)
-                            ->orWhere('main.id_department', 20)
-                        ->groupEnd()
-                        ->groupStart()
-                            ->where('main.is_submitted_ipp', 1)
-                            ->orWhere('main.is_submitted_ipp_mid', 1)
-                            ->orWhere('main.is_submitted_ipp_one', 1)
-                        ->groupEnd()
-                        ->groupstart()
-                            ->where('main.approval_kadept', 0)
-                            ->orWhere('main.approval_kadept IS NULL')
-                        ->groupEnd();
-            } else {
-                $builder->groupStart()
-                            ->where('main.kode_jabatan', 4)
-                            ->orGroupStart()
-                                ->where('main.kode_jabatan', 8)
-                                ->groupStart()
-                                    ->where('main.created_by', 3651)
-                                    ->orWhere('main.created_by', 3659)
-                                ->groupEnd()
-                            ->groupEnd()
-                        ->groupEnd()
-                        ->where('main.id_department', $id_department)
-                        ->groupStart()
-                            ->where('main.is_submitted_ipp', 1)
-                            ->orWhere('main.is_submitted_ipp_mid', 1)
-                            ->orWhere('main.is_submitted_ipp_one', 1)
-                        ->groupEnd()
-                        ->groupStart()
-                            ->where('main.is_submitted_ipp', 1)
-                            ->orWhere('main.is_submitted_ipp_mid', 1)
-                            ->orWhere('main.is_submitted_ipp_one', 1)
-                        ->groupEnd()
-                        ->groupstart()
-                            ->where('main.approval_kadept', 0)
-                            ->orWhere('main.approval_kadept IS NULL')
-                        ->groupEnd();
-            }
-        } elseif ($kode_jabatan == 4) {
-            $builder->where('users.kode_jabatan', 8)
-                    ->groupStart()
-                        ->where('users.npk', 3651)
-                        ->orWhere('users.npk', 3659)
+            $builder->groupStart()
+                        ->where('main.kode_jabatan', 4)
+                        ->orWhere('main.kode_jabatan', 5)
+                        ->orWhere('main.kode_jabatan', 8)
                     ->groupEnd()
-                    ->where('main.id_section', $id_section)
+                    ->groupStart()
+                        ->where('main.is_submitted_ipp', 1)
+                        ->orWhere('main.is_submitted_ipp_mid', 1)
+                        ->orWhere('main.is_submitted_ipp_one', 1)
+                    ->groupEnd()
+                    ->groupstart()
+                        ->where('main.approval_kadept', 0)
+                        ->orWhere('main.approval_kadept IS NULL')
+                    ->groupEnd()
+                    ->where('main.id_department', $id_department);
+        } elseif ($kode_jabatan == 4) {
+            $builder->groupStart()
+                        ->where('users.kode_jabatan', 8)
+                        ->orWhere('users.kode_jabatan', 5)
+                    ->groupEnd()
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
                         ->orWhere('main.is_submitted_ipp_mid', 1)
@@ -509,21 +449,14 @@ class IppModel extends Model{
                     ->groupStart()
                         ->where('main.approval_kasie', 0) 
                         ->orWhere('main.approval_kasie IS NULL')
-                    ->groupEnd();
+                    ->groupEnd()
+                    ->where('main.id_section', $id_section);
         } elseif ($kode_jabatan == 2) {
             // Approval kadiv
             $builder->groupStart()
                         ->where('users.kode_jabatan', 3)
                         ->orWhere('users.kode_jabatan', 4)
-                        ->orGroupStart()
-                            ->where('main.kode_jabatan', 8)
-                            ->groupStart()
-                                ->where('main.created_by', 3651)
-                                ->orWhere('main.created_by', 3659)
-                            ->groupEnd()
-                        ->groupEnd()
                     ->groupEnd()
-                    ->where('main.id_division', $id_division)
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
                         ->orWhere('main.is_submitted_ipp_mid', 1)
@@ -532,7 +465,8 @@ class IppModel extends Model{
                     ->groupstart()
                         ->where('main.approval_kadiv', 0)
                         ->orWhere('main.approval_kadiv IS NULL')
-                    ->groupEnd();
+                    ->groupEnd()
+                    ->where('main.id_division', $id_division);
         } elseif ($kode_jabatan == 1 && $npk == 3944 ) {
             // Approval BoD untuk kadept untuk yang di bawah divisi 3944
             $builder->groupStart()
