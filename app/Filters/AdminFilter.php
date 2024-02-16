@@ -17,12 +17,14 @@ class AdminFilter implements FilterInterface
         if(session()->kode_jabatan == ''){
             return redirect()->to('login/index');
         }
+
+        $contentDept = $request->getGet('contentdept');
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
         // Do something here
-        if(session()->kode_jabatan == '0' && session()->npk == '0'){
+        if(session()->kode_jabatan === '0' && session()->npk === '0'){
             return redirect()->to('/home/index');
         }
     }
