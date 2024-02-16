@@ -17,8 +17,13 @@ class AdminFilter implements FilterInterface
         if(session()->kode_jabatan == ''){
             return redirect()->to('login/index');
         }
-
+        
         $contentDept = $request->getGet('contentdept');
+        $allowedDepartments = ['ehs', 'mtc', 'mkt', 'fincont', 'mis', 'hr', 'procurement', 'productsatu', 'productdua', 'ppic', 'spv', 'producteng', 'processeng', 'isd', 'qa'];
+
+        if (!in_array($contentDept, $allowedDepartments)) {
+            return redirect()->to('/forbidden');
+        }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
