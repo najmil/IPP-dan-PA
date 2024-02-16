@@ -20,3 +20,6 @@ $routes->group('', ['filter' => 'beforelogin'], function($routes){
 // $routes->get('/home', 'Home::index');
 // $routes->get('/login/logout', 'Login::index');
 $routes->setAutoRoute(true);
+$routes->get('/daftarprocsum/index', 'DaftarProcsum::index');
+$routes->get('/daftarstrong/index', 'DaftarStrong::index');
+$routes->get('/daftarmid/index', 'DaftarMid::index');
