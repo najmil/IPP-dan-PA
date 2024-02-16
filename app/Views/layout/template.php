@@ -746,7 +746,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= base_url('daftaripp/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url(); ?>daftaripp/index?content=' + content;
     });
   });
 
@@ -757,7 +757,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= base_url('daftarmid/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url(); ?>daftarmid/index?content=' + content;
     });
   });
   
@@ -767,7 +767,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= base_url('daftarone/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url(); ?>daftarone/index?content=' + content;
     });
   });
   
@@ -776,8 +776,8 @@
     link.addEventListener('click', function(e) {
         e.preventDefault();
         var content = this.getAttribute('data-content');
-
-        window.location.href = '<?= base_url('daftarstrong/index'); ?>?content=' + content;
+        
+        window.location.href = '<?= base_url(); ?>daftarstrong/index?content=' + content;
     });
   });
 
@@ -787,7 +787,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= base_url('daftarprocsum/index'); ?>?content=' + content;
+        window.location.href = '<?= base_url(); ?>daftarprocsum/index?content=' + content;
     });
   });
 </script>
