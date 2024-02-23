@@ -27,7 +27,7 @@ class DaftarIpp extends BaseController
     }
 
     public function index() {
-        $ippData = $this->ippModel->getIppByDepartmentAndDivision();
+        $ippData = $this->ippModel->orderBy('created_at', 'DESC')->getIppByDepartmentAndDivision();
         $ehs = $this->ippModel->getDataByDepartment(30);
         $mtc = $this->ippModel->getDataByDepartment(29);
         $mkt = $this->ippModel->getDataByDepartment(23);
@@ -1083,30 +1083,19 @@ class DaftarIpp extends BaseController
         }
 
         return view('daftaripp/index', $data);
-        // $data = [
-        //     'tittle' => 'Daftar IPP Karyawan',
-        //     'daftaripp'=> $filteredIppData,
-        //     'maindata' => $mainData
-        // ];
-        
-        // if (session()->get('npk') != 0){
-        // } elseif (session()->get('npk') == 0){
-        //     return view('daftaripp/index_admin', $data);
-        // }
     }
 
     public function detail($id){
         $mainData = $this->ippModel->find($id);
         $periode  = $mainData['periode'];
+        // dd($periode);
     
         if ($mainData) {
             $created_by = $mainData['created_by'];
             $nama = $mainData['nama'];
-            // $status_ipp = $mainData['status_ipp'];
         } else {
             $created_by = null;
             $nama = null;
-            // $status_ipp = null;
         }
 
         $is_approved_before = null;
@@ -1130,8 +1119,8 @@ class DaftarIpp extends BaseController
             $is_approved_before = !$mainData['is_approved_bod'];
             $is_approved = !$mainData['is_approved_presdir'];
         } elseif (session()->get('kode_jabatan') == 4){
-            $is_approved = !$mainData['is_approved_kasie'];
-            $is_approved_before = true;
+            $is_approved = isset($mainData['is_approved_kasie']);
+            $is_approved_before = false;
         }
     
         $data = [
@@ -1146,30 +1135,30 @@ class DaftarIpp extends BaseController
             'is_approved_before'=> $is_approved_before,
             'periode'    => $periode,
             'countPending' => $this->ippModel->getDataPending(),
-                    'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
-                    'countPendingAdm' => $this->ippModel->getPendingAdm(),
-                    'countPendingFin' => $this->ippModel->getPendingFin(),
-                    'countPendingPlant' => $this->ippModel->getPendingPlant(),
-                    'countPendingEng' => $this->ippModel->getPendingEng(),
-                    'countPendingIsd' => $this->ippModel->getPendingIsd(),
+            'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
+            'countPendingAdm' => $this->ippModel->getPendingAdm(),
+            'countPendingFin' => $this->ippModel->getPendingFin(),
+            'countPendingPlant' => $this->ippModel->getPendingPlant(),
+            'countPendingEng' => $this->ippModel->getPendingEng(),
+            'countPendingIsd' => $this->ippModel->getPendingIsd(),
                     
             'countPendingMid' => $this->ippModel->getDataPendingMid(),
-                    'countPendingPlantSMid' => $this->ippModel->getPendingPlantSMid(),
-                    'countPendingAdmMid' => $this->ippModel->getPendingAdmMid(),
-                    'countPendingFinMid' => $this->ippModel->getPendingFinMid(),
-                    'countPendingPlantMid' => $this->ippModel->getPendingPlantMid(),
-                    'countPendingEngMid' => $this->ippModel->getPendingEngMid(),
-                    'countPendingIsdMid' => $this->ippModel->getPendingIsdMid(),
+            'countPendingPlantSMid' => $this->ippModel->getPendingPlantSMid(),
+            'countPendingAdmMid' => $this->ippModel->getPendingAdmMid(),
+            'countPendingFinMid' => $this->ippModel->getPendingFinMid(),
+            'countPendingPlantMid' => $this->ippModel->getPendingPlantMid(),
+            'countPendingEngMid' => $this->ippModel->getPendingEngMid(),
+            'countPendingIsdMid' => $this->ippModel->getPendingIsdMid(),
                     
             'countPendingOne' => $this->ippModel->getDataPendingOne(),
             'countPendingPlantSOne' => $this->ippModel->getPendingPlantSOne(),
-                    'countPendingAdmOne' => $this->ippModel->getPendingAdmOne(),
+            'countPendingAdmOne' => $this->ippModel->getPendingAdmOne(),
             'countPendingFinOne' => $this->ippModel->getPendingFinOne(),
             'countPendingPlantOne' => $this->ippModel->getPendingPlantOne(),
             'countPendingEngOne' => $this->ippModel->getPendingEngOne(),
             'countPendingIsdOne' => $this->ippModel->getPendingIsdOne(),
             
-                    'countPendingSw' => $this->strongweakmain->getDataPendingSw(),
+            'countPendingSw' => $this->strongweakmain->getDataPendingSw(),
             'countPendingPlantSSw' => $this->strongweakmain->getPendingPlantSSw(),
             'countPendingAdmSw' => $this->strongweakmain->getPendingAdmSw(),
             'countPendingFinSw' => $this->strongweakmain->getPendingFinSw(),

@@ -3,7 +3,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card" style="max-width: 100%; overflow-y: auto;">
@@ -314,25 +314,64 @@
             console.log($(this).text());
         });
 
+        function removeErrorIndication() {
+            $(this).removeClass('is-invalid');
+            $(this).closest('td').find('.invalid-feedback').remove();
+        }
+
+        // Tambahkan event listener pada input dan textarea untuk menghilangkan error saat ada inputan
+        $('#isidetail').on('input', '.program-input, .weight-input, .midyear-input, .oneyear-input, .duedate-input', removeErrorIndication);
+
         // Temporarily save
         $(document).on('click', '#simpan', function () {
             var dataToSave = [];
-            var program;
-            var weight;
-            var midyear;
-            var oneyear;
-            var duedate;
+            var isFormValid = true;
+
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').remove();
 
             $('#isidetail tbody tr').each(function () {
                 var row = $(this).closest('tr');
                 var idMain = row.find('input[name="id_main[]"]').val();
-                program = row.find('.program-input').val(); 
-                weight = row.find('.weight-input').val();
-                midyear = row.find('.midyear-input').val();
-                oneyear = row.find('.oneyear-input').val();
-                duedate = row.find('.duedate-input').val();
+                var program = row.find('.program-input').val(); 
+                var weight = row.find('.weight-input').val();
+                var midyear = row.find('.midyear-input').val();
+                var oneyear = row.find('.oneyear-input').val();
+                var duedate = row.find('.duedate-input').val();
 
-                if (program !== '' && weight !== '' && midyear !== '' && oneyear !== '' && duedate !== '') {
+                var hasError = false;
+
+                if (program === '') {
+                    row.find('.program-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (weight === '') {
+                    row.find('.weight-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (midyear === '') {
+                    row.find('.midyear-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (oneyear === '') {
+                    row.find('.oneyear-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (duedate === '') {
+                    row.find('.duedate-input').addClass('is-invalid');
+                    hasError = true;
+                }
+
+                if (hasError) {
+                    isFormValid = false;
+                    // Menambahkan pesan kesalahan di bawah input
+                    row.find('td').each(function(){
+                        if($(this).find('input, textarea').hasClass('is-invalid')){
+                            $(this).append('<div class="invalid-feedback">Field cannot be empty.</div>');
+                            $(this).find('.invalid-feedback').show();
+                        }
+                    });
+                } else {
                     dataToSave.push({
                         idMain: idMain,
                         program: program,
@@ -344,7 +383,10 @@
                 }
             });
 
-            var row = $(this).closest('tr');
+            if (!isFormValid) {
+                alert('Semua field harus diisi.');
+                return;
+            }
 
             $.ajax({
                 url: '<?= base_url('ipp/save_temporarily'); ?>', 
@@ -364,11 +406,6 @@
                         // alert(response.message);
                         isDataSaved = true;
                         $('.saveAllButton').hide();
-                        row.find('.program-input').text(program);
-                        row.find('.midyear-input').text(midyear);
-                        row.find('.oneyear-input').text(oneyear);
-                        row.find('.weight-input').text(weight);
-                        row.find('.duedate-input').text(duedate);
                         location.reload();
                     } else {
                         alert('Data cannot be saved. Double check it.');
@@ -429,8 +466,6 @@
             // console.log('Edit button clicked');
             var dueDateText = row.find('.duedate').text().trim();
             console.log('Due Date Text:', dueDateText); 
-
-    
 
             row.find('.program').html('<textarea class="form-control program-input" data-id-main="<?= $id_main; ?>">' + row.find('.program').text().trim() + '</textarea>');
             row.find('.weight').html('<input type="number" class="form-control weight-input"data-id-main="<?= $id_main; ?>" value="' + row.find('.weight').text().trim() + '">');

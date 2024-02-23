@@ -62,7 +62,7 @@ class Filters extends BaseConfig
         ],
         'after' => [
             'adminFilter' => [
-                'except' => ['home/*', 'periode/*', 'daftarMid/*', 'daftarIpp/*', 'daftarone/*', 'daftarstrong/*', 'daftarprocsum/*']
+                'except' => ['home/*', 'periode/*', 'daftarMid/*', 'daftarmid/*', 'daftarIpp/*', 'daftaripp/*', 'daftarone/*', 'daftarstrong/*', 'daftarprocsum/*']
             ],
             'presdir' => [
                 'except' => ['home/*', 'periode/*', 'daftarEnd/*', 'daftarMid/*', 'daftarIpp/*', 'daftarone/*', 'daftarstrong/*', 'daftarprocsum/*']

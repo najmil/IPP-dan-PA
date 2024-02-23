@@ -1,12 +1,12 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container mt-4">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card" style="max-width: 100%; overflow-y: auto;">
                 <div class="card-header">
-                    <h1 class="card-title">Detail IPPs</h1>
+                    <h1 class="card-title">Detail IPP</h1>
                 </div>
                 <div class="card-body">
                     <?php
@@ -169,7 +169,7 @@
                                         if ($p['kode_jabatan'] == 8 || $p['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -181,7 +181,7 @@
                                     if (session()->get('kode_jabatan') == 3) {
                                         if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]) {
                                             if ($p['approval_kasie'] == 1 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -189,7 +189,7 @@
 
                                         if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
                                             if (session()->get('kode_jabatan') == 3 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -201,7 +201,7 @@
                                     if (session()->get('kode_jabatan') == 2) {
                                         if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
                                             if ($p['approval_kadept'] == 1 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -209,7 +209,7 @@
 
                                         if ($p['kode_jabatan'] == 3) {
                                             if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -221,7 +221,7 @@
                                     if (session()->get('kode_jabatan') == 1) {
                                         if ($p['kode_jabatan'] == 3) {
                                             if ($p['approval_kadiv'] == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -229,7 +229,7 @@
 
                                         if ($p['kode_jabatan'] == 2) {
                                             if (session()->get('kode_jabatan') == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -242,7 +242,7 @@
                                         if ($p['kode_jabatan'] == 2) {
                                             echo '<td class="text-center">';
                                             if (empty($p['approval_presdir'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -257,7 +257,7 @@
                                         if ($p['kode_jabatan'] == 8 || $p['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -269,7 +269,7 @@
                                     if (session()->get('kode_jabatan') == 3) {
                                         if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]) {
                                             if ($p['approval_kasie'] == 1 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -277,7 +277,7 @@
 
                                         if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
                                             if (session()->get('kode_jabatan') == 3 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -289,7 +289,7 @@
                                     if (session()->get('kode_jabatan') == 2) {
                                         if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
                                             if ($p['approval_kadept'] == 1 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -297,7 +297,7 @@
 
                                         if ($p['kode_jabatan'] == 3) {
                                             if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -309,7 +309,7 @@
                                     if (session()->get('kode_jabatan') == 1) {
                                         if ($p['kode_jabatan'] == 3) {
                                             if ($p['approval_kadiv'] == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -317,7 +317,7 @@
 
                                         if ($p['kode_jabatan'] == 2) {
                                             if (session()->get('kode_jabatan') == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -330,7 +330,7 @@
                                         if ($p['kode_jabatan'] == 2) {
                                             echo '<td class="text-center">';
                                             if (empty($p['approval_presdir'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -345,7 +345,7 @@
                                         if ($p['kode_jabatan'] == 8 || $p['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -357,7 +357,7 @@
                                     if (session()->get('kode_jabatan') == 3) {
                                         if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]) {
                                             if ($p['approval_kasie'] == 1 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -365,7 +365,7 @@
 
                                         if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
                                             if (session()->get('kode_jabatan') == 3 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -377,7 +377,7 @@
                                     if (session()->get('kode_jabatan') == 2) {
                                         if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
                                             if ($p['approval_kadept'] == 1 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -385,7 +385,7 @@
 
                                         if ($p['kode_jabatan'] == 3) {
                                             if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -397,7 +397,7 @@
                                     if (session()->get('kode_jabatan') == 1) {
                                         if ($p['kode_jabatan'] == 3) {
                                             if ($p['approval_kadiv'] == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -405,7 +405,7 @@
 
                                         if ($p['kode_jabatan'] == 2) {
                                             if (session()->get('kode_jabatan') == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -418,7 +418,7 @@
                                         if ($p['kode_jabatan'] == 2) {
                                             echo '<td class="text-center">';
                                             if (empty($p['approval_presdir'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -603,24 +603,63 @@
             });
         });
 
+        function removeErrorIndication() {
+            $(this).removeClass('is-invalid');
+            $(this).closest('td').find('.invalid-feedback').remove();
+        }
+
+        // Tambahkan event listener pada input dan textarea untuk menghilangkan error saat ada inputan
+        $('#isidetail').on('input', '.program-input, .weight-input, .midyear-input, .oneyear-input, .duedate-input', removeErrorIndication);
+
         $(document).on('click', '#simpan', function () {
             var dataToSave = [];
-            var program;
-            var weight;
-            var midyear;
-            var oneyear;
-            var duedate;
+            var isFormValid = true;
+
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').remove();
 
             $('#isidetail tbody tr').each(function () {
                 var row = $(this).closest('tr');
                 var idMain = row.find('input[name="id_main[]"]').val();
-                program = row.find('.program-input').val(); 
-                weight = row.find('.weight-input').val();
-                midyear = row.find('.midyear-input').val();
-                oneyear = row.find('.oneyear-input').val();
-                duedate = row.find('.duedate-input').val();
+                var program = row.find('.program-input').val(); 
+                var weight = row.find('.weight-input').val();
+                var midyear = row.find('.midyear-input').val();
+                var oneyear = row.find('.oneyear-input').val();
+                var duedate = row.find('.duedate-input').val();
 
-                if (program !== '' && weight !== '' && midyear !== '' && oneyear !== '' && duedate !== '') {
+                var hasError = false;
+
+                if (program === '') {
+                    row.find('.program-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (weight === '') {
+                    row.find('.weight-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (midyear === '') {
+                    row.find('.midyear-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (oneyear === '') {
+                    row.find('.oneyear-input').addClass('is-invalid');
+                    hasError = true;
+                }
+                if (duedate === '') {
+                    row.find('.duedate-input').addClass('is-invalid');
+                    hasError = true;
+                }
+
+                if (hasError) {
+                    isFormValid = false;
+                    // Menambahkan pesan kesalahan di bawah input
+                    row.find('td').each(function(){
+                        if($(this).find('input, textarea').hasClass('is-invalid')){
+                            $(this).append('<div class="invalid-feedback">Field cannot be empty.</div>');
+                            $(this).find('.invalid-feedback').show();
+                        }
+                    });
+                } else {
                     dataToSave.push({
                         idMain: idMain,
                         program: program,
@@ -632,18 +671,13 @@
                 }
             });
 
-            var alerted = false;
-            if (program == '' && weight == '' && midyear == '' && oneyear == '' && duedate == '') {
-                if (!alerted) {
-                    alert('Fields must be filled.');
-                    alerted = true; 
-                }
+            if (!isFormValid) {
+                alert('Semua field harus diisi.');
                 return;
             }
-            var row = $(this).closest('tr');
 
             $.ajax({
-                url: '<?= base_url('daftaripp/save_temporarily'); ?>', 
+                url: '<?= base_url('ipp/save_temporarily'); ?>', 
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -652,27 +686,25 @@
                 beforeSend: function(){
                     $('#simpan').html('<i class="fas fa-spinner fa-spin"></i>');
                 },
-                // complete: function(){
-                //     $('#simpan').html('Save Temporarily');
-                // },
+                complete: function(){
+                    $('#simpan').hide();
+                },
                 success: function (response) {
                     if (response.sukses) {
                         // alert(response.message);
-                        // isDataSaved = true;
-                        // $('.saveAllButton').hide();
-                        // row.find('.program-input').text(program);
-                        // row.find('.midyear-input').text(midyear);
-                        // row.find('.oneyear-input').text(oneyear);
-                        // row.find('.weight-input').text(weight);
-                        // row.find('.duedate-input').text(duedate);
+                        isDataSaved = true;
+                        $('.saveAllButton').hide();
                         location.reload();
                     } else {
                         alert('Data cannot be saved. Double check it.');
                     }
+                },
+                error: function () {
+                    alert('Terjadi kesalahan saat mengirim data ke server.');
                 }
             });
         });
-        
+
         // Fungsi untuk menghapus baris yang ada di halaman detail
         $(document).on('click', '.btn-hapus', function () {
             console.log('button diklik');
@@ -743,6 +775,7 @@
             addRow(idMain);
             calculateTotalScore();
             $('#addRowButton').hide();
+            $('.approve-button').hide();
         });
 
         var row;
