@@ -28,7 +28,7 @@
                             $editIppOne = ($currentDate >= $periodeIPPOne['start_period'] && $currentDate <= $periodeIPPOne['end_period']);
                         };
 
-                        if (session()->get('npk') != 0 && $isWithinIPPeriode && !$is_approved_before && !$is_approved) {
+                        if (session()->get('npk') != 0 && $isWithinIPPeriode && $is_approved_before && $is_approved) {
                             echo '
                             <div class="d-flex justify-content-md-end">
                                 <div class=mr-2 mb-2" style="clear: both">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             ';
-                        } elseif (session()->get('npk') != 0 && $editIppMid && !$is_approved_before && !$is_approved) {
+                        } elseif (session()->get('npk') != 0 && $editIppMid && $is_approved_before && $is_approved) {
                             echo '
                             <div class="d-flex justify-content-md-end">
                                 <div class=mr-2 mb-2" style="clear: both">
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             ';
-                        } elseif (session()->get('npk') != 0 && $editIppOne && !$is_approved_before && !$is_approved) {
+                        } elseif (session()->get('npk') != 0 && $editIppOne && $is_approved_before && $is_approved) {
                             echo '
                             <div class="d-flex justify-content-md-end">
                                 <div class=mr-2 mb-2" style="clear: both">
@@ -96,9 +96,9 @@
                                             $isWithinIPPeriode = false;
                                         }
 
-                                        if (session()->get('npk')!=0 && ($isWithinIPPeriode && !$is_approved && !$is_approved_before)||
-                                        ($editIppMid && !$is_approved && !$is_approved_before) ||
-                                        ($editIppOne && !$is_approved && !$is_approved_before)) {
+                                        if (session()->get('npk')!=0 && ($isWithinIPPeriode && $is_approved && $is_approved_before)||
+                                        ($editIppMid && $is_approved && $is_approved_before) ||
+                                        ($editIppOne && $is_approved && $is_approved_before)) {
                                             echo '
                                                 <th rowspan="2" class="aksi" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Aksi</th>
                                             ';
@@ -136,9 +136,9 @@
                                                 $isWithinIPPeriode = false;
                                             }
 
-                                            if (session()->get('npk')!=0 && ($isWithinIPPeriode && !$is_approved && !$is_approved_before)||
-                                            ($editIppMid && !$is_approved && !$is_approved_before) ||
-                                            ($editIppOne && !$is_approved && !$is_approved_before)) {
+                                            if (session()->get('npk')!=0 && ($isWithinIPPeriode && $is_approved && $is_approved_before)||
+                                            ($editIppMid && $is_approved && $is_approved_before) ||
+                                            ($editIppOne && $is_approved && $is_approved_before)) {
                                                 echo '
                                                     <td class="text-center">
                                                         <button class="btn btn-warning edit-btn btn-sm " style="width: 42px; font-size: 12px; padding: 0;">Edit</button>
@@ -161,8 +161,7 @@
                             <a href="<?= base_url('daftaripp/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
-                        // dd($is_approved);
-                            if (session()->get('npk') != 0 && $isWithinIPPeriode && !$is_approved_before && !$is_approved) {
+                            if (session()->get('npk') != 0 && $isWithinIPPeriode && $is_approved_before && $is_approved) {
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {
@@ -250,7 +249,7 @@
                                     }
                                     // The end of approval presdir
                                 }
-                            } elseif (session()->get('npk') != 0 && $editIppMid && !$is_approved_before && !$is_approved) {
+                            } elseif (session()->get('npk') != 0 && $editIppMid && $is_approved_before && $is_approved) {
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {
@@ -338,7 +337,7 @@
                                     }
                                     // The end of approval presdir
                                 }
-                            } elseif (session()->get('npk') != 0 && $editIppOne && !$is_approved_before && !$is_approved) {
+                            } elseif (session()->get('npk') != 0 && $editIppOne && $is_approved_before && $is_approved) {
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {

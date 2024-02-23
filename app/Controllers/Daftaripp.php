@@ -1101,27 +1101,30 @@ class DaftarIpp extends BaseController
         $is_approved_before = null;
         $is_approved = null;
         if (session()->get('kode_jabatan') == 3) {
-            if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
-                $is_approved_before = !$mainData['is_approved_kasie'];
+            if($mainData['kode_jabatan'] == 8){
+                $is_approved_before = $mainData['approval_kasie'];
             }
-            $is_approved = $mainData['is_approved_kadept'];
+            $is_approved = empty($mainData['approval_kadept']);
         } elseif (session()->get('kode_jabatan') == 2) {
             if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                $is_approved_before = !$mainData['is_approved_kadept'];
+                $is_approved_before = $mainData['approval_kadept'];
             }
-            $is_approved = $mainData['is_approved_kadiv'];
+            $is_approved = empty($mainData['approval_kadiv']);
         } elseif (session()->get('kode_jabatan') == 1) {
-            if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                $is_approved_before = !$mainData['is_approved_kadiv'];
+            if(($mainData['kode_jabatan'] == 3 && $mainData['id_department'] != 27) || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27)){
+                $is_approved_before = $mainData['approval_kadiv'];
+            } elseif ($mainData['kode_jabatan'] == 3 && $mainData['id_department'] == 27){
+                $is_approved_before = true;
             }
-            $is_approved = $mainData['is_approved_bod'];
+            $is_approved = empty($mainData['approval_bod']);
         } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-            $is_approved_before = !$mainData['is_approved_bod'];
-            $is_approved = !$mainData['is_approved_presdir'];
+            $is_approved_before = $mainData['approval_bod'];
+            $is_approved = empty($mainData['approval_presdir']);
         } elseif (session()->get('kode_jabatan') == 4){
-            $is_approved = isset($mainData['is_approved_kasie']);
-            $is_approved_before = false;
+            $is_approved = empty($mainData['approval_kasie']);
+            $is_approved_before = true;
         }
+        // dd($is_approved_before);
     
         $data = [
             'tittle'     => 'Detail IPP Karyawan',
@@ -1642,18 +1645,18 @@ class DaftarIpp extends BaseController
     
         if ($data['is_submitted_ipp'] == 1) {
             $this->ippModel->set([
-                'is_submitted_ipp' => 0,
-                'approval_bod'     => 0,
-                'is_approved_bod'  => 0,
-                'approval_presdir'     => 0,
-                'is_approved_presdir'  => 0,
-                'approval_kadiv'     => 0,
-                'is_approved_kadiv'  => 0,
-                'approval_kadept'     => 0,
-                'is_approved_kadept'  => 0,
-                'approval_kasie'     => 0,
-                'is_approved_kasie'  => 0,
-                'is_submitted_ipp'   => 0
+                'is_submitted_ipp' => NULL,
+                'approval_bod'     => NULL,
+                'is_approved_bod'  => NULL,
+                'approval_presdir'     => NULL,
+                'is_approved_presdir'  => NULL,
+                'approval_kadiv'     => NULL,
+                'is_approved_kadiv'  => NULL,
+                'approval_kadept'     => NULL,
+                'is_approved_kadept'  => NULL,
+                'approval_kasie'     => NULL,
+                'is_approved_kasie'  => NULL,
+                'is_submitted_ipp'   => NULL
             ])->where(['id'=> $id])->update();
         }
         if ($data['is_submitted_ipp_mid'] == 1) {
