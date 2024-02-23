@@ -68,7 +68,7 @@
                     <div class="text-left"style="margin-right: 8px;">
                     <!-- Logo -->
                         <?php
-                            $path = base_url('/img/astra-logo.png');
+                            $path = FCPATH . 'img/astra-logo.png';;
                             // dd($path);
                             $approved = FCPATH.'/img/approved-check.png';
                             $approved2 = FCPATH.'/img/approved-check-2.png';

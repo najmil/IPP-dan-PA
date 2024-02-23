@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card" style="overflow-x: auto;">
@@ -146,15 +146,21 @@
                                 <th class="text-center" rowspan=1 colspan=2>Status</th>
                             </tr>
                             <tr>
-                                <?php if (session()->get('kode_jabatan') == 8 && !in_array(session()->get('npk'), [3659, 3651])): ?>
+                                <?php if (session()->get('kode_jabatan') == 8): ?>
                                     <th class="text-center">Kasie</th>
                                     <th class="text-center">Kadept</th>
-                                <?php elseif (session()->get('kode_jabatan') == 4 || (session()->get('kode_jabatan') == 8 && in_array(session()->get('npk'), [3659, 3651]))): ?>
+                                <?php elseif (session()->get('kode_jabatan') == 4 && session()->get('id_department') != 27): ?>
                                     <th class="text-center">Kadept</th>
                                     <th class="text-center">Kadiv</th>
-                                <?php elseif (session()->get('kode_jabatan') == 3): ?>
+                                <?php elseif (session()->get('kode_jabatan') == 4 && session()->get('id_department') == 27): ?>
+                                    <th class="text-center">Kadept</th>
+                                    <th class="text-center">BoD</th>
+                                <?php elseif (session()->get('kode_jabatan') == 3 && session()->get('id_department') != 27): ?>
                                     <th class="text-center">Kadiv</th>
                                     <th class="text-center">BoD</th>
+                                <?php elseif (session()->get('kode_jabatan') == 3 && session()->get('id_department') == 27): ?>
+                                    <th class="text-center">BoD</th>
+                                    <th class="text-center">Presdir</th>
                                 <?php elseif (session()->get('kode_jabatan') == 2): ?>
                                     <th class="text-center">BoD</th>
                                     <th class="text-center">Presdir</th>
@@ -169,7 +175,7 @@
                                 <td class="text-center"><?= $p['periode']; ?> </td>
                                 <td class="text-center"> <?= $p['created_at']; ?> </td>
                                 <td class="text-center">
-                                    <?php if (intval($p['periode']) >= 2023): ?>
+                                    <?php if (intval($p['periode']) > 2023): ?>
                                         <a href="<?= base_url('ipp/detail/'.$p['id']) ?>" class="btn btn-primary btn-sm">Detail</a>
                                     <?php endif; ?>
                                     <input type="hidden" class="form-control input-sm text-center" id="nama" name="nama[]">
@@ -206,17 +212,17 @@
                                         }
                                     ?>
 
-                                    <?php if (intval($p['periode']) >= 2023): ?>
+                                    <?php if (intval($p['periode']) > 2023): ?>
                                         <a href="<?= base_url('ipp/viewLogChanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm">Log</a>
                                     <?php endif; ?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if (session()->get('kode_jabatan') == 8 && !in_array(session()->get('npk'), [3659, 3651])): ?>
+                                    <?php if (session()->get('kode_jabatan') == 8): ?>
                                         <span class="badge <?= $p['approval_kasie'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                             <?= $p['approval_kasie'] ? "Approved" : "Pending" ?>
                                         </span>
 
-                                    <?php elseif (session()->get('kode_jabatan') == 4 || (session()->get('kode_jabatan') == 8 && in_array(session()->get('npk'), [3659, 3651]))): ?>
+                                    <?php elseif (session()->get('kode_jabatan') == 4): ?>
                                         <span class="badge <?= $p['approval_kadept'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                             <?= $p['approval_kadept'] ? "Approved" : "Pending" ?>
                                         </span>
@@ -239,14 +245,26 @@
                                             <?= $p['approval_kadept'] ? "Approved" : "Pending" ?>
                                         </span>
 
-                                    <?php elseif (session()->get('kode_jabatan') == 4): ?>
+                                    <?php elseif (session()->get('kode_jabatan') == 4 && session()->get('id_department') != 27): ?>
                                         <span class="badge <?= $p['approval_kadiv'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                             <?= $p['approval_kadiv'] ? "Approved" : "Pending" ?>
                                         </span>
-                                
-                                    <?php elseif (session()->get('kode_jabatan') == 3): ?>
+
+                                    <!-- ISD -->
+                                    <?php elseif (session()->get('kode_jabatan') == 4 && session()->get('id_department') == 27): ?>
                                         <span class="badge <?= $p['approval_bod'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                             <?= $p['approval_bod'] ? "Approved" : "Pending" ?>
+                                        </span>
+                                
+                                    <?php elseif (session()->get('kode_jabatan') == 3 && session()->get('id_department') != 27): ?>
+                                        <span class="badge <?= $p['approval_bod'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                            <?= $p['approval_bod'] ? "Approved" : "Pending" ?>
+                                        </span>
+
+                                    <!-- ISD -->
+                                    <?php elseif (session()->get('kode_jabatan') == 3 && session()->get('id_department') == 27): ?>
+                                        <span class="badge <?= $p['approval_presdir'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                            <?= $p['approval_presdir'] ? "Approved" : "Pending" ?>
                                         </span>
 
                                     <?php elseif (session()->get('kode_jabatan') == 2): ?>
@@ -319,7 +337,7 @@
                             $('.gagal').hide();
                             $('.sukses').show();
                             $('.sukses').html($obj.sukses);
-                            // location.reload();
+                            location.reload();
                         }
                     },
                     error: function () {

@@ -203,7 +203,7 @@ class Ipp extends BaseController
             // $file = $this->request->getFile('file');
             // $fileData = file_get_contents($file->getTempName());
             $file = $this->request->getFile('ippFile');
-            var_dump($file).die();
+            // var_dump($file).die();
             $newName = 'IPP' . '_' . $periode . '_' . session()->get('nama');
             $file->move(WRITEPATH . 'uploads', $newName);
             $created_by = session()->get('npk');
@@ -975,9 +975,9 @@ class Ipp extends BaseController
         $mainData = $this->ippModel->find($id);
         $nama = $mainData['nama'];
         $npk = $mainData['created_by'];
-        $dompdf->setTitle('IPP PDF');
-
+        
         $dompdf = new Dompdf();
+        // $dompdf->setTitle('IPP PDF');
         $imagePath = Paths::$imagePath;
         $imageData = file_get_contents($imagePath);
         $base64Image = base64_encode($imageData);
