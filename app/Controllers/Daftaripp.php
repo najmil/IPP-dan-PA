@@ -42,6 +42,7 @@ class DaftarIpp extends BaseController
         $producteng = $this->ippModel->getDataByDepartment(28);
         $processeng = $this->ippModel->getDataByDepartment(26);
         $isd = $this->ippModel->getDataByDepartment(27);
+        // dd($isd);
         $qa = $this->ippModel->getDataByDepartment(25);
 
         $plantserv = $this->ippModel->getDataByDivision(4);
@@ -1645,50 +1646,50 @@ class DaftarIpp extends BaseController
     
         if ($data['is_submitted_ipp'] == 1) {
             $this->ippModel->set([
-                'is_submitted_ipp' => NULL,
-                'approval_bod'     => NULL,
-                'is_approved_bod'  => NULL,
-                'approval_presdir'     => NULL,
-                'is_approved_presdir'  => NULL,
-                'approval_kadiv'     => NULL,
-                'is_approved_kadiv'  => NULL,
-                'approval_kadept'     => NULL,
-                'is_approved_kadept'  => NULL,
-                'approval_kasie'     => NULL,
-                'is_approved_kasie'  => NULL,
-                'is_submitted_ipp'   => NULL
+                'is_submitted_ipp'      => 0,
+                'approval_bod'          => NULL,
+                'is_approved_bod'       => NULL,
+                'approval_presdir'      => NULL,
+                'is_approved_presdir'   => NULL,
+                'approval_kadiv'        => NULL,
+                'is_approved_kadiv'     => NULL,
+                'approval_kadept'       => NULL,
+                'is_approved_kadept'    => NULL,
+                'approval_kasie'        => NULL,
+                'is_approved_kasie'     => NULL,
+                'is_submitted_ipp'      => NULL
             ])->where(['id'=> $id])->update();
         }
         if ($data['is_submitted_ipp_mid'] == 1) {
             $this->ippModel->set([
-                'is_submitted_ipp_mid' => 0,
-                'approval_bod'     => 0,
-                'is_approved_bod'  => 0,
-                'approval_presdir'     => 0,
-                'is_approved_presdir'  => 0,
-                'approval_kadiv'     => 0,
-                'is_approved_kadiv'  => 0,
-                'approval_kadept'     => 0,
-                'is_approved_kadept'  => 0,
-                'approval_kasie'     => 0,
-                'is_approved_kasie'  => 0,
-                'is_submitted_ipp'   => 0
+                'is_submitted_ipp_mid'  => 0,
+                'approval_bod'          => NULL,
+                'is_approved_bod'       => NULL,
+                'approval_presdir'      => NULL,
+                'is_approved_presdir'   => NULL,
+                'approval_kadiv'        => NULL,
+                'is_approved_kadiv'     => NULL,
+                'approval_kadept'       => NULL,
+                'is_approved_kadept'    => NULL,
+                'approval_kasie'        => NULL,
+                'is_approved_kasie'     => NULL,
+                'is_submitted_ipp'      => NULL
             ])->where(['id'=> $id])->update();
         }
         if ($data['is_submitted_ipp_one'] == 1) {
             $this->ippModel->set([
-                'is_submitted_ipp_one' => 0,
-                'approval_bod'     => 0,
-                'is_approved_bod'  => 0,
-                'approval_presdir'     => 0,
-                'is_approved_presdir'  => 0,
-                'approval_kadiv'     => 0,
-                'is_approved_kadiv'  => 0,
-                'approval_kadept'     => 0,
-                'is_approved_kadept'  => 0,
-                'approval_kasie'     => 0,
-                'is_approved_kasie'  => 0,
-                'is_submitted_ipp'   => 0
+                'is_submitted_ipp_one'  => 0,
+                'approval_bod'          => NULL,
+                'is_approved_bod'       => NULL,
+                'approval_presdir'      => NULL,
+                'is_approved_presdir'   => NULL,
+                'approval_kadiv'        => NULL,
+                'is_approved_kadiv'     => NULL,
+                'approval_kadept'       => NULL,
+                'is_approved_kadept'    => NULL,
+                'approval_kasie'        => NULL,
+                'is_approved_kasie'     => NULL,
+                'is_submitted_ipp'      => NULL
             ])->where(['id'=> $id])->update();
         }
     
