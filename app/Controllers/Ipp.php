@@ -319,15 +319,7 @@ class Ipp extends BaseController
         $is_submitted_ipp_main = $mainData['is_submitted_ipp'];
         $is_submitted_ipp_mid_main = $mainData['is_submitted_ipp_mid'];
         $is_submitted_ipp_one_main = $mainData['is_submitted_ipp_one'];
-        $ippData = $this->isiModel->getIsi($id);
-        $is_submitted_ipp = null;
-        $is_submitted_ipp_mid = null;
-        $is_submitted_ipp_one = null;
-        if (!empty($ippData)) {
-            $is_submitted_ipp = $ippData[0]['is_submitted_ipp'];
-            $is_submitted_ipp_mid = $ippData[0]['is_submitted_ipp_mid'];
-            $is_submitted_ipp_one = $ippData[0]['is_submitted_ipp_one'];
-        }
+        $ippData = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id);
     
         $data = [
             'tittle'          => 'Individual Performance Planning',
@@ -335,10 +327,7 @@ class Ipp extends BaseController
             'id_main'         => $id,
             'created_by'      => $created_by,
             'nama'            => $nama,
-            'is_submitted_ipp'=> $is_submitted_ipp,
             'is_submitted_ipp_main'=> $is_submitted_ipp_main,
-            'is_submitted_ipp_mid'=> $is_submitted_ipp_mid,
-            'is_submitted_ipp_one'=> $is_submitted_ipp_one,
             'is_submitted_ipp_mid_main'=> $is_submitted_ipp_mid_main,
             'is_submitted_ipp_one_main'=> $is_submitted_ipp_one_main,
             'periode'         => $periode,
@@ -551,7 +540,7 @@ class Ipp extends BaseController
                     $logData = [
                         'action' => 'update',
                         'table_name' => 'isi_ipp',
-                        'record_id' => $id,
+                        'record_id' => $id_main,
                         'data_changes' => json_encode([
                             'old_data' => [
                                 'Program' => $oldData['program'],
@@ -769,7 +758,7 @@ class Ipp extends BaseController
                         $logData = [
                             'action' => 'update',
                             'table_name' => 'isi_ipp',
-                            'record_id' => $id,
+                            'record_id' => $id_main,
                             'data_changes' => json_encode([
                                 'old_data' => [
                                     'Program' => $oldData['program'],
@@ -804,7 +793,7 @@ class Ipp extends BaseController
                 $logData = [
                     'action' => 'Insert',
                     'table_name' => 'isi_ipp',
-                    'record_id' => $id,
+                    'record_id' => $id_main,
                     'data_changes' => json_encode([
                         'new_data' => [
                             'Program' => $program,
@@ -900,7 +889,7 @@ class Ipp extends BaseController
                 $logData = [
                     'action' => 'Delete',
                     'table_name' => 'isi_ipp',
-                    'record_id' => $id,
+                    'record_id' => $id_main,
                     'data_changes' => json_encode(['deleted_data' => $deletedRow]),
                     'by' => session()->get('nama')
                 ];
@@ -1030,4 +1019,29 @@ class Ipp extends BaseController
             return $this->response->setStatusCode(404)->setJSON(['error' => 'File not found']);
         }
     }
+
+    // Di dalam controller Anda
+    public function fungsi_simpan_urutan() {
+        // Terima data dari AJAX
+        $reorderedData = $this->request->getPost('reorderedData');
+        $id_main = $this->request->getPost('id_main');
+        $reorderedData = json_decode($reorderedData, true);
+        // var_dump($reorderedData, $id_main); die();
+
+        // Lakukan penyimpanan urutan baru ke database
+        foreach ($reorderedData as $data) {
+            $id = $data['id'];
+            $urutan = $data['newPosition'];
+
+            $this->isiModel->set([
+                'urutan' => $urutan
+            ])->where(['id' => $id, 'id_main' => $id_main])->update();
+            
+        }
+    
+        // Kirim respons ke AJAX (bisa berupa pesan sukses atau apa pun yang Anda perlukan)
+        echo json_encode(['status' => 'success', 'message' => 'Data urutan berhasil disimpan']);
+    }
+     
+
 }
