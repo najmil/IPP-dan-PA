@@ -31,7 +31,7 @@ class Ipp extends BaseController
         $this->midyearisi   = new MidyearModel();
         $this->strongweakmain   = new StrongWeakMainModel();    
         $this->procsummain   = new ProcsumMainModel();
-        $this->ippkategori   = new IppKategori();
+        // $this->ippkategori   = new IppKategori();
     }
 
     public function index(){
