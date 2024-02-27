@@ -1102,12 +1102,12 @@ class DaftarIpp extends BaseController
         $is_approved_before = false;
         $is_approved = false;
         if (session()->get('kode_jabatan') == 3) {
-            if ($mainData['kode_jabatan'] == 8 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] != 27)){
+            if ($mainData['kode_jabatan'] == 8){
                 $is_approved_before = $mainData['approval_kasie'];
-            } elseif ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27) {
+            } elseif ($mainData['kode_jabatan'] == 4) {
                 $is_approved_before = true;
+                // dd($mainData['id_department']);
             }
-            // dd($mainData['id_department']);
             $is_approved = empty($mainData['approval_kadept']);
         } 
         //untuk kadiv 
