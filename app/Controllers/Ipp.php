@@ -13,6 +13,7 @@ use App\Models\MidyearModel;
 use App\Models\LampauModel;
 use App\Models\StrongWeakMainModel;
 use App\Models\ProcsumMainModel;
+use App\Models\IppKategori;
 use Dompdf\Dompdf;
 use Config\Paths;
 
@@ -30,6 +31,7 @@ class Ipp extends BaseController
         $this->midyearisi   = new MidyearModel();
         $this->strongweakmain   = new StrongWeakMainModel();    
         $this->procsummain   = new ProcsumMainModel();
+        $this->ippkategori   = new IppKategori();
     }
 
     public function index(){
@@ -320,6 +322,8 @@ class Ipp extends BaseController
         $is_submitted_ipp_mid_main = $mainData['is_submitted_ipp_mid'];
         $is_submitted_ipp_one_main = $mainData['is_submitted_ipp_one'];
         $ippData = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id);
+        // $ippDataPolicy = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id, 1);
+        // $ippDataPeople = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id, 2);
     
         $data = [
             'tittle'          => 'Individual Performance Planning',
