@@ -324,7 +324,9 @@
                     { targets: [0], orderable: false }
                 ],
                 "searching": false,
-                "lengthChange": false
+                "lengthChange": false,
+                paging: false,
+                ordering: false
             });
 
             table.on('row-reorder', function (e, diff, edit) {
