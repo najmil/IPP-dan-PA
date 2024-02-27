@@ -258,10 +258,6 @@ class IppModel extends Model{
                         ->groupStart()
                             ->where('users.kode_jabatan', 2)
                             ->orWhere('users.kode_jabatan', 3)
-                            ->orGroupStart()
-                                ->where('main.kode_jabatan', 4)
-                                ->where('main.id_department', 27)
-                            ->groupEnd()
                         ->groupEnd()
                         ->groupStart()
                             ->where('main.id_division', 3)
@@ -270,11 +266,7 @@ class IppModel extends Model{
                         ->groupEnd()
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
-            $builder->where('users.kode_jabatan', 2)
-                    ->orGroupstart()
-                        ->where('main.kode_jabatan', 3)
-                        ->where('main.id_department', 27)
-                    ->groupEnd();
+            $builder->where('users.kode_jabatan', 2);
         } elseif ($kode_jabatan == 0 && ($npk == null || $npk == 0)) {
             // Untuk admin
         }
@@ -517,10 +509,6 @@ class IppModel extends Model{
                                 ->groupEnd()
                             ->groupEnd()
                         ->groupEnd()
-                        ->orGroupStart()
-                            ->where('main.kode_jabatan', 4)
-                            ->orWhere('main.id_department', 27)
-                        ->groupEnd()
                     ->groupEnd()
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
@@ -532,13 +520,7 @@ class IppModel extends Model{
                         ->orWhere('main.approval_bod IS NULL')
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
-            $builder->groupStart()
-                        ->where('users.kode_jabatan', 2)
-                        ->orGroupStart()
-                            ->where('users.kode_jabatan', 3)
-                            ->where('users.id_department', 27)
-                        ->groupEnd()
-                    ->groupEnd()
+            $builder->where('users.kode_jabatan', 2)
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
                         ->orWhere('main.is_submitted_ipp_mid', 1)
@@ -1073,7 +1055,6 @@ class IppModel extends Model{
                             ->where('main.kode_jabatan', 4)
                             ->where('main.id_department', 27)
                             ->where('main.approval_kadept', null)
-                            ->where('main.approval_bod', null)
                         ->groupEnd()
                     ->groupEnd()
                     // Approval kode jabatan 3
