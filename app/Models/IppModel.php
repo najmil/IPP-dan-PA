@@ -439,8 +439,8 @@ class IppModel extends Model{
                     ->where('main.id_department', $id_department);
         } elseif ($kode_jabatan == 4) {
             $builder->groupStart()
-                        ->where('users.kode_jabatan', 8)
-                        ->orWhere('users.kode_jabatan', 5)
+                        ->where('main.kode_jabatan', 8)
+                        ->orWhere('main.kode_jabatan', 5)
                     ->groupEnd()
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
