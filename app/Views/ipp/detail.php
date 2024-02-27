@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 ';
-                            } elseif($editIppOne && ($is_submittedmid == 1) && (!$is_submitted_ipp_main || $is_submitted_ipp_mid_main) && !$editIppMid && !$isWithinIPPeriode && ($isRevisiInIndex && strpos($periode, 'Rev. Mid Year') !== false) && $is_submitted_ipp_mid_main == 1 && ($is_submitted_ipp === 0)){
+                            } elseif($editIppOne && ($is_submittedmid == 1) && ((empty($is_submitted_ipp_main) || $is_submitted_ipp_main === 0) || $is_submitted_ipp_mid_main == true) && !$editIppMid && !$isWithinIPPeriode && ($isRevisiInIndex && strpos($periode, 'Rev. Mid Year') !== false) && $is_submitted_ipp_mid_main == 1 && (empty($is_submitted_ipp_main) || $is_submitted_ipp_main === 0)){
                                 echo'
                                 <div class="d-flex justify-content-md-end">
                                     <div class=mr-2 mb-2" style="clear: both">
@@ -117,7 +117,7 @@
                             // dd($isRevisiInIndex == true);
 
 
-                            if ($isRevisiInIndex && !$is_submitted_ipp_mid && strpos($periode, 'Rev. Mid Year') !== false){
+                            if ($isRevisiInIndex && (empty($is_submitted_ipp_mid_main) || $is_submitted_ipp_mid_main === 0) && strpos($periode, 'Rev. Mid Year') !== false){
                                 echo
                                 '<div class="d-flex justify-content-md-end">
                                     <div class=mr-2 mb-2" style="clear: both">
@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                                 ';
-                            } elseif($isRevisiInIndex && !$is_submitted_ipp_one && strpos($periode, 'Rev. One Year') !== false){
+                            } elseif($isRevisiInIndex && (empty($is_submitted_ipp_one_main) || $is_submitted_ipp_one_main === 0) && strpos($periode, 'Rev. One Year') !== false){
                                 echo
                                 '<div class="d-flex justify-content-md-end">
                                     <div class=mr-2 mb-2" style="clear: both">
@@ -180,9 +180,9 @@
                                             $isWithinIPPeriode = false;
                                         }
 
-                                        if (($isWithinIPPeriode && !$is_submitted_ipp) ||
-                                        ($editIppMid && !$is_submitted_ipp_mid && strpos($periode, 'Rev. Mid Year') !== false) ||
-                                        ($editIppOne && !$is_submitted_ipp_one && strpos($periode, 'Rev. One Year') !== false)) {
+                                        if (($isWithinIPPeriode && !$is_submitted_ipp_main) ||
+                                        ($editIppMid && (empty($is_submitted_ipp_mid_main) || $is_submitted_ipp_mid_main === 0) && strpos($periode, 'Rev. Mid Year') !== false) ||
+                                        ($editIppOne && (empty($is_submitted_ipp_one_main) || $is_submitted_ipp_one_main === 0) && strpos($periode, 'Rev. One Year') !== false)) {
                                             echo '
                                                 <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Aksi</th>
                                             ';
@@ -198,6 +198,7 @@
                                     <th style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 21%;">Mid Year</th>
                                     <th style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 21%;">One Year</th>
                                 </tr>
+                                
                             </thead>
                             <tbody>
                                 <?php
@@ -205,8 +206,12 @@
                                     foreach($ipp as $d):
                                         $nomor++;
                                 ?>
-                                <tr class="thisTable editable">
-                                    <td><?= $nomor; ?></td>
+                                
+                                <tr class="thisTable editable" data-id="<?= $d['id']; ?>">
+                                    <!-- <td class="handle" style="cursor: grab;">
+                                        <i class="fas fa-grip-vertical"></i>
+                                    </td> -->
+                                    <td class="nomor text-center" <?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ? '' : 'style="cursor: grab;"' ?> ><?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ? '' : '<i class="fas fa-grip-vertical"></i>  ' ?><?= $nomor; ?></td>
                                     <td class="program" data-id="<?= $d['id']; ?>">
                                         <?= $d['program']; ?>
                                         <input type="hidden" class="form-control input-sm text-center edit-mode" id="program" name="program[]" value="<?= $d['program']; ?>">
@@ -237,10 +242,10 @@
                                             $isWithinIPPeriode = false;
                                         }
 
-                                        // dd($isWithinIPPeriode && !$is_submitted_ipp);
-                                        if (($isWithinIPPeriode && !$is_submitted_ipp) ||
-                                        ($editIppMid && !$is_submitted_ipp_mid && (strpos($periode, 'Rev. Mid Year') !== false)) ||
-                                        ($editIppOne && !$is_submitted_ipp_one && (strpos($periode, 'Rev. One Year') !== false))) {
+                                        // dd($isWithinIPPeriode && empty($is_submitted_ipp_main));
+                                        if (($isWithinIPPeriode && empty($is_submitted_ipp_main)) ||
+                                        ($editIppMid && (empty($is_submitted_ipp_mid_main) || $is_submitted_ipp_mid_main === 0) && (strpos($periode, 'Rev. Mid Year') !== false)) ||
+                                        ($editIppOne && (empty($is_submitted_ipp_one) || $is_submitted_ipp_one_main === 0) && (strpos($periode, 'Rev. One Year') !== false))) {
                                             echo '
                                                 <td class="text-center"> <!-- Tombol -->
                                                     <button type="button" class="btn btn-warning btn-sm edit-btn" style="width: 40px; font-size: 12px; padding: 0;">Edit</button>
@@ -307,12 +312,42 @@
     }
 
     $(document).ready(function(){
+        var validateSubmit = <?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ?>;
+        // console.log('validateSubmit', validateSubmit);
+        if(validateSubmit != 1){
+            var table = $('#isidetail').DataTable({
+                rowReorder: {
+                    selector: 'td.nomor',
+                },
+                columnDefs: [
+                    { targets: [0], orderable: false }
+                ],
+                "searching": false,
+                "lengthChange": false
+            });
+
+            table.on('row-reorder', function (e, diff, edit) {
+                var reorderedData = [];
+                var id_main = <?= $id_main ?>;
+                for (var i = 0; i < diff.length; i++) {
+                    var row = diff[i].node; 
+                    reorderedData.push({
+                        id: $(row).find('.program').data('id'),
+                        newPosition: diff[i].newPosition
+                    });
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?= base_url('ipp/fungsi_simpan_urutan') ?>', 
+                    data: { reorderedData: JSON.stringify(reorderedData), id_main: id_main },
+                    success: function(response) {
+                    }
+                });
+            });
+        }
+
         isidetail(id);
-        // var idMain = row.find('id_main').text();
-        // console.log(idMain);
-        $('#isidetail tbody tr').each(function() {
-            console.log($(this).text());
-        });
 
         function removeErrorIndication() {
             $(this).removeClass('is-invalid');
