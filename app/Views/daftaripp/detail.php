@@ -161,15 +161,16 @@
                             <a href="<?= base_url('daftaripp/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
-                        // dd($isWithinIPPeriode && $is_approved_before);
+                        // dd(session()->get('npk') != 0 && $editIppMid && $is_approved_before && $is_approved);
                             if (session()->get('npk') != 0 && $isWithinIPPeriode && $is_approved_before && $is_approved) {
-                                foreach ($ippmain as $p){
+                                // foreach ($ippmain as $p){
+                                    // dd($p);
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {
-                                        if ($p['kode_jabatan'] == 8 || $p['kode_jabatan'] == 5) {
+                                        if ($mainData['kode_jabatan'] == 8 || $mainData['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
-                                            if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            if (session()->get('kode_jabatan') == 4 && empty($mainData['approval_kasie'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveKasie/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -179,17 +180,17 @@
                                 
                                     // Approval Kadept
                                     if (session()->get('kode_jabatan') == 3) {
-                                        if ($p['kode_jabatan'] == 8) {
-                                            if ($p['approval_kasie'] == 1 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 8) {
+                                            if ($mainData['approval_kasie'] == 1 && empty($mainData['approval_kadept'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
                                         }
 
-                                        if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
-                                            if (session()->get('kode_jabatan') == 3 && empty($p['approval_kadept'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])) {
+                                            if (empty($mainData['approval_kadept'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -249,7 +250,7 @@
                                         }
                                     }
                                     // The end of approval presdir
-                                }
+                                // }
                             } elseif (session()->get('npk') != 0 && $editIppMid && $is_approved_before && $is_approved) {
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
