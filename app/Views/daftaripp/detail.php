@@ -161,6 +161,7 @@
                             <a href="<?= base_url('daftaripp/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
+                        // dd($isWithinIPPeriode && $is_approved_before);
                             if (session()->get('npk') != 0 && $isWithinIPPeriode && $is_approved_before && $is_approved) {
                                 foreach ($ippmain as $p){
                                     // Approval Kasie
@@ -178,7 +179,7 @@
                                 
                                     // Approval Kadept
                                     if (session()->get('kode_jabatan') == 3) {
-                                        if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]) {
+                                        if ($p['kode_jabatan'] == 8) {
                                             if ($p['approval_kasie'] == 1 && empty($p['approval_kadept'])) {
                                                 echo '<a href="' . base_url("/daftaripp/approveKadept/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>

@@ -1099,15 +1099,18 @@ class DaftarIpp extends BaseController
             $nama = null;
         }
 
-        $is_approved_before = null;
-        $is_approved = null;
+        $is_approved_before = false;
+        $is_approved = false;
         if (session()->get('kode_jabatan') == 3) {
-            if($mainData['kode_jabatan'] == 8){
+            if ($mainData['kode_jabatan'] == 8 || ($mainData['kode_jabatan'] == 4&& $mainData['id_department'] != 27)){
                 $is_approved_before = $mainData['approval_kasie'];
+            } elseif ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27) {
+                $is_approved_before = true;
             }
+            // dd($mainData['id_department']);
             $is_approved = empty($mainData['approval_kadept']);
         } elseif (session()->get('kode_jabatan') == 2) {
-            if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
+            if(($mainData['kode_jabatan'] == 4 && $mainData['id_department'] != 27) || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
                 $is_approved_before = $mainData['approval_kadept'];
             }
             $is_approved = empty($mainData['approval_kadiv']);
