@@ -312,9 +312,10 @@
     }
 
     $(document).ready(function(){
-        var validateSubmit = <?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ?>;
-        // console.log('validateSubmit', validateSubmit);
-        if(validateSubmit != 1){
+        var validateSubmit = <?= ($is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true || $is_submitted_ipp_one_main == true) ? 'true' : 'false'; ?>;
+
+        console.log('validateSubmit', validateSubmit);
+        if(validateSubmit == false){
             var table = $('#isidetail').DataTable({
                 rowReorder: {
                     selector: 'td.nomor',
@@ -345,7 +346,7 @@
                     }
                 });
             });
-        }
+        } 
 
         isidetail(id);
 
