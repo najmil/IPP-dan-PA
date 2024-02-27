@@ -237,7 +237,7 @@
                                             $isWithinIPPeriode = false;
                                         }
 
-                                        // dd(strpos($periode, 'Rev. One Year') !== false);
+                                        // dd($isWithinIPPeriode && !$is_submitted_ipp);
                                         if (($isWithinIPPeriode && !$is_submitted_ipp) ||
                                         ($editIppMid && !$is_submitted_ipp_mid && (strpos($periode, 'Rev. Mid Year') !== false)) ||
                                         ($editIppOne && !$is_submitted_ipp_one && (strpos($periode, 'Rev. One Year') !== false))) {
