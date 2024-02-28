@@ -164,10 +164,19 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">No.</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;">
+                                        Kategori<br>
+                                        
+                                        <?php if ($idMainExists && $kategoriIsComplete == false): ?>
+                                            <button type="button" id="simpankategori" class="btn btn-primary btn-sm">
+                                                Simpan
+                                            </button>
+                                        <?php endif ?>
+                                    </th>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 21%;">Program/Activity</th>
                                     <th rowspan="1" style="border-bottom: hidden; text-align: center; vertical-align: middle; width: 10%;">Weight (%)</th>
                                     <th rowspan="1" colspan="2" style="border-bottom: hidden; text-align: center; vertical-align: middle;">Target</th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Due Date</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;" style="white-space: nowrap;">Due Date</th>
                                     <?php
                                         $periodeModel = new \App\Models\PeriodeModel();
                                         $periodeIPP = $periodeModel->getLatestIPPeriode();
@@ -212,6 +221,22 @@
                                         <i class="fas fa-grip-vertical"></i>
                                     </td> -->
                                     <td class="nomor text-center" <?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ? '' : 'style="cursor: grab;"' ?> ><?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ? '' : '<i class="fas fa-grip-vertical"></i>  ' ?><?= $nomor; ?></td>
+                                    <td class="kategori" data-id="<?= $d['id']; ?>">
+                                        <?php
+                                        if (empty($d['kategori'])) {
+                                            echo '
+                                                <select name="kategori[' . $d['id'] . ']" id="kategori_' . $d['id'] . '" class="form-control">
+                                                    <option value="" selected disabled>Select Category</option>';
+                                                foreach ($categories as $category):
+                                                    echo '<option value="' . $category['kategori'] . '">' . $category['kategori'] . '</option>';
+                                                endforeach;
+                                                echo '
+                                                </select>';
+                                        } elseif (isset($d['kategori'])){
+                                            echo $d['kategori'];
+                                        }
+                                        ?>
+                                    </td>
                                     <td class="program" data-id="<?= $d['id']; ?>">
                                         <?= $d['program']; ?>
                                         <input type="hidden" class="form-control input-sm text-center edit-mode" id="program" name="program[]" value="<?= $d['program']; ?>">
@@ -228,7 +253,7 @@
                                     <td class="oneyear" data-id="<?= $d['id']; ?>"><?= $d['oneyear']; ?></td>
                                     <td class="duedate" data-id="<?= $d['id']; ?>">
                                         <?= $d['duedate']; ?>
-                                        <input type="hidden" class="form-control input-sm text-center edit-mode" id="duedate" name="duedate[]" value="<?= $d['duedate']; ?>">
+                                        <input type="hidden" class="form-control input-sm text-center edit-mode" style="white-space: nowrap;" id="duedate" name="duedate[]" value="<?= $d['duedate']; ?>">
                                     </td>
                                     <?php
                                         $periodeModel = new \App\Models\PeriodeModel();
@@ -270,7 +295,14 @@
 
 
 <?= $this->section('script'); ?>
+
+<script type="text/javascript">
+// Menyiapkan data kategori dari PHP ke JavaScript
+var categories = <?php echo json_encode($categories); ?>;
+</script>
+
 <script>
+    
     var id = <?= $id_main ?>;
     var isDataSaved = false;
     var isSubmitted = false;
@@ -311,10 +343,140 @@
         });
     }
 
+    // Fungsi untuk menghitung total weight
+    function calculateTotalScore() {
+        var totalScore = 0;
+
+        $('.weight').each(function () {
+            var score = parseFloat($(this).text());
+            if (!isNaN(score)) {
+                totalScore += score;
+            }
+        });
+
+        // Tambah nilai weight ke dalam total
+        $('.weight-input').each(function () {
+            var score = parseFloat($(this).val());
+            if (!isNaN(score)) {
+                totalScore += score;
+            }
+        });
+
+        var totalWeightInput = totalScore.toFixed(2);
+        $('#total_weight').val(totalWeightInput);
+
+        if (totalWeightInput != 100.00) {
+            isDataSaved = false;
+            // Display an error message
+            // alert('Total Weight must be 100%, currently total is ' + totalWeightInput + '%. Please check again.');
+        } else {
+            // Set the flag to indicate data is saved
+            isDataSaved = true;
+        }
+
+        return true;
+    }
+
+    // Fungsi untuk menamah data ipp baru
+    function addRow(idMain) {
+        const nomorBaris = $('#isidetail tbody tr').length + 1;
+
+        // Membangun elemen select untuk kategori
+        let kategoriSelect = '<select name="kategori[]" class="form-control">' +
+            '<option value="" selected disabled>Select Category</option>';
+
+        // Loop melalui setiap kategori dan tambahkan sebagai option
+        categories.forEach(function(category) {
+            kategoriSelect += `<option value="${category.kategori}">${category.kategori}</option>`;
+        });
+        kategoriSelect += '</select>';
+
+        // Template string untuk baris baru dengan menggunakan backticks
+        const newRow = `<tr>
+            <td>${nomorBaris}</td>
+            <td class="kategori">
+                ${kategoriSelect}
+            </td>
+            <td>
+                <textarea type="text" class="form-control program-input"></textarea>
+                <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="${idMain}">
+            </td>
+            <td>
+                <input type="number" class="form-control weight-input edit-mode" min="5">
+            </td>
+            <td style="width: 400px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
+            <td style="width: 400px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
+            <td>
+                <input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>">
+            </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-warning btn-sm edit-btn" style="width: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>
+            </td>
+        </tr>`;
+
+        $('#saveAllButton').hide();
+        $('.save-btn').hide();
+        $('#simpan').show();
+        $('#isidetail tbody').append(newRow);
+
+        calculateTotalScore();
+        $('.edit-btn').hide();
+    }
+
     $(document).ready(function(){
+        $('#simpankategori').on('click', function() {
+            var isValid = true;
+
+            $('.thisTable').each(function() {
+                var row = $(this);
+                var kategoriSelect = row.find('.kategori select');
+
+                if (kategoriSelect.val() === null || kategoriSelect.val() === "") {
+                    isValid = false;
+                    kategoriSelect.addClass('is-invalid');
+                } else {
+                    kategoriSelect.removeClass('is-invalid');
+                }
+            });
+
+            if (isValid) {
+                var dataToSubmit = [];
+
+                $('.thisTable').each(function() {
+                    var row = $(this);
+                    var id = row.data('id');
+                    var selectedKategori = row.find('.kategori select').val();
+
+                    if (selectedKategori !== null && selectedKategori !== "") {
+                        dataToSubmit.push({ id: id, kategori: selectedKategori });
+                    }
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?= base_url('ipp/simpankategori'); ?>',
+                    data: { dataToSubmit: dataToSubmit },
+                    beforeSend: function(){
+                        $('#simpankategori').html('<i class="fas fa-spinner fa-spin"></i>');
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            // console.log(response.message);
+                            location.reload();
+                        } else {
+                            // console.error(response.message);
+                        }
+                    }
+                });
+            } else {
+                // console.error('Ada kategori yang masih kosong!');
+            }
+        });
+        
         var validateSubmit = <?= ($is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true || $is_submitted_ipp_one_main == true) ? 'true' : 'false'; ?>;
 
-        console.log('validateSubmit', validateSubmit);
+        // console.log('validateSubmit', validateSubmit);
         if(validateSubmit == false){
             var table = $('#isidetail').DataTable({
                 rowReorder: {
@@ -324,9 +486,7 @@
                     { targets: [0], orderable: false }
                 ],
                 "searching": false,
-                "lengthChange": false,
-                paging: false,
-                ordering: false
+                "lengthChange": false
             });
 
             table.on('row-reorder', function (e, diff, edit) {
@@ -371,6 +531,7 @@
             $('#isidetail tbody tr').each(function () {
                 var row = $(this).closest('tr');
                 var idMain = row.find('input[name="id_main[]"]').val();
+                var kategori = row.find('.kategori select').val();
                 var program = row.find('.program-input').val(); 
                 var weight = row.find('.weight-input').val();
                 var midyear = row.find('.midyear-input').val();
@@ -379,6 +540,10 @@
 
                 var hasError = false;
 
+                if (kategori === null || kategori === "") {
+                    row.find('.kategori select').addClass('is-invalid');
+                    hasError = true;
+                }
                 if (program === '') {
                     row.find('.program-input').addClass('is-invalid');
                     hasError = true;
@@ -404,7 +569,7 @@
                     isFormValid = false;
                     // Menambahkan pesan kesalahan di bawah input
                     row.find('td').each(function(){
-                        if($(this).find('input, textarea').hasClass('is-invalid')){
+                        if($(this).find('input, textarea, select').hasClass('is-invalid')){
                             $(this).append('<div class="invalid-feedback">Field cannot be empty.</div>');
                             $(this).find('.invalid-feedback').show();
                         }
@@ -412,6 +577,7 @@
                 } else {
                     dataToSave.push({
                         idMain: idMain,
+                        kategori: kategori,
                         program: program,
                         weight: weight,
                         midyear: midyear,
@@ -778,32 +944,6 @@
             calculateTotalScore();
         });
 
-        // Fungsi untuk menamah data ipp baru
-        function addRow() {
-            var idMain = <?= $id_main; ?>;
-            var nomorBaris = $('#isidetail tbody tr').length + 1;
-
-            var newRow = '<tr>' +
-                '<td>' + nomorBaris + '</td>' +
-                '<td><textarea type="text" class="form-control program-input"></textarea><input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="' + idMain + '"></td>' +
-                '<td><input type="number" class="form-control weight-input edit-mode"></td>' +
-                '<td style="width: 400px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>' +
-                '<td style="width: 400px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>' +
-                '<td><input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>"></td>' +
-                '<td class="text-center">' +
-                '<button type="button" class="btn btn-warning btn-sm edit-btn" style="idth: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>'+
-                '<button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>' +
-                '</td>' +
-                '</tr>';
-                
-            $('#saveAllButton').hide();
-            $('.save-btn').hide();
-            $('#simpan').show();
-            $('#isidetail tbody').append(newRow);
-            calculateTotalScore();
-            $('.edit-btn').hide();
-        }
-
         $(document).on('click', '#addRowButton', function() {
             var idMain = <?= $id_main; ?>; 
             addRow(idMain);
@@ -818,40 +958,6 @@
             calculateTotalScore();
         });
 
-        // Fungsi untuk menghitung total weight
-        function calculateTotalScore() {
-            var totalScore = 0;
-
-            $('.weight').each(function () {
-                var score = parseFloat($(this).text());
-                if (!isNaN(score)) {
-                    totalScore += score;
-                }
-            });
-
-            // Tambah nilai weight ke dalam total
-            $('.weight-input').each(function () {
-                var score = parseFloat($(this).val());
-                if (!isNaN(score)) {
-                    totalScore += score;
-                }
-            });
-
-            var totalWeightInput = totalScore.toFixed(2);
-            $('#total_weight').val(totalWeightInput);
-
-            if (totalWeightInput != 100.00) {
-                isDataSaved = false;
-                // Display an error message
-                // alert('Total Weight must be 100%, currently total is ' + totalWeightInput + '%. Please check again.');
-            } else {
-                // Set the flag to indicate data is saved
-                isDataSaved = true;
-            }
-
-            return true;
-        }
-
         // Fungsi untuk menambahkan event handler ke input baru
         function setupWeightInputHandlers() {
             $('.weight-input').on('input', function () {
@@ -862,15 +968,15 @@
         $(document).on('input', '.weight-input', function () {
             console.log('Input event triggered for weight-input');
             var weightValue = $(this).val();
-            console.log('Raw Weight Value:', weightValue);
+            // console.log('Raw Weight Value:', weightValue);
             
             weightValue = parseFloat(weightValue);
-            console.log('Parsed Weight Value:', weightValue);
+            // console.log('Parsed Weight Value:', weightValue);
 
             if (!isNaN(weightValue)) {
                 calculateTotalScore();
             } else {
-                console.log('Invalid weight value:', weightValue);
+                // console.log('Invalid weight value:', weightValue);
             }
         });
 
