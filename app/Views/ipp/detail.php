@@ -238,7 +238,7 @@
                                         ?>
                                     </td>
                                     <td class="program" data-id="<?= $d['id']; ?>">
-                                        <?= $d['program']; ?>
+                                        <p style="white-space:pre-wrap;"><?= $d['program']; ?></p>
                                         <input type="hidden" class="form-control input-sm text-center edit-mode" id="program" name="program[]" value="<?= $d['program']; ?>">
                                     </td>
                                     <td class="weight" data-id="<?= $d['id']; ?>">
@@ -247,10 +247,12 @@
                                         <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="<?= $id_main; ?>">
                                     </td>
                                     <td class="midyear" data-id="<?= $d['id']; ?>">
-                                        <?= $d['midyear']; ?>
+                                        <p style="white-space:pre-wrap;"><?= $d['midyear']; ?></p>
                                         <input type="hidden" class="form-control input-sm text-center edit-mode" id="midyear" name="midyear[]" value="<?= $d['midyear']; ?>">
                                     </td>
-                                    <td class="oneyear" data-id="<?= $d['id']; ?>"><?= $d['oneyear']; ?></td>
+                                    <td class="oneyear" data-id="<?= $d['id']; ?>">
+                                        <p style="white-space:pre-wrap;"><?= $d['oneyear']; ?></p>
+                                    </td>
                                     <td class="duedate" data-id="<?= $d['id']; ?>">
                                         <?= $d['duedate']; ?>
                                         <input type="hidden" class="form-control input-sm text-center edit-mode" style="white-space: nowrap;" id="duedate" name="duedate[]" value="<?= $d['duedate']; ?>">
