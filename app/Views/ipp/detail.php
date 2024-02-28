@@ -488,7 +488,7 @@ var categories = <?php echo json_encode($categories); ?>;
                 "searching": false,
                 "lengthChange": false,
                 paging: false,
-                ordering: false
+                // ordering: false
             });
 
             table.on('row-reorder', function (e, diff, edit) {
