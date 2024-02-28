@@ -68,16 +68,20 @@
                     <div class="text-left"style="margin-right: 8px;">
                     <!-- Logo -->
                         <?php
-                            $path = FCPATH . 'img/astra-logo.png';
-                            $approved = FCPATH.'/img/approved-check.png';
-                            $approved2 = FCPATH.'/img/approved-check-2.png';
+                            // $path = FCPATH . 'img/astra-logo.png';
+                            // $approved = FCPATH.'/img/approved-check.png';
+                            // $approved2 = FCPATH.'/img/approved-check-2.png';
+                            // $type = pathinfo($path, PATHINFO_EXTENSION);
+                            // $data = file_get_contents($path);
+                            // $approvedData = file_get_contents($approved);
+                            // $approvedData2 = file_get_contents($approved2);
+                            // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                            // $approved64 = 'data:image/' . $type . ';base64,' . base64_encode($approvedData);
+                            // $approved264 = 'data:image/' . $type . ';base64,' . base64_encode($approvedData2);
+                            $path = FCPATH.'/img/icon-cbi.png';
                             $type = pathinfo($path, PATHINFO_EXTENSION);
                             $data = file_get_contents($path);
-                            $approvedData = file_get_contents($approved);
-                            $approvedData2 = file_get_contents($approved2);
                             $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                            $approved64 = 'data:image/' . $type . ';base64,' . base64_encode($approvedData);
-                            $approved264 = 'data:image/' . $type . ';base64,' . base64_encode($approvedData2);
                         ?>
                         <img src="<?php echo $base64?>" style="width: 90%; margin: auto;">
                     </div>
