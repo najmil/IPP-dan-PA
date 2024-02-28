@@ -22,8 +22,8 @@
                                     <td><?= $nomor; ?></td>
                                     <td><?= $d['program']; ?></td>
                                     <td><?= $d['weight']; ?></td>
-                                    <td><?= $d['midyear']; ?></td>
-                                    <td><?= $d['oneyear']; ?></td>
+                                    <td><p style="white-space:pre-wrap;"><?= $d['midyear']; ?></p></td>
+                                    <td><p style="white-space:pre-wrap;"><?= $d['oneyear']; ?></p></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
