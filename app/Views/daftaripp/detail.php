@@ -206,17 +206,17 @@
 
                                     // Approval Kadiv
                                     if (session()->get('kode_jabatan') == 2) {
-                                        if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
-                                            if ($p['approval_kadept'] == 1 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])) {
+                                            if ($mainData['approval_kadept'] == 1 && empty($mainData['approval_kadiv'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
                                         }
 
-                                        if ($p['kode_jabatan'] == 3) {
-                                            if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 3) {
+                                            if (session()->get('kode_jabatan') == 2 && empty($mainData['approval_kadiv'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -226,17 +226,17 @@
 
                                     // Approval BoD
                                     if (session()->get('kode_jabatan') == 1) {
-                                        if ($p['kode_jabatan'] == 3) {
-                                            if ($p['approval_kadiv'] == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 3) {
+                                            if ($mainData['approval_kadiv'] == 1 && empty($mainData['approval_bod'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
                                         }
 
-                                        if ($p['kode_jabatan'] == 2) {
-                                            if (session()->get('kode_jabatan') == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 2) {
+                                            if (session()->get('kode_jabatan') == 1 && empty($mainData['approval_bod'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -246,10 +246,10 @@
 
                                     // Approval presdir
                                     if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-                                        if ($p['kode_jabatan'] == 2) {
+                                        if ($mainData['kode_jabatan'] == 2) {
                                             echo '<td class="text-center">';
-                                            if (empty($p['approval_presdir'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            if (empty($mainData['approval_presdir'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
