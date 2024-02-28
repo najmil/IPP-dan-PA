@@ -508,6 +508,7 @@ class Ipp extends BaseController
         if ($this->request->isAJAX()) {
             $id = $this->request->getVar('id');
             $id_main = $this->request->getVar('id_main');
+            $kategori = $this->request->getVar('kategori');
             $program = $this->request->getVar('program');
             $weight = $this->request->getVar('weight');
             $midyear = $this->request->getVar('midyear');
@@ -519,6 +520,7 @@ class Ipp extends BaseController
     
             if ($row) {
                 $oldData = [
+                    'kategori' => $row['kategori'],
                     'program' => $row['program'],
                     'weight'  => $row['weight'],
                     'midyear' => $row['midyear'],
@@ -527,6 +529,7 @@ class Ipp extends BaseController
                 ];
     
                 if (
+                    $oldData['kategori'] !== $kategori ||
                     $oldData['program'] !== $program ||
                     $oldData['weight'] !== $weight ||
                     $oldData['midyear'] !== $midyear ||
@@ -543,6 +546,7 @@ class Ipp extends BaseController
                 }
     
                 $this->isiModel->set([
+                    'kategori' => $kategori,
                     'program' => $program,
                     'weight' => $weight,
                     'midyear' => $midyear,
@@ -557,6 +561,7 @@ class Ipp extends BaseController
                         'record_id' => $id_main,
                         'data_changes' => json_encode([
                             'old_data' => [
+                                'Kategori' => $oldData['kategori'],
                                 'Program' => $oldData['program'],
                                 'Weight' => $oldData['weight'],
                                 'Mid Year' => $oldData['midyear'],
@@ -564,6 +569,7 @@ class Ipp extends BaseController
                                 'Due Date' => $oldData['duedate']
                             ],
                             'new_data' => [
+                                'Kategori' => $kategori,
                                 'Program' => $program,
                                 'Weight' => $weight,
                                 'Mid Year' => $midyear,

@@ -221,7 +221,7 @@
                                         <i class="fas fa-grip-vertical"></i>
                                     </td> -->
                                     <td class="nomor text-center" <?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ? '' : 'style="cursor: grab;"' ?> ><?= $is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true ||$is_submitted_ipp_one_main == true ? '' : '<i class="fas fa-grip-vertical"></i>  ' ?><?= $nomor; ?></td>
-                                    <td class="kategori" data-id="<?= $d['id']; ?>">
+                                    <td class="kategori" data-id="<?= $d['id']; ?>" data-selected="<?= $d['kategori']; ?>">
                                         <?php
                                         if (empty($d['kategori'])) {
                                             echo '
@@ -669,15 +669,26 @@ var categories = <?php echo json_encode($categories); ?>;
         // Fungsi yang dijalankan saat tombol "Edit" pada halaman detail diklik
         $('.edit-btn').click(function () {
             var row = $(this).closest('tr');
+            var selectedKategori = row.find('.kategori').data('selected'); // Simpan kategori yang sedang ditampilkan
             // console.log('Edit button clicked');
             var dueDateText = row.find('.duedate').text().trim();
-            console.log('Due Date Text:', dueDateText); 
+            console.log('selectedKategori:', selectedKategori); 
 
+            row.find('.kategori').html('<select name="kategori[]" class="form-control kategori-input"></select>');
             row.find('.program').html('<textarea class="form-control program-input" data-id-main="<?= $id_main; ?>">' + row.find('.program').text().trim() + '</textarea>');
             row.find('.weight').html('<input type="number" class="form-control weight-input"data-id-main="<?= $id_main; ?>" value="' + row.find('.weight').text().trim() + '">');
             row.find('.midyear').html('<textarea class="form-control midyear-input" data-id-main="<?= $id_main; ?>">' + row.find('.midyear').text().trim() + '</textarea>');
             row.find('.oneyear').html('<textarea class="form-control oneyear-input" data-id-main="<?= $id_main; ?>">' + row.find('.oneyear').text().trim() + '</textarea>');
             row.find('.duedate').html('<input type="date" class="form-control duedate-input" data-id-main="<?= $id_main; ?>" value="' + dueDateText + '" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?> ">');
+
+            var selectKategori = row.find('.kategori-input');
+            categories.forEach(category => {
+                var option = $('<option>', { value: category.kategori, text: category.kategori });
+                if (category.kategori === selectedKategori) {
+                    option.attr('selected', 'selected'); 
+                }
+                selectKategori.append(option);
+            });
 
             // Menambahkan atribut data-id dengan ID yang sesuai
             row.find('.save-btn').data('id', row.find('.program').data('id'));
@@ -702,6 +713,7 @@ var categories = <?php echo json_encode($categories); ?>;
             var midyear = row.find('.midyear-input').val();
             var oneyear = row.find('.oneyear-input').val();
             var duedate = row.find('.duedate-input').val();
+            var kategori = row.find('.kategori-input').val(); 
             var id_main = <?= $id_main; ?>;
             // console.log(id_main);
 
@@ -712,6 +724,7 @@ var categories = <?php echo json_encode($categories); ?>;
                 data: { 
                     id: id,
                     id_main: id_main,
+                    kategori: kategori,
                     program: program,
                     weight: weight,
                     midyear: midyear,
@@ -733,6 +746,7 @@ var categories = <?php echo json_encode($categories); ?>;
                         row.find('.midyear').html(row.find('.midyear-input').val());
                         row.find('.oneyear').html(row.find('.oneyear-input').val());
                         row.find('.duedate').html(row.find('.duedate-input').val());
+                        row.find('.kategori').html(kategori);
                         row.find('.edit-btn').show();
                         row.find('.btn-hapus').show(); 
                         row.find('.save-btn').hide(); 
