@@ -79,6 +79,8 @@
                         <table class="table table-sm  table-bordered mt-2" id="isidetail" style="width: 100%;">
                             <thead>
                                 <tr>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">No.</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;">Kategori</th>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">Program</th>
                                     <th rowspan="1"style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Weight (%)</th>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">Mid Year</th>
@@ -107,15 +109,19 @@
                                 </tr>
                                 <tr>
                                     <th style="border-top: hidden; border-bottom: 1px solid #dee2e6; border-top: hidden;">
-                                        <div style="width: 100px; align-items: center;">
+                                        <div style="width: 100px; align-items: center;" class="text-center">
                                             <input type="text" class="form-control input-sm text-center" id="total_weight" disabled="" style="width: 100%; border: none; padding: 0;">
                                         </div>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($daftaripp as $ipp): ?>
+                                <?php $nomor = 0; foreach ($daftaripp as $ipp): $nomor++;?>
                                     <tr data-id="<?= $ipp['id'] ?>">
+                                        <td class="nomor text-center"><?= $nomor; ?></td>
+                                        <td class="kategori" data-id="<?= $ipp['id']; ?>">
+                                            <?= $ipp['kategori']; ?>
+                                        </td>
                                         <td><span class="program" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['program']) ?></span></td>
                                         <td class="text-center"><span class="weight" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['weight']) ?></span></td>
                                         <td><span class="midyear" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['midyear']) ?></span></td>
@@ -161,7 +167,7 @@
                             <a href="<?= base_url('daftaripp/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
-                        // dd(session()->get('npk') != 0 && $editIppMid && $is_approved_before && $is_approved);
+                        // dd($is_approved_before);
                             if (session()->get('npk') != 0 && $isWithinIPPeriode && $is_approved_before && $is_approved) {
                                 // foreach ($ippmain as $p){
                                     // dd($p);
@@ -200,17 +206,17 @@
 
                                     // Approval Kadiv
                                     if (session()->get('kode_jabatan') == 2) {
-                                        if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == [3651, 3659])) {
-                                            if ($p['approval_kadept'] == 1 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])) {
+                                            if ($mainData['approval_kadept'] == 1 && empty($mainData['approval_kadiv'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
                                         }
 
-                                        if ($p['kode_jabatan'] == 3) {
-                                            if (session()->get('kode_jabatan') == 2 && empty($p['approval_kadiv'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 3) {
+                                            if (session()->get('kode_jabatan') == 2 && empty($mainData['approval_kadiv'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -220,17 +226,17 @@
 
                                     // Approval BoD
                                     if (session()->get('kode_jabatan') == 1) {
-                                        if ($p['kode_jabatan'] == 3) {
-                                            if ($p['approval_kadiv'] == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 3) {
+                                            if ($mainData['approval_kadiv'] == 1 && empty($mainData['approval_bod'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
                                         }
 
-                                        if ($p['kode_jabatan'] == 2) {
-                                            if (session()->get('kode_jabatan') == 1 && empty($p['approval_bod'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        if ($mainData['kode_jabatan'] == 2) {
+                                            if (session()->get('kode_jabatan') == 1 && empty($mainData['approval_bod'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -240,10 +246,10 @@
 
                                     // Approval presdir
                                     if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-                                        if ($p['kode_jabatan'] == 2) {
+                                        if ($mainData['kode_jabatan'] == 2) {
                                             echo '<td class="text-center">';
-                                            if (empty($p['approval_presdir'])) {
-                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$p['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            if (empty($mainData['approval_presdir'])) {
+                                                echo '<a href="' . base_url("/daftaripp/approvePresdir/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                             }
@@ -445,8 +451,14 @@
 <?= $this->endSection('content'); ?>
 
 <?= $this->section('script'); ?>
+
+<script type="text/javascript">
+var categories = <?php echo json_encode($categories); ?>;
+</script>
+
 <script>
     $(document).ready(function () {
+
         $(document).on('click', '.unsubmitted', function() {
             var id = $(this).data('id');
             console.log(id);
@@ -627,9 +639,14 @@
                 var midyear = row.find('.midyear-input').val();
                 var oneyear = row.find('.oneyear-input').val();
                 var duedate = row.find('.duedate-input').val();
+                var kategori = row.find('.kategori select').val();
 
                 var hasError = false;
 
+                if (kategori === null || kategori === "") {
+                    row.find('.kategori select').addClass('is-invalid');
+                    hasError = true;
+                }
                 if (program === '') {
                     row.find('.program-input').addClass('is-invalid');
                     hasError = true;
@@ -664,6 +681,7 @@
                     dataToSave.push({
                         idMain: idMain,
                         program: program,
+                        kategori: kategori,
                         weight: weight,
                         midyear: midyear,
                         oneyear: oneyear,
@@ -746,29 +764,47 @@
         });
 
         // Fungsi untuk menamah data ipp baru
-        function addRow() {
-            var idMain = <?= $id_main; ?>;
-            var nomorBaris = $('#isidetail tbody tr').length + 1;
+        function addRow(idMain) {
+            const nomorBaris = $('#isidetail tbody tr').length + 1;
 
-            var newRow = '<tr>' +
-                '<td><textarea type="text" class="form-control program-input"></textarea><input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="' + idMain + '"></td>' +
-                '<td><input type="number" class="form-control weight-input edit-mode"></td>' +
-                '<td style="width: 400px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>' +
-                '<td style="width: 400px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>' +
-                '<td><input type="date" class="form-control duedate-input edit-mode"></td>' +
-                '<td class="text-center">' +
-                '<button type="button" class="btn btn-warning btn-sm edit-btn" style="display: none; width: 42px; font-size: 12px; padding: 0;">Edit</button>'+
-                '<button type="button" class="btn btn-danger btn-sm remove_row" style="width: 42px; font-size: 12px; padding: 0;">Hapus</button>' +
-                '</td>' +
-                '</tr>';
-                
+            let kategoriSelect = '<select name="kategori[]" class="form-control">' +
+                '<option value="" selected disabled>Select Category</option>';
+
+            categories.forEach(function(category) {
+                kategoriSelect += `<option value="${category.kategori}">${category.kategori}</option>`;
+            });
+            kategoriSelect += '</select>';
+
+            const newRow = `<tr>
+                <td>${nomorBaris}</td>
+                <td class="kategori">
+                    ${kategoriSelect}
+                </td>
+                <td>
+                    <textarea type="text" class="form-control program-input"></textarea>
+                    <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="${idMain}">
+                </td>
+                <td>
+                    <input type="number" class="form-control weight-input edit-mode" min="5">
+                </td>
+                <td style="width: 400px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
+                <td style="width: 400px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
+                <td>
+                    <input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>">
+                </td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-warning btn-sm edit-btn" style="width: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>
+                </td>
+            </tr>`;
+
             $('#saveAllButton').hide();
             $('.save-btn').hide();
             $('#simpan').show();
             $('#isidetail tbody').append(newRow);
+
             calculateTotalScore();
             $('.edit-btn').hide();
-            // $('.btn-hapus').hide();
         }
 
         $(document).on('click', '#addRowButton', function() {

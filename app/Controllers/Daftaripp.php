@@ -10,6 +10,7 @@ use App\Models\ProcsumMainModel;
 use App\Models\StrongWeakMainModel;
 use App\Models\LogModel;
 use App\Models\PeriodeModel;
+use App\Models\IppKategori;
 use Dompdf\Dompdf;
 use Config\Paths;
 
@@ -23,7 +24,8 @@ class DaftarIpp extends BaseController
         $this->logModel  = new LogModel();  
         $this->strongweakmain= new StrongWeakMainModel();  
         $this->procsummain= new ProcsumMainModel();  
-        $this->periodeModel = new PeriodeModel();     
+        $this->periodeModel = new PeriodeModel();
+        $this->ippkategori   = new IppKategori(); 
     }
 
     public function index() {
@@ -1144,6 +1146,7 @@ class DaftarIpp extends BaseController
             'ippmain'    => $this->ippModel->getIppByDepartmentAndDivision(),
             'id_main'    => $id,
             'created_by' => $created_by,
+            'categories' => $this->ippkategori->findAll(),
             'nama'       => $nama,
             'is_approved'=> $is_approved,
             'mainData'   => $mainData,
@@ -1286,6 +1289,7 @@ class DaftarIpp extends BaseController
                 if (isset($data['program'])) {
                     $insertData = [
                         'id_main' => $data['idMain'],
+                        'kategori'=> $data['kategori'],
                         'program' => $data['program'],
                         'weight' => $data['weight'],
                         'midyear' => $data['midyear'],
@@ -1302,6 +1306,7 @@ class DaftarIpp extends BaseController
                         'data_changes' => json_encode([
                             'old_data' => null,
                             'new_data' => [
+                                'kategori'=> $data['kategori'],
                                 'program' => $data['program'],
                                 'weight' => $data['weight'],
                                 'midyear' => $data['midyear'],

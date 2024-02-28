@@ -31,7 +31,7 @@ class Ipp extends BaseController
         $this->midyearisi   = new MidyearModel();
         $this->strongweakmain   = new StrongWeakMainModel();    
         $this->procsummain   = new ProcsumMainModel();
-        // $this->ippkategori   = new IppKategori();
+        $this->ippkategori   = new IppKategori();
     }
 
     public function index(){
@@ -304,8 +304,10 @@ class Ipp extends BaseController
 
     // Method Detail
     public function detail($id) {
+        $idMainExists       = $this->isiModel->isIdMainExists($id);
         $mainData           = $this->ippModel->find($id);
-        // dd($mainData);
+        $kategoriIsComplete = true;
+        $ippData            = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id);
         $user               = session()->get('npk');
         $periode            = $mainData['periode'];
 
@@ -313,6 +315,13 @@ class Ipp extends BaseController
         if ($mainData) {
             $created_by = $mainData['created_by'];
             $nama       = $mainData['nama'];
+
+            foreach ($ippData as $d) {
+                if (empty($d['kategori'])) {
+                    $kategoriIsComplete = false;
+                    break; 
+                }
+            }
         } else {
             $created_by = null;
             $nama       = null;
@@ -321,16 +330,16 @@ class Ipp extends BaseController
         $is_submitted_ipp_main = $mainData['is_submitted_ipp'];
         $is_submitted_ipp_mid_main = $mainData['is_submitted_ipp_mid'];
         $is_submitted_ipp_one_main = $mainData['is_submitted_ipp_one'];
-        $ippData = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id);
-        // $ippDataPolicy = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id, 1);
-        // $ippDataPeople = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id, 2);
     
         $data = [
             'tittle'          => 'Individual Performance Planning',
             'ipp'             => $ippData,
+            'idMainExists'    => $idMainExists,
+            'kategoriIsComplete'=> $kategoriIsComplete,
             'id_main'         => $id,
             'created_by'      => $created_by,
             'nama'            => $nama,
+            'categories'      => $this->ippkategori->findAll(),
             'is_submitted_ipp_main'=> $is_submitted_ipp_main,
             'is_submitted_ipp_mid_main'=> $is_submitted_ipp_mid_main,
             'is_submitted_ipp_one_main'=> $is_submitted_ipp_one_main,
@@ -368,7 +377,6 @@ class Ipp extends BaseController
             'countPendingPlantSw' => $this->strongweakmain->getPendingPlantSw(),
             'countPendingEngSw' => $this->strongweakmain->getPendingEngSw(),
             'countPendingIsdSw' => $this->strongweakmain->getPendingIsdSw(),
-            // 'countPendingSOne' => $this->strongweakmain->getDataPendingOne(),
             
             'countPendingPMid' => $this->procsummain->getDataPendingMid(),
             'countPendingPlantSProc' => $this->procsummain->getPendingPlantSProc(),
@@ -451,6 +459,7 @@ class Ipp extends BaseController
                 if (isset($data['program'])) {
                     $insertData = [
                         'id_main' => $data['idMain'],
+                        'kategori' => $data['kategori'],
                         'program' => $data['program'],
                         'weight' => $data['weight'],
                         'midyear' => $data['midyear'],
@@ -466,6 +475,7 @@ class Ipp extends BaseController
                         'record_id' => $data['idMain'],
                         'data_changes' => json_encode([
                             'new_data' => [
+                                'kategori' => $data['kategori'],
                                 'Program' => $data['program'],
                                 'Wight' => $data['weight'],
                                 'Mid Year' => $data['midyear'],
@@ -1024,15 +1034,11 @@ class Ipp extends BaseController
         }
     }
 
-    // Di dalam controller Anda
     public function fungsi_simpan_urutan() {
-        // Terima data dari AJAX
         $reorderedData = $this->request->getPost('reorderedData');
         $id_main = $this->request->getPost('id_main');
         $reorderedData = json_decode($reorderedData, true);
-        // var_dump($reorderedData, $id_main); die();
 
-        // Lakukan penyimpanan urutan baru ke database
         foreach ($reorderedData as $data) {
             $id = $data['id'];
             $urutan = $data['newPosition'];
@@ -1043,9 +1049,26 @@ class Ipp extends BaseController
             
         }
     
-        // Kirim respons ke AJAX (bisa berupa pesan sukses atau apa pun yang Anda perlukan)
         echo json_encode(['status' => 'success', 'message' => 'Data urutan berhasil disimpan']);
     }
      
+    public function simpankategori() {
+        $dataToSubmit = $this->request->getPost('dataToSubmit');
+
+        if (!empty($dataToSubmit)) {
+            foreach ($dataToSubmit as $data) {
+                $id = $data['id'];
+                $kategori = $data['kategori'];
+
+                $this->isiModel->set(['kategori' => $kategori])->where(['id' => $id])->update();
+            }
+
+            $response = ['status' => 'success', 'message' => 'Categories saved successfully'];
+        } else {
+            $response = ['status' => 'error', 'message' => 'No data to submit'];
+        }
+
+        return $this->response->setJSON($response);
+    }
 
 }

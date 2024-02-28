@@ -27,5 +27,11 @@ class IsiModel extends Model{
         }
     }    
 
+    public function isIdMainExists($idMain) {
+        $result = $this->db->table('isi_ipp')->where('id_main', $idMain)->countAllResults();
+    
+        return $result > 0;
+    }    
+
 }
 ?>
