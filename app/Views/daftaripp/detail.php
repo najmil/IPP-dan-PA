@@ -75,12 +75,23 @@
                             ';
                         }
                     ?>
+                    <?php
+                        $kategoriFilled = true;
+
+                        // Check if 'kategori' is set for all elements
+                        foreach ($daftaripp as $ipp) {
+                            if (!isset($ipp['kategori'])) {
+                                $kategoriFilled = false;
+                                break;  // No need to continue checking if one element is missing 'kategori'
+                            }
+                        }
+                    ?>
                     <?php if (!empty($daftaripp)): ?>
                         <table class="table table-sm  table-bordered mt-2" id="isidetail" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">No.</th>
-                                    <?php if (isset($ipp['kategori'])): ?>
+                                    <?php if ($kategoriFilled): ?>
                                         <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;">Kategori</th>
                                     <?php endif ?>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">Program</th>
@@ -443,6 +454,10 @@
                                 echo'
                                     <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 70px; height: 30px;" title="Unsubmit IPP"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 ';
+                            } else {
+                                echo'
+                                    <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 150px; height: 30px;" title="Need Revision"><i class="fa fa-backward" aria-hidden="true"></i> Need Revision</button>
+                                ';
                             }
                         ?>
                     </div>
@@ -464,20 +479,30 @@ var categories = <?php echo json_encode($categories); ?>;
     $(document).ready(function () {
 
         $(document).on('click', '.unsubmitted', function() {
-            var id = $(this).data('id');
-            console.log(id);
+            var kode_jabatan = <?= session()->get('kode_jabatan') ?>;
+            var npk = <?= session()->get('npk') ?>;
+            var confirmed = confirm('Are you sure you want to unsubmit?');
 
-            $.ajax({
-                url: "<?= base_url("daftaripp/unsubmit") ?>",
-                type: "POST",
-                data: {id: id},
-                success: function (response) {
-                    var msg = response;
-                    if (msg.sukses) {
-                        location.reload();
+            if (confirmed) {
+                var id = $(this).data('id');
+                console.log(id);
+
+                $.ajax({
+                    url: "<?= base_url("daftaripp/unsubmit") ?>",
+                    type: "POST",
+                    data: {id: id},
+                    success: function (response) {
+                        var msg = response;
+                        if (msg.sukses) {
+                            if (kode_jabatan === 0 && npk === 0){
+                                location.reload();
+                            } else if (kode_jabatan !== 0){
+                                window.location.href = "<?= base_url("daftaripp/index") ?>";
+                            }
+                        }
                     }
-                }
-            });
+                });
+            }
         });
 
         $('.approve-button').click(function (event) {
