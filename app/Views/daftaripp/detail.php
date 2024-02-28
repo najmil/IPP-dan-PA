@@ -454,7 +454,7 @@
                                 echo'
                                     <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 70px; height: 30px;" title="Unsubmit IPP"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 ';
-                            } else {
+                            } elseif ($is_approved_before && $is_approved) {
                                 echo'
                                     <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 150px; height: 30px;" title="Need Revision"><i class="fa fa-backward" aria-hidden="true"></i> Need Revision</button>
                                 ';
