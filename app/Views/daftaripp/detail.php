@@ -80,7 +80,9 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">No.</th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;">Kategori</th>
+                                    <?php if (isset($ipp['kategori'])): ?>
+                                        <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;">Kategori</th>
+                                    <?php endif ?>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">Program</th>
                                     <th rowspan="1"style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Weight (%)</th>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">Mid Year</th>
@@ -119,9 +121,11 @@
                                 <?php $nomor = 0; foreach ($daftaripp as $ipp): $nomor++;?>
                                     <tr data-id="<?= $ipp['id'] ?>">
                                         <td class="nomor text-center"><?= $nomor; ?></td>
-                                        <td class="kategori" data-id="<?= $ipp['id']; ?>">
-                                            <?= $ipp['kategori']; ?>
-                                        </td>
+                                        <?php if (isset($ipp['kategori'])): ?>
+                                            <td class="kategori" data-id="<?= $ipp['id']; ?>">
+                                                <?= $ipp['kategori']; ?>
+                                            </td>
+                                        <?php endif ?>
                                         <td><span class="program" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['program']) ?></span></td>
                                         <td class="text-center"><span class="weight" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['weight']) ?></span></td>
                                         <td><span class="midyear" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['midyear']) ?></span></td>
