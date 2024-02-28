@@ -1623,11 +1623,13 @@ class DaftarIpp extends BaseController
         $mainData = $this->ippModel->find($id);
         $nama = $mainData['nama'];
         $npk = $mainData['created_by'];
-
-        $dompdf = new Dompdf();
-        $imagePath = Paths::$imagePath;
-        $imageData = file_get_contents($imagePath);
-        $base64Image = base64_encode($imageData);
+        
+        $options = new DompdfOptions();
+        new Dompdf(array('enable_remote' => true));
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $options->set('isFontSubsettingEnabled', true);
+        $dompdf = new Dompdf($options);
         // echo $base64Image;
         if (!empty($approval['date_submitted_ipp'])) {
             $date_submitted = $approval['date_submitted_ipp'];
@@ -1641,19 +1643,19 @@ class DaftarIpp extends BaseController
 
         $html = view('ipp/ipp_pdf', [
             'ipp'           => $ippDetail,
-            'userNama'      => $nama,
+            'userNama'      => $approval['nama'],
             'userNpk'       => $npk,
             'kode_jabatan'  => $mainData['kode_jabatan'],
             'approval'      => $approval,
             'date_submitted'=> $date_submitted,
-            'base64Image'   => $base64Image,
-            'id_main'       => $id,
+            'id_main'       => $id
         ]);
         
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('IPP '. session()->get('nama') .'.pdf', ['Attachment' => 0]);
+
+        $dompdf->stream('IPP '. session()->get('nama') .'.pdf', array('Attachment' => 0));
     }
 
     public function unsubmit() {
@@ -1661,20 +1663,51 @@ class DaftarIpp extends BaseController
         $data = $this->ippModel->find($id);
     
         if ($data['is_submitted_ipp'] == 1) {
-            $this->ippModel->set([
-                'is_submitted_ipp'      => 0,
-                'approval_bod'          => NULL,
-                'is_approved_bod'       => NULL,
-                'approval_presdir'      => NULL,
-                'is_approved_presdir'   => NULL,
-                'approval_kadiv'        => NULL,
-                'is_approved_kadiv'     => NULL,
-                'approval_kadept'       => NULL,
-                'is_approved_kadept'    => NULL,
-                'approval_kasie'        => NULL,
-                'is_approved_kasie'     => NULL,
-                'is_submitted_ipp'      => NULL
-            ])->where(['id'=> $id])->update();
+            if (session()->get('kode_jabatan') === 0 && session()->get('npk') === 0){
+                $this->ippModel->set([
+                    'approval_bod'          => NULL,
+                    'is_approved_bod'       => NULL,
+                    'approval_presdir'      => NULL,
+                    'is_approved_presdir'   => NULL,
+                    'approval_kadiv'        => NULL,
+                    'is_approved_kadiv'     => NULL,
+                    'approval_kadept'       => NULL,
+                    'is_approved_kadept'    => NULL,
+                    'approval_kasie'        => NULL,
+                    'is_approved_kasie'     => NULL,
+                    'is_submitted_ipp'      => NULL
+                ])->where(['id'=> $id])->update();
+            } elseif (session()->get('kode_jabatan') === 4){
+                $this->ippModel->set([
+                    'approval_kasie'        => NULL,
+                    'is_approved_kasie'     => NULL,
+                    'is_submitted_ipp'      => NULL
+                ])->where(['id'=> $id])->update();
+            } elseif (session()->get('kode_jabatan') === 3){
+                $this->ippModel->set([
+                    'approval_kadept'        => NULL,
+                    'is_approved_kadept'     => NULL,
+                    'is_submitted_ipp'      => NULL
+                ])->where(['id'=> $id])->update();
+            } elseif (session()->get('kode_jabatan') === 2){
+                $this->ippModel->set([
+                    'approval_kadiv'        => NULL,
+                    'is_approved_kadiv'     => NULL,
+                    'is_submitted_ipp'      => NULL
+                ])->where(['id'=> $id])->update();
+            } elseif (session()->get('kode_jabatan') === 1){
+                $this->ippModel->set([
+                    'approval_bod'        => NULL,
+                    'is_approved_bod'     => NULL,
+                    'is_submitted_ipp'      => NULL
+                ])->where(['id'=> $id])->update();
+            } elseif (session()->get('kode_jabatan') === 0 && session()->get('npk') !== 0){
+                $this->ippModel->set([
+                    'approval_presdir'        => NULL,
+                    'is_approved_presdir'     => NULL,
+                    'is_submitted_ipp'      => NULL
+                ])->where(['id'=> $id])->update();
+            }
         }
         if ($data['is_submitted_ipp_mid'] == 1) {
             $this->ippModel->set([

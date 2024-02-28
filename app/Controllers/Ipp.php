@@ -985,11 +985,12 @@ class Ipp extends BaseController
         $nama = $mainData['nama'];
         $npk = $mainData['created_by'];
         
-        $dompdf = new Dompdf();
-        // $dompdf->setTitle('IPP PDF');
-        $imagePath = Paths::$imagePath;
-        $imageData = file_get_contents($imagePath);
-        $base64Image = base64_encode($imageData);
+        $options = new DompdfOptions();
+        new Dompdf(array('enable_remote' => true));
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $options->set('isFontSubsettingEnabled', true);
+        $dompdf = new Dompdf($options);
         // echo $base64Image;
         if (!empty($approval['date_submitted_ipp'])) {
             $date_submitted = $approval['date_submitted_ipp'];
@@ -1008,14 +1009,14 @@ class Ipp extends BaseController
             'kode_jabatan'  => $mainData['kode_jabatan'],
             'approval'      => $approval,
             'date_submitted'=> $date_submitted,
-            'base64Image'   => $base64Image,
             'id_main'       => $id
         ]);
         
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('IPP '. session()->get('nama') .'.pdf', ['Attachment' => 0]);
+
+        $dompdf->stream('IPP '. session()->get('nama') .'.pdf', array('Attachment' => 0));
     }
 
     public function viewPdf($id) {
