@@ -1289,6 +1289,7 @@ class DaftarIpp extends BaseController
                 if (isset($data['program'])) {
                     $insertData = [
                         'id_main' => $data['idMain'],
+                        'kategori'=> $data['kategori'],
                         'program' => $data['program'],
                         'weight' => $data['weight'],
                         'midyear' => $data['midyear'],
@@ -1305,6 +1306,7 @@ class DaftarIpp extends BaseController
                         'data_changes' => json_encode([
                             'old_data' => null,
                             'new_data' => [
+                                'kategori'=> $data['kategori'],
                                 'program' => $data['program'],
                                 'weight' => $data['weight'],
                                 'midyear' => $data['midyear'],
