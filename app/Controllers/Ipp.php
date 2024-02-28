@@ -15,6 +15,7 @@ use App\Models\StrongWeakMainModel;
 use App\Models\ProcsumMainModel;
 use App\Models\IppKategori;
 use Dompdf\Dompdf;
+use Dompdf\Options as DompdfOptions;
 use Config\Paths;
 
 class Ipp extends BaseController

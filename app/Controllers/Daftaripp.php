@@ -12,6 +12,7 @@ use App\Models\LogModel;
 use App\Models\PeriodeModel;
 use App\Models\IppKategori;
 use Dompdf\Dompdf;
+use Dompdf\Options as DompdfOptions;
 use Config\Paths;
 
 class DaftarIpp extends BaseController
