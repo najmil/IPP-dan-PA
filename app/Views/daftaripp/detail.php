@@ -547,6 +547,7 @@ var categories = <?php echo json_encode($categories); ?>;
                 },
                 success: function(response) {
                     $('.approve-button').hide();
+                    $('.unsubmitted').hide();
                     // approvalStatus.show(); 
                     // row.hide();
                     location.reload();
