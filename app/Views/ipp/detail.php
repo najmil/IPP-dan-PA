@@ -577,7 +577,17 @@ var categories = <?php echo json_encode($categories); ?>;
             setTimeout(function() {
                 table.columns.adjust().draw();
             }, 0); 
-        } 
+        } else {
+            var table = $('#isidetail').DataTable({
+                "searching": false,
+                "lengthChange": false,
+                paging: false,
+                "scrollX": true,
+                "scrollCollapse": true,
+                "scrollY": '500px',
+                autoWidth: true
+            });
+        }
 
         isidetail(id);
 
