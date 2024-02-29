@@ -1143,7 +1143,7 @@ class DaftarIpp extends BaseController
     
         $data = [
             'tittle'     => 'Detail IPP Karyawan',
-            'daftaripp'  => $this->isiModel->getIsi($id),
+            'daftaripp'  => $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id),
             'ippmain'    => $this->ippModel->getIppByDepartmentAndDivision(),
             'id_main'    => $id,
             'created_by' => $created_by,

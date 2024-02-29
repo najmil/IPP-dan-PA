@@ -1017,7 +1017,7 @@ class Ipp extends BaseController
         ]);
         
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
 
         $dompdf->stream('IPP '. session()->get('nama') .'.pdf', array('Attachment' => 0));

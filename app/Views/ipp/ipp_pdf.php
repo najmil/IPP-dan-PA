@@ -33,7 +33,7 @@
             padding: 0;
         }
 
-        .kop-surat .info-table{
+        .kop-surat .info-table {
             border: 1px solid black;
             font-size: 10px;
             text-align: left;
@@ -54,6 +54,22 @@
         .table-colapse {
             border: 1px solid black;
             border-collapse: collapse;
+        }
+
+        /* CSS untuk format cetak (print) */
+        @media print {
+            .kop-surat {
+                width: 100%;
+            }
+
+            .table-colapse {
+                width: 100%;
+            }
+
+            /* Tambahkan properti untuk orientasi landscape */
+            @page {
+                size: landscape;
+            }
         }
     </style>
 
