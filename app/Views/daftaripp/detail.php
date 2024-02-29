@@ -195,7 +195,7 @@
                                     // dd($p);
                                     // Approval Kasie
                                     if (session()->get('kode_jabatan') == 4) {
-                                        if ($mainData['kode_jabatan'] == 8 || $mainData['kode_jabatan'] == 5) {
+                                        if (($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != 4276) || $mainData['kode_jabatan'] == 5) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($mainData['approval_kasie'])) {
                                                 echo '<a href="' . base_url("/daftaripp/approveKasie/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
@@ -208,7 +208,7 @@
                                 
                                     // Approval Kadept
                                     if (session()->get('kode_jabatan') == 3) {
-                                        if ($mainData['kode_jabatan'] == 8) {
+                                        if ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != 4276 ) {
                                             if ($mainData['approval_kasie'] == 1 && empty($mainData['approval_kadept'])) {
                                                 echo '<a href="' . base_url("/daftaripp/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
@@ -216,7 +216,7 @@
                                             }
                                         }
 
-                                        if ($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])) {
+                                        if ($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])|| ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == 4276)) {
                                             if (empty($mainData['approval_kadept'])) {
                                                 echo '<a href="' . base_url("/daftaripp/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>

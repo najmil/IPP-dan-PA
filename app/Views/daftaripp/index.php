@@ -267,7 +267,7 @@
                                         <!-- yang diapprove oleh kode_jabatan == 4 (kasie) -->
                                         <?php if (session()->get('kode_jabatan') == 4): ?>
                                             <?php $disableDetail = true; ?>
-                                            <?php if ($p['created_by'] != [3651, 3659]): ?>
+                                            <?php if ($p['created_by'] != 4276): ?>
                                                 <td class="text-center" style="white-space: nowrap;">
                                                     <?php if (empty($p['approval_kasie'])): ?>
                                                         <?php if (!empty($p['approval_date_kasie'])): ?>
@@ -300,7 +300,7 @@
                                         <?php if (session()->get('kode_jabatan') == 3): ?>
                                             <!-- Kasie -->
                                             <td class="text-center" style="white-space: nowrap;">
-                                                <?php if ($p['kode_jabatan'] == 8): ?>
+                                                <?php if ($p['kode_jabatan'] == 8 && $p['created_by'] != 4276): ?>
                                                     <?php if ($p['approval_kasie'] == 1): ?>
                                                         <?php $disableDetail = true; ?>
                                                         <span class="badge badge-primary btn-sm">Approved</span>
@@ -313,7 +313,7 @@
                                             </td>
                                             <!-- Kadept -->
                                             <td class="text-center" style="white-space: nowrap;">
-                                                <?php if ($p['kode_jabatan'] == 8): ?>
+                                                <?php if ($p['kode_jabatan'] == 8 && $p['created_by'] != 4276): ?>
                                                     <?php if ($p['approval_kasie'] == 1 && empty($p['approval_kadept'])): ?>
                                                         <?php if(isset($p['approval_date_kadept'])): ?>
                                                             <div class="text-muted" style="font-size: 8px;">approved at: <?= $p['approval_date_kadept']; ?></div>
@@ -330,7 +330,7 @@
                                                         </span>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
-                                                <?php if ($p['kode_jabatan'] == 4): ?>
+                                                <?php if ($p['kode_jabatan'] == 4 || ($p['kode_jabatan'] == 8 && $p['created_by'] == 4276)): ?>
                                                     <?php $disableDetail = true; ?>
                                                     <?php if (session()->get('kode_jabatan') == 3 && empty($p['approval_kadept'])): ?>
                                                         <?php if (!empty($p['approval_date_kadept'])): ?>
@@ -361,7 +361,7 @@
                                             </td>
                                             <!-- Kadiv -->
                                             <td class="text-center" style="white-space: nowrap;">
-                                                <?php if (($p['kode_jabatan'] == 4 && $p['id_department'] != 27) || ($p['created_by'] == [3651, 3659])): ?>
+                                                <?php if (($p['kode_jabatan'] == 4 && $p['id_department'] != 27) || ($p['created_by'] == [3651, 3659]) || ($p['kode_jabatan'] == 8  && $p['created_by'] == 4276)): ?>
                                                     <?php if ($p['approval_kadiv'] == 1): ?>
                                                         <span class="badge badge-primary btn-sm">Approved</span>
                                                     <?php else: ?>
