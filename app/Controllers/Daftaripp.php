@@ -1157,6 +1157,7 @@ class DaftarIpp extends BaseController
             'mainData'   => $mainData,
             'is_approved_before'=> $is_approved_before,
             'periode'    => $periode,
+            'periodeIPPNull' => $this->periodeModel->getLatestIPPeriodeNull(),
             'countPending' => $this->ippModel->getDataPending(),
             'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
             'countPendingAdm' => $this->ippModel->getPendingAdm(),
