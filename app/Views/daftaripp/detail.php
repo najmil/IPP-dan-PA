@@ -867,7 +867,6 @@ var categories = <?php echo json_encode($categories); ?>;
                     <input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>" max="<?= date('Y') ?>-12-31">
                 </td>
                 <td class="text-center" style="width: 5%;">
-                    <button type="button" class="btn btn-warning btn-sm edit-btn" style="width: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>
                     <button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>
                 </td>
             </tr>`;
@@ -876,66 +875,6 @@ var categories = <?php echo json_encode($categories); ?>;
             $('.save-btn').hide();
             $('#simpan').show();
             $('#isidetail tbody').append(newRow);
-
-            table.rowReorder.disable(); 
-            table.destroy();
-
-            initializeDataTable();
-
-            function initializeDataTable() {
-                table = $('#isidetail').DataTable({
-                    rowReorder: {
-                        selector: 'td.nomor',
-                    },
-                    columnDefs: [
-                        { targets: [0], orderable: false }
-                    ],
-                    "searching": false,
-                    "lengthChange": false,
-                    paging: false,
-                    "scrollX": true,
-                    "scrollY": '500px',
-                    "scrollCollapse": true,
-                    autoWidth: true
-                });
-
-                // Menyimpan lebar kolom saat inisialisasi
-                var initialColumnWidths = [];
-                table.columns().every(function() {
-                    initialColumnWidths.push(this.width());
-                });
-
-                table.on('row-reorder', function (e, diff, edit) {
-                    var reorderedData = [];
-                    var id_main = <?= $id_main ?>;
-                    for (var i = 0; i < diff.length; i++) {
-                        var row = diff[i].node; 
-                        reorderedData.push({
-                            id: $(row).find('.program').data('id'),
-                            newPosition: diff[i].newPosition
-                        });
-                    }
-
-                    $.ajax({
-                        type: 'POST',
-                        url: '<?= base_url('ipp/fungsi_simpan_urutan') ?>', 
-                        data: { reorderedData: JSON.stringify(reorderedData), id_main: id_main },
-                        success: function(response) {
-                        }
-                    });
-                });
-
-                // Memulihkan lebar kolom saat setiap kali tabel di-render
-                table.on('draw', function() {
-                    for (var i = 0; i < initialColumnWidths.length; i++) {
-                        table.column(i).width(initialColumnWidths[i]);
-                    }
-                });
-
-                setTimeout(function() {
-                    table.columns.adjust().draw();
-                }, 0);
-            }
 
             calculateTotalScore();
             $('.edit-btn').hide();

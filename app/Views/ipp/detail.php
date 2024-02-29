@@ -164,7 +164,7 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">No.</th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 8%;">
                                         Kategori<br>
                                         
                                         <?php if ($idMainExists && $kategoriIsComplete == false): ?>
@@ -173,10 +173,10 @@
                                             </button>
                                         <?php endif ?>
                                     </th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 20%;">Program/Activity</th>
-                                    <th rowspan="1" style="border-bottom: hidden; text-align: center; vertical-align: middle; width: 10%;">Weight (%)</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 19%;">Program/Activity</th>
+                                    <th rowspan="1" style="border-bottom: hidden; text-align: center; vertical-align: middle; width: 7%;">Weight (%)</th>
                                     <th rowspan="1" colspan="2" style="border-bottom: hidden; text-align: center; vertical-align: middle;">Target</th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;" style="white-space: nowrap;">Due Date</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 18%;" style="white-space: nowrap;">Due Date</th>
                                     <?php
                                         $periodeModel = new \App\Models\PeriodeModel();
                                         $periodeIPP = $periodeModel->getLatestIPPeriode();
@@ -204,8 +204,8 @@
                                             <input type="text" class="form-control input-sm text-center" id="total_weight" disabled="" style="border: none; padding: 0;">
                                         </div>
                                     </th>
-                                    <th style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 20%;">Mid Year</th>
-                                    <th style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 20%;">One Year</th>
+                                    <th style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 19%;">Mid Year</th>
+                                    <th style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 19%;">One Year</th>
                                 </tr>
                                 
                             </thead>
@@ -392,24 +392,23 @@ var categories = <?php echo json_encode($categories); ?>;
         kategoriSelect += '</select>';
 
         const newRow = `<tr>
-            <td style="width: 5px;">${nomorBaris}</td>
-            <td class="kategori" style="width: 25px">
+            <td style="width: 6%;" class="text-center">${nomorBaris}</td>
+            <td class="kategori" style="width: 11%">
                 ${kategoriSelect}
             </td>
-            <td style="width: 40px;">
+            <td style="width: 18%;">
                 <textarea type="text" class="form-control program-input"></textarea>
                 <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="${idMain}">
             </td>
-            <td style="width: 15px;">
+            <td style="width: 10%;">
                 <input type="number" class="form-control weight-input edit-mode" min="5">
             </td>
-            <td style="width: 40px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
-            <td style="width: 40px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
-            <td style="width: 15px;">
+            <td style="width: 18%;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
+            <td style="width: 18%;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
+            <td style="width: 15%;">
                 <input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>" max="<?= date('Y') ?>-12-31">
             </td>
-            <td class="text-center" style="width: 10px;">
-                <button type="button" class="btn btn-warning btn-sm edit-btn" style="width: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>
+            <td class="text-center" style="width: 5%;">
                 <button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>
             </td>
         </tr>`;
@@ -419,66 +418,6 @@ var categories = <?php echo json_encode($categories); ?>;
         $('#simpan').show();
 
         $('#isidetail tbody').append(newRow);
-
-        table.rowReorder.disable(); 
-        table.destroy();
-
-        initializeDataTable();
-
-        function initializeDataTable() {
-            table = $('#isidetail').DataTable({
-                rowReorder: {
-                    selector: 'td.nomor',
-                },
-                columnDefs: [
-                    { targets: [0], orderable: false }
-                ],
-                "searching": false,
-                "lengthChange": false,
-                paging: false,
-                "scrollX": true,
-                "scrollY": '500px',
-                "scrollCollapse": true,
-                autoWidth: true
-            });
-
-            // Menyimpan lebar kolom saat inisialisasi
-            var initialColumnWidths = [];
-            table.columns().every(function() {
-                initialColumnWidths.push(this.width());
-            });
-
-            table.on('row-reorder', function (e, diff, edit) {
-                var reorderedData = [];
-                var id_main = <?= $id_main ?>;
-                for (var i = 0; i < diff.length; i++) {
-                    var row = diff[i].node; 
-                    reorderedData.push({
-                        id: $(row).find('.program').data('id'),
-                        newPosition: diff[i].newPosition
-                    });
-                }
-
-                $.ajax({
-                    type: 'POST',
-                    url: '<?= base_url('ipp/fungsi_simpan_urutan') ?>', 
-                    data: { reorderedData: JSON.stringify(reorderedData), id_main: id_main },
-                    success: function(response) {
-                    }
-                });
-            });
-
-            // Memulihkan lebar kolom saat setiap kali tabel di-render
-            table.on('draw', function() {
-                for (var i = 0; i < initialColumnWidths.length; i++) {
-                    table.column(i).width(initialColumnWidths[i]);
-                }
-            });
-
-            setTimeout(function() {
-                table.columns.adjust().draw();
-            }, 0);
-        }
 
         calculateTotalScore();
         $('.edit-btn').hide();
