@@ -278,7 +278,7 @@ class IppModel extends Model{
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
                                 ->select('main.*')
-                                ->join('users', 'users.npk = main.created_by', 'left')
+                                // ->join('users', 'users.npk = main.created_by', 'left')
                                 ->whereIn('main.id_department', $iddepartment)
                                 ->groupStart()
                                     ->where('main.is_submitted_ipp', 1)
@@ -344,8 +344,8 @@ class IppModel extends Model{
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
-                ->whereIn('users.id_division', $iddivision)
+                // ->join('users', 'users.npk = main.created_by', 'left')
+                // ->whereIn('users.id_division', $iddivision)
                 ->whereIn('main.id_division', $iddivision)
                 ->groupStart()
                     ->groupStart()
