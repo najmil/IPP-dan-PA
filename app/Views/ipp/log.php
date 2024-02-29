@@ -10,7 +10,7 @@
                     <h3 class="mb-3 text-center">Log Perubahan IPP</h3>
 
                     <!-- Tampilkan log perubahan dalam tabel -->
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="tableipp" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">Tanggal Perubahan</th>
@@ -99,5 +99,19 @@
 <?= $this->endSection('content'); ?>
 
 <?= $this->section('script'); ?>
+<script>
+    $(document).ready(function () {
+        var table = $('#tableipp').DataTable({
+            "orderable": false,
+            "searching": false,
+            "lengthChange": false,
+            paging: false,
+            "scrollX": true,
+            "scrollCollapse": true,
+            "scrollY": '500px',
+            autoWidth: true
+        });
+    })
+</script>
 <!-- Tambahkan script JavaScript jika diperlukan -->
 <?= $this->endSection('script'); ?>
