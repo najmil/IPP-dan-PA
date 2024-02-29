@@ -15,10 +15,7 @@ class Home extends BaseController
 
     public function index()
     {
-        // dd(session()->get('kode_jabatan'));
         $npk = session()->get('npk');
-        // dd($npk);
-        // dd(session()->get('kode_jabatan'));
         $data = [
             'tittle' => 'Portal IPP dan PA',
             'countPending' => $this->ippModel->getDataPending(),
@@ -62,6 +59,7 @@ class Home extends BaseController
             'countPendingEngProc' => $this->procsummain->getPendingEngProc(),
             'countPendingIsdProc' => $this->procsummain->getPendingIsdProc(),
         ];
+
         return view('layout/template', $data);
     }
 

@@ -87,18 +87,18 @@
                         }
                     ?>
                     <?php if (!empty($daftaripp)): ?>
-                        <table class="table table-sm  table-bordered mt-2" id="isidetail" style="width: 100%;">
+                        <table class="table table-sm table-bordered mt-2" id="isidetail" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">No.</th>
                                     <?php if ($kategoriFilled): ?>
-                                        <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;">Kategori</th>
+                                        <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Kategori</th>
                                     <?php endif ?>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">Program</th>
-                                    <th rowspan="1"style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Weight (%)</th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">Mid Year</th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 22%;">One Year</th>
-                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Due Date</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 20%;">Program/Activity</th>
+                                    <th rowspan="1"style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">Weight (%)</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 20%;">Mid Year</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 20%;">One Year</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 15%;">Due Date</th>
                                     <?php
                                         $periodeModel = new \App\Models\PeriodeModel();
                                         $periodeIPP = $periodeModel->getLatestIPPeriode();
@@ -115,14 +115,14 @@
                                         ($editIppMid && $is_approved && $is_approved_before) ||
                                         ($editIppOne && $is_approved && $is_approved_before)) {
                                             echo '
-                                                <th rowspan="2" class="aksi" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Aksi</th>
+                                                <th rowspan="2" class="aksi" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 5%;">Aksi</th>
                                             ';
                                         }
                                     ?>
                                 </tr>
                                 <tr>
                                     <th style="border-top: hidden; border-bottom: 1px solid #dee2e6; border-top: hidden;">
-                                        <div style="width: 100px; align-items: center;" class="text-center">
+                                        <div style="width: 100px; align-items: center;">
                                             <input type="text" class="form-control input-sm text-center" id="total_weight" disabled="" style="width: 100%; border: none; padding: 0;">
                                         </div>
                                     </th>
@@ -137,10 +137,17 @@
                                                 <?= $ipp['kategori']; ?>
                                             </td>
                                         <?php endif ?>
-                                        <td><span class="program" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['program']) ?></span></td>
+                                        <td>
+                                            <span class="program" data-id="<?= $ipp['id'] ?>" style="white-space:pre-wrap;"><?= ($ipp['program']) ?></span>
+                                        </td>
                                         <td class="text-center"><span class="weight" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['weight']) ?></span></td>
-                                        <td><span class="midyear" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['midyear']) ?></span></td>
-                                        <td><span class="oneyear" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['oneyear']) ?></span></td>
+                                        <td>
+                                            <span class="midyear" data-id="<?= $ipp['id'] ?>" style="white-space:pre-wrap;"><?= ($ipp['midyear']) ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="oneyear" data-id="<?= $ipp['id'] ?>" style="white-space:pre-wrap;"><?= ($ipp['oneyear']) ?>
+                                            </span>
+                                        </td>
                                         <td class="text-center">
                                             <span class="duedate" data-id="<?= $ipp['id'] ?>"><?= esc($ipp['duedate']) ?></span>
                                             <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="<?= $id_main; ?>">
@@ -478,6 +485,22 @@ var categories = <?php echo json_encode($categories); ?>;
 <script>
     $(document).ready(function () {
 
+        var dataTableOptions = {
+            "searching": false,
+            "lengthChange": false,
+            paging: false,
+            "scrollX": true,
+            "scrollCollapse": true,
+            "scrollY": '500px',
+            autoWidth: true
+        };
+
+        $('#isidetail').DataTable(dataTableOptions);
+
+        setTimeout(function() {
+            table.columns.adjust().draw();
+        }, 0); 
+
         $(document).on('click', '.unsubmitted', function() {
             var kode_jabatan = <?= session()->get('kode_jabatan') ?>;
             var npk = <?= session()->get('npk') ?>;
@@ -564,7 +587,7 @@ var categories = <?php echo json_encode($categories); ?>;
             row.find('.weight').html('<input type="number" class="form-control weight-input" value="' + row.find('.weight').text().trim() + '">');
             row.find('.midyear').html('<textarea class="form-control midyear-input">' + row.find('.midyear').text().trim() + '</textarea>');
             row.find('.oneyear').html('<textarea class="form-control oneyear-input">' + row.find('.oneyear').text().trim() + '</textarea>');
-            row.find('.duedate').html('<input type="date" class="form-control duedate-input" value="' + row.find('.duedate').text().trim() + '">');
+            row.find('.duedate').html('<input type="date" class="form-control duedate-input" value="' + row.find('.duedate').text().trim() + '" max="<?= date('Y') ?>-12-31">');
 
             // Menambahkan atribut data-id dengan ID yang sesuai
             row.find('.save-btn').data('id', row.find('.program').data('id'));
@@ -638,7 +661,10 @@ var categories = <?php echo json_encode($categories); ?>;
                         row.find('.oneyear-input').hide();
                         row.find('.duedate-input').hide();
 
-                        location.reload();
+                        $('.approve-button').show();
+                        $('#addRowButton').show();
+
+                        // location.reload();
                     } else {
                         alert('Gagal menyimpan data: ' + result.message);
                     }
@@ -725,12 +751,30 @@ var categories = <?php echo json_encode($categories); ?>;
                 return;
             }
 
+            dataToSave.sort(function (a, b) {
+                return a.idMain - b.idMain || a.urutan - b.urutan;
+            });
+
+            var lastIdMain = -1;
+            var lastUrutan = 0;
+
+            for (var i = 0; i < dataToSave.length; i++) {
+                if (dataToSave[i].idMain !== lastIdMain) {
+                    lastUrutan = 0;
+                }
+
+                lastUrutan++;
+                dataToSave[i].urutan = lastUrutan;
+                lastIdMain = dataToSave[i].idMain;
+            }
+
             $.ajax({
                 url: '<?= base_url('ipp/save_temporarily'); ?>', 
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    dataToSave: dataToSave
+                    dataToSave: dataToSave,
+                    lastUrutan: lastUrutan
                 },
                 beforeSend: function(){
                     $('#simpan').html('<i class="fas fa-spinner fa-spin"></i>');
@@ -806,23 +850,23 @@ var categories = <?php echo json_encode($categories); ?>;
             kategoriSelect += '</select>';
 
             const newRow = `<tr>
-                <td>${nomorBaris}</td>
-                <td class="kategori">
+                <td style="width: 5%;">${nomorBaris}</td>
+                <td class="kategori" style="width: 10%;">
                     ${kategoriSelect}
                 </td>
-                <td>
+                <td style="width: 20%;">
                     <textarea type="text" class="form-control program-input"></textarea>
                     <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="${idMain}">
                 </td>
-                <td>
+                <td style="width: 5%;">
                     <input type="number" class="form-control weight-input edit-mode" min="5">
                 </td>
-                <td style="width: 400px;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
-                <td style="width: 400px;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
-                <td>
-                    <input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>">
+                <td style="width: 20%;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
+                <td style="width: 20%;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
+                <td style="width: 15%;">
+                    <input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>" max="<?= date('Y') ?>-12-31">
                 </td>
-                <td class="text-center">
+                <td class="text-center" style="width: 5%;">
                     <button type="button" class="btn btn-warning btn-sm edit-btn" style="width: 40px; font-size: 10px; padding: 0; display: none;">Edit</button>
                     <button type="button" class="btn btn-danger btn-sm remove_row" style="width: 40px; font-size: 10px; padding: 0;">Hapus</button>
                 </td>
@@ -832,6 +876,66 @@ var categories = <?php echo json_encode($categories); ?>;
             $('.save-btn').hide();
             $('#simpan').show();
             $('#isidetail tbody').append(newRow);
+
+            table.rowReorder.disable(); 
+            table.destroy();
+
+            initializeDataTable();
+
+            function initializeDataTable() {
+                table = $('#isidetail').DataTable({
+                    rowReorder: {
+                        selector: 'td.nomor',
+                    },
+                    columnDefs: [
+                        { targets: [0], orderable: false }
+                    ],
+                    "searching": false,
+                    "lengthChange": false,
+                    paging: false,
+                    "scrollX": true,
+                    "scrollY": '500px',
+                    "scrollCollapse": true,
+                    autoWidth: true
+                });
+
+                // Menyimpan lebar kolom saat inisialisasi
+                var initialColumnWidths = [];
+                table.columns().every(function() {
+                    initialColumnWidths.push(this.width());
+                });
+
+                table.on('row-reorder', function (e, diff, edit) {
+                    var reorderedData = [];
+                    var id_main = <?= $id_main ?>;
+                    for (var i = 0; i < diff.length; i++) {
+                        var row = diff[i].node; 
+                        reorderedData.push({
+                            id: $(row).find('.program').data('id'),
+                            newPosition: diff[i].newPosition
+                        });
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= base_url('ipp/fungsi_simpan_urutan') ?>', 
+                        data: { reorderedData: JSON.stringify(reorderedData), id_main: id_main },
+                        success: function(response) {
+                        }
+                    });
+                });
+
+                // Memulihkan lebar kolom saat setiap kali tabel di-render
+                table.on('draw', function() {
+                    for (var i = 0; i < initialColumnWidths.length; i++) {
+                        table.column(i).width(initialColumnWidths[i]);
+                    }
+                });
+
+                setTimeout(function() {
+                    table.columns.adjust().draw();
+                }, 0);
+            }
 
             calculateTotalScore();
             $('.edit-btn').hide();

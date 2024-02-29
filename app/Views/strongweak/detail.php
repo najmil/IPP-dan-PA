@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -552,33 +552,6 @@
                                                             // dd(session()->get('id_department'));
                                                             if (session()->get('id_department') == 29){
                                                                 // MAINTENANCE
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Perpajakan">Perpajakan</option>
-                                                                //         <option value="Aset Management">Aset Management</option>
-                                                                //         <option value="Accounting Principles">Accounting Principles</option>
-                                                                //         <option value="Planning & Budgeting">Planning & Budgeting</option>
-                                                                //         <option value="Financial Analysis Skill">Financial Analysis Skill</option>
-                                                                //         <option value="Cash Management">Cash Management</option>
-                                                                //         <option value="Feasibility Study">Feasibility Study</option>
-                                                                //         <option value="Cost Accounting">Cost Accounting</option>
-                                                                //         <option value="Kebijakan Standar Akuntansi">Kebijakan Standar Akuntansi</option>
-                                                                //         <option value="Business Analysis Skill">Business Analysis Skill</option>
-                                                                //         <option value="Corporate Treasury">Corporate Treasury</option>
-                                                                //         <option value="Corporate Finance">Corporate Finance</option>
-                                                                //         <option value="Financial Modelling">Financial Modelling</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
                                                                         <option value="Maintenance management">Maintenance management</option>

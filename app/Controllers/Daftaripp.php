@@ -1284,7 +1284,8 @@ class DaftarIpp extends BaseController
     public function save_temporarily() {
         if ($this->request->isAJAX()) {
             $dataToSave = $this->request->getPost('dataToSave');
-            $logData = []; // Inisialisasi data log
+            $urutan = $this->request->getVar('lastUrutan');
+            $logData = [];
     
             foreach ($dataToSave as $data) {
                 if (isset($data['program'])) {
@@ -1295,7 +1296,8 @@ class DaftarIpp extends BaseController
                         'weight' => $data['weight'],
                         'midyear' => $data['midyear'],
                         'oneyear' => $data['oneyear'],
-                        'duedate' => $data['duedate']
+                        'duedate' => $data['duedate'],
+                        'urutan' => $urutan
                     ];
                     $this->isiModel->insert($insertData);
                     

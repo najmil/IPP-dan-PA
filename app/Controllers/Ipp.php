@@ -454,7 +454,8 @@ class Ipp extends BaseController
     public function save_temporarily() {
         if ($this->request->isAJAX()) {
             $dataToSave = $this->request->getPost('dataToSave');
-            $logData = []; // Inisialisasi data log
+            $urutan = $this->request->getVar('lastUrutan');
+            $logData = [];
     
             foreach ($dataToSave as $data) {
                 if (isset($data['program'])) {
@@ -465,7 +466,8 @@ class Ipp extends BaseController
                         'weight' => $data['weight'],
                         'midyear' => $data['midyear'],
                         'oneyear' => $data['oneyear'],
-                        'duedate' => $data['duedate']
+                        'duedate' => $data['duedate'],
+                        'urutan' => $urutan
                     ];
                     $this->isiModel->insert($insertData);
                     
@@ -475,6 +477,7 @@ class Ipp extends BaseController
                         'table_name' => 'isi_ipp',
                         'record_id' => $data['idMain'],
                         'data_changes' => json_encode([
+                            'old_data' => null,
                             'new_data' => [
                                 'kategori' => $data['kategori'],
                                 'Program' => $data['program'],

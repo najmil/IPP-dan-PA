@@ -23,7 +23,7 @@ $errorId = uniqid('error', true);
 
     <!-- Header -->
     <div class="header">
-        <div class="container">
+        <div class="container-fluid">
             <h1><?= esc($title), esc($exception->getCode() ? ' #' . $exception->getCode() : '') ?></h1>
             <p>
                 <?= nl2br(esc($exception->getMessage())) ?>
@@ -34,7 +34,7 @@ $errorId = uniqid('error', true);
     </div>
 
     <!-- Source -->
-    <div class="container">
+    <div class="container-fluid">
         <p><b><?= esc(clean_path($file)) ?></b> at line <b><?= esc($line) ?></b></p>
 
         <?php if (is_file($file)) : ?>
@@ -44,7 +44,7 @@ $errorId = uniqid('error', true);
         <?php endif; ?>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
 
         <ul class="tabs" id="tabs">
             <li><a href="#backtrace">Backtrace</a></li>
@@ -377,7 +377,7 @@ $errorId = uniqid('error', true);
     </div> <!-- /container -->
 
     <div class="footer">
-        <div class="container">
+        <div class="container-fluid">
 
             <p>
                 Displayed at <?= esc(date('H:i:sa')) ?> &mdash;

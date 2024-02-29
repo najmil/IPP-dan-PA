@@ -34,7 +34,7 @@
                                             $isWithinMidPeriode = false;
                                         }
 
-                                        if (session()->get('npk') != 0 && $isWithinMidPeriode && !$is_approved && !$is_approved_before) {
+                                        if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved && $is_approved_before) {
                                             echo '
                                                 <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle; width: 10%;">Aksi</th>
                                             ';
@@ -88,7 +88,7 @@
                                                 $isWithinMidPeriode = false;
                                             }
 
-                                            if (session()->get('npk') != 0 && $isWithinMidPeriode && !$is_approved && !$is_approved_before) {
+                                            if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved && $is_approved_before) {
                                                 echo '
                                                     <td class="text-center">
                                                         <button class="btn btn-warning edit-btn" style="width: 42px; font-size: 12px; padding: 0;">Edit</button>
@@ -112,14 +112,15 @@
                             <a href="<?= base_url('daftarmid/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
-                            if (session()->get('npk') != 0 && $isWithinMidPeriode && !$is_approved_before && !$is_approved) {
+                        // dd($is_approved);
+                            if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved_before && $is_approved) {
                                 // dd($midmain);
                                 // Approval Kasie
                                 if (session()->get('kode_jabatan') == 4) {
-                                    if ($midmain['kode_jabatan'] == 8 && $midmain['created_by'] != [3651, 3659]) {
+                                    if ($midmain['kode_jabatan'] == 8) {
                                         echo '<td class="text-center">';
                                         if (session()->get('kode_jabatan') == 4 && empty($midmain['approval_kasie_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKasie/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/daftarmid/approveKasie/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -130,15 +131,15 @@
                                 
                                 // Approval Kadept
                                 if (session()->get('kode_jabatan') == 3) {
-                                    if ($midmain['kode_jabatan'] == '8' && ($midmain['created_by'] != '3651' && $midmain['created_by'] != '3659')) {
+                                    if ($midmain['kode_jabatan'] == 8) {
                                         if ($midmain['approval_kasie_midyear'] == 1 && empty($midmain['approval_kadept_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/daftarmid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
                                     } elseif ($midmain['kode_jabatan'] == '4' || ($midmain['kode_jabatan'] == '8' && ($midmain['created_by'] == '3651' || $midmain['created_by'] != '3659')) && empty($midmain['approval_kadept_midyear'])) {
                                         // dd($midmain['id']);
-                                        echo '<a href="' . base_url("/daftarmid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        echo '<a href="' . base_url("/daftarmid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                         </a>';
                                     }
@@ -149,7 +150,7 @@
                                 if (session()->get('kode_jabatan') == 2) {
                                     if ($midmain['kode_jabatan'] == 4 || ($midmain['kode_jabatan'] == 8 && $midmain['created_by'] == [3651, 3659])) {
                                         if ($midmain['approval_kadept_midyear'] == 1 && empty($midmain['approval_kadiv_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/daftarmid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -157,7 +158,7 @@
 
                                     if ($midmain['kode_jabatan'] == 3) {
                                         if (session()->get('kode_jabatan') == 2 && empty($midmain['approval_kadiv_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/daftarmid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -170,7 +171,7 @@
                                     if ($midmain['kode_jabatan'] == 3) {
                                         // dd($midmain['approval_bod_midyear']);
                                         if ($midmain['approval_kadiv_midyear'] == 1 && empty($midmain['approval_bod_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -178,7 +179,7 @@
 
                                     if ($midmain['kode_jabatan'] == 2) {
                                         if (session()->get('kode_jabatan') == 1 && empty($midmain['approval_bod_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -191,7 +192,7 @@
                                     if ($midmain['kode_jabatan'] == 2) {
                                         echo '<td class="text-center">';
                                         if (empty($midmain['approval_presdir'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approvePresdir/{$midmain['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/daftarmid/approvePresdir/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }

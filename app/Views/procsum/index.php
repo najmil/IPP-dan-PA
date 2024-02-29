@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -244,7 +244,7 @@
                                         } 
                                     ?>
                                     <?php if ($disableDetail == true): ?>
-                                        <?php if (intval($p['periode']) >= 2023): ?>
+                                        <?php if (intval($p['periode']) > 2023): ?>
                                             <a href="<?= base_url('procsum/detail/' . $p['id']) ?>" class="btn btn-primary btn-sm">Detail</a>
                                         <?php endif ?>
                                         <?php
@@ -272,7 +272,7 @@
                                                 }
                                             }
                                         ?>
-                                        <?php if (intval($p['periode']) >= 2023): ?>
+                                        <?php if (intval($p['periode']) > 2023): ?>
                                             <a href="<?= base_url('procsum/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm ml-2">Log</a>
                                         <?php endif ?>
                                     <?php else : ?>

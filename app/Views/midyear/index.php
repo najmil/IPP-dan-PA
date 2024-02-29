@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -13,7 +13,7 @@
                 <div class="card-body" style="overflow-x: auto;">
 
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-success btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#datalama">
+                        <button type="button" class="btn btn-primary btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#datalama">
                             + Add History
                         </button>
                     </div>
@@ -125,7 +125,7 @@
                                     <td> <?= $m['created_at']; ?> </td>
                                     <td>
                                         <?php if ($allowAccess): ?>
-                                            <?php if (preg_match('/2023/', $m['periode'])): ?>
+                                            <?php if (intval($m['periode']) > 2023): ?>
                                                 <a href="<?= base_url('midyear/detail/' . $m['id']) ?>" class="btn btn-primary btn-sm" style="width: 55px;">Detail</a>
                                             <?php endif; ?>
                                             <?php
@@ -159,7 +159,8 @@
                                                     }
                                                 }
                                             ?>
-                                            <?php if (preg_match('/2023/', $m['periode'])): ?>
+                                            <?php// if (preg_match('/2023/', $m['periode'])): ?>
+                                            <?php if (intval($m['periode']) > 2023): ?>
                                                 <a href="<?= base_url('midyear/logchanges/'.$m['id']) ?>" class="btn btn-secondary btn-sm" style="width: 55px;">Log</a>
                                             <?php endif; ?>
                                         <?php else: ?>

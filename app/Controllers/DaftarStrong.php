@@ -22,28 +22,28 @@ class DaftarStrong extends BaseController
     }
 
     public function index(){
-        $mainData = $this->strongweakmain->getStrongweakByDepartmentAndDivision();
-        $ehs = $this->strongweakmain->getDataByDepartment(30);
-        $mtc = $this->strongweakmain->getDataByDepartment(29);
-        $mkt = $this->strongweakmain->getDataByDepartment(23);
-        $fincont = $this->strongweakmain->getDataByDepartment(22);
-        $mis = $this->strongweakmain->getDataByDepartment(24);
-        $hr = $this->strongweakmain->getDataByDepartment(20);
-        $procurement = $this->strongweakmain->getDataByDepartment(21);
-        $productsatu = $this->strongweakmain->getDataByDepartment(31);
-        $productdua = $this->strongweakmain->getDataByDepartment(32);
-        $ppic = $this->strongweakmain->getDataByDepartment(33);
-        $spv = $this->strongweakmain->getDataByDepartment(34);
-        $producteng = $this->strongweakmain->getDataByDepartment(28);
-        $processeng = $this->strongweakmain->getDataByDepartment(10);
-        $isd = $this->strongweakmain->getDataByDepartment(5);
-        $qa = $this->strongweakmain->getDataByDepartment(15);
+        $mainData = $this->strongweakmain->orderBy('created_at', 'DESC')->getStrongweakByDepartmentAndDivision();
+        $ehs = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(30);
+        $mtc = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(29);
+        $mkt = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(23);
+        $fincont = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(22);
+        $mis = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(24);
+        $hr = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(20);
+        $procurement = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(21);
+        $productsatu = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(31);
+        $productdua = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(32);
+        $ppic = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(33);
+        $spv = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(34);
+        $producteng = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(28);
+        $processeng = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(10);
+        $isd = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(5);
+        $qa = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDepartment(15);
 
-        $plantserv = $this->strongweakmain->getDataByDivision(4);
-        $fin = $this->strongweakmain->getDataByDivision(2);
-        $adm = $this->strongweakmain->getDataByDivision(1);
-        $plant = $this->strongweakmain->getDataByDivision(5);
-        $eng = $this->strongweakmain->getDataByDivision(3);
+        $plantserv = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDivision(4);
+        $fin = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDivision(2);
+        $adm = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDivision(1);
+        $plant = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDivision(5);
+        $eng = $this->strongweakmain->orderBy('created_at', 'DESC')->getDataByDivision(3);
         $content = $this->request->getVar('content');
         // dd($content);
         $contentdept = $this->request->getVar('contentdept');
@@ -1739,16 +1739,16 @@ class DaftarStrong extends BaseController
     
         $this->strongweakmain->set([
             'is_submitted'               => 0,
-            'approval_bod_strongweak'    => 0,
-            'is_approved_bod'            => 0,
-            'approval_presdir_strongweak'=> 0,
-            'is_approved_presdir '       => 0,
-            'approval_kadiv_strongweak'  => 0,
-            'is_approved_kadiv'          => 0,
-            'approval_kadept_strongweak' => 0,
-            'is_approved_kadept'         => 0,
-            'approval_kasie_strongweak'  => 0,
-            'is_approved_kasie'          => 0
+            'approval_bod_strongweak'    => NULL,
+            'is_approved_bod'            => NULL,
+            'approval_presdir_strongweak'=> NULL,
+            'is_approved_presdir '       => NULL,
+            'approval_kadiv_strongweak'  => NULL,
+            'is_approved_kadiv'          => NULL,
+            'approval_kadept_strongweak' => NULL,
+            'is_approved_kadept'         => NULL,
+            'approval_kasie_strongweak'  => NULL,
+            'is_approved_kasie'          => NULL
         ])->where(['id'=> $id])->update();
 
         $this->strongweakmodel->set([

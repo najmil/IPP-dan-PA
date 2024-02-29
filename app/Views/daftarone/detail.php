@@ -33,7 +33,7 @@
                                     <th rowspan="1" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">Total Score</th>
                                     <?php
 
-                                        if ($isWithinOnePeriode && !$is_approved && !$is_approved_before) {
+                                        if ($isWithinOnePeriode && $is_approved && $is_approved_before) {
                                             echo '
                                                 <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">Aksi</th>
                                             ';
@@ -87,7 +87,7 @@
                                             }
 
                                             // dd($is_approved);
-                                            if ($isWithinOnePeriode && !$is_approved && !$is_approved_before) {
+                                            if ($isWithinOnePeriode && $is_approved && $is_approved_before) {
                                                 echo '
                                                     <td>
                                                         <button class="btn btn-warning edit-btn" style="width: 42px; font-size: 12px; padding: 0;">Edit</button>
@@ -112,7 +112,7 @@
                         <?php } ?>
                         <?php
                             // dd($is_approved);
-                            if ($isWithinOnePeriode && !$is_approved && !$is_approved_before) {
+                            if ($isWithinOnePeriode && $is_approved && $is_approved_before) {
                                 
                                 // Approval Kasie
                                 if (session()->get('kode_jabatan') == 4) {

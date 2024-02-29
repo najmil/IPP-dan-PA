@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -208,12 +208,12 @@
                             // dd($periodeMidNull);
 
                             // if ($p['periode'] == 'Mid Year ' . date('Y')) {
-                                if (($periodeMid !== null && $currentDate >= $periodeMid['start_period'] && $currentDate <= $periodeMid['end_period'] || ($periodeOne !== null && $currentDate >= $periodeOne['start_period'] && $currentDate <= $periodeOne['end_period']))) {
+                                if (($periodeMid !== null && ($currentDate >= $periodeMid['start_period']) && $currentDate <= $periodeMid['end_period'] || ($periodeOne !== null && $currentDate >= $periodeOne['start_period'] && $currentDate <= $periodeOne['end_period']))) {
                                     $allowAccess = true;
                                     $disableDetail = true;
                                 } elseif ((isset($periodeMidNull) && ($currentDate >= $periodeMidNull['start_period'] || $currentDate >= $periodeMidNull['end_period']) || (isset($periodeOneNull) && ($currentDate >= $periodeOneNull['start_period'] || $currentDate >= $periodeOneNull['end_period'])))) {
                                     $disableDetail = true;
-                                } elseif (($periodeMid !== null && $currentDate <= $periodeMid['start_period']) || ($periodeOne !== null && $currentDate <= $periodeOne['start_period'])) {
+                                } elseif (($periodeMid !== null && ($currentDate <= $periodeMid['start_period'])) || ($periodeOne !== null && $currentDate <= $periodeOne['start_period'])) {
                                     $disableDetail = false;
                                 }
                         ?>
@@ -226,7 +226,7 @@
                             </td>
                             <td style="display: flex; justify-content: center; align-items: center;">
                                 <?php
-                                    if ($isWithinOnePeriode){
+                                    if ($isWithinOnePeriode && intval($p['periode']) > 2023){
                                         foreach ($approval as $a) {
                                             if (session()->get('kode_jabatan') == 8) {
                                                 if (session()->get('npk') != [3651, 3659]) {
@@ -245,15 +245,16 @@
                                             }
                                         }
                                         if($allowAccess == true){
-                                            $disableDetail = true;
-                                            // dd($disableDetail);
+                                            $disableDetail = false;
                                         }
-                                    } elseif($isWithinMidPeriode){
+                                    } elseif($isWithinMidPeriode && intval($p['periode']) > 2023){
+                                        $disableDetail = true;
+                                    } elseif(intval($p['periode']) <= 2023){
                                         $disableDetail = true;
                                     }
                                 ?>
                                 <?php if ($disableDetail == true): ?>
-                                    <?php if (intval($p['periode']) >= 2023): ?>
+                                    <?php if (intval($p['periode']) > 2023): ?>
                                         <a href="<?= base_url('strongweak/detail/' . $p['id']) ?>" class="btn btn-primary btn-sm">Detail</a>
                                     <?php endif ?>
                                     
@@ -288,7 +289,7 @@
                                             }
                                         }
                                     ?>
-                                    <?php if (intval($p['periode']) >= 2023): ?>
+                                    <?php if (intval($p['periode']) > 2023): ?>
                                         <a href="<?= base_url('strongweak/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm ml-2">Log</a>
                                     <?php endif ?>
                                 <?php else : ?>

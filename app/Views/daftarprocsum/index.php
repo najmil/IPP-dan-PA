@@ -185,10 +185,18 @@
                                 <?php if (session()->get('kode_jabatan') == 3): ?>
                                     <th class="text-center" style="width: 5px;">Kasie</th>
                                     <th class="text-center" style="width: 5px;">Kadept</th>
-                                    <th class="text-center" style="width: 5px;">Kadiv</th>
+                                    <?php if(session()->get('id_department') != 27): ?>
+                                        <th class="text-center" style="width: 5px;">Kadiv</th>
+                                    <?php elseif(session()->get('id_department') == 27): ?>
+                                        <th class="text-center" style="width: 5px;">BoD</th>
+                                    <?php endif ?>
                                     <th class="text-center" style="width: 5px;">Kasie</th>
                                     <th class="text-center" style="width: 5px;">Kadept</th>
-                                    <th class="text-center" style="width: 5px;">Kadiv</th>
+                                    <?php if(session()->get('id_department') == 27): ?>
+                                        <th class="text-center" style="width: 5px;">BoD</th>
+                                    <?php elseif(session()->get('id_department') != 27): ?>
+                                        <th class="text-center" style="width: 5px;">Kadiv</th>
+                                    <?php endif ?>
                                 <?php endif; ?>
                                 <?php if (session()->get('kode_jabatan') == 2): ?>
                                     <th class="text-center" style="width: 5px;">Kadept</th>
@@ -200,9 +208,11 @@
                                 <?php endif; ?>
                                 <!-- Kondisi untuk acc kadept oleh kadiv dan bod serta kadiv oleh bod dan presdir -->
                                 <?php if (session()->get('kode_jabatan') == 1): ?>
+                                    <th class="text-center" style="width: 5px;">Kadept</th>
                                     <th class="text-center" style="width: 5px;">Kadiv</th>
                                     <th class="text-center" style="width: 5px;">BoD</th>
                                     <th class="text-center" style="width: 5px;">Presdir</th>
+                                    <th class="text-center" style="width: 5px;">Kadept</th>
                                     <th class="text-center" style="width: 5px;">Kadiv</th>
                                     <th class="text-center" style="width: 5px;">BoD</th>
                                     <th class="text-center" style="width: 5px;">Presdir</th>
@@ -519,7 +529,7 @@
                                     </td>
                                     <td class="text-center">
                                         <?php if ($p['kode_jabatan'] == 4 || ($p['created_by'] == [3651, 3659])): ?>
-                                            <?php if ($p['approval_kadiv_midyear'] == 1): ?>
+                                            <?php if (($p['id_department'] != 27 && $p['approval_kadiv_midyear'] == 1) || ($p['id_department'] == 27 && $p['approval_bod_midyear'] == 1)): ?>
                                                 <span class="badge badge-primary btn-sm">Approved</span>
                                             <?php else: ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
@@ -613,7 +623,7 @@
                                     </td>
                                     <td class="text-center">
                                         <?php if ($p['kode_jabatan'] == 4 || ($p['created_by'] == [3651, 3659])): ?>
-                                            <?php if ($p['approval_kadiv_oneyear'] == 1): ?>
+                                            <?php if (($p['id_department'] == 27 && $p['approval_kadiv_oneyear'] == 1) || ($p['id_department'] == 27 && $p['approval_bod_midyear'] == 1)): ?>
                                                 <span class="badge badge-primary btn-sm">Approved</span>
                                             <?php else: ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
@@ -747,6 +757,17 @@
                                 <?php if (session()->get('kode_jabatan') == 1): ?>
                                     <!-- MID YEAR -->
                                     <td class="text-center">
+                                        <?php if ($p['kode_jabatan'] == 4 && $p['id_department'] == 27): ?>
+                                            <?php if ($p['approval_kadept_midyear'] == 1): ?>
+                                                <span class="badge badge-primary btn-sm">Approved</span>
+                                            <?php else: ?>
+                                                <span class="badge badge-secondary btn-sm">Pending</span>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="text-center">
                                         <?php if ($p['kode_jabatan'] == 3 && $p['id_department'] != 5): ?>
                                             <?php if ($p['approval_kadiv_midyear'] == 1): ?>
                                                 <?php $disableDetail = true; ?>
@@ -813,6 +834,17 @@
                                     </td>
 
                                     <!-- ONE YEAR -->
+                                    <td class="text-center">
+                                        <?php if ($p['kode_jabatan'] == 4 && $p['id_department'] == 27): ?>
+                                            <?php if ($p['approval_kadept_oneyear'] == 1): ?>
+                                                <span class="badge badge-primary btn-sm">Approved</span>
+                                            <?php else: ?>
+                                                <span class="badge badge-secondary btn-sm">Pending</span>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="text-center">
                                         <?php if ($p['kode_jabatan'] == 3): ?>
                                             <?php if ($p['approval_kadiv_oneyear'] == 1): ?>

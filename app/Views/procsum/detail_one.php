@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <?php if ($kode_jabatan != 8 ) : ?>
             <div class="card">

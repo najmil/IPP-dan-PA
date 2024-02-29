@@ -23,28 +23,28 @@ class DaftarOne extends BaseController
     }
 
     public function index(){
-        $mainData = $this->ippModel->getIppByDepartmentAndDivision();
-        $ehs = $this->ippModel->getDataByDepartmentOne(1);
-        $mtc = $this->ippModel->getDataByDepartmentOne(29);
-        $mkt = $this->ippModel->getDataByDepartmentOne(23);
-        $fincont = $this->ippModel->getDataByDepartmentOne(22);
-        $mis = $this->ippModel->getDataByDepartmentOne(24);
-        $hr = $this->ippModel->getDataByDepartmentOne(20);
-        $procurement = $this->ippModel->getDataByDepartmentOne(21);
-        $productsatu = $this->ippModel->getDataByDepartmentOne(31);
-        $productdua = $this->ippModel->getDataByDepartmentOne(32);
-        $ppic = $this->ippModel->getDataByDepartmentOne(33);
-        $spv = $this->ippModel->getDataByDepartmentOne(34);
-        $producteng = $this->ippModel->getDataByDepartmentOne(28);
-        $processeng = $this->ippModel->getDataByDepartmentOne(26);
-        $isd = $this->ippModel->getDataByDepartmentOne(27);
-        $qa = $this->ippModel->getDataByDepartmentOne(25);
+        $mainData = $this->ippModel->orderBy('created_at', 'DESC')->getIppByDepartmentAndDivision();
+        $ehs = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(1);
+        $mtc = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(29);
+        $mkt = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(23);
+        $fincont = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(22);
+        $mis = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(24);
+        $hr = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(20);
+        $procurement = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(21);
+        $productsatu = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(31);
+        $productdua = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(32);
+        $ppic = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(33);
+        $spv = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(34);
+        $producteng = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(28);
+        $processeng = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(26);
+        $isd = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(27);
+        $qa = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentOne(25);
 
-        $plantserv = $this->ippModel->getDataByDivisionOne(4);
-        $fin = $this->ippModel->getDataByDivisionOne(2);
-        $adm = $this->ippModel->getDataByDivisionOne(1);
-        $plant = $this->ippModel->getDataByDivisionOne(5);
-        $eng = $this->ippModel->getDataByDivisionOne(3);
+        $plantserv = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionOne(4);
+        $fin = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionOne(2);
+        $adm = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionOne(1);
+        $plant = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionOne(5);
+        $eng = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionOne(3);
         $content = $this->request->getVar('content');
         // dd($content);
         $contentdept = $this->request->getVar('contentdept');
@@ -1108,25 +1108,27 @@ class DaftarOne extends BaseController
         $is_approved_before = null;
         $is_approved = null;
         if (session()->get('kode_jabatan') == 3) {
-            if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
-                $is_approved_before = !$mainData['is_approved_kasie_one'];
+            if($mainData['kode_jabatan'] == 8){
+                $is_approved_before = $mainData['approval_kasie_oneyear'];
             }
-            $is_approved = $mainData['is_approved_kadept_one'];
+            $is_approved = empty($mainData['approval_kadept_oneyear']);
         } elseif (session()->get('kode_jabatan') == 2) {
             if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                $is_approved_before = !$mainData['is_approved_kadept_one'];
+                $is_approved_before = $mainData['approval_kadept_oneyear'];
             }
-            $is_approved = $mainData['is_approved_kadiv_one'];
+            $is_approved = empty($mainData['approval_kadiv_oneyear']);
         } elseif (session()->get('kode_jabatan') == 1) {
-            if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                $is_approved_before = !$mainData['is_approved_kadiv_one'];
+            if(($mainData['kode_jabatan'] == 3 && $mainData['id_department'] != 27) || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27)){
+                $is_approved_before = $mainData['approval_kadiv_oneyear'];
+            } elseif ($mainData['kode_jabatan'] == 3 && $mainData['id_department'] == 27){
+                $is_approved_before = true;
             }
-            $is_approved = $mainData['is_approved_bod_one'];
+            $is_approved = empty($mainData['approval_bod_oneyear']);
         } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-            $is_approved_before = !$mainData['is_approved_bod_one'];
-            $is_approved = !$mainData['is_approved_presdir_one'];
+            $is_approved_before = $mainData['approval_bod_oneyear'];
+            $is_approved = empty($mainData['approval_presdir_oneyear']);
         } elseif (session()->get('kode_jabatan') == 4){
-            $is_approved = !$mainData['is_approved_kasie_one'];
+            $is_approved = empty($mainData['approval_kasie_oneyear']);
             $is_approved_before = true;
         }
         
@@ -1141,30 +1143,30 @@ class DaftarOne extends BaseController
             'is_approved'=> $is_approved,
             'is_approved_before'=> $is_approved_before,
             'countPending' => $this->ippModel->getDataPending(),
-                    'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
-                    'countPendingAdm' => $this->ippModel->getPendingAdm(),
-                    'countPendingFin' => $this->ippModel->getPendingFin(),
-                    'countPendingPlant' => $this->ippModel->getPendingPlant(),
-                    'countPendingEng' => $this->ippModel->getPendingEng(),
-                    'countPendingIsd' => $this->ippModel->getPendingIsd(),
+            'countPendingPlantS' => $this->ippModel->getPendingPlantS(),
+            'countPendingAdm' => $this->ippModel->getPendingAdm(),
+            'countPendingFin' => $this->ippModel->getPendingFin(),
+            'countPendingPlant' => $this->ippModel->getPendingPlant(),
+            'countPendingEng' => $this->ippModel->getPendingEng(),
+            'countPendingIsd' => $this->ippModel->getPendingIsd(),
             
             'countPendingMid' => $this->ippModel->getDataPendingMid(),
-                    'countPendingPlantSMid' => $this->ippModel->getPendingPlantSMid(),
-                    'countPendingAdmMid' => $this->ippModel->getPendingAdmMid(),
-                    'countPendingFinMid' => $this->ippModel->getPendingFinMid(),
-                    'countPendingPlantMid' => $this->ippModel->getPendingPlantMid(),
-                    'countPendingEngMid' => $this->ippModel->getPendingEngMid(),
-                    'countPendingIsdMid' => $this->ippModel->getPendingIsdMid(),
+            'countPendingPlantSMid' => $this->ippModel->getPendingPlantSMid(),
+            'countPendingAdmMid' => $this->ippModel->getPendingAdmMid(),
+            'countPendingFinMid' => $this->ippModel->getPendingFinMid(),
+            'countPendingPlantMid' => $this->ippModel->getPendingPlantMid(),
+            'countPendingEngMid' => $this->ippModel->getPendingEngMid(),
+            'countPendingIsdMid' => $this->ippModel->getPendingIsdMid(),
                     
             'countPendingOne' => $this->ippModel->getDataPendingOne(),
-                    'countPendingPlantSOne' => $this->ippModel->getPendingPlantSOne(),
+            'countPendingPlantSOne' => $this->ippModel->getPendingPlantSOne(),
             'countPendingAdmOne' => $this->ippModel->getPendingAdmOne(),
             'countPendingFinOne' => $this->ippModel->getPendingFinOne(),
             'countPendingPlantOne' => $this->ippModel->getPendingPlantOne(),
             'countPendingEngOne' => $this->ippModel->getPendingEngOne(),
             'countPendingIsdOne' => $this->ippModel->getPendingIsdOne(),
             
-                    'countPendingSw' => $this->strongweakmain->getDataPendingSw(),
+            'countPendingSw' => $this->strongweakmain->getDataPendingSw(),
             'countPendingPlantSSw' => $this->strongweakmain->getPendingPlantSSw(),
             'countPendingAdmSw' => $this->strongweakmain->getPendingAdmSw(),
             'countPendingFinSw' => $this->strongweakmain->getPendingFinSw(),
@@ -1175,7 +1177,7 @@ class DaftarOne extends BaseController
             // 'countPendingSOne' => $this->strongweakmain->getDataPendingOne(),
             'countPendingPMid' => $this->procsummain->getDataPendingMid(),
             
-                    'countPendingPlantSProc' => $this->procsummain->getPendingPlantSProc(),
+            'countPendingPlantSProc' => $this->procsummain->getPendingPlantSProc(),
             'countPendingAdmProc' => $this->procsummain->getPendingAdmProc(),
             'countPendingFinProc' => $this->procsummain->getPendingFinProc(),
             'countPendingPlantProc' => $this->procsummain->getPendingPlantProc(),
@@ -1400,16 +1402,16 @@ class DaftarOne extends BaseController
         if ($data['is_submitted_one'] == 1) {
             $this->ippModel->set([
                 'is_submitted_one'           => 0,
-                'approval_bod_oneyear'       => 0,
-                'is_approved_bod_oneyear'    => 0,
-                'approval_presdir_oneyear'   => 0,
-                'is_approved_presdir_oneyear'=> 0,
-                'approval_kadiv_oneyear'     => 0,
-                'is_approved_kadiv_oneyear'  => 0,
-                'approval_kadept_oneyear'    => 0,
-                'is_approved_kadept_oneyear' => 0,
-                'approval_kasie_oneyear'     => 0,
-                'is_approved_kasie_oneyear'  => 0
+                'approval_bod_oneyear'       => NULL,
+                'is_approved_bod_oneyear'    => NULL,
+                'approval_presdir_oneyear'   => NULL,
+                'is_approved_presdir_oneyear'=> NULL,
+                'approval_kadiv_oneyear'     => NULL,
+                'is_approved_kadiv_oneyear'  => NULL,
+                'approval_kadept_oneyear'    => NULL,
+                'is_approved_kadept_oneyear' => NULL,
+                'approval_kasie_oneyear'     => NULL,
+                'is_approved_kasie_oneyear'  => NULL
             ])->where(['id'=> $id])->update();
         }
     

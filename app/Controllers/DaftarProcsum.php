@@ -24,28 +24,28 @@ class DaftarProcsum extends BaseController
     }
 
     public function index(){
-        $mainData = $this->procsummain->getProcsumByDepartmentAndDivision();
-        $ehs = $this->procsummain->getDataByDepartment(1);
-        $mtc = $this->procsummain->getDataByDepartment(6);
-        $mkt = $this->procsummain->getDataByDepartment(7);
-        $fincont = $this->procsummain->getDataByDepartment(2);
-        $mis = $this->procsummain->getDataByDepartment(8);
-        $hr = $this->procsummain->getDataByDepartment(3, 4);
-        $procurement = $this->procsummain->getDataByDepartment(11);
-        $productsatu = $this->procsummain->getDataByDepartment(13);
-        $productdua = $this->procsummain->getDataByDepartment(14);
-        $ppic = $this->procsummain->getDataByDepartment(9);
-        $spv = $this->procsummain->getDataByDepartment(16);
-        $producteng = $this->procsummain->getDataByDepartment(12);
-        $processeng = $this->procsummain->getDataByDepartment(10);
-        $isd = $this->procsummain->getDataByDepartment(5);
-        $qa = $this->procsummain->getDataByDepartment(15);
+        $mainData = $this->procsummain->orderBy('created_at', 'DESC')->getProcsumByDepartmentAndDivision();
+        $ehs = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(1);
+        $mtc = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(6);
+        $mkt = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(7);
+        $fincont = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(2);
+        $mis = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(8);
+        $hr = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(3, 4);
+        $procurement = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(11);
+        $productsatu = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(13);
+        $productdua = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(14);
+        $ppic = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(9);
+        $spv = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(16);
+        $producteng = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(12);
+        $processeng = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(10);
+        $isd = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(5);
+        $qa = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDepartment(15);
 
-        $plantserv = $this->procsummain->getDataByDivision(4);
-        $fin = $this->procsummain->getDataByDivision(2);
-        $adm = $this->procsummain->getDataByDivision(1);
-        $plant = $this->procsummain->getDataByDivision(5);
-        $eng = $this->procsummain->getDataByDivision(3);
+        $plantserv = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDivision(4);
+        $fin = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDivision(2);
+        $adm = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDivision(1);
+        $plant = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDivision(5);
+        $eng = $this->procsummain->orderBy('created_at', 'DESC')->getDataByDivision(3);
         $content = $this->request->getVar('content');
         // dd($content);
         $contentdept = $this->request->getVar('contentdept');
@@ -1975,16 +1975,16 @@ class DaftarProcsum extends BaseController
     
         $this->procsummain->set([
             'is_submitted_midyear'       => 0,
-            'approval_bod_midyear'       => 0,
-            'is_approved_bod'            => 0,
-            'approval_presdir_midyear'   => 0,
-            'is_approved_presdi r'       => 0,
-            'approval_kadiv_midyear'     => 0,
-            'is_approved_kadiv'          => 0,
-            'approval_kadept_midyear'    => 0,
-            'is_approved_kadept '        => 0,
-            'approval_kasie_midyear'     => 0,
-            'is_approved_kasie'          => 0
+            'approval_bod_midyear'       => NULL,
+            'is_approved_bod'            => NULL,
+            'approval_presdir_midyear'   => NULL,
+            'is_approved_presdi r'       => NULL,
+            'approval_kadiv_midyear'     => NULL,
+            'is_approved_kadiv'          => NULL,
+            'approval_kadept_midyear'    => NULL,
+            'is_approved_kadept '        => NULL,
+            'approval_kasie_midyear'     => NULL,
+            'is_approved_kasie'          => NULL
         ])->where(['id'=> $id])->update();
 
         $this->procsummodel->set([

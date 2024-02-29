@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -12,7 +12,7 @@
 
                 <div class="card-body" style="overflow-x: auto;">
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-success btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#datalama">
+                        <button type="button" class="btn btn-primary btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#datalama">
                             + Add History
                         </button>
                     </div>
@@ -122,7 +122,8 @@
                                 <td> <?= $o['created_at']; ?> </td>
                                 <td  class="text-center">
                                     <?php //if ($allowAccess): ?>
-                                        <?php if (preg_match('/2023/', $o['periode'])): ?>
+                                        <?php// if (preg_match('/2023/', $o['periode'])): ?>
+                                        <?php if (intval($o['periode']) > 2023): ?>
                                             <a href="<?= base_url('oneyear/detail/' . $o['id']) ?>" class="btn btn-primary btn-sm">Detail</a>
                                             <a href="<?= base_url('oneyear/logchanges/'.$o['id']) ?>" class="btn btn-secondary btn-sm">Log</a>
                                         <?php endif ?>

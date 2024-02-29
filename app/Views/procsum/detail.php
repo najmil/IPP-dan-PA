@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <?php if ($kode_jabatan != 8  || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592]) ) : ?>
             <div class="card">
@@ -775,7 +775,7 @@
 
         $('.plan_mid, .plan_one').on('input', function () {
                 var planValue = $(this).val();
-                console.log("Input detected:", planValue); 
+                // console.log("Input detected:", planValue); 
                 var isValid = planValue >= 1 && planValue <= 5;
                 if (!isValid) {
                     $(this).addClass('is-invalid');

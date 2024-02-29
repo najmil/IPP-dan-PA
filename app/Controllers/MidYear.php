@@ -457,7 +457,7 @@ class MidYear extends BaseController
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('IPP '. session()->get('nama') .'.pdf', ['Attachment' => 0]);
+        $dompdf->stream('MID YEAR '. session()->get('nama') .'.pdf', ['Attachment' => 0]);
     }
 
     public function viewPdf($id) {

@@ -23,28 +23,28 @@ class DaftarMid extends BaseController
     }
 
     public function index(){
-        $mainData = $this->ippModel->getIppByDepartmentAndDivision();
-        $ehs = $this->ippModel->getDataByDepartmentMid(30);
-        $mtc = $this->ippModel->getDataByDepartmentMid(29);
-        $mkt = $this->ippModel->getDataByDepartmentMid(23);
-        $fincont = $this->ippModel->getDataByDepartmentMid(22);
-        $mis = $this->ippModel->getDataByDepartmentMid(24);
-        $hr = $this->ippModel->getDataByDepartmentMid(20);
-        $procurement = $this->ippModel->getDataByDepartmentMid(21);
-        $productsatu = $this->ippModel->getDataByDepartmentMid(31);
-        $productdua = $this->ippModel->getDataByDepartmentMid(32);
-        $ppic = $this->ippModel->getDataByDepartmentMid(33);
-        $spv = $this->ippModel->getDataByDepartmentMid(34);
-        $producteng = $this->ippModel->getDataByDepartmentMid(28);
-        $processeng = $this->ippModel->getDataByDepartmentMid(26);
-        $isd = $this->ippModel->getDataByDepartmentMid(27);
-        $qa = $this->ippModel->getDataByDepartmentMid(25);
+        $mainData = $this->ippModel->orderBy('created_at', 'DESC')->getIppByDepartmentAndDivision();
+        $ehs = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(30);
+        $mtc = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(29);
+        $mkt = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(23);
+        $fincont = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(22);
+        $mis = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(24);
+        $hr = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(20);
+        $procurement = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(21);
+        $productsatu = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(31);
+        $productdua = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(32);
+        $ppic = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(33);
+        $spv = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(34);
+        $producteng = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(28);
+        $processeng = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(26);
+        $isd = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(27);
+        $qa = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDepartmentMid(25);
 
-        $plantserv = $this->ippModel->getDataByDivisionMid(4);
-        $fin = $this->ippModel->getDataByDivisionMid(2);
-        $adm = $this->ippModel->getDataByDivisionMid(1);
-        $plant = $this->ippModel->getDataByDivisionMid(5);
-        $eng = $this->ippModel->getDataByDivisionMid(3);
+        $plantserv = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionMid(4);
+        $fin = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionMid(2);
+        $adm = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionMid(1);
+        $plant = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionMid(5);
+        $eng = $this->ippModel->orderBy('created_at', 'DESC')->getDataByDivisionMid(3);
         $content = $this->request->getVar('content');
         $contentdept = $this->request->getVar('contentdept');
         // dd($contentdept);
@@ -1085,29 +1085,31 @@ class DaftarMid extends BaseController
             $nama = null;
         }
 
-        $is_approved_before = null;
-        $is_approved = null;
+        $is_approved_before = false;
+        $is_approved = false;
         
         if (session()->get('kode_jabatan') == 3) {
-            if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
-                $is_approved_before = !$mainData['is_approved_kasie_mid'];
+            if($mainData['kode_jabatan'] == 8){
+                $is_approved_before = $mainData['approval_kasie_midyear'];
             }
-            $is_approved = $mainData['is_approved_kadept_mid'];
+            $is_approved = empty($mainData['approval_kadept_midyear']);
         } elseif (session()->get('kode_jabatan') == 2) {
             if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                $is_approved_before = !$mainData['is_approved_kadept_mid'];
+                $is_approved_before = $mainData['approval_kadept_midyear'];
             }
-            $is_approved = $mainData['is_approved_kadiv_mid'];
+            $is_approved = empty($mainData['approval_kadiv_midyear']);
         } elseif (session()->get('kode_jabatan') == 1) {
-            if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                $is_approved_before = !$mainData['is_approved_kadiv_mid'];
+            if(($mainData['kode_jabatan'] == 3 && $mainData['id_department'] != 27) || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27)){
+                $is_approved_before = $mainData['approval_kadiv_midyear'];
+            } elseif ($mainData['kode_jabatan'] == 3 && $mainData['id_department'] == 27){
+                $is_approved_before = true;
             }
-            $is_approved = $mainData['is_approved_bod_mid'];
+            $is_approved = empty($mainData['approval_bod_midyear']);
         } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-            $is_approved_before = !$mainData['is_approved_bod_mid'];
-            $is_approved = !$mainData['is_approved_presdir_mid'];
+            $is_approved_before = $mainData['approval_bod_midyear'];
+            $is_approved = empty($mainData['approval_presdir_midyear']);
         } elseif (session()->get('kode_jabatan') == 4){
-            $is_approved = !$mainData['is_approved_kasie_mid'];
+            $is_approved = empty($mainData['approval_kasie_midyear']);
             $is_approved_before = true;
         }
         
@@ -1260,7 +1262,7 @@ class DaftarMid extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kadept_midyear'      => 1,
-            'is_approved_kadept_mid'       => 1,
+            'approval_kadept_midyear'       => 1,
             'approval_date_kadept_midyear' => date('Y-m-d'),
             'approved_kadept_by_mid' => session()->get('nama')
         ]);
@@ -1291,7 +1293,7 @@ class DaftarMid extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kadiv_midyear'      => 1,
-            'is_approved_kadiv_mid'       => 1,
+            'approval_kadiv_midyear'       => 1,
             'approval_date_kadiv_midyear' => date('Y-m-d'),
             'approved_kadiv_by_mid'       => session()->get('nama')
         ]);
@@ -1322,7 +1324,7 @@ class DaftarMid extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kasie_midyear'     => 1,
-            'is_approved_kasie_mid'      => 1,
+            'approval_kasie_midyear'      => 1,
             'approval_date_kasie_midyear'=> date('Y-m-d'),
             'approved_kasie_by_mid'      => session()->get('nama')
         ]);
@@ -1341,7 +1343,7 @@ class DaftarMid extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_presdir_midyear'     => 1,
-            'is_approved_presdir_mid'      => 1,
+            'approval_presdir_midyear'      => 1,
             'approval_date_presdir_midyear'=> date('Y-m-d'),
             'approved_presdir_by_mid'      => session()->get('nama')
         ]);
@@ -1372,7 +1374,7 @@ class DaftarMid extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_bod_midyear'     => 1,
-            'is_approved_bod_mid'      => 1,
+            'approval_bod_midyear'      => 1,
             'approval_date_bod_midyear'=> date('Y-m-d'),
             'approved_bod_by_mid'      => session()->get('nama')
         ]);
@@ -1481,17 +1483,17 @@ class DaftarMid extends BaseController
     
         if ($data['is_submitted'] == 1) {
             $this->ippModel->set([
-                'is_submitted' => 0,
-                'approval_bod_midyear'     => 0,
-                'is_approved_bod_midyear'  => 0,
-                'approval_presdir_midyear'     => 0,
-                'is_approved_presdir_midyear'  => 0,
-                'approval_kadiv_midyear'     => 0,
-                'is_approved_kadiv_midyear'  => 0,
-                'approval_kadept_midyear'     => 0,
-                'is_approved_kadept_midyear'  => 0,
-                'approval_kasie_midyear'     => 0,
-                'is_approved_kasie_midyear'  => 0
+                'is_submitted'                  => 0,
+                'approval_bod_midyear'          => NULL,
+                'approval_bod_midyear'          => NULL,
+                'approval_presdir_midyear'      => NULL,
+                'approval_presdir_midyearyear'  => NULL,
+                'approval_kadiv_midyear'        => NULL,
+                'approval_kadiv_midyear'        => NULL,
+                'approval_kadept_midyear'       => NULL,
+                'approval_kadept_midyear'       => NULL,
+                'approval_kasie_midyear'        => NULL,
+                'approval_kasie_midyearyear'    => NULL
             ])->where(['id'=> $id])->update();
         }
     
