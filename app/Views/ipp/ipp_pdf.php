@@ -254,7 +254,7 @@
                         </td>
                         <td class="midyear" style="border-collapse: collapse; border-right: 1px solid black; text-align: center; vertical-align: top; position: relative; top: 0;" data-id="<?= $d['id']; ?>"><?= $d['midyear']; ?></td>
                         <td class="oneyear" style="border-collapse: collapse; border-right: 1px solid black; text-align: center; vertical-align: top; position: relative; top: 0;" data-id="<?= $d['id']; ?>"><?= $d['oneyear']; ?></td>
-                        <td class="duedate" style="text-align: center; border-collapse: collapse; border-right: 1px solid black; vertical-align: top; position: relative; top: 0;" data-id="<?= $d['id']; ?>"><?= $d['duedate']; ?></td>
+                        <td class="duedate" style="text-align: center; border-collapse: collapse; border-right: 1px solid black; vertical-align: top; position: relative; top: 0;" data-id="<?= $d['id']; ?>"><?= date('F Y', strtotime($d['duedate'])); ?></td>
                     </tr>
                     <?php endforeach; ?>
                     <?php 
@@ -289,11 +289,11 @@
                             if ($approval['approval_kasie'] == 1 && $approval['approval_kadept'] == 1){
                                 echo ucwords(strtolower($approval['approved_kadept_by']));
                             }
-                        } elseif ($approval['kode_jabatan'] == 4 || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])){ 
+                        } elseif (($approval['kode_jabatan'] == 4 && $approval['id_department'] != 27) || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])){ 
                             if ($approval['approval_kadept'] == 1 && $approval['approval_kadiv'] == 1){
                                 echo ucwords(strtolower($approval['approved_kadiv_by']));
                             }
-                        } elseif ($approval['kode_jabatan'] == 3){ 
+                        } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] != 27){ 
                             if ($approval['approval_kadiv'] == 1 && $approval['approval_bod'] == 1){
                                 echo ucwords(strtolower($approval['approved_bod_by']));
                             }
@@ -301,9 +301,21 @@
                             if ($approval['approval_bod'] == 1 && $approval['approval_presdir'] == 1){
                                 echo ucwords(strtolower($approval['approved_presdir_by']));
                             }
-                        } elseif ($approval['kode_jabatan'] == 8 && $approval['created_by'] == 4276) {
+                        }
+                        // Larissa 
+                        elseif ($approval['kode_jabatan'] == 8 && $approval['created_by'] == 4276) {
                             if ($approval['approval_kadept'] == 1){
                                 echo ucwords(strtolower($approval['approved_kadept_by']));
+                            }
+                        }
+                        // ISD
+                        elseif ($approval['kode_jabatan'] == 4 && $approval['id_department'] == 27){ 
+                            if ($approval['approval_kadept'] == 1){
+                                echo ucwords(strtolower($approval['approved_kadept_by']));
+                            }
+                        } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] == 27){ 
+                            if ($approval['approval_bod'] == 1){
+                                echo ucwords(strtolower($approval['approved_bod_by']));
                             }
                         }
                     ?>
@@ -315,11 +327,11 @@
                             if ($approval['approval_kasie'] == 1 && $approval['approval_kadept'] == 1){
                                 echo ucwords(strtolower($approval['approved_kasie_by']));
                             }
-                        } elseif ($approval['kode_jabatan'] == 4 || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])){ 
+                        } elseif (($approval['kode_jabatan'] == 4 && $approval['id_department'] != 27) || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])){ 
                             if ($approval['approval_kadept'] == 1 && $approval['approval_kadiv'] == 1){
                                 echo ucwords(strtolower($approval['approved_kadept_by']));
                             }
-                        } elseif ($approval['kode_jabatan'] == 3){ 
+                        } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] != 27){ 
                             if ($approval['approval_kadiv'] == 1 && $approval['approval_bod'] == 1){
                                 echo ucwords(strtolower($approval['approved_kadiv_by']));
                             }
@@ -330,6 +342,14 @@
                         } elseif ($approval['kode_jabatan'] == 8 && $approval['created_by'] == 4276) {
                             if ($approval['approval_kadept'] == 1){
                                 echo ucwords(strtolower($approval['approved_kadept_by']));
+                            }
+                        } elseif ($approval['kode_jabatan'] == 4 && $approval['id_department'] == 27){ 
+                            if ($approval['approval_kadept'] == 1){
+                                echo ucwords(strtolower($approval['approved_kadept_by']));
+                            }
+                        } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] == 27){ 
+                            if ($approval['approval_bod'] == 1){
+                                echo ucwords(strtolower($approval['approval_bod']));
                             }
                         }
                     ?>
@@ -351,7 +371,7 @@
                                 <span style="text-align: center">Signed By</span><br><span>'. ucwords(strtolower($approval['nama'])) .'</span>
                             </td>
                         ';} 
-                    } elseif ($approval['kode_jabatan'] == 4 || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])){ 
+                    } elseif (($approval['kode_jabatan'] == 4 && $approval['id_department'] != 27) || ($approval['kode_jabatan'] == 8 && $approval['created_by'] == [960, 4277, 3659, 1814, 2070, 2322, 2364, 2592])){ 
                         if ($approval['approval_kadept'] == 1 && $approval['approval_kadiv'] == 1){
                         echo '
                             <td class="table-colapse" style="height: 50px; text-align: center; border-bottom: 0px;">
@@ -364,7 +384,7 @@
                                 <span style="text-align: center">Signed By</span><br><span>'. ucwords(strtolower($approval['nama'])) .'</span>
                             </td>
                         '; }
-                    } elseif ($approval['kode_jabatan'] == 3){ 
+                    } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] != 27){ 
                         if ($approval['approval_kadiv'] == 1 && $approval['approval_bod'] == 1){
                         echo '
                             <td class="table-colapse" style="height: 50px; text-align: center; border-bottom: 0px;; position: relative;">
@@ -405,6 +425,34 @@
                             </td>
                         ';} 
                     }
+                    // ISD
+                    elseif (($approval['kode_jabatan'] == 4 && $approval['id_department'] == 27)){ 
+                        if ($approval['approval_kadept'] == 1){
+                        echo '
+                            <td class="table-colapse" style="height: 50px; text-align: center; border-bottom: 0px;">
+                                <span style="text-align: center">Approved By</span><br>' . ucwords(strtolower($approval['approved_kadept_by'])) . '
+                            </td>
+                            <td class="table-colapse" style="height: 50px; text-align: center; border-bottom: 0px;">
+                                <span style="text-align: center">Approved By</span><br>'. ucwords(strtolower($approval['approved_kadept_by'])) .'
+                            </td>
+                            <td class="table-colapse" style="border-bottom: 0px; text-align: center;">
+                                <span style="text-align: center">Signed By</span><br><span>'. ucwords(strtolower($approval['nama'])) .'</span>
+                            </td>
+                        '; }
+                    } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] == 27){ 
+                        if ($approval['approval_bod'] == 1){
+                        echo '
+                            <td class="table-colapse" style="height: 50px; text-align: center; border-bottom: 0px;; position: relative;">
+                                <span style="text-align: center">Approved By</span><br>'. ucwords(strtolower($approval['approved_bod_by'])) .'                               
+                            </td>
+                            <td class="table-colapse" style="height: 50px; text-align: center; border-bottom: 0px;; position: relative;"> 
+                                <span style="text-align: center">Approved By</span><br>' . ucwords(strtolower($approval['approved_bod_by'])) . '                               
+                            </td>
+                            <td class="table-colapse" style="border-bottom: 0px; text-align: center;">
+                                <span style="text-align: center">Signed By</span><br><span>'. ucwords(strtolower($approval['nama'])) .'</span>
+                            </td>
+                        ';}
+                    }
                 ?>
             </tr>
             <tr>
@@ -427,7 +475,7 @@
                                     echo $translatedDateIppOne;
                                 }
                         echo '</td>';} 
-                    } elseif ($approval['kode_jabatan'] == 4){ 
+                    } elseif ($approval['kode_jabatan'] == 4 && $approval['id_department'] != 27){ 
                         if ($approval['approval_kadept'] == 1 && $approval['approval_kadiv'] == 1){
                         echo '
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
@@ -445,7 +493,7 @@
                                     echo $translatedDateIppOne;
                                 }
                         echo '</td>';} 
-                    } elseif ($approval['kode_jabatan'] == 3){ 
+                    } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] != 27){ 
                         if ($approval['approval_kadiv'] == 1 && $approval['approval_bod'] == 1){
                         echo '
                             <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;; position: relative;">                                     
@@ -493,6 +541,42 @@
                             <td class="table-colapse" style="border-top: 0px;">Date: ';
                                 if ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] == NULL && $approval['date_submitted_ipp_one'] == NULL) {
                                    echo $translatedDateIpp;
+                                } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] == NULL) {
+                                    echo $translatedDateIppMid;
+                                } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] != NULL) {
+                                    echo $translatedDateIppOne;
+                                }
+                        echo '</td>';} 
+                    } elseif ($approval['kode_jabatan'] == 4 && $approval['id_department'] == 27){ 
+                        if ($approval['approval_kadept'] == 1){
+                        echo '
+                            <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
+                                <span class="text-left">Date: ' . $translatedDateKadept . '</span>'.'
+                            </td>
+                            <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;">                                     
+                                <span class="text-left">Date: ' . $translatedDateKadept . '</span>'.'
+                            </td>
+                            <td class="table-colapse" style="border-top: 0px;">Date: ';
+                                if ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] == NULL && $approval['date_submitted_ipp_one'] == NULL) {
+                                    echo $translatedDateIpp;
+                                } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] == NULL) {
+                                    echo $translatedDateIppMid;
+                                } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] != NULL) {
+                                    echo $translatedDateIppOne;
+                                }
+                        echo '</td>';} 
+                    } elseif ($approval['kode_jabatan'] == 3 && $approval['id_department'] == 27){ 
+                        if ($approval['approval_bod'] == 1){
+                        echo '
+                            <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;; position: relative;">                                     
+                                <span>Date: ' . $translatedDateBod . '</span>'.'
+                            </td>
+                            <td class="table-colapse" style="height: 20px; text-align: left; border-top: 0px;; position: relative;">                                      
+                                <span>Date: ' . $translatedDateBod . '</span>'.'
+                            </td>
+                            <td class="table-colapse" style="border-top: 0px;">Date: ';
+                                if ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] == NULL && $approval['date_submitted_ipp_one'] == NULL) {
+                                    echo $translatedDateIpp;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] == NULL) {
                                     echo $translatedDateIppMid;
                                 } elseif ($approval['date_submitted_ipp'] != NULL && $approval['date_submitted_ipp_mid'] != NULL && $approval['date_submitted_ipp_one'] != NULL) {

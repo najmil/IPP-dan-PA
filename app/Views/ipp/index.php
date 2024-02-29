@@ -182,7 +182,7 @@
 
                                     <?php
                                         $allowAccessPdf = false;
-                                        if (session()->get('kode_jabatan') == 8) {
+                                        if (session()->get('kode_jabatan') == 8 && session()->get('npk') != 4276) {
                                             if (!in_array(session()->get('npk'), [3659, 3651])) {
                                                 $allowAccessPdf = $p['approval_kasie'] && $p['approval_kadept'];
                                             } else {
@@ -199,6 +199,15 @@
                                         } elseif (session()->get('kode_jabatan') == 4 && session()->get('id_department') == 27) {
                                             $allowAccessPdf = $p['approval_kadept'];
                                         } elseif (session()->get('kode_jabatan') == 3 && session()->get('id_department') == 27) {
+                                            $allowAccessPdf = $p['approval_bod'];
+                                        } // Larissa
+                                        elseif ($p['kode_jabatan'] == 8 && $p['created_by'] == 4276) {
+                                            $allowAccessPdf = $p['approval_kadept'];
+                                        } 
+                                        // ISD
+                                        elseif ($p['kode_jabatan'] == 4 && $p['id_department'] == 27) {
+                                            $allowAccessPdf = $p['approval_kadept'];
+                                        } elseif ($p['kode_jabatan'] == 3 && $p['id_department'] == 27) {
                                             $allowAccessPdf = $p['approval_bod'];
                                         }
 
@@ -222,12 +231,12 @@
                                 </td>
                                 <?php if(session()->get('id_department') != 27): ?>
                                     <td class="text-center">
-                                        <?php if (session()->get('kode_jabatan') == 8): ?>
+                                        <?php if (session()->get('kode_jabatan') == 8 && session()->get('npk') != 4276): ?>
                                             <span class="badge <?= $p['approval_kasie'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                                 <?= $p['approval_kasie'] ? "Approved" : "Pending" ?>
                                             </span>
 
-                                        <?php elseif (session()->get('kode_jabatan') == 4): ?>
+                                        <?php elseif (session()->get('kode_jabatan') == 4 || (session()->get('kode_jabatan') == 8 && session()->get('npk') == 4276)): ?>
                                             <span class="badge <?= $p['approval_kadept'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
                                                 <?= $p['approval_kadept'] ? "Approved" : "Pending" ?>
                                             </span>

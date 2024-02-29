@@ -307,6 +307,17 @@
                                                     <?php else: ?>
                                                         <span class="badge badge-secondary btn-sm">Pending</span>
                                                     <?php endif; ?>
+                                                <?php elseif ($p['kode_jabatan'] == 8 && $p['created_by'] == 4276): ?>
+                                                    <?php if ($p['approval_kadept'] == 1): ?>
+                                                        <?php $disableDetail = true; ?>
+                                                        <div class="text-muted" style="font-size: 8px;">approved at: <?= $p['approval_date_kadept']; ?></div>
+                                                        <span class="badge badge-primary btn-sm">Approved</span>
+                                                    <?php else: ?>
+                                                        <?php if(isset($p['approval_date_kadept'])): ?>
+                                                            <div class="text-muted" style="font-size: 8px;">approved at: <?= $p['approval_date_kadept']; ?></div>
+                                                        <?php endif ?>
+                                                        <span class="badge badge-secondary btn-sm">Pending</span>
+                                                    <?php endif; ?>
                                                 <?php else: ?>
                                                         
                                                 <?php endif; ?>
@@ -361,7 +372,7 @@
                                             </td>
                                             <!-- Kadiv -->
                                             <td class="text-center" style="white-space: nowrap;">
-                                                <?php if (($p['kode_jabatan'] == 4 && $p['id_department'] != 27) || ($p['created_by'] == [3651, 3659]) || ($p['kode_jabatan'] == 8  && $p['created_by'] == 4276)): ?>
+                                                <?php if (($p['kode_jabatan'] == 4 && $p['id_department'] != 27) || ($p['created_by'] == [3651, 3659])): ?>
                                                     <?php if ($p['approval_kadiv'] == 1): ?>
                                                         <span class="badge badge-primary btn-sm">Approved</span>
                                                     <?php else: ?>
@@ -538,7 +549,7 @@
                                             </td>
                                         <?php endif; ?>
 
-                                        <?php if ($disableDetail): ?>
+                                        <?php if ($disableDetail == true): ?>
                                             <td style="white-space: nowrap;" class="text-center">
                                                 <a href="<?= base_url("/daftaripp/detail/{$p['id']}") ?>" class="btn btn-sm btn-warning mt-2"> Detail </a>
                                                 <?php // if (session()->get('kode_jabatan') == 0 && $p['kode_jabatan'] == 0): ?>
@@ -554,7 +565,7 @@
                                                 <?php endif ?>
                                                 <?php
                                                     $allowAccessPdf = false;
-                                                    if ($p['kode_jabatan'] == 8) {
+                                                    if ($p['kode_jabatan'] == 8 && $p['created_by'] != 4276) {
                                                         if ($p['created_by'] != [3651, 3659]) {
                                                             $allowAccessPdf = $p['approval_kasie'] && $p['approval_kadept'];
                                                         } else {
@@ -562,12 +573,15 @@
                                                         }
                                                     } elseif (($p['kode_jabatan'] == 4 && $p['id_department'] != 27) || ($p['created_by'] == [3651, 3659])) {
                                                         $allowAccessPdf = $p['approval_kadept'] && $p['approval_kadiv'];
-                                                    } elseif ($p['kode_jabatan'] == 3) {
+                                                    } elseif ($p['kode_jabatan'] == 3 && $p['id_department'] != 27) {
                                                         $allowAccessPdf = $p['approval_kadiv'] && $p['approval_bod'];
                                                     } elseif ($p['kode_jabatan'] == 2) {
                                                         $allowAccessPdf = $p['approval_bod'] && $p['approval_presdir'];
-                                                    } elseif ($p['kode_jabatan'] <= 1) {
+                                                    } elseif ($p['kode_jabatan'] == 1) {
                                                         $allowAccessPdf = $p['approval_bod'] && $p['approval_presdir'];
+                                                    } // Larissa
+                                                    elseif ($p['kode_jabatan'] == 8 && $p['created_by'] == 4276) {
+                                                        $allowAccessPdf = $p['approval_kadept'];
                                                     } 
                                                     // ISD
                                                     elseif ($p['kode_jabatan'] == 4 && $p['id_department'] == 27) {
