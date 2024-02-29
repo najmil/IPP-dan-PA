@@ -1128,6 +1128,8 @@ class DaftarIpp extends BaseController
                 $is_approved_before = $mainData['approval_kadiv'];
             } elseif ($mainData['kode_jabatan'] == 3 && $mainData['id_department'] == 27){
                 $is_approved_before = true;
+            } elseif ($mainData['kode_jabatan'] == 2){
+                $is_approved_before = true;
             }
             $is_approved = empty($mainData['approval_bod']);
         } 
