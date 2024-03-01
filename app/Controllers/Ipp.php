@@ -311,7 +311,7 @@ class Ipp extends BaseController
         $ippData            = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id);
         $user               = session()->get('npk');
         $periode            = $mainData['periode'];
-
+        // dd($ippData);
     
         if ($mainData) {
             $created_by = $mainData['created_by'];

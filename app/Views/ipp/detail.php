@@ -392,20 +392,20 @@ var categories = <?php echo json_encode($categories); ?>;
         kategoriSelect += '</select>';
 
         const newRow = `<tr>
-            <td style="width: 6%;" class="text-center">${nomorBaris}</td>
-            <td class="kategori" style="width: 11%">
+            <td style="width: 5%;" class="text-center">${nomorBaris}</td>
+            <td class="kategori" style="width: 8%">
                 ${kategoriSelect}
             </td>
-            <td style="width: 18%;">
+            <td style="width: 19%;">
                 <textarea type="text" class="form-control program-input"></textarea>
                 <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="${idMain}">
             </td>
-            <td style="width: 10%;">
+            <td style="width: 7%;">
                 <input type="number" class="form-control weight-input edit-mode" min="5">
             </td>
-            <td style="width: 18%;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
-            <td style="width: 18%;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
-            <td style="width: 15%;">
+            <td style="width: 19%;"><textarea type="text" class="form-control midyear-input edit-mode" style="width=100%"></textarea></td>
+            <td style="width: 19%;"><textarea type="text" class="form-control oneyear-input edit-mode"></textarea></td>
+            <td style="width: 18%;">
                 <input type="date" class="form-control duedate-input edit-mode" oninput="validateDate(this)" min="<?= $periodeIPP !== null ? substr($periodeIPP['start_period'], 0, 10) : substr($periodeIPPNull['start_period'], 0, 10); ?>" max="<?= date('Y') ?>-12-31">
             </td>
             <td class="text-center" style="width: 5%;">
@@ -490,8 +490,10 @@ var categories = <?php echo json_encode($categories); ?>;
                 "scrollX": true,
                 "scrollCollapse": true,
                 "scrollY": '500px',
-                autoWidth: true
-            });
+                autoWidth: true,
+                "buttons": ["pdf"],
+                order: false
+            }).buttons().container().appendTo('#isidetail_wrapper .col-md-6:eq(0)');
 
             table.on('row-reorder', function (e, diff, edit) {
                 var reorderedData = [];
@@ -524,8 +526,10 @@ var categories = <?php echo json_encode($categories); ?>;
                 "scrollX": true,
                 "scrollCollapse": true,
                 "scrollY": '500px',
-                autoWidth: true
-            });
+                autoWidth: true,
+                "responsive": true,
+                "buttons": ["pdf"]
+                }).buttons().container().appendTo('#isidetail_wrapper .col-md-6:eq(0)');
         }
 
         isidetail(id);
@@ -625,7 +629,9 @@ var categories = <?php echo json_encode($categories); ?>;
                 lastUrutan++;
                 dataToSave[i].urutan = lastUrutan;
                 lastIdMain = dataToSave[i].idMain;
+                // console.log('dataToSave[i].urutan', dataToSave[i].urutan);
             }
+            // console.log('lastUrutan',lastUrutan);
 
             $.ajax({
                 url: '<?= base_url('ipp/save_temporarily'); ?>', 

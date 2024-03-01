@@ -47,6 +47,11 @@
   <link rel="stylesheet" href="<?=base_url()?>plugins/summernote/summernote-bs4.min.css">
   <link href="<?=base_url()?>css/plugins/bootstrap-5/bootstrap.min.css">
   <link rel="stylesheet" href="<?=base_url()?>css/plugins/datatables/jquery.dataTables.css" />
+  
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?=base_url()?>css/plugins/bootstrap/datatTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>css/plugins/datatables/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>css/plugins/datatables/buttons.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -829,8 +834,23 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- <script src="/ajax/jquery.min.js"></script> -->
 <script src="<?=base_url()?>css/plugins/datatables/jquery.dataTables.js"></script> <!-- datatype -->
+<script src="<?=base_url()?>css/plugins/datatables/dataTables.rowReorder.min.js"></script> <!-- rowreorder -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 
+<!-- Bootstrap 4 -->
+<script src="<?=base_url()?>css/plugins/datatables/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?=base_url()?>css/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/buttons.bootstrap4.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/jszip.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/pdfmake.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/vfs_fonts.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/buttons.html5.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/buttons.print.min.js"></script>
+<script src="<?=base_url()?>css/plugins/datatables/buttons.colVis.min.js"></script>
 <?= $this->renderSection('script'); ?>
 
 </body>
