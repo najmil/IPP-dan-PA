@@ -54,6 +54,15 @@ class DaftarIpp extends BaseController
         $plant = $this->ippModel->getDataByDivision(5);
         $eng = $this->ippModel->getDataByDivision(3);
 
+        $content = $this->request->getVar('content');
+        $contentdept = $this->request->getVar('contentdept');
+        
+        if($content == 'eng') {
+            $engFilter = array_filter($eng, function($item) {
+                return $item['id_department'] != 27; 
+            });
+        }
+
         $mainData = $this->ippModel->findAll();
         $periodeIPP = $this->periodeModel->getLatestIPPeriode();
         $periodeIPPMid = $this->periodeModel->getLatestMidPeriode();
@@ -63,8 +72,6 @@ class DaftarIpp extends BaseController
         $editIppOne = false;
         $currentDate = date('Y-m-d H:i:s');
         $filteredIppData = null;
-        $content = $this->request->getVar('content');
-        $contentdept = $this->request->getVar('contentdept');
         // dd($content);
         
         $filteredIppData = array_filter($ippData, function ($row) {
@@ -268,7 +275,7 @@ class DaftarIpp extends BaseController
             } elseif ($content == 'eng') {
                 $data = [
                     'tittle' => 'Daftar IPP Karyawan',
-                    'daftaripp'=> $eng,
+                    'daftaripp'=> $engFilter,
                     'maindata' => $mainData,
                     'content'  => $content,
                     'contentdept' => $contentdept,

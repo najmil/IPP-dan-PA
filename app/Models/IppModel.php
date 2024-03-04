@@ -25,14 +25,14 @@ class IppModel extends Model{
     }
 
     public function getIppByUser($id) {
-        $this->select('main.*, users.nama as user_nama');
-        $this->join('users', 'users.npk = main.created_by', 'left');
+        $this->select('main.*');
+        // $this->join('users', 'users.npk = main.created_by', 'left');
         return $this->where('main.created_by', $id)->findAll();
     }
 
     public function getIppFilter($id) {
-        $this->select('main.*, users.nama as user_nama');
-        $this->join('users', 'users.npk = main.created_by', 'left');
+        $this->select('main.*');
+        // $this->join('users', 'users.npk = main.created_by', 'left');
         $result = $this->where('main.created_by', $id)
                     ->where('main.periode NOT LIKE', 'Mid Year%')
                     ->where('main.periode NOT LIKE', 'One Year%')
@@ -49,8 +49,8 @@ class IppModel extends Model{
         $currentYear = date('Y');
         $currentDate = date('Y-m-d H:i:s');
 
-        $this->select('main.*, users.nama as user_nama');
-        $this->join('users', 'users.npk = main.created_by', 'left');
+        $this->select('main.*');
+        // $this->join('users', 'users.npk = main.created_by', 'left');
         
         $result = $this->where('main.created_by', $id)
                         ->groupStart()
@@ -94,8 +94,8 @@ class IppModel extends Model{
     public function getOneyear($id) {
         $currentYear = date('Y');
         $currentDate = date('Y-m-d H:i:s');
-        $this->select('main.*, users.nama as user_nama');
-        $this->join('users', 'users.npk = main.created_by', 'left');
+        $this->select('main.*');
+        // $this->join('users', 'users.npk = main.created_by', 'left');
         
         $result = $this->where('main.created_by', $id)
                         ->groupStart()
@@ -154,8 +154,8 @@ class IppModel extends Model{
     }
 
     public function getIppByUserDua($id) {
-        $this->select('main.*, users.nama as user_nama');
-        $this->join('users', 'users.npk = main.created_by', 'left');
+        $this->select('main.*');
+        // $this->join('users', 'users.npk = main.created_by', 'left');
         return $this->where('main.created_by', $id)
                     ->where("main.periode < '2023'")
                     ->like('main.periode', 'ipp')
@@ -173,8 +173,8 @@ class IppModel extends Model{
 
     public function getIppByUserFilter($id, $showRevisi = true) {
         $currentYear = date('Y');
-        $this->select('main.*, users.nama as user_nama');
-        $this->join('users', 'users.npk = main.created_by', 'left');
+        $this->select('main.*');
+        // $this->join('users', 'users.npk = main.created_by', 'left');
     
         if ($showRevisi) {
             $this->notLike('main.periode', $currentYear . ' Rev. Mid Year');
@@ -186,8 +186,8 @@ class IppModel extends Model{
     }
     
     public function getIppByUserFilterOne($id, $showRevisi = true, $showRevisiMidYear = false) {
-        $this->select('main.*, users.nama as user_nama');
-        $this->join('users', 'users.npk = main.created_by', 'left');
+        $this->select('main.*');
+        // $this->join('users', 'users.npk = main.created_by', 'left');
     
         if ($showRevisi && !$showRevisiMidYear) {
             $this->notLike('main.periode', $currentYear . ' Rev. One Year');
@@ -212,7 +212,7 @@ class IppModel extends Model{
         
         $builder = $this->db->table('main');
         $builder->select('main.*');
-        $builder->join('users', 'users.npk = main.created_by', 'left');
+        // $builder->join('users', 'users.npk = main.created_by', 'left');
         $builder->where('main.periode NOT LIKE', 'Mid Year%');
         
         if ($kode_jabatan == 3) {
@@ -239,14 +239,14 @@ class IppModel extends Model{
         } elseif ($kode_jabatan == 1 && $npk == 3944 ) {
             // Approval BoD untuk kadept untuk yang di bawah divisi 3944
             $builder->groupStart()
-                        ->where('users.kode_jabatan', 2)
+                        ->where('main.kode_jabatan', 2)
                         ->groupStart()
                             ->where('main.id_division', 1)
                             ->orWhere('main.id_division', 2)
                         ->groupEnd()
                     ->groupEnd()
                     ->orGroupStart()
-                        ->where('users.kode_jabatan', 3)
+                        ->where('main.kode_jabatan', 3)
                         ->groupStart()
                             ->where('main.id_division', 1)
                             ->orWhere('main.id_division', 2)
@@ -256,8 +256,8 @@ class IppModel extends Model{
             // Approval BoD untuk kadept untuk yang di bawah divisi 4170
             $builder->groupStart()
                         ->groupStart()
-                            ->where('users.kode_jabatan', 2)
-                            ->orWhere('users.kode_jabatan', 3)
+                            ->where('main.kode_jabatan', 2)
+                            ->orWhere('main.kode_jabatan', 3)
                         ->groupEnd()
                         ->groupStart()
                             ->where('main.id_division', 3)
@@ -266,7 +266,7 @@ class IppModel extends Model{
                         ->groupEnd()
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
-            $builder->where('users.kode_jabatan', 2);
+            $builder->where('main.kode_jabatan', 2);
         } elseif ($kode_jabatan == 0 && ($npk == null || $npk == 0)) {
             // Untuk admin
         }
@@ -318,7 +318,7 @@ class IppModel extends Model{
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 // ->where('main.periode NOT LIKE', 'Mid Year%')
                 ->where('main.is_submitted', 1)
                 ->whereIn('main.id_department', $iddepartment);
@@ -331,7 +331,7 @@ class IppModel extends Model{
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 // ->where('main.periode NOT LIKE', 'Mid Year%')
                 ->where('main.is_submitted_one', 1)
                 ->whereIn('main.id_department', $iddepartment);
@@ -340,57 +340,50 @@ class IppModel extends Model{
         }
     }
 
-    public function getDataByDivision(...$iddivision) {
+    public function getDataByDivision($iddivision) {
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
                 ->select('main.*')
-                // ->join('users', 'users.npk = main.created_by', 'left')
-                // ->whereIn('users.id_division', $iddivision)
-                ->whereIn('main.id_division', $iddivision)
-                ->where('main.id_department <>', 27)
+                ->where('main.id_division', $iddivision)
+                // ->where('main.id_department !=', 27)
                 ->groupStart()
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
-                        ->groupStart()
-                            ->where('main.is_submitted_ipp_mid', 0)
-                            ->orWhere('main.is_submitted_ipp_mid IS NULL')
-                        ->groupEnd()
-                        ->groupStart()
-                            ->where('main.is_submitted_ipp_one', 0)
-                            ->orWhere('main.is_submitted_ipp_one IS NULL')
-                        ->groupEnd()
+                        ->where('main.is_submitted_ipp_mid', NULL)
+                        ->where('main.is_submitted_ipp_one', NULL)
                     ->groupEnd()
                     ->orGroupStart()
-                        ->where("main.periode LIKE '%Mid Year' OR main.periode LIKE '%MID YEAR'")
-                        ->where('main.is_submitted_ipp', 0)
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp', 0)
+                            ->orWhere('main.is_submitted_ipp', null)
+                        ->groupEnd()
                         ->where('main.is_submitted_ipp_mid', 1)
-                        ->where('main.is_submitted_ipp_one', 0)
-                        ->groupStart()
-                            ->orWhere('main.is_submitted_ipp_one IS NULL')
-                        ->groupEnd()
+                        ->where('main.is_submitted_ipp_one', NULL)
                     ->groupEnd()
                     ->orGroupStart()
-                        ->where("main.periode LIKE '%One Year' OR main.periode LIKE '%ONE YEAR'")
-                        ->where('main.is_submitted_ipp', 0)
+                        ->groupStart()
+                            ->where('main.is_submitted_ipp', 0)
+                            ->orWhere('main.is_submitted_ipp', null)
+                        ->groupEnd()
                         ->groupStart()
                             ->where('main.is_submitted_ipp_mid', 0)
-                            ->orWhere('main.is_submitted_ipp_mid IS NULL')
+                            ->orWhere('main.is_submitted_ipp_mid', null)
                         ->groupEnd()
                         ->where('main.is_submitted_ipp_one', 1)
                     ->groupEnd()
                 ->groupEnd();
-
+    
             return $builder->get()->getResultArray();
         }
     }
+    
 
     public function getDataByDivisionMid(...$iddivision) {
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.is_submitted', 1)
-                ->whereIn('users.id_division', $iddivision)
+                ->whereIn('main.id_division', $iddivision)
                 ->whereIn('main.id_division', $iddivision);
 
             return $builder->get()->getResultArray();
@@ -401,9 +394,9 @@ class IppModel extends Model{
         if (session()->get('npk') == 0) {
             $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.is_submitted_one', 1)
-                ->whereIn('users.id_division', $iddivision)
+                ->whereIn('main.id_division', $iddivision)
                 ->whereIn('main.id_division', $iddivision);
 
             return $builder->get()->getResultArray();
@@ -420,7 +413,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main');
         $builder->select('main.*');
-        $builder->join('users', 'users.npk = main.created_by', 'left');
+        // $builder->join('users', 'users.npk = main.created_by', 'left');
         $builder->where('main.periode NOT LIKE', 'Mid Year%');
 
         if ($kode_jabatan == 3) {
@@ -456,8 +449,8 @@ class IppModel extends Model{
         } elseif ($kode_jabatan == 2) {
             // Approval kadiv
             $builder->groupStart()
-                        ->where('users.kode_jabatan', 3)
-                        ->orWhere('users.kode_jabatan', 4)
+                        ->where('main.kode_jabatan', 3)
+                        ->orWhere('main.kode_jabatan', 4)
                     ->groupEnd()
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
@@ -521,7 +514,7 @@ class IppModel extends Model{
                         ->orWhere('main.approval_bod IS NULL')
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
-            $builder->where('users.kode_jabatan', 2)
+            $builder->where('main.kode_jabatan', 2)
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
                         ->orWhere('main.is_submitted_ipp_mid', 1)
@@ -624,7 +617,6 @@ class IppModel extends Model{
         
         $builder = $this->db->table('main')
             ->select('main.*')
-            ->join('users', 'users.npk = main.created_by', 'left')
             ->where('main.id_division', 4)
             ->groupStart()
                 ->groupStart()
@@ -719,7 +711,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 2)
                 ->groupStart()
                     ->groupStart()
@@ -814,7 +806,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 1)
                 ->groupStart()
                     ->groupStart()
@@ -909,7 +901,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 5)
                 ->groupStart()
                     ->groupStart()
@@ -1004,8 +996,9 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 3)
+                ->where('main.id_department !=', 27)
                 ->groupStart()
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
@@ -1098,7 +1091,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_department', 27)
                 ->groupStart()
                     ->groupStart()
@@ -1194,7 +1187,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main');
         $builder->select('main.*');
-        $builder->join('users', 'users.npk = main.created_by', 'left');
+        // $builder->join('users', 'users.npk = main.created_by', 'left');
         $builder->where('main.periode NOT LIKE', 'Mid Year%');
 
         if ($kode_jabatan == 3) {
@@ -1247,10 +1240,10 @@ class IppModel extends Model{
                         ->groupEnd();
             }
         } elseif ($kode_jabatan == 4) {
-            $builder->where('users.kode_jabatan', 8)
+            $builder->where('main.kode_jabatan', 8)
                     ->groupStart()
-                        ->where('users.npk <>', 3651)
-                        ->where('users.npk <>', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->where('main.created_by <>', 3659)
                     ->groupEnd()
                     ->where('main.id_section', $id_section)
                     ->groupStart()
@@ -1332,7 +1325,7 @@ class IppModel extends Model{
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
             $builder->groupStart()
-                        ->where('users.kode_jabatan', 2)
+                        ->where('main.kode_jabatan', 2)
                         ->orGroupstart()
                             ->where('main.kode_jabatan', 3)
                             ->where('main.id_department', 27)
@@ -1412,7 +1405,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 4)
                 ->where('main.is_submitted', 1)
                 ->groupStart()
@@ -1512,7 +1505,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 2)
                 ->where('main.is_submitted', 1)
                 ->groupStart()
@@ -1610,7 +1603,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 1)
                 ->where('main.is_submitted', 1)
                 ->groupStart()
@@ -1710,7 +1703,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 5)
                 ->where('main.is_submitted', 1)
                 ->groupStart()
@@ -1810,7 +1803,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 3)
                 ->where('main.is_submitted', 1)
                 ->groupStart()
@@ -1910,7 +1903,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_department', 27)
                 ->where('main.is_submitted', 1)
                 ->groupStart()
@@ -2011,14 +2004,14 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main');
         $builder->select('main.*');
-        $builder->join('users', 'users.npk = main.created_by', 'left');
+        // $builder->join('users', 'users.npk = main.created_by', 'left');
         $builder->where('main.periode NOT LIKE', 'Mid Year%');
 
         if ($kode_jabatan == 3) {
             if ($npk === 4210) {
                 $builder->groupStart()
-                            ->where('users.kode_jabatan', 8)
-                            ->orWhere('users.kode_jabatan', 4)
+                            ->where('main.kode_jabatan', 8)
+                            ->orWhere('main.kode_jabatan', 4)
                         ->groupEnd()
                         ->groupStart()
                             ->where('main.id_department', 20)
@@ -2058,10 +2051,10 @@ class IppModel extends Model{
                         ->groupEnd();
             }
         } elseif ($kode_jabatan == 4) {
-            $builder->where('users.kode_jabatan', 8)
+            $builder->where('main.kode_jabatan', 8)
                     ->groupStart()
-                        ->where('users.npk <>', 3651)
-                        ->orWhere('users.npk <>', 3659)
+                        ->where('main.created_by <>', 3651)
+                        ->orWhere('main.created_by <>', 3659)
                     ->groupEnd()
                     ->where('main.id_section', $id_section)
                     ->groupStart()
@@ -2118,11 +2111,11 @@ class IppModel extends Model{
                         ->groupStart()
                             ->groupStart()
                                 ->groupStart()
-                                    ->where('users.kode_jabatan', 2)
-                                    ->orWhere('users.kode_jabatan', 3)
+                                    ->where('main.kode_jabatan', 2)
+                                    ->orWhere('main.kode_jabatan', 3)
                                     ->orGroupStart()
-                                        ->where('users.kode_jabatan', 3)
-                                        ->where('users.id_department', 27)
+                                        ->where('main.kode_jabatan', 3)
+                                        ->where('main.id_department', 27)
                                     ->groupEnd()
                                 ->groupEnd()
                             ->groupEnd()
@@ -2149,10 +2142,10 @@ class IppModel extends Model{
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280){
             $builder->groupStart()
-                        ->where('users.kode_jabatan', 2)
+                        ->where('main.kode_jabatan', 2)
                         ->orGroupStart()
-                            ->where('users.kode_jabatan', 3)
-                            ->where('users.id_department', 27)
+                            ->where('main.kode_jabatan', 3)
+                            ->where('main.id_department', 27)
                         ->groupEnd()
                     ->groupEnd()
                     ->groupStart()
@@ -2240,7 +2233,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 4)
                 ->groupStart()
                     ->where('main.is_submitted_ipp', 1)
@@ -2345,7 +2338,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 2)
                 ->groupStart()
                     ->where('main.is_submitted_ipp', 1)
@@ -2450,7 +2443,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 1)
                 ->groupStart()
                     ->where('main.is_submitted_ipp', 1)
@@ -2555,7 +2548,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 5)
                 ->groupStart()
                     ->where('main.is_submitted_ipp', 1)
@@ -2660,7 +2653,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_division', 3)
                 ->groupStart()
                     ->where('main.is_submitted_ipp', 1)
@@ -2765,7 +2758,7 @@ class IppModel extends Model{
 
         $builder = $this->db->table('main')
                 ->select('main.*')
-                ->join('users', 'users.npk = main.created_by', 'left')
+                // ->join('users', 'users.npk = main.created_by', 'left')
                 ->where('main.id_department', 27)
                 ->groupStart()
                     ->where('main.is_submitted_ipp', 1)
