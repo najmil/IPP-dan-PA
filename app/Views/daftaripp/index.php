@@ -126,7 +126,7 @@
                                     <th class="text-center">Kasie</th>
                                     <th class="text-center">Kadept</th>
                                     <th class="text-center">Kadiv</th>
-                                    <th class="text-center">BoD</th>
+                                    <th class="text-center">Directur</th>
                                     <th class="text-center">Presdir</th>
                                 <?php endif; ?>
                                 <?php if (session()->get('kode_jabatan') == 4): ?>
@@ -141,17 +141,17 @@
                                 <?php if (session()->get('kode_jabatan') == 2): ?>
                                     <th class="text-center" style="width: 70px;">Kadept</th>
                                     <th class="text-center" style="width: 70px;">Kadiv</th>
-                                    <th class="text-center" style="width: 70px;">BoD</th>
+                                    <th class="text-center" style="width: 70px;">Directur</th>
                                 <?php endif; ?>
-                                <!-- Kondisi untuk acc kadept oleh kadiv dan bod serta kadiv oleh bod and presdir -->
+                                <!-- Kondisi untuk acc kadept oleh kadiv dan Directur serta kadiv oleh Directur and presdir -->
                                 <?php if (session()->get('kode_jabatan') == 1): ?>
                                     <th class="text-center" style="width: 70px;">Kadiv</th>
-                                    <th class="text-center" style="width: 70px;">BoD</th>
+                                    <th class="text-center" style="width: 70px;">Directur</th>
                                     <th class="text-center" style="width: 70px;">Presdir</th>
                                 <?php endif; ?>
-                                <!-- Kondisi untuk acc kadiv oleh bod and presdir -->
+                                <!-- Kondisi untuk acc kadiv oleh Directur and presdir -->
                                 <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280): ?>
-                                    <th class="text-center" style="width: 70px;">BoD</th>
+                                    <th class="text-center" style="width: 70px;">Directur</th>
                                     <th class="text-center" style="width: 70px;">Presdir</th>
                                 <?php endif; ?>
                                 <th class="text-center" style="width: 150px;">Aksi</th>
