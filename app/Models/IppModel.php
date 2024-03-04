@@ -347,6 +347,7 @@ class IppModel extends Model{
                 // ->join('users', 'users.npk = main.created_by', 'left')
                 // ->whereIn('users.id_division', $iddivision)
                 ->whereIn('main.id_division', $iddivision)
+                ->where('main.id_department <>', 27)
                 ->groupStart()
                     ->groupStart()
                         ->where('main.is_submitted_ipp', 1)
