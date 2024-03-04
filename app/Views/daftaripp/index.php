@@ -199,7 +199,7 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td style="white-space: nowrap;" class="text-center">
-                                                <?php if ($p['kode_jabatan'] == 4 || $p['kode_jabatan'] == 8): ?>
+                                                <?php if (($p['kode_jabatan'] == 4) || $p['kode_jabatan'] == 8): ?>
                                                     <?php if (empty($p['approval_kadept'])): ?>
                                                         <span class="badge badge-secondary btn-sm approval-status">Pending</span>
                                                     <?php else: ?>
@@ -231,7 +231,7 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td style="white-space: nowrap;" class="text-center">
-                                                <?php if ($p['kode_jabatan'] == 2 || $p['kode_jabatan'] == 3 || ($p['kode_jabatan'] == 4 && $p['id_department'] == 27)): ?>
+                                                <?php if ($p['kode_jabatan'] == 2 || $p['kode_jabatan'] == 3): ?>
                                                     <?php if (empty($p['approval_bod'])): ?>
                                                         <span class="badge badge-secondary btn-sm approval-status">Pending</span>
                                                     <?php else: ?>
