@@ -155,15 +155,15 @@
                                     <th class="text-center">Kadiv</th>
                                 <?php elseif (session()->get('kode_jabatan') == 3 && session()->get('id_department') != 27): ?>
                                     <th class="text-center">Kadiv</th>
-                                    <th class="text-center">Director</th>
+                                    <th class="text-center">Direktur</th>
                                 <?php elseif (session()->get('kode_jabatan') == 2): ?>
-                                    <th class="text-center">Director</th>
+                                    <th class="text-center">Direktur</th>
                                     <th class="text-center">Presdir</th>
                                 <!-- ISD -->
                                 <?php elseif (session()->get('kode_jabatan') == 4 && session()->get('id_department') == 27): ?>
                                     <th class="text-center">Kadept</th>
                                 <?php elseif (session()->get('kode_jabatan') == 3 && session()->get('id_department') == 27): ?>
-                                    <th class="text-center">Director</th>
+                                    <th class="text-center">Direktur</th>
                                 <?php endif ?>
                             </tr>
                         </thead>
