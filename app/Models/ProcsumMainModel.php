@@ -365,6 +365,7 @@ class ProcsumMainModel extends Model
                                     ->where('procsum_main.approval_bod_oneyear', 0)
                                     ->orWhere('procsum_main.approval_bod_oneyear IS NULL')
                                 ->groupEnd()
+                            ->groupEnd()
                         ->groupEnd()
                     ->groupEnd();
         } elseif ($kode_jabatan == 0 && $npk == 4280) {
