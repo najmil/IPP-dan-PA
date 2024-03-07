@@ -1633,7 +1633,7 @@ class DaftarIpp extends BaseController
     }
 
     public function generatePdf($id){
-        $ippDetail = $this->isiModel->getIsi($id);
+        $ippDetail = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id);
         $approval = $this->ippModel->getIppData($id);
         $mainData = $this->ippModel->find($id);
         $nama = $mainData['nama'];

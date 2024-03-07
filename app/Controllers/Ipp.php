@@ -909,7 +909,6 @@ class Ipp extends BaseController
                     'message' => 'Data deleted successfully.'
                 ];
     
-                // Simpan perubahan dalam log
                 $logData = [
                     'action' => 'Delete',
                     'table_name' => 'isi_ipp',
@@ -983,7 +982,7 @@ class Ipp extends BaseController
     }
 
     public function generatePdf($id){
-        $ippDetail = $this->isiModel->getIsi($id);
+        $ippDetail = $this->isiModel->orderBy('urutan', 'ASC')->getIsi($id);
         $approval = $this->ippModel->getIppData($id);
         $mainData = $this->ippModel->find($id);
         $nama = $mainData['nama'];
