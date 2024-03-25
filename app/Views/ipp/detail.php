@@ -47,7 +47,7 @@
                                 }
                             }
 
-                            // dd($cek_submit);
+                            // dd($is_submitted_ipp_main);
                             if ($isWithinIPPeriode && ($is_submitted_ipp_main == 0 || $is_submitted_ipp_main == null)) {
                                     echo '
                                     <div class="d-flex justify-content-md-end">
@@ -475,11 +475,13 @@ var categories = <?php echo json_encode($categories); ?>;
         
         var validateSubmit = <?= ($is_submitted_ipp_main == true || $is_submitted_ipp_mid_main == true || $is_submitted_ipp_one_main == true) ? 'true' : 'false'; ?>;
 
-        // console.log('validateSubmit', validateSubmit);
-        if(validateSubmit == false){
-            var table = $('#isidetail').DataTable({
+        var table;
+
+        if (validateSubmit == false) {
+            table = $('#isidetail').DataTable({
                 rowReorder: {
                     selector: 'td.nomor',
+                    update: false 
                 },
                 columnDefs: [
                     { targets: [0], orderable: false }
@@ -493,18 +495,28 @@ var categories = <?php echo json_encode($categories); ?>;
                 autoWidth: true,
                 "buttons": ["pdf"],
                 order: false
-            }).buttons().container().appendTo('#isidetail_wrapper .col-md-6:eq(0)');
+            });
+
+            var buttonsContainer = table.buttons().container();
+
+            if (buttonsContainer) {
+                buttonsContainer.appendTo('#isidetail_wrapper .col-md-6:eq(0)');
+            }
 
             table.on('row-reorder', function (e, diff, edit) {
                 var reorderedData = [];
                 var id_main = <?= $id_main ?>;
-                for (var i = 0; i < diff.length; i++) {
-                    var row = diff[i].node; 
+                
+                var data = table.rows().data().toArray();
+
+                diff.forEach(function(change) {
+                    var row = change.node;
+                    var id = $(row).find('.program').data('id');
                     reorderedData.push({
-                        id: $(row).find('.program').data('id'),
-                        newPosition: diff[i].newPosition
+                        id: id,
+                        newPosition: change.newPosition
                     });
-                }
+                });
 
                 $.ajax({
                     type: 'POST',
@@ -519,7 +531,7 @@ var categories = <?php echo json_encode($categories); ?>;
                 table.columns.adjust().draw();
             }, 0); 
         } else {
-            var table = $('#isidetail').DataTable({
+            table = $('#isidetail').DataTable({
                 "searching": false,
                 "lengthChange": false,
                 paging: false,
@@ -529,8 +541,15 @@ var categories = <?php echo json_encode($categories); ?>;
                 autoWidth: true,
                 "responsive": true,
                 "buttons": ["pdf"]
-                }).buttons().container().appendTo('#isidetail_wrapper .col-md-6:eq(0)');
+            });
+
+            var buttonsContainer = table.buttons().container();
+
+            if (buttonsContainer) {
+                buttonsContainer.appendTo('#isidetail_wrapper .col-md-6:eq(0)');
+            }
         }
+
 
         isidetail(id);
 
