@@ -458,10 +458,95 @@
                             }
 
                             if (session()->get('npk') == 0){
-                                echo'
-                                    <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 70px; height: 30px;" title="Unsubmit IPP"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                ';
-                            } elseif ($is_approved_before && $is_approved) {
+                                echo '
+                                    <table style="width: 100%;" class="table text-center table-bordered">
+                                        <thead>
+                                            <trstyle="style="border: 1px solid black;">
+                                                <th colspan=2>Cancel Approval</th>';
+                                            echo'</tr>
+                                            <tr>';
+                                                if ($mainData['kode_jabatan'] == 8){
+                                                    echo '<th>Kasie</th>';
+                                                    echo '<th>Kadept</th>';
+                                                } elseif ($mainData['kode_jabatan'] == 4){
+                                                    echo '<th>Kadept</th>';
+                                                    echo '<th>Kadiv</th>';
+                                                } elseif ($mainData['kode_jabatan'] == 3){
+                                                    echo '<th>Kadiv</th>';
+                                                    echo '<th>Direktur</th>';
+                                                } elseif ($mainData['kode_jabatan'] == 2){
+                                                    echo '<th>Direktur</th>';
+                                                    echo '<th>Presdir</th>';
+                                                }
+                                            echo '</tr>
+                                        </thead>
+                                        <tbody> <tr>';
+                                                if ($mainData['kode_jabatan'] == 8){
+                                                    echo'<td>';
+                                                        if($mainData['approval_kasie'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "8" data-keterangan="kasie" style="width: 70px; height: 30px;" title="Cancel Approval Kasie"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_kasie'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                    echo'</td>';
+                                                    echo'<td>';
+                                                        if($mainData['approval_kadept'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "8" data-keterangan="kadept" style="width: 70px; height: 30px;" title="Cancel Approval Kadept"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_kadept'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                    echo'</td>';
+                                                } elseif ($mainData['kode_jabatan'] == 4){
+                                                    echo'<td>';
+                                                        if($mainData['approval_kadept'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "4" data-keterangan="kadept" style="width: 70px; height: 30px;" title="Cancel Approval Kadep"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_kadept'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                    echo'</td>';
+                                                    echo'<td>';
+                                                        if($mainData['approval_kadiv'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "4" data-keterangan="kadiv" style="width: 70px; height: 30px;" title="Cancel Approval Kadiv"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_kadiv'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                        // dd($mainData);
+                                                    echo'</td>';
+                                                } elseif ($mainData['kode_jabatan'] == 3){
+                                                    echo'<td>';
+                                                        if($mainData['approval_kadiv'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "3" data-keterangan="kadiv" style="width: 70px; height: 30px;" title="Cancel Approval Kadiv"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_kadiv'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                    echo'</td>';
+                                                    echo'<td>';
+                                                        if($mainData['approval_bod'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "3" data-keterangan="bod" style="width: 70px; height: 30px;" title="Cancel Approval Direktur"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_bod'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                    echo'</td>';
+                                                } elseif ($mainData['kode_jabatan'] == 2){
+                                                    echo'<td>';
+                                                        if($mainData['approval_bod'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "2" data-keterangan="bod" style="width: 70px; height: 30px;" title="Cancel Approval Direktur"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_bod'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                    echo'</td>';
+                                                    echo'<td>';
+                                                        if($mainData['approval_presdir'] == 1){
+                                                            echo '<button class="btn btn-danger btn-sm cancelApproval" data-id="' . $mainData['id'] . '" data-kode_jabatan = "2" data-keterangan="presdir" style="width: 70px; height: 30px;" title="Cancel Approval Presdir"><i class="fa fa-times" aria-hidden="true"></i></button>';
+                                                        } elseif($mainData['approval_presdir'] === null){
+                                                            echo '<span class="badge badge-secondary btn-sm approval-status">Pending</span>';
+                                                        }
+                                                    echo'</td>';
+                                                }
+                                            echo '</tr>
+                                        </tbody>
+                                    </table>';
+                            } elseif ($is_approved_before && $is_approved && (($mainData['is_submitted_ipp'] == 1 && $mainData['is_submitted_ipp_mid'] === null && $mainData['is_submitted_ipp_one'] === null) || ($mainData['is_submitted_ipp'] === null && $mainData['is_submitted_ipp_mid'] == 1 && $mainData['is_submitted_ipp_one'] === null) || ($mainData['is_submitted_ipp'] === null && $mainData['is_submitted_ipp_mid'] === null && $mainData['is_submitted_ipp_one'] == 1)) && session()->get('nama') !== 'admin') {
                                 echo'
                                     <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 150px; height: 30px;" title="Need Revision"><i class="fa fa-backward" aria-hidden="true"></i> Need Revision</button>
                                 ';
@@ -509,22 +594,23 @@ var categories = <?php echo json_encode($categories); ?>;
             if (confirmed) {
                 var id = $(this).data('id');
                 console.log(id);
+                console.log(keterangan);
 
-                $.ajax({
-                    url: "<?= base_url("daftaripp/unsubmit") ?>",
-                    type: "POST",
-                    data: {id: id},
-                    success: function (response) {
-                        var msg = response;
-                        if (msg.sukses) {
-                            if (kode_jabatan === 0 && npk === 0){
-                                location.reload();
-                            } else if (kode_jabatan !== 0){
-                                window.location.href = "<?= base_url("daftaripp/index") ?>";
-                            }
-                        }
-                    }
-                });
+                // $.ajax({
+                //     url: "<?= base_url("daftaripp/unsubmit") ?>",
+                //     type: "POST",
+                //     data: {id: id},
+                //     success: function (response) {
+                //         var msg = response;
+                //         if (msg.sukses) {
+                //             if (kode_jabatan === 0 && npk === 0){
+                //                 location.reload();
+                //             } else if (kode_jabatan !== 0){
+                //                 window.location.href = "<?= base_url("daftaripp/index") ?>";
+                //             }
+                //         }
+                //     }
+                // });
             }
         });
 
@@ -576,6 +662,28 @@ var categories = <?php echo json_encode($categories); ?>;
                     location.reload();
                 }
             });
+        });
+
+        $('.cancelApproval').click(function (event) {
+            var keterangan = $(this).data('keterangan');
+            var confirmed = confirm('Are you sure you want to cancel approval ' + keterangan + '?');
+
+            if (confirmed) {
+                var id = $(this).data('id');
+                var kode_jabatan = $(this).data('kode_jabatan');
+
+                $.ajax({
+                    url: "<?= base_url("daftaripp/cancelapproval") ?>",
+                    type: "POST",
+                    data: {id: id, keterangan: keterangan, kode_jabatan: kode_jabatan},
+                    success: function (response) {
+                        var msg = response;
+                        if (msg.sukses) {
+                            location.reload();
+                        }
+                    }
+                });
+            }
         });
 
         $('.edit-btn').click(function () {
