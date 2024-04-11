@@ -1236,25 +1236,15 @@ class Procsum extends BaseController
                     'id_section'                  => $id_section,
                     'kode_jabatan'                => $kode_jabatan,
                     'approval_bod_midyear'        => 1,
-                    'is_approved_bod'             => 1,
                     'approval_presdir_midyear'    => 1,
-                    'is_approved_presdir'         => 1,
                     'approval_kadiv_midyear'      => 1,
-                    'is_approved_kadiv'           => 1,
                     'approval_kadept_midyear'     => 1,
-                    'is_approved_kadept'          => 1,
                     'approval_kasie_midyear'      => 1,
-                    'is_approved_kasie'           => 1,
                     'approval_bod_oneyear'        => 1,
-                    'is_approved_bod_oneyear'     => 1,
                     'approval_presdir_oneyear'    => 1,
-                    'is_approved_presdir_oneyear' => 1,
                     'approval_kadiv_oneyear'      => 1,
-                    'is_approved_kadiv_oneyear'   => 1,
                     'approval_kadept_oneyear'     => 1,
-                    'is_approved_kadept_oneyear'  => 1,
-                    'approval_kasie_oneyear'      => 1,
-                    'is_approved_kasie_oneyear'   => 1,
+                    'approval_kasie_oneyear'      => 1
                 ]);
 
                 $hasil['sukses'] = "Berhasil memasukkan data";

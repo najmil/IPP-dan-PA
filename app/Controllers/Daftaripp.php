@@ -1390,7 +1390,6 @@ class DaftarIpp extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kadept'     => 1,
-            'is_approved_kadept'  => 1,
             'approval_date_kadept'=> date('Y-m-d'),
             'approved_kadept_by'  => session()->get('nama')
         ]);
@@ -1435,7 +1434,6 @@ class DaftarIpp extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kadiv'     => 1,
-            'is_approved_kadiv'  => 1,
             'approval_date_kadiv'=> date('Y-m-d'),
             'approved_kadiv_by'  => session()->get('nama')
         ]);
@@ -1480,7 +1478,6 @@ class DaftarIpp extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kasie'     => 1,
-            'is_approved_kasie'  => 1,
             'approval_date_kasie'=> date('Y-m-d'),
             'approved_kasie_by'  => session()->get('nama')
         ]);
@@ -1499,7 +1496,6 @@ class DaftarIpp extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_presdir'     => 1,
-            'is_approved_presdir'  => 1,
             'approval_date_presdir'=> date('Y-m-d'),
             'approved_presdir_by'  => session()->get('nama')
         ]);
@@ -1544,7 +1540,6 @@ class DaftarIpp extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_bod'     => 1,
-            'is_approved_bod'  => 1,
             'approval_date_bod'=> date('Y-m-d'),
             'approved_bod_by'  => session()->get('nama')
         ]);
@@ -1681,45 +1676,35 @@ class DaftarIpp extends BaseController
             if (session()->get('kode_jabatan') === 0 && session()->get('npk') === 0){
                 $this->ippModel->set([
                     'approval_bod'          => NULL,
-                    'is_approved_bod'       => NULL,
                     'approval_presdir'      => NULL,
-                    'is_approved_presdir'   => NULL,
                     'approval_kadiv'        => NULL,
-                    'is_approved_kadiv'     => NULL,
                     'approval_kadept'       => NULL,
-                    'is_approved_kadept'    => NULL,
                     'approval_kasie'        => NULL,
-                    'is_approved_kasie'     => NULL,
                     'is_submitted_ipp'      => NULL
                 ])->where(['id'=> $id])->update();
             } elseif (session()->get('kode_jabatan') === 4){
                 $this->ippModel->set([
                     'approval_kasie'        => NULL,
-                    'is_approved_kasie'     => NULL,
                     'is_submitted_ipp'      => NULL
                 ])->where(['id'=> $id])->update();
             } elseif (session()->get('kode_jabatan') === 3){
                 $this->ippModel->set([
                     'approval_kadept'        => NULL,
-                    'is_approved_kadept'     => NULL,
                     'is_submitted_ipp'      => NULL
                 ])->where(['id'=> $id])->update();
             } elseif (session()->get('kode_jabatan') === 2){
                 $this->ippModel->set([
                     'approval_kadiv'        => NULL,
-                    'is_approved_kadiv'     => NULL,
                     'is_submitted_ipp'      => NULL
                 ])->where(['id'=> $id])->update();
             } elseif (session()->get('kode_jabatan') === 1){
                 $this->ippModel->set([
                     'approval_bod'        => NULL,
-                    'is_approved_bod'     => NULL,
                     'is_submitted_ipp'      => NULL
                 ])->where(['id'=> $id])->update();
             } elseif (session()->get('kode_jabatan') === 0 && session()->get('npk') !== 0){
                 $this->ippModel->set([
                     'approval_presdir'        => NULL,
-                    'is_approved_presdir'     => NULL,
                     'is_submitted_ipp'      => NULL
                 ])->where(['id'=> $id])->update();
             }
@@ -1728,15 +1713,10 @@ class DaftarIpp extends BaseController
             $this->ippModel->set([
                 'is_submitted_ipp_mid'  => 0,
                 'approval_bod'          => NULL,
-                'is_approved_bod'       => NULL,
                 'approval_presdir'      => NULL,
-                'is_approved_presdir'   => NULL,
                 'approval_kadiv'        => NULL,
-                'is_approved_kadiv'     => NULL,
                 'approval_kadept'       => NULL,
-                'is_approved_kadept'    => NULL,
                 'approval_kasie'        => NULL,
-                'is_approved_kasie'     => NULL,
                 'is_submitted_ipp'      => NULL
             ])->where(['id'=> $id])->update();
         }
@@ -1744,15 +1724,10 @@ class DaftarIpp extends BaseController
             $this->ippModel->set([
                 'is_submitted_ipp_one'  => 0,
                 'approval_bod'          => NULL,
-                'is_approved_bod'       => NULL,
                 'approval_presdir'      => NULL,
-                'is_approved_presdir'   => NULL,
                 'approval_kadiv'        => NULL,
-                'is_approved_kadiv'     => NULL,
                 'approval_kadept'       => NULL,
-                'is_approved_kadept'    => NULL,
                 'approval_kasie'        => NULL,
-                'is_approved_kasie'     => NULL,
                 'is_submitted_ipp'      => NULL
             ])->where(['id'=> $id])->update();
         }
@@ -1774,56 +1749,47 @@ class DaftarIpp extends BaseController
     
         if ($keterangan === 'kasie') {
             $this->ippModel->set([
-                'approval_kasie'        => NULL,
-                'is_approved_kasie'     => NULL
+                'approval_kasie'        => NULL
             ])->where(['id'=> $id])->update();
             
             if($kode_jabatan == 8) {
                 $this->ippModel->set([
-                    'approval_kadept'        => NULL,
-                    'is_approved_kadept'     => NULL
+                    'approval_kadept'   => NULL
                 ])->where(['id'=> $id])->update();
             }
         } elseif ($keterangan === 'kadept') {
             $this->ippModel->set([
-                'approval_kadept'       => NULL,
-                'is_approved_kadept'    => NULL
+                'approval_kadept'       => NULL
             ])->where(['id'=> $id])->update();
 
             if($kode_jabatan == 4) {
                 $this->ippModel->set([
-                    'approval_kadiv'        => NULL,
-                    'is_approved_kadiv'     => NULL
+                    'approval_kadiv'   => NULL
                 ])->where(['id'=> $id])->update();
             }
         } elseif ($keterangan === 'kadiv') {
             $this->ippModel->set([
-                'approval_kadiv'        => NULL,
-                'is_approved_kadiv'     => NULL
+                'approval_kadiv'      => NULL
             ])->where(['id'=> $id])->update();
 
             if($kode_jabatan == 3) {
                 $this->ippModel->set([
-                    'approval_bod'        => NULL,
-                    'is_approved_bod'     => NULL
+                    'approval_bod'    => NULL
                 ])->where(['id'=> $id])->update();
             }
         } elseif ($keterangan === 'direktur') {
             $this->ippModel->set([
-                'approval_bod'        => NULL,
-                'is_approved_bod'     => NULL
+                'approval_bod'        => NULL
             ])->where(['id'=> $id])->update();
 
             if($kode_jabatan == 2) {
                 $this->ippModel->set([
-                    'approval_presdir'        => NULL,
-                    'is_approved_presdir'     => NULL
+                    'approval_presdir'=> NULL
                 ])->where(['id'=> $id])->update();
             }
         } elseif ($keterangan === 'presdir') {
             $this->ippModel->set([
-                'approval_presdir'        => NULL,
-                'is_approved_presdir'     => NULL
+                'approval_presdir'    => NULL
             ])->where(['id'=> $id])->update();
         }
     

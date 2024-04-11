@@ -1281,7 +1281,6 @@ class DaftarOne extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kadept_oneyear'    => 1,
-            'is_approved_kadept_one'     => 1,
             'approval_date_kadep_oneyear'=> date('Y-m-d'),
             'approved_kadept_by_one'     => session()->get('nama')
         ]);
@@ -1300,7 +1299,6 @@ class DaftarOne extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kadiv_oneyear'     => 1,
-            'is_approved_kadiv_one'      => 1,
             'approval_date_kadiv_oneyear'=> date('Y-m-d'),
             'approved_kadiv_by_one'      => session()->get('nama')
         ]);
@@ -1319,7 +1317,6 @@ class DaftarOne extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_kasie_oneyear'     => 1,
-            'is_approved_kasie_one'      => 1,
             'approval_date_kasie_oneyear'=> date('Y-m-d'),
             'approved_kasie_by_one'      => session()->get('nama')
         ]);
@@ -1338,7 +1335,6 @@ class DaftarOne extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_presdir_oneyear'     => 1,
-            'is_approved_presdir_one'      => 1,
             'approval_date_presdir_oneyear'=> date('Y-m-d'),
             'approved_presdir_by_one'      => session()->get('nama')
         ]);
@@ -1357,7 +1353,6 @@ class DaftarOne extends BaseController
     
         $result = $this->ippModel->update($id, [
             'approval_bod_oneyear'     => 1,
-            'is_approved_bod_one'      => 1,
             'approval_date_bod_oneyear'=> date('Y-m-d'),
             'approved_bod_by_one'      => session()->get('nama')
         ]);
@@ -1403,15 +1398,10 @@ class DaftarOne extends BaseController
             $this->ippModel->set([
                 'is_submitted_one'           => 0,
                 'approval_bod_oneyear'       => NULL,
-                'is_approved_bod_oneyear'    => NULL,
                 'approval_presdir_oneyear'   => NULL,
-                'is_approved_presdir_oneyear'=> NULL,
                 'approval_kadiv_oneyear'     => NULL,
-                'is_approved_kadiv_oneyear'  => NULL,
                 'approval_kadept_oneyear'    => NULL,
-                'is_approved_kadept_oneyear' => NULL,
-                'approval_kasie_oneyear'     => NULL,
-                'is_approved_kasie_oneyear'  => NULL
+                'approval_kasie_oneyear'     => NULL
             ])->where(['id'=> $id])->update();
         }
     
