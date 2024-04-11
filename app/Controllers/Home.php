@@ -50,7 +50,6 @@ class Home extends BaseController
             'countPendingEngSw' => $this->strongweakmain->getPendingEngSw(),
             'countPendingIsdSw' => $this->strongweakmain->getPendingIsdSw(),
 
-            // 'countPendingSOne' => $this->strongweakmain->getDataPendingOne(),
             'countPendingPMid' => $this->procsummain->getDataPendingMid(),
             'countPendingPlantSProc' => $this->procsummain->getPendingPlantSProc(),
             'countPendingAdmProc' => $this->procsummain->getPendingAdmProc(),

@@ -1123,48 +1123,48 @@ class DaftarStrong extends BaseController
         if($isWithinMidPeriode){
             if (session()->get('kode_jabatan') == 3) {
                 if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
-                    $is_approved_before = !$mainData['is_approved_kasie'];
+                    $is_approved_before = !$mainData['approval_kasie'];
                 }
-                $is_approved = $mainData['is_approved_kadept'];
+                $is_approved = $mainData['approval_kadept'];
                 // dd($is_approved);
             } elseif (session()->get('kode_jabatan') == 2) {
                 if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                    $is_approved_before = !$mainData['is_approved_kadept'];
+                    $is_approved_before = !$mainData['approval_kadept'];
                 }
-                $is_approved = $mainData['is_approved_kadiv'];
+                $is_approved = $mainData['approval_kadiv'];
             } elseif (session()->get('kode_jabatan') == 1) {
                 if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                    $is_approved_before = !$mainData['is_approved_kadiv'];
+                    $is_approved_before = !$mainData['approval_kadiv'];
                 }
-                $is_approved = $mainData['is_approved_bod'];
+                $is_approved = $mainData['approval_bod'];
             } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-                $is_approved_before = !$mainData['is_approved_bod'];
-                $is_approved = !$mainData['is_approved_presdir'];
+                $is_approved_before = !$mainData['approval_bod'];
+                $is_approved = !$mainData['approval_presdir'];
             } elseif (session()->get('kode_jabatan') == 4){
-                $is_approved = !$mainData['is_approved_kasie'];
+                $is_approved = !$mainData['approval_kasie'];
                 $is_approved_before = true;
             }
         } elseif($isWithinOnePeriode){
             if (session()->get('kode_jabatan') == 3) {
                 if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
-                    $is_approved_before = !$mainData['is_approved_kasie_oneyear'];
+                    $is_approved_before = !$mainData['approval_kasie_oneyear'];
                 }
-                $is_approved = $mainData['is_approved_kadept_oneyear'];
+                $is_approved = $mainData['approval_kadept_oneyear'];
             } elseif (session()->get('kode_jabatan') == 2) {
                 if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                    $is_approved_before = !$mainData['is_approved_kadept_oneyear'];
+                    $is_approved_before = !$mainData['approval_kadept_oneyear'];
                 }
-                $is_approved = $mainData['is_approved_kadiv_oneyear'];
+                $is_approved = $mainData['approval_kadiv_oneyear'];
             } elseif (session()->get('kode_jabatan') == 1) {
                 if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                    $is_approved_before = !$mainData['is_approved_kadiv_oneyear'];
+                    $is_approved_before = !$mainData['approval_kadiv_oneyear'];
                 }
-                $is_approved = $mainData['is_approved_bod_oneyear'];
+                $is_approved = $mainData['approval_bod_oneyear'];
             } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-                $is_approved_before = !$mainData['is_approved_bod_oneyear'];
-                $is_approved = !$mainData['is_approved_presdir_oneyear'];
+                $is_approved_before = !$mainData['approval_bod_oneyear'];
+                $is_approved = !$mainData['approval_presdir_oneyear'];
             } elseif (session()->get('kode_jabatan') == 4){
-                $is_approved = !$mainData['is_approved_kasie_oneyear'];
+                $is_approved = !$mainData['approval_kasie_oneyear'];
                 $is_approved_before = true;
             }
         }
@@ -1463,14 +1463,12 @@ class DaftarStrong extends BaseController
         if($isWithinMidPeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_kadept_strongweak' => 1,
-                'is_approved_kadept' => 1,
                 'approval_date_kadept_strongweak' => date('Y-m-d'),
                 'approved_kadept_by' => session()->get('nama')
             ]);
         } elseif ($isWithinOnePeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_kadept_oneyear' => 1,
-                'is_approved_kadept_oneyear' => 1,
                 'approval_date_kadept_oneyear' => date('Y-m-d'),
                 'kadept_by_oneyear' => session()->get('nama')
             ]);
@@ -1508,14 +1506,12 @@ class DaftarStrong extends BaseController
         if($isWithinMidPeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_kadiv_strongweak' => 1,
-                'is_approved_kadiv' => 1,
                 'approval_date_kadiv_strongweak' => date('Y-m-d'),
                 'approved_kadiv_by' => session()->get('nama')
             ]);
         } elseif ($isWithinOnePeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_kadiv_oneyear' => 1,
-                'is_approved_kadiv_oneyear' => 1,
                 'approval_date_kadiv_oneyear' => date('Y-m-d'),
                 'kadiv_by_oneyear' => session()->get('nama')
             ]);
@@ -1553,14 +1549,12 @@ class DaftarStrong extends BaseController
         if($isWithinMidPeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_kasie_strongweak' => 1,
-                'is_approved_kasie' => 1,
                 'approval_date_kasie_strongweak' => date('Y-m-d'),
                 'approved_kasie_by' => session()->get('nama')
             ]);
         }  elseif ($isWithinOnePeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_kasie_oneyear' => 1,
-                'is_approved_kasie_oneyear' => 1,
                 'approval_date_kasie_oneyear' => date('Y-m-d'),
                 'kasie_by_oneyear' => session()->get('nama')
             ]);
@@ -1598,14 +1592,12 @@ class DaftarStrong extends BaseController
         if($isWithinMidPeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_presdir_strongweak' => 1,
-                'is_approved_presdir' => 1,
                 'approval_date_presdir_strongweak' => date('Y-m-d'),
                 'approved_presdir_by' => session()->get('nama')
             ]);
         } elseif ($isWithinOnePeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_presdir_oneyear' => 1,
-                'is_approved_presdir_oneyear' => 1,
                 'approval_date_presdir_oneyear' => date('Y-m-d'),
                 'presdir_by_oneyear' => session()->get('nama')
             ]);
@@ -1643,14 +1635,12 @@ class DaftarStrong extends BaseController
         if($isWithinMidPeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_bod_strongweak' => 1,
-                'is_approved_bod' => 1,
                 'approval_date_bod_strongweak' => date('Y-m-d'),
                 'approved_bod_by' => session()->get('nama')
             ]);
         } elseif ($isWithinOnePeriode){
             $result = $this->strongweakmain->update($id, [
                 'approval_bod_oneyear' => 1,
-                'is_approved_bod_oneyear' => 1,
                 'approval_date_bod_oneyear' => date('Y-m-d'),
                 'bod_by_oneyear' => session()->get('nama')
             ]);
@@ -1740,15 +1730,10 @@ class DaftarStrong extends BaseController
         $this->strongweakmain->set([
             'is_submitted'               => 0,
             'approval_bod_strongweak'    => NULL,
-            'is_approved_bod'            => NULL,
             'approval_presdir_strongweak'=> NULL,
-            'is_approved_presdir '       => NULL,
             'approval_kadiv_strongweak'  => NULL,
-            'is_approved_kadiv'          => NULL,
             'approval_kadept_strongweak' => NULL,
-            'is_approved_kadept'         => NULL,
-            'approval_kasie_strongweak'  => NULL,
-            'is_approved_kasie'          => NULL
+            'approval_kasie_strongweak'  => NULL
         ])->where(['id'=> $id])->update();
 
         $this->strongweakmodel->set([
@@ -1770,15 +1755,10 @@ class DaftarStrong extends BaseController
         $this->strongweakmain->set([
             'is_submitted_one'           => 0,
             'approval_bod_oneyear'       => 0,
-            'is_approved_bod_oneyear'    => 0,
             'approval_presdir_oneyear'   => 0,
-            'is_approved_presdir_oneyear'=> 0,
             'approval_kadiv_oneyear'     => 0,
-            'is_approved_kadiv_oneyear'  => 0,
             'approval_kadept_oneyear'    => 0,
-            'is_approved_kadept_oneyear' => 0,
             'approval_kasie_oneyear'     => 0,
-            'is_approved_kasie_oneyear'  => 0
         ])->where(['id'=> $id])->update();
 
         $this->strongweakmodel->set([
