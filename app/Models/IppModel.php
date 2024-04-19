@@ -214,6 +214,7 @@ class IppModel extends Model{
         $builder->select('main.*');
         // $builder->join('users', 'users.npk = main.created_by', 'left');
         $builder->where('main.periode NOT LIKE', 'Mid Year%');
+        $builder->where('main.periode NOT LIKE', 'One Year%');
         
         if ($kode_jabatan == 3) {
             $builder->groupStart()
