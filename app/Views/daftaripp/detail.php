@@ -458,10 +458,11 @@
                             }
 
                             if (session()->get('npk') == 0){
-                                echo '
+                                echo'
                                     <table style="width: 100%;" class="table text-center table-bordered">
                                         <thead>
                                             <trstyle="style="border: 1px solid black;">
+                                                <th rowspan=2>Unsubmit IPP</th>
                                                 <th colspan=2>Cancel Approval</th>';
                                             echo'</tr>
                                             <tr>';
@@ -480,7 +481,10 @@
                                                 }
                                             echo '</tr>
                                         </thead>
-                                        <tbody> <tr>';
+                                        <tbody> <tr>
+                                                <td>
+                                                    <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 70px; height: 30px;" title="Unsubmit IPP"><i class="fa fa-trash" aria-hidden="true"></i>Unsubmit IPP</button>
+                                                </td>';
                                                 if ($mainData['kode_jabatan'] == 8){
                                                     echo'<td>';
                                                         if($mainData['approval_kasie'] == 1){

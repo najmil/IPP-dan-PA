@@ -1504,4 +1504,65 @@ class DaftarMid extends BaseController
     
         return $this->response->setJSON($msg);
     }  
+
+    public function cancelapproval() {
+        $id = $this->request->getVar('id');
+        $keterangan = $this->request->getVar('keterangan');
+        $kode_jabatan = $this->request->getVar('kode_jabatan');
+        $data = $this->ippModel->find($id);
+        // dd($keterangan);
+    
+        if ($keterangan === 'kasie') {
+            $this->ippModel->set([
+                'approval_kasie_midyear'        => NULL
+            ])->where(['id'=> $id])->update();
+            
+            if($kode_jabatan == 8) {
+                $this->ippModel->set([
+                    'approval_kadept_midyear'   => NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'kadept') {
+            $this->ippModel->set([
+                'approval_kadept_midyear'       => NULL
+            ])->where(['id'=> $id])->update();
+
+            if($kode_jabatan == 4) {
+                $this->ippModel->set([
+                    'approval_kadiv_midyear'   => NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'kadiv') {
+            $this->ippModel->set([
+                'approval_kadiv_midyear'      => NULL
+            ])->where(['id'=> $id])->update();
+
+            if($kode_jabatan == 3) {
+                $this->ippModel->set([
+                    'approval_bod_midyear'    => NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'direktur') {
+            $this->ippModel->set([
+                'approval_bod_midyear'        => NULL
+            ])->where(['id'=> $id])->update();
+
+            if($kode_jabatan == 2) {
+                $this->ippModel->set([
+                    'approval_presdir_midyear'=> NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'presdir') {
+            $this->ippModel->set([
+                'approval_presdir_midyear'    => NULL
+            ])->where(['id'=> $id])->update();
+        }
+    
+        $msg = [
+            'sukses' => true,
+            'message' => 'Data has been unsubmitted.'
+        ];
+    
+        return $this->response->setJSON($msg);
+    }    
 }
