@@ -13,15 +13,17 @@ class MidyearModel extends Model{
         if ($id_main === null) {
             return $this->findAll();
         } else {
-            $result = $this->select('midyear.*, main.id AS id_main, main.created_by AS field1, main.nama AS field2, main.approval_kasie, main.approval_kadept, main.approval_kadiv, main.approval_bod, main.approval_presdir')
-                ->join('main', 'main.id = midyear.id_main')
-                ->where(['midyear.id_main' => $id_main])
-                ->findAll();
+            $result = $this->select('midyear.*, main.id AS id_main, main.created_by AS field1, main.nama AS field2, main.approval_kasie, main.approval_kadept, main.approval_kadiv, main.approval_bod, main.approval_presdir, isi_ipp.kategori, isi_ipp.urutan')
+               ->join('main', 'main.id = midyear.id_main')
+               ->join('isi_ipp', "CAST(isi_ipp.program AS VARCHAR(MAX)) = CAST(midyear.program AS VARCHAR(MAX))", 'left')
+               ->where(['midyear.id_main' => $id_main])
+               ->orderBy('isi_ipp.urutan', 'desc')
+               ->findAll();
     
             return $result ? $result : [];
         }
     }
-
+    
     // Percobaan menambahkan total_score ke kolom sum_midyear_total
     public function callTotalScore($id){
         $builder = $this->db->table('main');

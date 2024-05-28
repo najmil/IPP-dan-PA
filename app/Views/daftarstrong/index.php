@@ -407,7 +407,7 @@
                                 <?php if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]): ?>
                                     <!-- MID YEAR -->
                                     <td class="text-center">
-                                        <?php if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie_strongweak'])): ?>
+                                        <?php if (empty($p['approval_kasie_strongweak'])): ?>
                                             <?php if (!empty($p['approval_date_kasie_strongweak'])): ?>
                                                 <div class="text-muted" style="font-size: 8px">
                                                     approved at: <?= $p['approval_date_kasie_strongweak']; ?>
@@ -416,16 +416,15 @@
                                             <!-- <a href="<?php// base_url("/daftarprocsum/approveKasie/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
-                                            <?php elseif (empty($p['approval_kasie_strongweak'])): ?>
-                                                <span class="badge badge-secondary btn-sm">Pending</span>
-                                            <?php else: ?>
-                                                <?php if (!empty($p['approval_date_kasie_strongweak'])): ?>
-                                                    <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kasie_strongweak']; ?></div>
-                                                    <span class="badge <?= $p['approval_kasie_strongweak'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                        <?= $p['approval_kasie_strongweak'] ? "Approved" : "Pending" ?>
-                                                    </span>
-                                                <?php endif; ?>
+                                            <span class="badge badge-secondary btn-sm">Pending</span>
+                                        <?php else: ?>
+                                            <?php if (!empty($p['approval_date_kasie_strongweak'])): ?>
+                                                <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kasie_strongweak']; ?></div>
+                                                <span class="badge <?= $p['approval_kasie_strongweak'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                    <?= $p['approval_kasie_strongweak'] ? "Approved" : "Pending" ?>
+                                                </span>
                                             <?php endif; ?>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="text-center">
                                         <?php if ($p['approval_kadept_strongweak'] == 1): ?>
@@ -446,16 +445,15 @@
                                             <!-- <a href="<?php// base_url("/daftarprocsum/approveKasie/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
-                                            <?php elseif (empty($p['approval_kasie_oneyear'])): ?>
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
-                                            <?php else: ?>
-                                                <?php if (!empty($p['approval_date_kasie_oneyear'])): ?>
-                                                    <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kasie_oneyear']; ?></div>
-                                                <?php endif; ?>
-                                                <span class="badge <?= $p['approval_kasie_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                    <?= $p['approval_kasie_oneyear'] ? "Approved" : "Pending" ?>
-                                                </span>
+                                        <?php else: ?>
+                                            <?php if (!empty($p['approval_date_kasie_oneyear'])): ?>
+                                                <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kasie_oneyear']; ?></div>
                                             <?php endif; ?>
+                                            <span class="badge <?= $p['approval_kasie_oneyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                <?= $p['approval_kasie_oneyear'] ? "Approved" : "Pending" ?>
+                                            </span>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="text-center">
                                         <?php if ($p['approval_kadept_oneyear'] == 1): ?>

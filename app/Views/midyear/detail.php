@@ -84,11 +84,10 @@
                                 $allowAccess = $mainData['approval_bod'] == 1 && $mainData['approval_presdir'] == 1;
                             }
 
-                            // dd($isRevisi);
                             if ($isWithinIPPeriode && !$is_submitted && $allowAccess && $isRevisi) {
                                 echo '
                                     <button type="button" class="btn btn-warning btn-sm edit-all-btn mb-2 float-right">Edit All</button>
-                                    <button type="button" class="btn btn-success btn-sm save-all-btn mb-2 float-right" style="display: none;">Save Temporarily</button>
+                                    <button type="button" class="btn btn-success btn-sm save-all-btn mb-2 float-right" style="display: none;">Save Temporary</button>
                                     <button type="button" class="btn btn-danger btn-sm submit mb-2 float-right mr-2">Submit</button>
                                 ';
                             }
@@ -102,6 +101,7 @@
                             <thead style="display: table-header-group; text-align: center;">
                                 <tr>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">No.</th>
+                                    <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">Kategori</th>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">Program/Activity</th>
                                     <th rowspan="1" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">Weight (%)</th>
                                     <th rowspan="2" style="border-bottom: 1px solid #dee2e6; text-align: center; vertical-align: middle;">Mid Year Target</th>
@@ -134,6 +134,10 @@
                                 ?>
                                 <tr class="editable">
                                     <td><?= $nomor; ?></td>
+                                    <td class="kategori" data-id="<?= $m['id']; ?>">
+                                        <?= $m['kategori']; ?>
+                                        <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="<?= $id_main; ?>">
+                                    </td>
                                     <td class="program" data-id="<?= $m['id']; ?>">
                                         <?= $m['program']; ?>
                                         <input type="hidden" class="form-control input-sm text-center edit-mode" id="id_main" name="id_main[]" value="<?= $id_main; ?>">
@@ -180,7 +184,8 @@
     $('#isidetail').DataTable({
         lengthChange: false,
         lengthMenu: [[-1], ["All"]],
-        pagingType: "simple"
+        pagingType: "simple",
+        ordering: false
     });
     
     function isidetail(id){
@@ -220,7 +225,7 @@
                 var row = $(this);
                 if (row.hasClass('editable')) {
                     row.find('.midyear_achv').html('<textarea class="form-control midyear_achv-input" name="midyear_achv">' + row.find('.midyear_achv').text().trim() + '</textarea>');
-                    row.find('.midyear_achv_score').html('<input type="number" class="form-control midyear_achv_score-input" name="midyear_achv_score" value="' + row.find('.midyear_achv_score').text().trim() + '"><div class="invalid-feedback"></div>');
+                    row.find('.midyear_achv_score').html('<input type="number" class="form-control midyear_achv_score-input" name="midyear_achv_score" value="' + row.find('.midyear_achv_score').text().trim() + '" min=1><div class="invalid-feedback"></div>');
                 }
             });
 
@@ -244,10 +249,18 @@
                 var newMidYearScore = row.find('.midyear_achv_score-input').val();
                 var newMidYearTotal = row.find('.midyear_achv_total').text().trim();
                 var idMain = row.find('input[name="id_main[]"]').val();
+
+                if (row.find('.is-invalid').length > 0) {
+                    if (!isAlertShown) {
+                        alert('Score must be between 1-5.');
+                        isAlertShown = true;
+                    }
+                    return false; // Stop further processing
+                }
                 
                 if (newMidYearAchv === "" || newMidYearScore === "") {
                     if (!isAlertShown) {
-                        alert('Kolom Mid Year Achievement dan Mid Year Score harus diisi.');
+                        alert('All columns required.');
                         isAlertShown = true;
                     }
                     // row.find('.save-btn').hide();
@@ -273,18 +286,17 @@
                         midyear_achv_score: newMidYearScore,
                         midyear_achv_total: newMidYearTotal
                     },
-                    beforeSend: function(){
-                        $('.save-all-btn').html('<i class="fas fa-spinner fa-spin"></i>');
-                    },
+                    // beforeSend: function(){
+                    //     $('.save-all-btn').html('<i class="fas fa-spinner fa-spin"></i>');
+                    // },
                     complete: function(){
                         $('.save-all-btn').hide();
                     },
                     success: function (response) {
                         var result = response;
-                        console.log(response);
+                        // console.log(response);
                         if (result.sukses) {
                             if (!isAlertShown) {
-                                // Mengembalikan tampilan baris ke mode normal
                                 row.find('.save-btn').hide();
                                 row.find('.midyear_achv').text(newMidYearAchv);
                                 row.find('.midyear_achv_score').text(newMidYearScore);
@@ -293,7 +305,6 @@
                                 row.find('.edit-btn').show();
                                 $('.submit').show();
                                 $('.remove_row').show();
-                                // Menampilkan tombol "Edit All" dan menyembunyikan "Save All"
                                 $('.save-all-btn').hide();
                                 $('.edit-all-btn').show();
                             }

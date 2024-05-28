@@ -58,7 +58,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                        <textarea class="form-control" id="strong_mid_alc_text" style="margin: 0; width: 100%; height: 300px;" name="strong_mid_alc" readonly><?= $strongweak['strong_mid_alc']; ?></textarea>
+                                                        <textarea class="form-control" id="strong_mid_alc_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="strong_mid_alc" readonly><?= $strongweak['strong_mid_alc']; ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -70,7 +70,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                        <textarea class="form-control" id="technical_value_mid_text" style="margin: 0; width: 100%; height: 300px;" name="technical_value_mid" readonly><?= $strongweak['technical_value_mid']; ?></textarea>
+                                                        <textarea class="form-control" id="technical_value_mid_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="technical_value_mid" readonly><?= $strongweak['technical_value_mid']; ?></textarea>
                                                     </div>
                                                 </div>
                                             <?php else: ?>
@@ -103,7 +103,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strength Point (ALC)" oninput="limitCharacters('strong_mid_alc-input', 201)"></textarea>
+                                                    <textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus style="white-space: pre-wrap;" placeholder="Keterangan Strength Point (ALC)" oninput="limitCharacters('strong_mid_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL STRONG POINT -->
@@ -202,12 +202,12 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 20){
+                                                            } elseif(session()->get('id_department') == 20 && session()->get('department') === 'HRD'){
                                                                 // HRD
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
                                                                         <option value="Industrial relation & termination">Industrial relation & termination</option>
-                                                                        <option value="Organizationd development">Organizationd development</option>
+                                                                        <option value="Organizationed development">Organizationed development</option>
                                                                         <option value="Recruitment management">Recruitment management</option>
                                                                         <option value="People development">People development</option>
                                                                         <option value="Performance & reward management">Performance & reward management</option>
@@ -223,36 +223,23 @@
                                                                 // GA & IR
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                                        <option value="Industrial relation & termination">Industrial relation & termination</option>
-                                                                        <option value="Legal management">Legal management</option>
-                                                                        <option value="Public relation management">Public relation management</option>
-                                                                        <option value="GA administration">GA administration</option>
-                                                                        <option value="Infrastructure management">Infrastructure management</option>
-                                                                        <option value="Security management (ASMS)">Security management (ASMS)</option>
-                                                                        <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                        <option value="Product knowledge">Product knowledge</option>
-                                                                        <option value="Process knowledge">Process knowledge</option>
-                                                                        <option value="Pengelolaan material B3">Pengelolaan material B3</option>
-                                                                        <option value="other">Others...</option>
-                                                                    </select>
-                                                                ';
-                                                            } elseif(session()->get('id_department') == 21){
-                                                                // PROCUREMENT
-                                                                echo '
-                                                                    <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                                        <option value="Negotiation skill">Negotiation skill</option>
-                                                                        <option value="Perpajakan">Perpajakan</option>
-                                                                        <option value="Procurement administration">Procurement administration</option>
-                                                                        <option value="Export import">Export import</option>
-                                                                        <option value="Price analysis">Price analysis</option>
-                                                                        <option value="Networking">Networking</option>
-                                                                        <option value="Vendor management">Vendor management</option>
-                                                                        <option value="Product knowledge">Product knowledge</option>
-                                                                        <option value="Material knowledge">Material knowledge</option>
-                                                                        <option value="Process knowledge">Process knowledge</option>
-                                                                        <option value="Part & component knowledge">Part & component knowledge</option>
-                                                                        <option value="Delivery management">Delivery management</option>
-                                                                        <option value="other">Others...</option>
+                                                                    <option value="Industrial relation & termination">Industrial relation & termination</option>
+                                                                    <option value="Organizationed development">Organizationed development</option>
+                                                                    <option value="Recruitment management">Recruitment management</option>
+                                                                    <option value="People development">People development</option>
+                                                                    <option value="Training management">Training management</option>
+                                                                    <option value="HR administration">HR administration</option>
+                                                                    <option value="Product knowledge">Product knowledge</option>
+                                                                    <option value="Process knowledge">Process knowledge</option>
+                                                                    <option value="Production system">Production system</option>
+                                                                    <option value="Legal management">Legal management</option>
+                                                                    <option value="Public relation management">Public relation management</option>
+                                                                    <option value="GA administration">GA administration</option>
+                                                                    <option value="Infrastructure management">Infrastructure management</option>
+                                                                    <option value="Security management (ASMS)">Security management (ASMS)</option>
+                                                                    <option value="CSR (AFC)">CSR (AFC)</option>
+                                                                    <option value="Pengelolaan material B3">Pengelolaan material B3</option>
+                                                                    <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
                                                             } elseif(session()->get('id_department') == 25){
@@ -437,29 +424,12 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } //elseif (in_array(session()->get('id_department'), [11, 15, 13, 14, 9, 12, 5, 6, 5])) {
-                                                            //     echo '
-                                                            //         <select class="form-control mt-2 mb-2" name="technical_mid" id="technical_mid">
-                                                            //             <option value="" disable>-- Pilih Technical Competency --</option>
-                                                            //             <option value="People Management">People Management</option>
-                                                            //             <option value="Quality Management">Quality Management</option>
-                                                            //             <option value="Environment Management System">Environment Management System</option>
-                                                            //             <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                            //             <option value="Equipment Management">Equipment Management</option>
-                                                            //             <option value="Tools Management">Tools Management</option>
-                                                            //             <option value="Production Planning & Control">Production Planning & Control</option>
-                                                            //             <option value="Inventory Control">Inventory Control</option>
-                                                            //             <option value="Costing">Costing</option>
-                                                            //             <option value="Budget">Budget</option>
-                                                            //             <option value="other">Others...</option>
-                                                            //         </select>
-                                                            //     ';
-                                                            // }
+                                                            } 
                                                         ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Strength Point (Technical Competency)" oninput="limitCharacters('technical_value_mid-input', 201)"></textarea>
+                                                    <textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['technical_value_mid']) ? 'is-invalid' : '' ?> style="white-space: pre-wrap;" autofocus placeholder="Keterangan Strength Point (Technical Competency)" oninput="limitCharacters('technical_value_mid-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['strong_mid'])): ?>
@@ -495,7 +465,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                        <textarea class="form-control" id="weak_mid_alc_text" style="margin: 0; width: 100%; height: 300px;" name="weak_mid_alc_text" readonly><?= $strongweak['weak_mid_alc']; ?></textarea>
+                                                        <textarea class="form-control" id="weak_mid_alc_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="weak_mid_alc_text" readonly><?= $strongweak['weak_mid_alc']; ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -507,7 +477,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                        <textarea class="form-control" id="weak_technical_value_mid_text" style="margin: 0; width: 100%; height: 300px;" name="weak_technical_value_mid_text" readonly><?= $strongweak['weak_technical_value_mid']; ?></textarea>
+                                                        <textarea class="form-control" id="weak_technical_value_mid_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="weak_technical_value_mid_text" readonly><?= $strongweak['weak_technical_value_mid']; ?></textarea>
                                                     </div>
                                                 </div>
                                             <?php else: ?>
@@ -540,7 +510,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_mid_alc-input" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Weaknes Point (ALC)" oninput="limitCharacters('weak_mid_alc-input', 201)"></textarea>
+                                                    <textarea name="weak_mid_alc-input" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" autofocus style="white-space: pre-wrap;" placeholder="Keterangan Weaknes Point (ALC)" oninput="limitCharacters('weak_mid_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL WEAK POINT -->
@@ -591,28 +561,6 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 23){
                                                                 // MARKETING
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Negotiation Skill">Negotiation Skill</option>
-                                                                //         <option value="Pricing Strategy">Pricing Strategy</option>
-                                                                //         <option value="Market Analysis">Market Analysis</option>
-                                                                //         <option value="Customer Management">Customer Management</option>
-                                                                //         <option value="Branding & Promotion">Branding & Promotion</option>
-                                                                //         <option value="Kontrak Kerja">Kontrak Kerja (Customer)</option>
-                                                                //         <option value="Networking">Networking</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -656,31 +604,6 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 24){
                                                                 // MIS
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="General Software">General Software</option>
-                                                                //         <option value="Database Management">Database Management</option>
-                                                                //         <option value="IoT Infrastructure">IoT Infrastructure</option>
-                                                                //         <option value="IT Infrastruktur">IT Infrastruktur</option>
-                                                                //         <option value="Human Computer Interaction">Human Computer Interaction</option>
-                                                                //         <option value="ERP System">ERP System</option>
-                                                                //         <option value="IT Security">IT Security</option>
-                                                                //         <option value="System Analyst">System Analyst</option>
-                                                                //         <option value="Programming">Programming</option>
-                                                                //         <option value="Baan Administration">Baan Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -704,72 +627,23 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 20){
                                                                 // HRD
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="Organization Development">Organization Development</option>
-                                                                //         <option value="Recruitment">Recruitment</option>
-                                                                //         <option value="People Development">People Development</option>
-                                                                //         <option value="Performance & Reward Management">Performance & Reward Management</option>
-                                                                //         <option value="Training Management">Training Management</option>
-                                                                //         <option value="HR Administration">HR Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
                                                                         <option value="Industrial relation & termination">Industrial relation & termination</option>
-                                                                        <option value="Organizationd development">Organizationd development</option>
+                                                                        <option value="Organizationed development">Organizationed development</option>
                                                                         <option value="Recruitment management">Recruitment management</option>
                                                                         <option value="People development">People development</option>
-                                                                        <option value="Performance & reward management">Performance & reward management</option>
                                                                         <option value="Training management">Training management</option>
                                                                         <option value="HR administration">HR administration</option>
                                                                         <option value="Product knowledge">Product knowledge</option>
                                                                         <option value="Process knowledge">Process knowledge</option>
                                                                         <option value="Production system">Production system</option>
-                                                                        <option value="other">Others...</option>
-                                                                    </select>
-                                                                ';
-                                                            } elseif(session()->get('id_department') == 20){
-                                                                // GA & IR
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="GA Administration">GA Administration</option>
-                                                                //         <option value="Infrastructure Management">Infrastructure Management</option>
-                                                                //         <option value="Security Management (ASMS)">Security Management (ASMS)</option>
-                                                                //         <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                //         <option value="Public Relation Management">Public Relation Management</option>
-                                                                //         <option value="Legal Management">Legal Management</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
-                                                                echo '
-                                                                    <select class="form-control mt-2 mb-2" name="weak_technical_mid" id="weak_technical_mid">
-                                                                        <option value="Industrial relation & termination">Industrial relation & termination</option>
                                                                         <option value="Legal management">Legal management</option>
                                                                         <option value="Public relation management">Public relation management</option>
                                                                         <option value="GA administration">GA administration</option>
                                                                         <option value="Infrastructure management">Infrastructure management</option>
                                                                         <option value="Security management (ASMS)">Security management (ASMS)</option>
                                                                         <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                        <option value="Product knowledge">Product knowledge</option>
-                                                                        <option value="Process knowledge">Process knowledge</option>
                                                                         <option value="Pengelolaan material B3">Pengelolaan material B3</option>
                                                                         <option value="other">Others...</option>
                                                                     </select>
@@ -963,7 +837,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_technical_value_mid-input"id="weak_technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Weakness Point (Technical Competency)" oninput="limitCharacters('weak_technical_value_mid-input', 201)"></textarea>
+                                                    <textarea name="weak_technical_value_mid-input" id="weak_technical_value_mid-input" cols="30" rows="10" class="form-control" <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : '' ?> autofocus placeholder="Keterangan Weakness Point (Technical Competency)"  style="white-space: pre-wrap;" oninput="limitCharacters('weak_technical_value_mid-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['weak_mid'])): ?>
@@ -978,9 +852,9 @@
                                 <div class="mt-3">
                                     <label for="note_input">Notes</label>
                                     <?php if (isset($strongweak['note_mid'])): ?>
-                                        <textarea class="form-control" id="note_input" style="margin: 0; width: 100%; height: 300px;" name="note_mid" readonly><?= $strongweak['note_mid']; ?></textarea>
+                                        <textarea class="form-control" id="note_input" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="note_mid" readonly><?= $strongweak['note_mid']; ?></textarea>
                                     <?php else: ?>
-                                        <textarea name="note_mid" id="note_mid_input" cols="30" rows="10" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters('note_mid_input', 71)"></textarea>
+                                        <textarea name="note_mid" id="note_mid_input" cols="30" rows="10" style="white-space: pre-wrap;" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters('note_mid_input', 71)"></textarea>
                                         <!-- Tampilkan validation error jika ada -->
                                         <?php // if (isset($errors['note_mid'])): ?>
                                             <div class="invalid-feedback"><?= $validation->getError('note_mid'); ?></div>
@@ -1026,7 +900,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                    <textarea class="form-control" id="strong_one_alc_text" style="margin: 0; width: 100%; height: 300px;" name="strong_one_alc_text" readonly><?= $strongweak['strong_one_alc']; ?></textarea>
+                                                    <textarea class="form-control" id="strong_one_alc_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="strong_one_alc_text" readonly><?= $strongweak['strong_one_alc']; ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1038,7 +912,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                        <textarea class="form-control" id="technical_value_one_text" style="margin: 0; width: 100%; height: 300px;" name="technical_value_one" readonly><?= $strongweak['technical_value_one']; ?></textarea>
+                                                        <textarea class="form-control" id="technical_value_one_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="technical_value_one" readonly><?= $strongweak['technical_value_one']; ?></textarea>
                                                     </div>
                                                 </div>
                                             <?php else: ?>
@@ -1071,7 +945,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strength Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('strong_one_alc-input', 201)"></textarea>
+                                                    <textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Strength Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> style="white-space: pre-wrap;" oninput="limitCharacters('strong_one_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL STRONG POINT -->
@@ -1083,33 +957,6 @@
                                                             // dd(session()->get('id_department'));
                                                             if (session()->get('id_department') == 29){
                                                                 // MAINTENANCE
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Perpajakan">Perpajakan</option>
-                                                                //         <option value="Aset Management">Aset Management</option>
-                                                                //         <option value="Accounting Principles">Accounting Principles</option>
-                                                                //         <option value="Planning & Budgeting">Planning & Budgeting</option>
-                                                                //         <option value="Financial Analysis Skill">Financial Analysis Skill</option>
-                                                                //         <option value="Cash Management">Cash Management</option>
-                                                                //         <option value="Feasibility Study">Feasibility Study</option>
-                                                                //         <option value="Cost Accounting">Cost Accounting</option>
-                                                                //         <option value="Kebijakan Standar Akuntansi">Kebijakan Standar Akuntansi</option>
-                                                                //         <option value="Business Analysis Skill">Business Analysis Skill</option>
-                                                                //         <option value="Corporate Treasury">Corporate Treasury</option>
-                                                                //         <option value="Corporate Finance">Corporate Finance</option>
-                                                                //         <option value="Financial Modelling">Financial Modelling</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -1133,28 +980,6 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 23){
                                                                 // MARKETING
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Negotiation Skill">Negotiation Skill</option>
-                                                                //         <option value="Pricing Strategy">Pricing Strategy</option>
-                                                                //         <option value="Market Analysis">Market Analysis</option>
-                                                                //         <option value="Customer Management">Customer Management</option>
-                                                                //         <option value="Branding & Promotion">Branding & Promotion</option>
-                                                                //         <option value="Kontrak Kerja">Kontrak Kerja (Customer)</option>
-                                                                //         <option value="Networking">Networking</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -1215,31 +1040,6 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 24){
                                                                 // MIS
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="General Software">General Software</option>
-                                                                //         <option value="Database Management">Database Management</option>
-                                                                //         <option value="IoT Infrastructure">IoT Infrastructure</option>
-                                                                //         <option value="IT Infrastruktur">IT Infrastruktur</option>
-                                                                //         <option value="Human Computer Interaction">Human Computer Interaction</option>
-                                                                //         <option value="ERP System">ERP System</option>
-                                                                //         <option value="IT Security">IT Security</option>
-                                                                //         <option value="System Analyst">System Analyst</option>
-                                                                //         <option value="Programming">Programming</option>
-                                                                //         <option value="Baan Administration">Baan Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -1263,74 +1063,23 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 20){
                                                                 // HRD
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="Organization Development">Organization Development</option>
-                                                                //         <option value="Recruitment">Recruitment</option>
-                                                                //         <option value="People Development">People Development</option>
-                                                                //         <option value="Performance & Reward Management">Performance & Reward Management</option>
-                                                                //         <option value="Training Management">Training Management</option>
-                                                                //         <option value="HR Administration">HR Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
-                                                                    <option value="" disable>-- Pilih Technical Competency --</option>
                                                                         <option value="Industrial relation & termination">Industrial relation & termination</option>
-                                                                        <option value="Organizationd development">Organizationd development</option>
+                                                                        <option value="Organizationed development">Organizationed development</option>
                                                                         <option value="Recruitment management">Recruitment management</option>
                                                                         <option value="People development">People development</option>
-                                                                        <option value="Performance & reward management">Performance & reward management</option>
                                                                         <option value="Training management">Training management</option>
                                                                         <option value="HR administration">HR administration</option>
                                                                         <option value="Product knowledge">Product knowledge</option>
                                                                         <option value="Process knowledge">Process knowledge</option>
                                                                         <option value="Production system">Production system</option>
-                                                                        <option value="other">Others...</option>
-                                                                    </select>
-                                                                ';
-                                                            } elseif(session()->get('id_department') == 20){
-                                                                // GA & IR
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="GA Administration">GA Administration</option>
-                                                                //         <option value="Infrastructure Management">Infrastructure Management</option>
-                                                                //         <option value="Security Management (ASMS)">Security Management (ASMS)</option>
-                                                                //         <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                //         <option value="Public Relation Management">Public Relation Management</option>
-                                                                //         <option value="Legal Management">Legal Management</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
-                                                                echo '
-                                                                    <select class="form-control mt-2 mb-2" name="technical_one" id="technical_one">
-                                                                        <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                        <option value="Industrial relation & termination">Industrial relation & termination</option>
                                                                         <option value="Legal management">Legal management</option>
                                                                         <option value="Public relation management">Public relation management</option>
                                                                         <option value="GA administration">GA administration</option>
                                                                         <option value="Infrastructure management">Infrastructure management</option>
                                                                         <option value="Security management (ASMS)">Security management (ASMS)</option>
                                                                         <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                        <option value="Product knowledge">Product knowledge</option>
-                                                                        <option value="Process knowledge">Process knowledge</option>
                                                                         <option value="Pengelolaan material B3">Pengelolaan material B3</option>
                                                                         <option value="other">Others...</option>
                                                                     </select>
@@ -1524,30 +1273,12 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } //elseif (in_array(session()->get('id_department'), [11, 15, 13, 14, 9, 12, 5, 6, 5])) {
-                                                            //     echo '
-                                                            //         <select class="form-control" name="technical_one" id="technical_one"'. ($isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : '') .'>
-                                                            //             <option value="" disable>-- Pilih Technical Competency --</option>
-                                                            //             <option value="People Management">People Management</option>
-                                                            //             <option value="Quality Management">Quality Management</option>
-                                                            //             <option value="Environment Management System">Environment Management System</option>
-                                                            //             <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                            //             <option value="Equipment Management">Equipment Management</option>
-                                                            //             <option value="Tools Management">Tools Management</option>
-                                                            //             <option value="Production Planning & Control">Production Planning & Control</option>
-                                                            //             <option value="Inventory Control">Inventory Control</option>
-                                                            //             <option value="Costing">Costing</option>
-                                                            //             <option value="Budget">Budget</option>
-                                                            //             <option value="other">Others...</option>
-                                                            //         </select>
-                                                            //     ';
-                                                            // }
-
+                                                            } 
                                                         ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Strength Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : '' ?> oninput="limitCharacters('technical_value_one-input', 201)"></textarea>
+                                                    <textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Strength Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : '' ?> style="white-space: pre-wrap;" oninput="limitCharacters('technical_value_one-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['note_mid'])): ?>
@@ -1583,7 +1314,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                        <textarea class="form-control" id="weak_one_alc_text" style="margin: 0; width: 100%; height: 300px;" name="weak_one_alc_text" readonly><?= $strongweak['weak_one_alc']; ?></textarea>
+                                                        <textarea class="form-control" id="weak_one_alc_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="weak_one_alc_text" readonly><?= $strongweak['weak_one_alc']; ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1595,7 +1326,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
-                                                        <textarea class="form-control" id="weak_technical_value_one_text" style="margin: 0; width: 100%; height: 300px;" name="weak_technical_value_one_text" readonly><?= $strongweak['weak_technical_value_one']; ?></textarea>
+                                                        <textarea class="form-control" id="weak_technical_value_one_text" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="weak_technical_value_one_text" readonly><?= $strongweak['weak_technical_value_one']; ?></textarea>
                                                     </div>
                                                 </div>
                                             <?php else: ?>
@@ -1628,7 +1359,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_one_alc-input" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?php //echo isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Weak Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('weak_one_alc-input', 201)"></textarea>
+                                                    <textarea name="weak_one_alc-input" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?php //echo isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" autofocus placeholder="Keterangan Weak Point (ALC)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> style="white-space: pre-wrap;"oninput="limitCharacters('weak_one_alc-input', 201)"></textarea>
                                                 </div>
                                                 
                                                 <!-- TECHNICAL WEAK POINT -->
@@ -1639,33 +1370,6 @@
                                                         <?php
                                                             if (session()->get('id_department') == 29){
                                                                 // MAINTENANCE
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Perpajakan">Perpajakan</option>
-                                                                //         <option value="Aset Management">Aset Management</option>
-                                                                //         <option value="Accounting Principles">Accounting Principles</option>
-                                                                //         <option value="Planning & Budgeting">Planning & Budgeting</option>
-                                                                //         <option value="Financial Analysis Skill">Financial Analysis Skill</option>
-                                                                //         <option value="Cash Management">Cash Management</option>
-                                                                //         <option value="Feasibility Study">Feasibility Study</option>
-                                                                //         <option value="Cost Accounting">Cost Accounting</option>
-                                                                //         <option value="Kebijakan Standar Akuntansi">Kebijakan Standar Akuntansi</option>
-                                                                //         <option value="Business Analysis Skill">Business Analysis Skill</option>
-                                                                //         <option value="Corporate Treasury">Corporate Treasury</option>
-                                                                //         <option value="Corporate Finance">Corporate Finance</option>
-                                                                //         <option value="Financial Modelling">Financial Modelling</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -1687,7 +1391,7 @@
                                                                         <option value="other">Others...</option>
                                                                     </select>
                                                                 ';
-                                                            } elseif(session()->get('id_department') == 25){
+                                                            } elseif(session()->get('id_department') == 21){
                                                                 // PROCUREMENT
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
@@ -1706,28 +1410,6 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 23){
                                                                 // MARKETING
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Negotiation Skill">Negotiation Skill</option>
-                                                                //         <option value="Pricing Strategy">Pricing Strategy</option>
-                                                                //         <option value="Market Analysis">Market Analysis</option>
-                                                                //         <option value="Customer Management">Customer Management</option>
-                                                                //         <option value="Branding & Promotion">Branding & Promotion</option>
-                                                                //         <option value="Kontrak Kerja">Kontrak Kerja (Customer)</option>
-                                                                //         <option value="Networking">Networking</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -1771,31 +1453,6 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 24){
                                                                 // MIS
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Equipment Management">Equipment Management</option>
-                                                                //         <option value="Production Planning & Control">Production Planning & Control</option>
-                                                                //         <option value="Inventory Control">Inventory Control</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="General Software">General Software</option>
-                                                                //         <option value="Database Management">Database Management</option>
-                                                                //         <option value="IoT Infrastructure">IoT Infrastructure</option>
-                                                                //         <option value="IT Infrastruktur">IT Infrastruktur</option>
-                                                                //         <option value="Human Computer Interaction">Human Computer Interaction</option>
-                                                                //         <option value="ERP System">ERP System</option>
-                                                                //         <option value="IT Security">IT Security</option>
-                                                                //         <option value="System Analyst">System Analyst</option>
-                                                                //         <option value="Programming">Programming</option>
-                                                                //         <option value="Baan Administration">Baan Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
                                                                         <option value="" disable>-- Pilih Technical Competency --</option>
@@ -1819,74 +1476,23 @@
                                                                 ';
                                                             } elseif(session()->get('id_department') == 20){
                                                                 // HRD
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="Organization Development">Organization Development</option>
-                                                                //         <option value="Recruitment">Recruitment</option>
-                                                                //         <option value="People Development">People Development</option>
-                                                                //         <option value="Performance & Reward Management">Performance & Reward Management</option>
-                                                                //         <option value="Training Management">Training Management</option>
-                                                                //         <option value="HR Administration">HR Administration</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
                                                                 echo '
                                                                     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
-                                                                        <option value="" disable>-- Pilih Technical Competency --</option>
                                                                         <option value="Industrial relation & termination">Industrial relation & termination</option>
-                                                                        <option value="Organizationd development">Organizationd development</option>
+                                                                        <option value="Organizationed development">Organizationed development</option>
                                                                         <option value="Recruitment management">Recruitment management</option>
                                                                         <option value="People development">People development</option>
-                                                                        <option value="Performance & reward management">Performance & reward management</option>
                                                                         <option value="Training management">Training management</option>
                                                                         <option value="HR administration">HR administration</option>
                                                                         <option value="Product knowledge">Product knowledge</option>
                                                                         <option value="Process knowledge">Process knowledge</option>
                                                                         <option value="Production system">Production system</option>
-                                                                        <option value="other">Others...</option>
-                                                                    </select>
-                                                                ';
-                                                            } elseif(session()->get('id_department') == 20){
-                                                                // GA & IR
-                                                                // echo '
-                                                                //     <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
-                                                                //         <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                //         <option value="People Management">People Management</option>
-                                                                //         <option value="Quality Management">Quality Management</option>
-                                                                //         <option value="Environment Management System">Environment Management System</option>
-                                                                //         <option value="Health and Safety Management System">Health and Safety Management System</option>
-                                                                //         <option value="Costing">Costing</option>
-                                                                //         <option value="Budget">Budget</option>
-                                                                //         <option value="Industrial Relation & Termination">Industrial Relation & Termination</option>
-                                                                //         <option value="GA Administration">GA Administration</option>
-                                                                //         <option value="Infrastructure Management">Infrastructure Management</option>
-                                                                //         <option value="Security Management (ASMS)">Security Management (ASMS)</option>
-                                                                //         <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                //         <option value="Public Relation Management">Public Relation Management</option>
-                                                                //         <option value="Legal Management">Legal Management</option>
-                                                                //         <option value="other">Others...</option>
-                                                                //     </select>
-                                                                // ';
-                                                                echo '
-                                                                    <select class="form-control mt-2 mb-2" name="weak_technical_one" id="weak_technical_one">
-                                                                        <option value="" disable>-- Pilih Technical Competency --</option>
-                                                                        <option value="Industrial relation & termination">Industrial relation & termination</option>
                                                                         <option value="Legal management">Legal management</option>
                                                                         <option value="Public relation management">Public relation management</option>
                                                                         <option value="GA administration">GA administration</option>
                                                                         <option value="Infrastructure management">Infrastructure management</option>
                                                                         <option value="Security management (ASMS)">Security management (ASMS)</option>
                                                                         <option value="CSR (AFC)">CSR (AFC)</option>
-                                                                        <option value="Product knowledge">Product knowledge</option>
-                                                                        <option value="Process knowledge">Process knowledge</option>
                                                                         <option value="Pengelolaan material B3">Pengelolaan material B3</option>
                                                                         <option value="other">Others...</option>
                                                                     </select>
@@ -2087,7 +1693,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Weak Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : ''?> oninput="limitCharacters('weak_technical_value_one-input', 201)"></textarea>
+                                                    <textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control" autofocus placeholder="Keterangan Weak Point (Technical Competency)" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled' : ''?> style="white-space: pre-wrap;" oninput="limitCharacters('weak_technical_value_one-input', 201)"></textarea>
                                                 </div>
                                                 <!-- Tampilkan validation error jika ada -->
                                                 <?php // if (isset($errors['note_mid'])): ?>
@@ -2102,9 +1708,9 @@
                                 <div class="mt-3">
                                     <label for="note_one_input">Notes</label>
                                     <?php if (isset($strongweak['note_one'])): ?>
-                                        <textarea class="form-control" id="note_one_input" style="margin: 0; width: 100%; height: 300px;" name="note_one_input" readonly><?= $strongweak['note_one']; ?></textarea>
+                                        <textarea class="form-control" id="note_one_input" style="margin: 0; width: 100%; height: 300px; white-space: pre-wrap;" name="note_one_input" readonly><?= $strongweak['note_one']; ?></textarea>
                                     <?php else: ?>
-                                        <textarea name="note_one" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> oninput="limitCharacters('note_one_input', 71)"></textarea>
+                                        <textarea name="note_one" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?> style="white-space: pre-wrap;" oninput="limitCharacters('note_one_input', 71)"></textarea>
                                         <!-- Tampilkan validation error jika ada -->
                                         <?php // if (isset($errors['note_one'])): ?>
                                             <div class="invalid-feedback"><?= $validation->getError('note_one'); ?></div>
@@ -2163,6 +1769,7 @@
 
 <?php 
 $selectedTechnicalMid = isset($strongweak['technical_mid']) ? $strongweak['technical_mid'] : ''; 
+// dd($selectedTechnicalMid);
 $selectedWeakTechMid = isset($strongweak['weak_technical_mid']) ? $strongweak['weak_technical_mid'] : ''; 
 $selectedTechnicalOne = isset($strongweak['technical_one']) ? $strongweak['technical_one'] : ''; 
 $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['weak_technical_one'] : ''; 
@@ -2238,7 +1845,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
         var selectedValue = alcSelect.value;
 
         if (selectedValue === "Vision & Business Sense") {
-            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan \"peluang & risiko\"", "Data & fakta keuangan, cost & benefit - operational excellence"];
+            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;", "Data & fakta keuangan, cost & benefit - operational excellence"];
             options.forEach(function(optionValue) {
                 var option = document.createElement("option");
                 option.value = optionValue;
@@ -2313,7 +1920,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
         var selectedValue = alcSelect.value;
 
         if (selectedValue === "Vision & Business Sense") {
-            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan \"peluang & risiko\"", "Data & fakta keuangan, cost & benefit - operational excellence"];
+            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;", "Data & fakta keuangan, cost & benefit - operational excellence"];
             options.forEach(function(optionValue) {
                 var option = document.createElement("option");
                 option.value = optionValue;
@@ -2390,7 +1997,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
         var selectedValue = alcSelect.value;
 
         if (selectedValue === "Vision & Business Sense") {
-            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan \"peluang & risiko\"", "Data & fakta keuangan, cost & benefit - operational excellence"];
+            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;", "Data & fakta keuangan, cost & benefit - operational excellence"];
             options.forEach(function(optionValue) {
                 var option = document.createElement("option");
                 option.value = optionValue;
@@ -2467,7 +2074,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
         var selectedValue = alcSelect.value;
 
         if (selectedValue === "Vision & Business Sense") {
-            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan \"peluang & risiko\"", "Data & fakta keuangan, cost & benefit - operational excellence"];
+            var options = ["Vision, turunan inisiatif kunci", "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;", "Data & fakta keuangan, cost & benefit - operational excellence"];
             options.forEach(function(optionValue) {
                 var option = document.createElement("option");
                 option.value = optionValue;
@@ -2577,7 +2184,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 var subOptions = {
                     "Vision & Business Sense": [
                         "Vision, turunan inisiatif kunci",
-                        "kemungkinan perubahan \"peluang & risiko\"",
+                        "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;",
                         "Data & fakta keuangan, cost & benefit - operational excellence"
                     ],
                     "Customer Focus": [
@@ -2661,30 +2268,31 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('sub_alc_mid_text').outerHTML = subAlcMidSelect;
                 
-                document.getElementById('strong_mid_alc_text').outerHTML = '<textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'strong_mid_alc-input\', 201)"><?= isset($strongweak['strong_mid_alc']) ? htmlspecialchars(($strongweak['strong_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('strong_mid_alc_text').outerHTML = '<textarea name="strong_mid_alc" id="strong_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_mid_alc']) ? 'is-invalid' : ''; ?>" style="white-space: pre-wrap;" oninput="limitCharacters(\'strong_mid_alc-input\', 201)"><?= isset($strongweak['strong_mid_alc']) ? htmlspecialchars(($strongweak['strong_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
                 var departmentId = <?= $strongweakmain['id_department']; ?>;
 
                 var technicalOptions = {
-                    6: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    7: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
-                    8: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
-                    4: ["Industrial relation & termination", "Organizationd development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "other"],
-                    3: ["Industrial relation & termination", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Product knowledge", "Process knowledge", "Pengelolaan material B3", "other"],
-                    11: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
-                    1: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
-                    13: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    14: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    9: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
-                    12: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
-                    2: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
-                    15: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"
-                    ],
-                    5:  ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    16: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"]
+                    29: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    23: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
+                    22: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
+                    24: ["General software", "Database management", "IoT infrastructure", "IT infrastruktur", "Human computer interaction", "ERP system", "IT security", "System analyst", "Programming", "Baan administration", "Business process management", "Product knowledge", "Process knowledge", "Production knowledge", "Production system", "other"],
+                    21: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
+                    25: ["Quality Management", "Quality System (QSA)", "Product knowledge", "Manufactoring Process", "Part & component knowlede", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    30: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
+                    31: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    32: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    33: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
+                    28: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
+                    26: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    25: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    27: ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    34: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    20: ["Industrial relation & termination", "Organizationed development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Pengelolaan material B3", "other"]
                 };
 
                 var selectedTechnicalMid = '<?= $selectedTechnicalMid; ?>';
+                console.log('selectedTechnicalMid', selectedTechnicalMid)
                 var technicalSelectHTML = '';
 
                 if (technicalOptions.hasOwnProperty(departmentId)) {
@@ -2705,7 +2313,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('technical_mid_text').outerHTML = technicalSelectHTML;
                 
-                document.getElementById('technical_value_mid_text').outerHTML = '<textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'technical_value_mid-input\', 201)"><?= isset($strongweak['technical_value_mid']) ? htmlspecialchars(($strongweak['technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('technical_value_mid_text').outerHTML = '<textarea name="technical_value_mid" id="technical_value_mid-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_mid']) ? 'is-invalid' : ''; ?>" style="white-space: pre-wrap;" oninput="limitCharacters(\'technical_value_mid-input\', 201)"><?= isset($strongweak['technical_value_mid']) ? htmlspecialchars(($strongweak['technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             //END OF STRENGTH
 
             // WEAKNESS
@@ -2719,7 +2327,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 var weakSubOptions = {
                     "Vision & Business Sense": [
                         "Vision, turunan inisiatif kunci",
-                        "kemungkinan perubahan \"peluang & risiko\"",
+                        "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;",
                         "Data & fakta keuangan, cost & benefit - operational excellence"
                     ],
                     "Customer Focus": [
@@ -2788,12 +2396,13 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 for (var key in weakSubOptions) {
                     if (weakSubOptions.hasOwnProperty(key)) {
                         var options = weakSubOptions[key];
+                        // console.log('options', options);
 
                         // Menggunakan key alc_mid yang terpilih untuk mendapatkan array weakSubOptions yang sesuai
                         if (key === weakSelectedAlcMidValue) {
-                            options.forEach(function (optionValue) {
-                                var selected = (optionValue === weakSelectedSubValue) ? 'selected' : '';
-                                weakSubAlcMidSelect += '<option value="' + optionValue + '" ' + selected + '>' + optionValue + '</option>';
+                            options.forEach(function (weakOptionValue) {
+                                var weakSelected = (weakOptionValue === weakSelectedSubValue) ? 'selected' : '';
+                                weakSubAlcMidSelect += '<option value="' + weakOptionValue + '" ' + weakSelected + '>' + weakOptionValue + '</option>';
                             });
                         }
                     }
@@ -2803,25 +2412,25 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('weak_sub_alc_mid_text').outerHTML = weakSubAlcMidSelect;
                 
-                document.getElementById('weak_mid_alc_text').outerHTML = '<textarea name="weak_mid_alc_text" id="weak_mid_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_mid_alc-input\', 201)"s><?= isset($strongweak['weak_mid_alc']) ? htmlspecialchars(($strongweak['weak_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_mid_alc_text').outerHTML = '<textarea name="weak_mid_alc_text" id="weak_mid_alc-input" cols="30" rows="10" style="white-space: pre-wrap;" class="form-control <?= isset($errors['weak_mid_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_mid_alc-input\', 201)"s><?= isset($strongweak['weak_mid_alc']) ? htmlspecialchars(($strongweak['weak_mid_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
                 var weakTechOpts = {
-                    6: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    7: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
-                    8: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
-                    4: ["Industrial relation & termination", "Organizationd development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "other"],
-                    3: ["Industrial relation & termination", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Product knowledge", "Process knowledge", "Pengelolaan material B3", "other"],
-                    11: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
-                    1: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
-                    13: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    14: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    9: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
-                    12: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
-                    2: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
-                    15: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"
-                    ],
-                    5:  ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    16: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"]
+                    29: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    23: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
+                    22: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
+                    24: ["General software", "Database management", "IoT infrastructure", "IT infrastruktur", "Human computer interaction", "ERP system", "IT security", "System analyst", "Programming", "Baan administration", "Business process management", "Product knowledge", "Process knowledge", "Production knowledge", "Production system", "other"],
+                    21: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
+                    25: ["Quality Management", "Quality System (QSA)", "Product knowledge", "Manufactoring Process", "Part & component knowlede", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    30: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
+                    31: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    32: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    33: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
+                    28: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
+                    26: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    25: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    27: ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    34: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    20: ["Industrial relation & termination", "Organizationed development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Product knowledge", "Process knowledge", "Pengelolaan material B3", "other"]
                 };
 
                 var selectedWeakTechMid = '<?= $selectedWeakTechMid; ?>';
@@ -2845,11 +2454,11 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('weak_technical_mid_text').outerHTML = weakSelectMid;
 
-                document.getElementById('weak_technical_value_mid_text').outerHTML = '<textarea name="weak_technical_value_mid" id="weak_technical_value_mid-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_technical_value_mid-input\', 201)"><?= isset($strongweak['weak_technical_value_mid']) ? htmlspecialchars(($strongweak['weak_technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_technical_value_mid_text').outerHTML = '<textarea name="weak_technical_value_mid" id="weak_technical_value_mid-input" style="white-space: pre-wrap;" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_technical_value_mid-input\', 201)"><?= isset($strongweak['weak_technical_value_mid']) ? htmlspecialchars(($strongweak['weak_technical_value_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             // END OF WEAKNESS
 
             // NOTES
-            document.getElementById('note_input').outerHTML = '<textarea name="note_input" id="note_mid_input" cols="30" rows="10" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'note_mid_input\', 71)"><?= isset($strongweak['note_mid']) ? htmlspecialchars(($strongweak['note_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+            document.getElementById('note_input').outerHTML = '<textarea name="note_input" style="white-space: pre-wrap;" id="note_mid_input" cols="30" rows="10" class="form-control <?= isset($errors['note_mid']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'note_mid_input\', 71)"><?= isset($strongweak['note_mid']) ? htmlspecialchars(($strongweak['note_mid']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
             $('#edit').hide();
             $('#submitBtn').hide();
@@ -2901,7 +2510,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 var subOptions = {
                     "Vision & Business Sense": [
                         "Vision, turunan inisiatif kunci",
-                        "kemungkinan perubahan \"peluang & risiko\"",
+                        "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;",
                         "Data & fakta keuangan, cost & benefit - operational excellence"
                     ],
                     "Customer Focus": [
@@ -2985,28 +2594,28 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('sub_alc_one_text').outerHTML = subAlconeSelect;
                 
-                document.getElementById('strong_one_alc_text').outerHTML = '<textarea name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'strong_one_alc-input\', 201)"><?= isset($strongweak['strong_one_alc']) ? htmlspecialchars(($strongweak['strong_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('strong_one_alc_text').outerHTML = '<textarea  name="strong_one_alc" id="strong_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['strong_one_alc']) ? 'is-invalid' : ''; ?>" style="white-space: pre-wrap;" oninput="limitCharacters(\'strong_one_alc-input\', 201)"><?= isset($strongweak['strong_one_alc']) ? htmlspecialchars(($strongweak['strong_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
                 var departmentId = <?= $strongweakmain['id_department']; ?>;
                 <?php $selectedtechnicalOne = isset($strongweak['technical_one']) ? $strongweak['technical_one'] : ''; ?>
 
                 var techOptsOne = {
-                    6: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    7: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
-                    8: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
-                    4: ["Industrial relation & termination", "Organizationd development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "other"],
-                    3: ["Industrial relation & termination", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Product knowledge", "Process knowledge", "Pengelolaan material B3", "other"],
-                    11: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
-                    1: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
-                    13: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    14: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    9: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
-                    12: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
-                    2: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
-                    15: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"
-                    ],
-                    5:  ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    16: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"]
+                    29: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    23: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
+                    22: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
+                    24: ["General software", "Database management", "IoT infrastructure", "IT infrastruktur", "Human computer interaction", "ERP system", "IT security", "System analyst", "Programming", "Baan administration", "Business process management", "Product knowledge", "Process knowledge", "Production knowledge", "Production system", "other"],
+                    21: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
+                    25: ["Quality Management", "Quality System (QSA)", "Product knowledge", "Manufactoring Process", "Part & component knowlede", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    30: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
+                    31: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    32: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    33: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
+                    28: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
+                    26: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    25: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    27: ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    34: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    20: ["Industrial relation & termination", "Organizationed development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Product knowledge", "Process knowledge", "Pengelolaan material B3", "other"]
                 };
 
                 var selectedTechnicalOne = '<?= $selectedTechnicalOne; ?>';
@@ -3029,7 +2638,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('technical_one_text').outerHTML = techSelectOne;
 
-                document.getElementById('technical_value_one_text').outerHTML = '<textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'technical_value_one-input\', 201)"><?= isset($strongweak['technical_value_one']) ? htmlspecialchars(($strongweak['technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('technical_value_one_text').outerHTML = '<textarea name="technical_value_one" id="technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['technical_value_one']) ? 'is-invalid' : ''; ?>" style="white-space: pre-wrap;" oninput="limitCharacters(\'technical_value_one-input\', 201)"><?= isset($strongweak['technical_value_one']) ? htmlspecialchars(($strongweak['technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             //END OF STRENGTH
 
             // WEAKNESS
@@ -3043,7 +2652,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 var weakSubOptions = {
                     "Vision & Business Sense": [
                         "Vision, turunan inisiatif kunci",
-                        "kemungkinan perubahan \"peluang & risiko\"",
+                        "Kemungkinan perubahan &quot;peluang &amp; risiko&quot;",
                         "Data & fakta keuangan, cost & benefit - operational excellence"
                     ],
                     "Customer Focus": [
@@ -3127,28 +2736,28 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('weak_sub_alc_one_text').outerHTML = weakSubAlconeSelect;
                 
-                document.getElementById('weak_one_alc_text').outerHTML = '<textarea name="weak_one_alc_text" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_one_alc-input\', 201)"><?= isset($strongweak['weak_one_alc']) ? htmlspecialchars(($strongweak['weak_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_one_alc_text').outerHTML = '<textarea name="weak_one_alc_text" id="weak_one_alc-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_one_alc']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_one_alc-input\', 201)" style="white-space: pre-wrap;"><?= isset($strongweak['weak_one_alc']) ? htmlspecialchars(($strongweak['weak_one_alc']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
                 var departmentId = <?= $strongweakmain['id_department']; ?>;
                 <?php $weakSelectedTechnicalOne = isset($strongweak['weak_technical_one']) ? $strongweak['weak_technical_one'] : ''; ?>
 
                 var weakTechOptsOne = {
-                    6: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    7: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
-                    8: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
-                    4: ["Industrial relation & termination", "Organizationd development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "other"],
-                    3: ["Industrial relation & termination", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Product knowledge", "Process knowledge", "Pengelolaan material B3", "other"],
-                    11: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
-                    1: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
-                    13: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    14: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
-                    9: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
-                    12: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
-                    2: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
-                    15: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"
-                    ],
-                    5:  ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
-                    16: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"]
+                    29: ["Maintenance management", "Equipment management", "Tools management", "Teknik produksi (bubut, las, milling, drilling, dll)", "Quality management", "Product knowledge", "Manufacturing process", "Part & component design", "Material knowledge", "Technical drawing", "Electrical & power system", "Electronical & control system", "Robotic & automatic system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    23: ["Negotiation skill", "Pricing strategy", "Market analysis", "Customer management", "Branding & promotion", "Kontrak kerja (customer)", "Networking", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Quality management", "other"],
+                    22: ["Perpajakan", "Aset management", "Accounting principles", "Planning & budgeting", "Financial analysis", "Cash management", "Cost accounting", "Corporate treasury", "Corporate finance", "Financial modeling", "Product knowledge", "Material knowledge", "Process knowledge", "Part and component knowledge", "Inventory management", "other"],
+                    24: ["General software", "Database management", "IoT infrastructure", "IT infrastruktur", "Human computer interaction", "ERP system", "IT security", "System analyst", "Programming", "Baan administration", "Business process management", "Product knowledge", "Process knowledge", "Production knowledge", "Production system", "other"],
+                    21: ["Negotiation skill", "Perpajakan", "Procurement administration", "Export import", "Price analysis", "Networking", "Vendor management", "Product knowledge", "Material knowledge", "Process knowledge", "Part & component knowledge", "Delivery management", "other"],
+                    25: ["Quality Management", "Quality System (QSA)", "Product knowledge", "Manufactoring Process", "Part & component knowlede", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    30: ["EHS management system", "Waste management", "Pollution control management", "Management energy dan sumber daya alam", "Fire management system", "Safety riding knowledge", "Investigasi dan mitigasi accident/incident skill", "Emergency respond management", "Ergonomy", "Behavior based safety", "Working hazard & risk reduction skill", "Pengelolaan material B3", "Product knowledge", "Material knowledge", "Process knowledge", "other"],
+                    31: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    32: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "Failure analysis", "EHS management system", "Inventory control", "Production planning & control", "Pengelolaan material B3", "Electronic & control system", "Pneumatic & hydrolic system", "other"],
+                    33: ["Production planning & control", "Production system", "Manufacturing process", "Product knowledge", "Part & component knowledge", "Material knowledge", "Quality management", "EHS management system", "Inventory control", "Pengelolaan material B3", "Costing", "Warehouse management system", "Vendor management", "Delivery system", "other"],
+                    28: ["Quality management", "Product design", "Part & component", "Material knowledge", "Prototyping", "Testing Method", "Technical drawing", "Manufacturing process design", "Failure analysis", "other"],
+                    26: ["Manufacturing process design", "Robotic & automatic system", "Production system", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Testing method", "Failure analysis", "Electrical & power system", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    25: ["Quality management", "Quality system (QSA)", "Product knowledge", "Manufacturing process", "Part & component knowledge", "Material knowledge", "Testing method", "Production system", "Failure analysis", "Inventory management", "EHS management", "other"],
+                    27: ["Robotic & automatic system", "Manufacturing process design", "Technical drawing", "Part & component design", "Material knowledge", "Product design", "Prototyping", "Production planning & control", "Production system", "Inventory control", "Delivery system", "Electrical & power system", "Electronical & control system", "Piping system", "Pneumatic & hydrolic system", "other"],
+                    34: ["Production system", "Manufacturing process", "Technical drawing", "Part & component", "Material knowledge", "Product knowledge", "Quality management", "EHS management system", "Inventory control", "Production planning & control", "Failure analysis", "Pengelolaan material B3", "Electronical & control system", "Pneumatic & hydrolic system", "other"],
+                    20: ["Industrial relation & termination", "Organizationed development", "Recruitment management", "People development", "Performance & reward management", "Training management", "HR administration", "Product knowledge", "Process knowledge", "Production system", "Legal management", "Public relation management", "GA administration", "Infrastructure management", "Security management (ASMS)", "CSR (AFC)", "Product knowledge", "Process knowledge", "Pengelolaan material B3", "other"]
                 };
 
                 var weakSelectedTechnicalOne = '<?= $weakSelectedTechnicalOne; ?>';
@@ -3171,11 +2780,11 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
                 document.getElementById('weak_technical_one_text').outerHTML = weakTechSelectOne;
 
-                document.getElementById('weak_technical_value_one_text').outerHTML = '<textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'weak_technical_value_one-input\', 201)"><?= isset($strongweak['weak_technical_value_one']) ? htmlspecialchars(($strongweak['weak_technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+                document.getElementById('weak_technical_value_one_text').outerHTML = '<textarea name="weak_technical_value_one" id="weak_technical_value_one-input" cols="30" rows="10" class="form-control <?= isset($errors['weak_technical_value_one']) ? 'is-invalid' : ''; ?>" style="white-space: pre-wrap;" oninput="limitCharacters(\'weak_technical_value_one-input\', 201)"><?= isset($strongweak['weak_technical_value_one']) ? htmlspecialchars(($strongweak['weak_technical_value_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
             // END OF WEAKNESS
 
             // NOTES
-            document.getElementById('note_one_input').outerHTML = '<textarea name="note_one_input" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" oninput="limitCharacters(\'note_one_input\', 71)"><?= isset($strongweak['note_one']) ? htmlspecialchars(($strongweak['note_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
+            document.getElementById('note_one_input').outerHTML = '<textarea name="note_one_input" id="note_one_input" cols="30" rows="10" class="form-control <?= isset($errors['note_one']) ? 'is-invalid' : ''; ?>" style="white-space: pre-wrap;" oninput="limitCharacters(\'note_one_input\', 71)"><?= isset($strongweak['note_one']) ? htmlspecialchars(($strongweak['note_one']), ENT_QUOTES, 'UTF-8') : ''; ?></textarea>';
 
             $('#edit-one').hide();
             $('#submitone').hide();

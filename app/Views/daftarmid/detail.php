@@ -112,8 +112,7 @@
                             <a href="<?= base_url('daftarmid/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
-                        // dd($is_approved);
-                            if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved_before && $is_approved) {
+                            if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved_before && $is_approved && $midmain['is_submitted'] == 1) {
                                 // dd($midmain);
                                 // Approval Kasie
                                 if (session()->get('kode_jabatan') == 4) {
@@ -137,7 +136,7 @@
                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
-                                    } elseif ($midmain['kode_jabatan'] == '4' || ($midmain['kode_jabatan'] == '8' && ($midmain['created_by'] == '3651' || $midmain['created_by'] != '3659')) && empty($midmain['approval_kadept_midyear'])) {
+                                    } elseif ($midmain['kode_jabatan'] == 4 && empty($midmain['approval_kadept_midyear'])) {
                                         // dd($midmain['id']);
                                         echo '<a href="' . base_url("/daftarmid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                             <i class="fas fa-check" style="color: white;">Approve</i>
@@ -301,9 +300,9 @@
                                             echo '</tr>
                                         </tbody>
                                     </table>';
-                            } elseif ($is_approved_before && $is_approved && (($midmain['is_submitted_ipp'] == 1 && $midmain['is_submitted_ipp_mid'] === null && $midmain['is_submitted_ipp_one'] === null) || ($midmain['is_submitted_ipp'] === null && $midmain['is_submitted_ipp_mid'] == 1 && $midmain['is_submitted_ipp_one'] === null) || ($midmain['is_submitted_ipp'] === null && $midmain['is_submitted_ipp_mid'] === null && $midmain['is_submitted_ipp_one'] == 1)) && session()->get('nama') !== 'admin') {
+                            } elseif ($is_approved_before && $is_approved && (($midmain['is_submitted_ipp'] == 1 && $midmain['is_submitted_ipp_mid'] === null && $midmain['is_submitted_ipp_one'] === null) || ($midmain['is_submitted_ipp'] === null && $midmain['is_submitted_ipp_mid'] == 1 && $midmain['is_submitted_ipp_one'] === null) || ($midmain['is_submitted_ipp'] === null && $midmain['is_submitted_ipp_mid'] === null && $midmain['is_submitted_ipp_one'] == 1)) && session()->get('nama') !== 'admin' && $midmain['is_submitted'] == 1) {
                                 echo'
-                                    <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $mainData['id'] .'"  style="width: 150px; height: 30px;" title="Need Revision"><i class="fa fa-backward" aria-hidden="true"></i> Need Revision</button>
+                                    <button class="btn btn-danger btn-sm unsubmitted" data-id="'. $midmain['id'] .'"  style="width: 150px; height: 30px;" title="Need Revision"><i class="fa fa-backward" aria-hidden="true"></i> Need Revision</button>
                                 ';
                             }
                             
@@ -384,7 +383,7 @@
 
             // Mengubah tampilan kolom menjadi input dalam baris yang sesuai
             row.find('.midyear_achv').html('<textarea class="form-control midyear_achv-input">' + row.find('.midyear_achv').text().trim() + '</textarea>');
-            row.find('.midyear_achv_score').html('<input type="number" class="form-control midyear_achv_score-input" name="midyear_achv_score" value="' + row.find('.midyear_achv_score').text().trim() + '">');
+            row.find('.midyear_achv_score').html('<input type="number" class="form-control midyear_achv_score-input" name="midyear_achv_score" min=1 value="' + row.find('.midyear_achv_score').text().trim() + '">');
 
             // Menambahkan atribut data-id dengan ID yang sesuai
             row.find('.save-btn').data('id', row.find('.program').data('id'));
@@ -402,6 +401,7 @@
 
         // Fungsi yang dijalankan saat tombol "Simpan" pada halaman detail diklik
         $(document).on('click', '.save-btn', function () {
+            let isAlertShown = false;
             var row = $(this).closest('tr');
             console.log('Simpan button clicked for ID: ' + id);
 
@@ -418,7 +418,22 @@
             var newmidyear_achv_score = row.find('.midyear_achv_score-input').val();
             var newmidyear_achv_total = row.find('.midyear_achv_total').text();
 
-            // Mengirim data ke server untuk disimpan, termasuk ID
+            if (row.find('.is-invalid').length > 0) {
+                if (!isAlertShown) {
+                    alert('Score must be between 1-5.');
+                    isAlertShown = true;
+                }
+                return false;
+            }
+
+            if (newmidyear_achv === "" || newmidyear_achv_score === "") {
+                if (!isAlertShown) {
+                    alert('All columns required.');
+                    isAlertShown = true;
+                }
+                return false;
+            }
+
             $.ajax({
                 url: "<?= site_url('daftarmid/save_data'); ?>",
                 type: 'POST',
@@ -432,9 +447,9 @@
                     midyear_achv_score: newmidyear_achv_score,
                     midyear_achv_total: newmidyear_achv_total,
                 },
-                beforeSend: function(){
-                    row.find('.save-btn').html('<i class="fas fa-spinner fa-spin"></i>');
-                },
+                // beforeSend: function(){
+                //     row.find('.save-btn').html('<i class="fas fa-spinner fa-spin"></i>');
+                // },
                 complete: function(){
                     row.find('.save-btn').hide();
                 },

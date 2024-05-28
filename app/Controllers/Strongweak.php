@@ -204,17 +204,17 @@ class Strongweak extends BaseController
         $id_strongweak_main = $this->request->getVar('id_strongweak_main');
         $note_mid           = $this->request->getVar('note_mid');
         $alc_mid            = $this->request->getVar('alc_mid');
-        $sub_alc_mid            = $this->request->getVar('sub_alc_mid');
+        $sub_alc_mid        = $this->request->getVar('sub_alc_mid');
         $technical_mid      = $this->request->getVar('technical_mid');
-        $technical_value_mid      = $this->request->getVar('technical_value_mid');
-        $strong_mid_alc      = $this->request->getVar('strong_mid_alc');
-        $weak_alc_mid      = $this->request->getVar('weak_alc_mid');
-        $weak_sub_alc_mid      = $this->request->getVar('weak_sub_alc_mid');
-        $weak_technical_mid      = $this->request->getVar('weak_technical_mid');
-        $weak_mid_alc      = $this->request->getVar('weak_mid_alc');
-        $weak_technical_value_mid      = $this->request->getVar('weak_technical_value_mid');
+        $technical_value_mid= $this->request->getVar('technical_value_mid');
+        $strong_mid_alc     = $this->request->getVar('strong_mid_alc');
+        $weak_alc_mid       = $this->request->getVar('weak_alc_mid');
+        $weak_sub_alc_mid   = $this->request->getVar('weak_sub_alc_mid');
+        $weak_technical_mid = $this->request->getVar('weak_technical_mid');
+        $weak_mid_alc       = $this->request->getVar('weak_mid_alc');
+        $weak_technical_value_mid = $this->request->getVar('weak_technical_value_mid');
 
-        $validation = \Config\Services::validation();
+        // $validation = \Config\Services::validation();
 
         $data = [
             'id_strongweak_main'      => $id_strongweak_main,
@@ -233,13 +233,7 @@ class Strongweak extends BaseController
         ];
         // dd($data);
 
-        if ($this->strongweakmodel->insert($data)) {
-            return $this->response->setJSON(['message' => 'Data berhasil disimpan.']);
-        } else {
-            return $this->response->setJSON(['message' => 'Gagal menyimpan data.']);
-        }
-
-        $logData[] = [
+        $logData = [
             'action' => 'Insert (Mid Year)',
             'table_name' => 'strongweak',
             'record_id' => $id_strongweak_main,
@@ -262,6 +256,12 @@ class Strongweak extends BaseController
         ];
 
         $this->logModel->insert($logData);
+
+        if ($this->strongweakmodel->insert($data)) {
+            return $this->response->setJSON(['message' => 'Data berhasil disimpan.']);
+        } else {
+            return $this->response->setJSON(['message' => 'Gagal menyimpan data.']);
+        }
     }
 
     public function save_data_one(){

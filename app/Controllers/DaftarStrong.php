@@ -1123,25 +1123,25 @@ class DaftarStrong extends BaseController
         if($isWithinMidPeriode){
             if (session()->get('kode_jabatan') == 3) {
                 if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
-                    $is_approved_before = !$mainData['approval_kasie'];
+                    $is_approved_before = !$mainData['approval_kasie_strongweak'];
                 }
-                $is_approved = $mainData['approval_kadept'];
+                $is_approved = $mainData['approval_kadept_strongweak'];
                 // dd($is_approved);
             } elseif (session()->get('kode_jabatan') == 2) {
                 if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                    $is_approved_before = !$mainData['approval_kadept'];
+                    $is_approved_before = !$mainData['approval_kadept_strongweak'];
                 }
-                $is_approved = $mainData['approval_kadiv'];
+                $is_approved = $mainData['approval_kadiv_strongweak'];
             } elseif (session()->get('kode_jabatan') == 1) {
                 if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                    $is_approved_before = !$mainData['approval_kadiv'];
+                    $is_approved_before = !$mainData['approval_kadiv_strongweak'];
                 }
-                $is_approved = $mainData['approval_bod'];
+                $is_approved = $mainData['approval_bod_strongweak'];
             } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-                $is_approved_before = !$mainData['approval_bod'];
-                $is_approved = !$mainData['approval_presdir'];
+                $is_approved_before = !$mainData['approval_bod_strongweak'];
+                $is_approved = !$mainData['approval_presdir_strongweak'];
             } elseif (session()->get('kode_jabatan') == 4){
-                $is_approved = !$mainData['approval_kasie'];
+                $is_approved = !$mainData['approval_kasie_strongweak'];
                 $is_approved_before = true;
             }
         } elseif($isWithinOnePeriode){
@@ -1725,10 +1725,11 @@ class DaftarStrong extends BaseController
 
     public function unsubmit() {
         $id = $this->request->getVar('id');
+        // dd($id);
         $data = $this->strongweakmain->find($id);
     
         $this->strongweakmain->set([
-            'is_submitted'               => 0,
+            'is_submitted'               => NULL,
             'approval_bod_strongweak'    => NULL,
             'approval_presdir_strongweak'=> NULL,
             'approval_kadiv_strongweak'  => NULL,
@@ -1737,7 +1738,7 @@ class DaftarStrong extends BaseController
         ])->where(['id'=> $id])->update();
 
         $this->strongweakmodel->set([
-            'is_submitted'               => 0,
+            'is_submitted'               => NULL,
         ])->where(['id_strongweak_main'=> $id])->update();
     
         $msg = [
@@ -1772,4 +1773,65 @@ class DaftarStrong extends BaseController
     
         return $this->response->setJSON($msg);
     } 
+
+    public function cancelapproval() {
+        $id = $this->request->getVar('id');
+        $keterangan = $this->request->getVar('keterangan');
+        $kode_jabatan = $this->request->getVar('kode_jabatan');
+        $data = $this->ippModel->find($id);
+        // dd($keterangan);
+    
+        if ($keterangan === 'kasie') {
+            $this->ippModel->set([
+                'approval_kasie_midyear'        => NULL
+            ])->where(['id'=> $id])->update();
+            
+            if($kode_jabatan == 8) {
+                $this->ippModel->set([
+                    'approval_kadept_midyear'   => NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'kadept') {
+            $this->ippModel->set([
+                'approval_kadept_midyear'       => NULL
+            ])->where(['id'=> $id])->update();
+
+            if($kode_jabatan == 4) {
+                $this->ippModel->set([
+                    'approval_kadiv_midyear'   => NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'kadiv') {
+            $this->ippModel->set([
+                'approval_kadiv_midyear'      => NULL
+            ])->where(['id'=> $id])->update();
+
+            if($kode_jabatan == 3) {
+                $this->ippModel->set([
+                    'approval_bod_midyear'    => NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'direktur') {
+            $this->ippModel->set([
+                'approval_bod_midyear'        => NULL
+            ])->where(['id'=> $id])->update();
+
+            if($kode_jabatan == 2) {
+                $this->ippModel->set([
+                    'approval_presdir_midyear'=> NULL
+                ])->where(['id'=> $id])->update();
+            }
+        } elseif ($keterangan === 'presdir') {
+            $this->ippModel->set([
+                'approval_presdir_midyear'    => NULL
+            ])->where(['id'=> $id])->update();
+        }
+    
+        $msg = [
+            'sukses' => true,
+            'message' => 'Data has been unsubmitted.'
+        ];
+    
+        return $this->response->setJSON($msg);
+    }   
 }

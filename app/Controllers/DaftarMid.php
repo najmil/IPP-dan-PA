@@ -1091,13 +1091,17 @@ class DaftarMid extends BaseController
         if (session()->get('kode_jabatan') == 3) {
             if($mainData['kode_jabatan'] == 8){
                 $is_approved_before = $mainData['approval_kasie_midyear'];
+            } else if($mainData['kode_jabatan'] == 4) {
+                $is_approved = empty($mainData['approval_kadept_midyear']);
+                $is_approved_before = true;
             }
-            $is_approved = empty($mainData['approval_kadept_midyear']);
         } elseif (session()->get('kode_jabatan') == 2) {
             if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
                 $is_approved_before = $mainData['approval_kadept_midyear'];
+            } elseif ($mainData['kode_jabatan'] == 3){
+                $is_approved = empty($mainData['approval_kadiv_midyear']);
+                $is_approved_before = true;
             }
-            $is_approved = empty($mainData['approval_kadiv_midyear']);
         } elseif (session()->get('kode_jabatan') == 1) {
             if(($mainData['kode_jabatan'] == 3 && $mainData['id_department'] != 27) || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27)){
                 $is_approved_before = $mainData['approval_kadiv_midyear'];
@@ -1483,7 +1487,7 @@ class DaftarMid extends BaseController
     
         if ($data['is_submitted'] == 1) {
             $this->ippModel->set([
-                'is_submitted'                  => 0,
+                'is_submitted'                  => NULL,
                 'approval_bod_midyear'          => NULL,
                 'approval_bod_midyear'          => NULL,
                 'approval_presdir_midyear'      => NULL,

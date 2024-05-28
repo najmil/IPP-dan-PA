@@ -85,7 +85,11 @@
                             <?php endforeach; ?>
                         <?php else : ?>
                             <tr>
-                                <td colspan="4">Tidak ada log perubahan yang tersedia.</td>
+                                <td>Tidak ada log perubahan yang tersedia.</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         <?php endif; ?>
                         </tbody>
@@ -102,7 +106,7 @@
 <script>
     $(document).ready(function () {
         var table = $('#tableipp').DataTable({
-            "orderable": false,
+            ordering: false,
             "searching": false,
             "lengthChange": false,
             paging: false,

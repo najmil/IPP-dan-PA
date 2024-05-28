@@ -15,7 +15,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options as DompdfOptions;
 use Config\Paths;
 
-class DaftarIpp extends BaseController
+class Daftaripp extends BaseController
 {
     public function __construct(){
         $this->ippModel  = new IppModel();

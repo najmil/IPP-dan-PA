@@ -96,7 +96,7 @@ class MidYear extends BaseController
             'mainData'     => $mainData,
             'main'         => $this->ippModel->find($id),
             'id_main'      => $id,
-            'is_submitted' => $is_submitted,
+            'is_submitted' => $mainData['is_submitted'],
             'periode'      => $mainData['periode'],
             'mainall'      => $this->ippModel->findAll(),
             'countPending' => $this->ippModel->getDataPending(),
@@ -188,6 +188,7 @@ class MidYear extends BaseController
                     'approval_kadiv_midyear'  => 0
                 ]);
             }
+            // var_dump($oldData['midyear_achv']).die();
     
             // Update data dalam database berdasarkan id_main
             $this->midyearisi->set([
