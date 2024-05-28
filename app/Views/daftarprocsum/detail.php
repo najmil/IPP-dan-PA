@@ -297,9 +297,12 @@
                                                     if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                         echo '<td class="text-center">';
                                                         if (session()->get('kode_jabatan') == 4 && empty($daftarprocsum['approval_kasie_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKasie/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKasie/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kasie" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -309,17 +312,21 @@
                                                 if (session()->get('kode_jabatan') == 3) {
                                                     if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                         if ($daftarprocsum['approval_kasie_midyear'] == 1 && empty($daftarprocsum['approval_kadept_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadept" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
-                                                    }
-    
-                                                    if ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
+                                                    } elseif ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
                                                         if (session()->get('kode_jabatan') == 3 && empty($daftarprocsum['approval_kadept_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadept" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -329,17 +336,21 @@
                                                 if (session()->get('kode_jabatan') == 2) {
                                                     if ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
                                                         if ($daftarprocsum['approval_kadept_midyear'] == 1 && empty($daftarprocsum['approval_kadiv_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
-                                                    }
-    
-                                                    if ($daftarprocsum['kode_jabatan'] == 3) {
+                                                    } elseif ($daftarprocsum['kode_jabatan'] == 3) {
                                                         if (session()->get('kode_jabatan') == 2 && empty($daftarprocsum['approval_kadiv_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -349,17 +360,21 @@
                                                 if (session()->get('kode_jabatan') == 1) {
                                                     if ($daftarprocsum['kode_jabatan'] == 3) {
                                                         if ($daftarprocsum['approval_kadiv_midyear'] == 1 && empty($daftarprocsum['approval_bod_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
-                                                    }
-    
-                                                    if ($daftarprocsum['kode_jabatan'] == 2) {
+                                                    } elseif ($daftarprocsum['kode_jabatan'] == 2) {
                                                         if (session()->get('kode_jabatan') == 1 && empty($daftarprocsum['approval_bod_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -370,9 +385,12 @@
                                                     if ($daftarprocsum['kode_jabatan'] == 2) {
                                                         echo '<td class="text-center">';
                                                         if (empty($daftarprocsum['approval_presdir_midyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approvePresdir/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approvePresdir/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="presdir" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -393,9 +411,12 @@
                                                     if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                         echo '<td class="text-center">';
                                                         if (session()->get('kode_jabatan') == 4 && empty($daftarprocsum['approval_kasie_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKasieOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKasieOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kasie" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -405,17 +426,21 @@
                                                 if (session()->get('kode_jabatan') == 3) {
                                                     if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                         if ($daftarprocsum['approval_kasie_oneyear'] == 1 && empty($daftarprocsum['approval_kadept_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadept" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
-                                                    }
-    
-                                                    if ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
+                                                    } elseif ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
                                                         if (session()->get('kode_jabatan') == 3 && empty($daftarprocsum['approval_kadept_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadept" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -425,17 +450,21 @@
                                                 if (session()->get('kode_jabatan') == 2) {
                                                     if ($daftarprocsum['kode_jabatan'] == 4) {
                                                         if ($daftarprocsum['approval_kadept_oneyear'] == 1 && empty($daftarprocsum['approval_kadiv_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
-                                                    }
-    
-                                                    if ($daftarprocsum['kode_jabatan'] == 3) {
+                                                    } elseif ($daftarprocsum['kode_jabatan'] == 3) {
                                                         if (session()->get('kode_jabatan') == 2 && empty($daftarprocsum['approval_kadiv_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -445,17 +474,21 @@
                                                 if (session()->get('kode_jabatan') == 1) {
                                                     if ($daftarprocsum['kode_jabatan'] == 3) {
                                                         if ($daftarprocsum['approval_kadiv_oneyear'] == 1 && empty($daftarprocsum['approval_bod_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
-                                                    }
-    
-                                                    if ($daftarprocsum['kode_jabatan'] == 2) {
+                                                    } elseif ($daftarprocsum['kode_jabatan'] == 2) {
                                                         if (session()->get('kode_jabatan') == 1 && empty($daftarprocsum['approval_bod_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -466,9 +499,12 @@
                                                     if ($daftarprocsum['kode_jabatan'] == 2) {
                                                         echo '<td class="text-center">';
                                                         if (empty($daftarprocsum['approval_presdir_oneyear'])) {
-                                                            echo '<a href="' . base_url("/daftarprocsum/approvePresdirOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                            echo '<a href="' . base_url("/daftarprocsum/approvePresdirOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                                             </a>';
+                                                            echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="presdir" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                                <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                            </button>';
                                                         }
                                                     }
                                                 }
@@ -656,9 +692,12 @@
                                             if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                 echo '<td class="text-center">';
                                                 if (session()->get('kode_jabatan') == 4 && empty($daftarprocsum['approval_kasie_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approveKasie/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approveKasie/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
+                                                    echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kasie" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                        <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                    </button>';
                                                 }
                                             }
                                         }
@@ -668,17 +707,21 @@
                                         if (session()->get('kode_jabatan') == 3) {
                                             if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                 if ($daftarprocsum['approval_kasie_midyear'] == 1 && empty($daftarprocsum['approval_kadept_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
+                                                    echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadept" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                        <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                    </button>';
                                                 }
-                                            }
-
-                                            if ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
+                                            } elseif ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
                                                 if (session()->get('kode_jabatan') == 3 && empty($daftarprocsum['approval_kadept_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadept/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
+                                                    echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadept" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                        <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                    </button>';
                                                 }
                                             }
                                         }
@@ -688,17 +731,21 @@
                                         if (session()->get('kode_jabatan') == 2) {
                                             if ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
                                                 if ($daftarprocsum['approval_kadept_midyear'] == 1 && empty($daftarprocsum['approval_kadiv_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
                                                 }
-                                            }
-
-                                            if ($daftarprocsum['kode_jabatan'] == 3) {
+                                                echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                    <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                </button>';
+                                            } elseif ($daftarprocsum['kode_jabatan'] == 3) {
                                                 if (session()->get('kode_jabatan') == 2 && empty($daftarprocsum['approval_kadiv_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approveKadiv/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
+                                                    echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                        <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                    </button>';
                                                 }
                                             }
                                         }
@@ -708,17 +755,21 @@
                                         if (session()->get('kode_jabatan') == 1) {
                                             if ($daftarprocsum['kode_jabatan'] == 3) {
                                                 if ($daftarprocsum['approval_kadiv_midyear'] == 1 && empty($daftarprocsum['approval_bod_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
+                                                    echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                        <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                    </button>';
                                                 }
-                                            }
-
-                                            if ($daftarprocsum['kode_jabatan'] == 2) {
+                                            } elseif ($daftarprocsum['kode_jabatan'] == 2) {
                                                 if (session()->get('kode_jabatan') == 1 && empty($daftarprocsum['approval_bod_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approveBod/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
+                                                    echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                        <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                    </button>';
                                                 }
                                             }
                                         }
@@ -729,9 +780,12 @@
                                             if ($daftarprocsum['kode_jabatan'] == 2) {
                                                 echo '<td class="text-center">';
                                                 if (empty($daftarprocsum['approval_presdir_midyear'])) {
-                                                    echo '<a href="' . base_url("/daftarprocsum/approvePresdir/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                    echo '<a href="' . base_url("/daftarprocsum/approvePresdir/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                         <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
+                                                    echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="presdir" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                        <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                    </button>';
                                                 }
                                             }
                                         }
@@ -752,9 +806,12 @@
                                                 if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                     echo '<td class="text-center">';
                                                     if (session()->get('kode_jabatan') == 4 && empty($daftarprocsum['approval_kasie_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approveKasieOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approveKasieOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kasie" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
                                                 }
                                             }
@@ -764,17 +821,21 @@
                                             if (session()->get('kode_jabatan') == 3) {
                                                 if ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] != [3651, 3659]) {
                                                     if ($daftarprocsum['approval_kasie_oneyear'] == 1 && empty($daftarprocsum['approval_kadept_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadept" data-kode_jabatan="8" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
-                                                }
-
-                                                if ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
+                                                } elseif ($daftarprocsum['kode_jabatan'] == 4 || ($daftarprocsum['kode_jabatan'] == 8 && $daftarprocsum['created_by'] == [3651, 3659])) {
                                                     if (session()->get('kode_jabatan') == 3 && empty($daftarprocsum['approval_kadept_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadeptOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kasie" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
                                                 }
                                             }
@@ -784,17 +845,21 @@
                                             if (session()->get('kode_jabatan') == 2) {
                                                 if ($daftarprocsum['kode_jabatan'] == 4) {
                                                     if ($daftarprocsum['approval_kadept_oneyear'] == 1 && empty($daftarprocsum['approval_kadiv_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="4" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
-                                                }
-
-                                                if ($daftarprocsum['kode_jabatan'] == 3) {
+                                                } elseif ($daftarprocsum['kode_jabatan'] == 3) {
                                                     if (session()->get('kode_jabatan') == 2 && empty($daftarprocsum['approval_kadiv_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approveKadivOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="kadiv" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
                                                 }
                                             }
@@ -804,17 +869,21 @@
                                             if (session()->get('kode_jabatan') == 1) {
                                                 if ($daftarprocsum['kode_jabatan'] == 3) {
                                                     if ($daftarprocsum['approval_kadiv_oneyear'] == 1 && empty($daftarprocsum['approval_bod_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="3" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
-                                                }
-
-                                                if ($daftarprocsum['kode_jabatan'] == 2) {
+                                                } elseif ($daftarprocsum['kode_jabatan'] == 2) {
                                                     if (session()->get('kode_jabatan') == 1 && empty($daftarprocsum['approval_bod_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approveBodOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="direktur" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
                                                 }
                                             }
@@ -825,9 +894,12 @@
                                                 if ($daftarprocsum['kode_jabatan'] == 2) {
                                                     echo '<td class="text-center">';
                                                     if (empty($daftarprocsum['approval_presdir_oneyear'])) {
-                                                        echo '<a href="' . base_url("/daftarprocsum/approvePresdirOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                        echo '<a href="' . base_url("/daftarprocsum/approvePresdirOne/{$daftarprocsum['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                                         </a>';
+                                                        echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$daftarprocsum['id'].' data-keterangan="presdir" data-kode_jabatan="2" style="width: 150px; height: 30px;">
+                                                            <i class="fa fa-backward" style="color: white;">  Need Revision</i>
+                                                        </button>';
                                                     }
                                                 }
                                             }
@@ -1198,143 +1270,8 @@
             replaceWithSpan(inputClass, value);
         });
 
-        $('.plan_mid, .plan_one').on('input', function () {
-                var plan_mid = $(this).val();
-                var plan_one = $(this).val();
-                if (plan_mid < 1 || plan_mid > 5 || plan_one < 1 || plan_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Plan\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.do_mid, .do_one').on('input', function () {
-                var do_mid = $(this).val();
-                var do_one = $(this).val();
-                if (do_mid < 1 || do_mid > 5 || do_one < 1 || do_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Do\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.check_mid, .check_one').on('input', function () {
-                var check_mid = $(this).val();
-                var check_one = $(this).val();
-                if (check_mid < 1 || check_mid > 5 || check_one < 1 || check_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Check\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.act_mid, .act_one').on('input', function () {
-                var act_mid = $(this).val();
-                var act_one = $(this).val();
-                if (act_mid < 1 || act_mid > 5 || act_one < 1 || act_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Action\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.teamwork_mid, .teamwork_one').on('input', function () {
-                var teamwork_mid = $(this).val();
-                var teamwork_one = $(this).val();
-                if (teamwork_mid < 1 || teamwork_mid > 5 || teamwork_one < 1 || teamwork_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Teamwork\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.cust_mid, .cust_one').on('input', function () {
-                var cust_mid = $(this).val();
-                var cust_one = $(this).val();
-                if (cust_mid < 1 || cust_mid > 5 || cust_one < 1 || cust_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Customer Focus\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.passion_mid, .passion_one').on('input', function () {
-                var passion_mid = $(this).val();
-                var passion_one = $(this).val();
-                if (passion_mid < 1 || passion_mid > 5 || passion_one < 1 || passion_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Passion for Excellence\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.gc_mid, .gc_one').on('input', function () {
-                var gc_mid = $(this).val();
-                var gc_one = $(this).val();
-                if (gc_mid < 1 || gc_mid > 5 || gc_one < 1 || gc_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Getting Commitment on IPP\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.delegating_mid, .delegating_one').on('input', function () {
-                var delegating_mid = $(this).val();
-                var delegating_one = $(this).val();
-                if (delegating_mid < 1 || delegating_mid > 5 || delegating_one < 1 || delegating_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Delegating\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.couch_mid, .couch_one').on('input', function () {
-                var couch_mid = $(this).val();
-                var couch_one = $(this).val();
-                if (couch_mid < 1 || couch_mid > 5 || couch_one < 1 || couch_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Couching and Counseling\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.develop_mid, develop_one').on('input', function () {
-                var develop_mid = $(this).val();
-                var develop_one = $(this).val();
-                if (develop_mid < 1 || develop_mid > 5 || develop_one < 1 || develop_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Developing Subordinate\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-        
-        // $('.invalid-feedback').remove();
-        // $('.is-invalid').remove();
-
         function validateInput($element, min, max, errorMessage) {
-            var value = $element.val();
+            var value = parseFloat($element.val());
             var isValid = value >= min && value <= max;
             if (!isValid) {
                 $element.addClass('is-invalid');
@@ -1344,6 +1281,10 @@
                 $element.siblings('.invalid-feedback').text('');
             }
         }
+
+        $('.plan_mid, .plan_one, .do_mid, .do_one, .check_mid, .check_one, .act_mid, .act_one, .teamwork_mid, .teamwork_one, .cust_mid, .cust_one, .passion_mid, .passion_one, .gc_mid, .gc_one, .delegating_mid, .delegating_one, .couch_mid, .couch_one, .develop_mid, .develop_one').on('input', function () {
+            validateInput($(this), 1, 5, "Value must be between 1 and 5.");
+        });
 
         // Funtion for the #edit button
         $('#edit').on('click', function () {
@@ -1433,6 +1374,20 @@
             var pdca_one = $('.pdca_one.edit-input').val();
             var pm_one = $('.pm_one.edit-input').val();
             var oneyear_value = $('.oneyear_value').val();
+
+            var isValid = true;
+
+            $('.plan_mid.edit-input, .do_mid.edit-input, .check_mid.edit-input, .act_mid.edit-input, .teamwork_mid.edit-input, .cust_mid.edit-input, .passion_mid.edit-input, .gc_mid.edit-input, .delegating_mid.edit-input, .couch_mid.edit-input, .develop_mid.edit-input').each(function() {
+                validateInput($(this), 1, 5, "Value must be between 1 and 5.");
+                if ($(this).hasClass('is-invalid')) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert('Please correct the highlighted fields.');
+                return false;
+            }
             
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
             let isAlertShown = false;
@@ -1553,6 +1508,20 @@
             var pdca_one = $('.pdca_one.edit-input').val();
             var pm_one = $('.pm_one.edit-input').val();
             var oneyear_value = $('.oneyear_value').val();
+
+            var isValid = true;
+
+            $('.plan_one.edit-input, .do_one.edit-input, .check_one.edit-input, .act_one.edit-input, .teamwork_one.edit-input, .cust_one.edit-input, .passion_one.edit-input, .gc_one.edit-input, .delegating_one.edit-input, .couch_one.edit-input, .develop_one.edit-input').each(function() {
+                validateInput($(this), 1, 5, "Value must be between 1 and 5.");
+                if ($(this).hasClass('is-invalid')) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert('Please correct the highlighted fields.');
+                return false;
+            }
             
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
             let isAlertShown = false;
@@ -1573,7 +1542,6 @@
                         return false;
                     }
                 }
-            // console.log(plan_mid);
 
             $.ajax({
                 url: '<?= base_url('daftarprocsum/save_one'); ?>',
@@ -1751,6 +1719,9 @@
                 url: "<?= base_url("daftarprocsum/unsubmit") ?>",
                 type: "POST",
                 data: {id: id},
+                beforeSend: function(){
+                    $('.unsubmitted').html('<i class="fas fa-spinner fa-spin" style="color: white;"></i>');
+                },
                 success: function (response) {
                     var msg = response;
                     if (msg.sukses) {
@@ -1771,6 +1742,9 @@
                     url: "<?= base_url("daftarprocsum/unsubmit_one") ?>",
                     type: "POST",
                     data: {id: id},
+                    beforeSend: function(){
+                        $('.unsubmitted-one').html('<i class="fas fa-spinner fa-spin" style="color: white;"></i>');
+                    },
                     success: function (response) {
                         var msg = response;
                         if (msg.sukses) {

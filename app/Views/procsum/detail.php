@@ -508,19 +508,19 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '30%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average']) ? '30%' : '') .'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '35%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average']) ? '35%' : '') .'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '40%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average']) ? '40%' : '') .'" readonly>';
                                                         break;
                                                     case 8:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '50%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average']) ? '50%' : '') .'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average'] !== null ? '40%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average']) ? '40%' : '') .'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
@@ -549,16 +549,16 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b2_average'] !== null ? '20%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b2_average']) ? '20%' : '') .'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average'] !== null ? '15%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. (isset($procsum['b2_average']) ? '15%' : '') .'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average'] !== null ? '10%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. (isset($procsum['b2_average']) ? '10%' : '') .'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average'] !== null ? '10%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. (isset($procsum['b2_average']) ? '10%' : '') .'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
@@ -625,19 +625,19 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '30%' : '').'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average_one']) ? '30%' : '').'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '35%' : '').'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average_one']) ? '35%' : '').'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '40%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average_one']) ? '40%' : '') .'" readonly>';
                                                         break;
                                                     case 8:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '50%' : '').'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average_one']) ? '50%' : '').'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b1_average_one'] !== null ? '40%' : '').'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b1_average_one']) ? '40%' : '').'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
@@ -667,16 +667,16 @@
                                             <?php
                                                 switch ($kode_jabatan) {
                                                     case 2:
-                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '20%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b1_average" placeholder="'. (isset($procsum['b2_average_one']) ? '20%' : '') .'" readonly>';
                                                         break;
                                                     case 3:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '15%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. (isset($procsum['b2_average_one']) ? '15%' : '') .'" readonly>';
                                                         break;
                                                     case 4:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '10%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. (isset($procsum['b2_average_one']) ? '10%' : '') .'" readonly>';
                                                         break;
                                                     default:
-                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. ($procsum['b2_average_one'] !== null ? '10%' : '') .'" readonly>';
+                                                        echo '<input type="number" class="form-control percentage_b2_average" placeholder="'. (isset($procsum['b2_average_one']) ? '10%' : '') .'" readonly>';
                                                 }
                                                 // echo 'kode jabatan:'.$kode_jabatan;
                                             ?>
@@ -753,7 +753,7 @@
 
         var isSubmitted = <?php echo json_encode($is_submitted_midyear); ?>;
     
-        console.log(isSubmitted);
+        // console.log(isSubmitted);
 
         function replaceWithSpan(inputClass, value) {
             if (value !== '') {
@@ -773,153 +773,21 @@
             replaceWithSpan(inputClass, value);
         });
 
-        $('.plan_mid, .plan_one').on('input', function () {
-                var planValue = $(this).val();
-                // console.log("Input detected:", planValue); 
-                var isValid = planValue >= 1 && planValue <= 5;
-                if (!isValid) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text("Plan's column must be between 1 and 5.");
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.do_mid, .do_one').on('input', function () {
-                var do_mid = $(this).val();
-                var do_one = $(this).val();
-                if (do_mid < 1 || do_mid > 5 || do_one < 1 || do_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Do\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.check_mid, .check_one').on('input', function () {
-                var check_mid = $(this).val();
-                var check_one = $(this).val();
-                if (check_mid < 1 || check_mid > 5 || check_one < 1 || check_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Check\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.act_mid, .act_one').on('input', function () {
-                var act_mid = $(this).val();
-                var act_one = $(this).val();
-                if (act_mid < 1 || act_mid > 5 || act_one < 1 || act_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Action\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.teamwork_mid, .teamwork_one').on('input', function () {
-                var teamwork_mid = $(this).val();
-                var teamwork_one = $(this).val();
-                if (teamwork_mid < 1 || teamwork_mid > 5 || teamwork_one < 1 || teamwork_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Teamwork\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.cust_mid, .cust_one').on('input', function () {
-                var cust_mid = $(this).val();
-                var cust_one = $(this).val();
-                if (cust_mid < 1 || cust_mid > 5 || cust_one < 1 || cust_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Customer Focus\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.passion_mid, .passion_one').on('input', function () {
-                var passion_mid = $(this).val();
-                var passion_one = $(this).val();
-                if (passion_mid < 1 || passion_mid > 5 || passion_one < 1 || passion_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Passion for Excellence\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.gc_mid, .gc_one').on('input', function () {
-                var gc_mid = $(this).val();
-                var gc_one = $(this).val();
-                if (gc_mid < 1 || gc_mid > 5 || gc_one < 1 || gc_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Getting Commitment on IPP\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.delegating_mid, .delegating_one').on('input', function () {
-                var delegating_mid = $(this).val();
-                var delegating_one = $(this).val();
-                if (delegating_mid < 1 || delegating_mid > 5 || delegating_one < 1 || delegating_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Delegating\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.couch_mid, .couch_one').on('input', function () {
-                var couch_mid = $(this).val();
-                var couch_one = $(this).val();
-                if (couch_mid < 1 || couch_mid > 5 || couch_one < 1 || couch_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Couching and Counseling\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            $('.develop_mid, develop_one').on('input', function () {
-                var develop_mid = $(this).val();
-                var develop_one = $(this).val();
-                if (develop_mid < 1 || develop_mid > 5 || develop_one < 1 || develop_one > 5) {
-                    $(this).addClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('Developing Subordinate\'s column must be between 1 and 5.');
-                } else {
-                    $(this).removeClass('is-invalid');
-                    $(this).siblings('.invalid-feedback').text('');
-                }
-            });
-
-            function validateInput($element, min, max, errorMessage) {
-                var value = $element.val();
-                var isValid = value >= min && value <= max;
-                if (!isValid) {
-                    $element.addClass('is-invalid');
-                    $element.siblings('.invalid-feedback').text(errorMessage);
-                } else {
-                    $element.removeClass('is-invalid');
-                    $element.siblings('.invalid-feedback').text('');
-                }
+        function validateInput($element, min, max, errorMessage) {
+            var value = parseFloat($element.val());
+            var isValid = value >= min && value <= max;
+            if (!isValid) {
+                $element.addClass('is-invalid');
+                $element.siblings('.invalid-feedback').text(errorMessage);
+            } else {
+                $element.removeClass('is-invalid');
+                $element.siblings('.invalid-feedback').text('');
             }
-        
-        // $('.invalid-feedback').remove();
-        // $('.is-invalid').remove();
+        }
+
+        $('.plan_mid, .plan_one, .do_mid, .do_one, .check_mid, .check_one, .act_mid, .act_one, .teamwork_mid, .teamwork_one, .cust_mid, .cust_one, .passion_mid, .passion_one, .gc_mid, .gc_one, .delegating_mid, .delegating_one, .couch_mid, .couch_one, .develop_mid, .develop_one').on('input', function () {
+            validateInput($(this), 1, 5, "Value must be between 1 and 5.");
+        });
 
         // Funtion for the #edit button
         $('#edit').on('click', function () {
@@ -931,7 +799,7 @@
                 var spanClass = $span.attr('class').split(' ')[0];
                 var $newInput = $('<input type="number" class="form-control ' + spanClass + ' edit-input text-center" value="' + text + '">');
                 $span.replaceWith($newInput);
-                console.log($newInput);
+                // console.log($newInput);
             });
 
             // validasi
@@ -950,7 +818,7 @@
         // Funtion for the #edit-one button
         $('#edit-one').on('click', function () {
             var $editInputs = $('#pdcaTable tbody span, #peopleMng tbody span');
-            console.log('button clicked');
+            // console.log('button clicked');
             
             $editInputs.each(function () {
                 var text = $(this).text();
@@ -1011,7 +879,21 @@
             var pdca_one = $('.pdca_one.edit-input').val();
             var pm_one = $('.pm_one.edit-input').val();
             var oneyear_value = $('.oneyear_value').val();
+
+            var isValid = true;
             
+            $('.plan_mid.edit-input, .do_mid.edit-input, .check_mid.edit-input, .act_mid.edit-input, .teamwork_mid.edit-input, .cust_mid.edit-input, .passion_mid.edit-input, .gc_mid.edit-input, .delegating_mid.edit-input, .couch_mid.edit-input, .develop_mid.edit-input').each(function() {
+                validateInput($(this), 1, 5, "Value must be between 1 and 5.");
+                if ($(this).hasClass('is-invalid')) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert('Please correct the highlighted fields.');
+                return false;
+            }
+
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
             let isAlertShown = false;
 
@@ -1052,7 +934,6 @@
                     }
                 }
             }
-            // console.log(plan_mid);
 
             $.ajax({
                 url: '<?= base_url('procsum/save_edit'); ?>',
@@ -1132,6 +1013,20 @@
             var pdca_one = $('.pdca_one.edit-input').val();
             var pm_one = $('.pm_one.edit-input').val();
             var oneyear_value = $('.oneyear_value').val();
+
+            var isValid = true;
+
+            $('.plan_one.edit-input, .do_one.edit-input, .check_one.edit-input, .act_one.edit-input, .teamwork_one.edit-input, .cust_one.edit-input, .passion_one.edit-input, .gc_one.edit-input, .delegating_one.edit-input, .couch_one.edit-input, .develop_one.edit-input').each(function() {
+                validateInput($(this), 1, 5, "Value must be between 1 and 5.");
+                if ($(this).hasClass('is-invalid')) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert('Please correct the highlighted fields.');
+                return false;
+            }
             
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
             let isAlertShown = false;
@@ -1321,7 +1216,7 @@
                     $('#submit').hide();
                 },
                 success: function(hasil) {
-                    console.log(hasil);
+                    // console.log(hasil);
                     location.reload();
                 },
                 error: function(xhr, status, error) {
@@ -1392,7 +1287,7 @@
                     $('#submit-one').hide();
                 },
                 success: function(hasil) {
-                    console.log(hasil);
+                    // console.log(hasil);
                     location.reload();
                 },
                 error: function(xhr, status, error) {
@@ -1401,7 +1296,7 @@
             });
         });
 
-        // Button save temporarily
+        // Button save temporary
         $('#save').on('click', function () {
             var id_procsum_main = $('#id_procsum_main').val();
             var plan_mid = $('#plan_mid').val();
@@ -1438,6 +1333,20 @@
             var pdca_one        = $('.pdca_one').text();
             var pm_one          = $('.pm_one').text();
             var oneyear_value   = $('.oneyear_value').text();
+
+            var isValid = true;
+
+            $('.plan_mid, .plan_one, .do_mid, .do_one, .check_mid, .check_one, .act_mid, .act_one, .teamwork_mid, .teamwork_one, .cust_mid, .cust_one, .passion_mid, .passion_one, .gc_mid, .gc_one, .delegating_mid, .delegating_one, .couch_mid, .couch_one, .develop_mid, .develop_one').each(function() {
+                validateInput($(this), 1, 5, "Value must be between 1 and 5.");
+                if ($(this).hasClass('is-invalid')) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert('Please correct the highlighted fields.');
+                return false;
+            }
       
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
             let isAlertShown = false;
@@ -1503,9 +1412,6 @@
                 data: formData,
                 beforeSend: function(){
                     $('#save').html('<i class="fas fa-spinner fa-spin"></i>');
-                },
-                complete: function(){
-                    $('#save').hide();
                 },
                 success: function(hasil) {
                     // console.log(hasil);
@@ -1678,12 +1584,12 @@
 
             // Hitung grade dan tampilkan di elemen input (Grade Mid Year)
             var grade = calculateGrade(midyear_value);
-            console.log(grade);
+            // console.log(grade);
             $(".grade").text(grade);
 
             // Hitung grade dan tampilkan di elemen input (Grade One Year)
             var grade_one = calculateGradeOne(oneyear_value);
-            console.log(grade_one);
+            // console.log(grade_one);
             $(".grade_one").text(grade_one);
         }
         

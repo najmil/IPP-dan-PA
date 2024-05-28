@@ -590,7 +590,7 @@ class Procsum extends BaseController
 
                     $this->procsummodel->insert($insertData);
 
-                    $logData[] = [
+                    $logData = [
                         'action' => 'Insert (Mid Year)',
                         'table_name' => 'procsum (mid year)',
                         'record_id' => $id_procsum_main,
@@ -637,7 +637,7 @@ class Procsum extends BaseController
                         'oneyear_value' => $oneyear_value
                     ])->where(['id_procsum_main' => $id_procsum_main])->update();
 
-                    $logData[] = [
+                    $logData = [
                         'action' => 'Insert (One Year)',
                         'table_name' => 'procsum (one year)',
                         'record_id' => $id_procsum_main,
@@ -663,9 +663,8 @@ class Procsum extends BaseController
                         'by' => session()->get('nama')
                     ];
                 }
-                // dd($insertData);
 
-                $this->logModel->insertBatch($logData);
+                $this->logModel->insert($logData);
 
                 $hasil['sukses'] = "Berhasil memasukkan data";
                 $hasil['gagal'] = true;
@@ -1073,7 +1072,7 @@ class Procsum extends BaseController
             'is_saved_oneyear' => 1
         ])->where(['id_procsum_main' => $id_procsum_main])->update();
         
-        $logData[] = [
+        $logData = [
             'action' => 'Insert (One Year)',
             'table_name' => 'procsum (one year)',
             'record_id' => $id_procsum_main,
