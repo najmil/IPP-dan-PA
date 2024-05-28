@@ -955,13 +955,13 @@
                                         </span>
                                     <?php endif; ?>
                                     <td class="text-center">
-                                        <a href="<?= base_url("/daftarstrong/detail/{$p['id']}") ?>" class="btn btn-warning btn-sm">Detail</a>
+                                        <a href="<?= base_url("/DaftarStrong/detail/{$p['id']}") ?>" class="btn btn-warning btn-sm">Detail</a>
                                     </td>
                                 </td>
                             <?php endif; ?>
                             <?php if ($disableDetail): ?>
                                 <td class="text-center">
-                                    <a href="<?= base_url("/daftarstrong/detail/{$p['id']}") ?>" class="btn btn-sm btn-warning mt-2"> Detail </a>
+                                    <a href="<?= base_url("/DaftarStrong/detail/{$p['id']}") ?>" class="btn btn-sm btn-warning mt-2"> Detail </a>
                                     <?php // if (session()->get('kode_jabatan') == 0 && $p['kode_jabatan'] == 0): ?>
                                         <!-- <a href="<?php //echo base_url("/daftarstrong/editipp/{$p['id']}") ?>" class="btn btn-sm btn-warning">
                                             <i class="fas fa-pen-square"></i> Edit
@@ -990,13 +990,13 @@
 
                                             if ($allowAccessPdf == true) {
                                                 echo'
-                                                    <a href="'. base_url('daftarstrong/pdf/' . $p['id']) .'" target="_blank">
+                                                    <a href="'. base_url('DaftarStrong/pdf/' . $p['id']) .'" target="_blank">
                                                         <i class="fas fa-file-pdf mt-2 ml-2" style="color: red; font-size: 20px;"></i>
                                                     </a>';
                                             }
                                         ?>
                                     <?php if (session()->get('npk') == 0): ?>
-                                        <a href="<?= base_url('daftarstrong/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; width: 55px; height: 28px;">Log</a>
+                                        <a href="<?= base_url('DaftarStrong/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; width: 55px; height: 28px;">Log</a>
                                     <?php endif ?>
                                 </td>
                             <?php else : ?>

@@ -334,7 +334,7 @@
                 }
 
                 $.ajax({
-                    url: '<?= base_url('midyear/submit') ?>',
+                    url: '<?= base_url('MidYear/submit') ?>',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -373,7 +373,7 @@
             
             if (confirm('Anda yakin ingin menghapus data ini?')) {
                 $.ajax({
-                    url: "<?= base_url('midyear/delete_data'); ?>",
+                    url: "<?= base_url('MidYear/delete_data'); ?>",
                     type: 'POST',
                     data: {
                         id: id

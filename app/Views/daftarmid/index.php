@@ -9,35 +9,35 @@
                     <?php if(session()->get('npk') == 0){
                         if ($contentdept == 'ehs' || $contentdept == 'mtc'){
                             echo'
-                                <a href="'. base_url('daftarmid/index').'?content=plantserv'.'">
+                                <a href="'. base_url('DaftarMid/index').'?content=plantserv'.'">
                                         <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                     </a>
                                     Daftar Mid Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'mkt' || $contentdept == 'fincont' || $contentdept == 'mis'){
                             echo'
-                                <a href="'. base_url('daftarmid/index').'?content=fin'.'">
+                                <a href="'. base_url('DaftarMid/index').'?content=fin'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Mid Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'productsatu' || $contentdept == 'productdua' || $contentdept == 'ppic' || $contentdept == 'spv'){
                             echo'
-                                <a href="'. base_url('daftarmid/index').'?content=plant'.'">
+                                <a href="'. base_url('DaftarMid/index').'?content=plant'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Mid Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'hr' || $contentdept == 'procurement'){
                             echo'
-                                <a href="'. base_url('daftarmid/index').'?content=adm'.'">
+                                <a href="'. base_url('DaftarMid/index').'?content=adm'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Mid Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'qa' || $contentdept == 'producteng' || $contentdept == 'processeng'){
                             echo'
-                                <a href="'. base_url('daftarmid/index').'?content=eng'.'">
+                                <a href="'. base_url('DaftarMid/index').'?content=eng'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Mid Year Result Karyawan
@@ -52,7 +52,7 @@
                         if(session()->get('npk') == 0){
                             if ($content == 'plantserv' || $contentdept == 'ehs' || $contentdept == 'mtc'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarmid/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarMid/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="ehs">EHS</option>
@@ -63,7 +63,7 @@
                                 ';
                             } elseif ($content == 'fin' || $contentdept == 'mkt' || $contentdept == 'fincont' || $contentdept == 'mis'){
                                 echo '
-                                    <form class="mb-3" id="content-form" id="content-form" action="'. base_url('/daftarmid/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" id="content-form" action="'. base_url('/DaftarMid/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="mkt">Marketing</option>
@@ -75,7 +75,7 @@
                                 ';
                             } elseif ($content == 'adm' || $contentdept == 'hr' || $contentdept == 'procurement'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarmid/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarMid/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option style="height: 38px;" value="hr">HRD, GA, IR & CSR</option>
@@ -86,7 +86,7 @@
                                 ';
                             } elseif ($content == 'plant' || $contentdept == 'productsatu' || $contentdept == 'productdua' || $contentdept == 'ppic' || $contentdept == 'spv') {
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarmid/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarMid/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="productsatu">Production 1</option>
@@ -99,7 +99,7 @@
                                 ';
                             } elseif ($content == 'eng' || $contentdept == 'qa' || $contentdept == 'producteng' || $contentdept == 'processeng'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarmid/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarMid/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="qa">Quality Assurane</option>
@@ -325,7 +325,7 @@
                                                         </div>
                                                         <?php $disableDetail = true; ?>
                                                     <?php endif ?>
-                                                    <!-- <a href="<?php// base_url("/daftarmid/approveKadept/{$p['id']}") ?>" class="approve-button">
+                                                    <!-- <a href="<?php// base_url("/DaftarMid/approveKadept/{$p['id']}") ?>" class="approve-button">
                                                         <i class="fas fa-check-circle" style="color: green;"></i>
                                                     </a> -->
                                                     <span class="badge badge-secondary btn-sm">Pending</span>
@@ -397,7 +397,7 @@
                                                             approved at: <?= $p['approval_date_kadiv_midyear']; ?>
                                                         </div>
                                                     <?php endif ?>
-                                                    <!-- <a href="<?php// base_url("/daftarmid/approveKadiv/{$p['id']}") ?>" class="approve-button">
+                                                    <!-- <a href="<?php// base_url("/DaftarMid/approveKadiv/{$p['id']}") ?>" class="approve-button">
                                                         <i class="fas fa-check-circle" style="color: green;"></i>
                                                     </a> -->
                                                     <span class="badge badge-secondary btn-sm">Pending</span>
@@ -465,7 +465,7 @@
                                                             approved at: <?= $p['approval_date_bod_midyear']; ?>
                                                         </div>
                                                     <?php endif ?>
-                                                    <!-- <a href="<?php// base_url("/daftarmid/approveBod/{$p['id']}") ?>" class="approve-button">
+                                                    <!-- <a href="<?php// base_url("/DaftarMid/approveBod/{$p['id']}") ?>" class="approve-button">
                                                         <i class="fas fa-check-circle" style="color: green;"></i>
                                                     </a> -->
                                                     <span class="badge badge-secondary btn-sm">Pending</span>
@@ -544,17 +544,17 @@
 
                                     <?php if ($disableDetail): ?>
                                         <td class="text-center">
-                                            <a href="<?= base_url("/daftarmid/detail/{$p['id']}") ?>" class="btn btn-sm btn-warning mt-2"> Detail </a>
+                                            <a href="<?= base_url("/DaftarMid/detail/{$p['id']}") ?>" class="btn btn-sm btn-warning mt-2"> Detail </a>
                                             <?php // if (session()->get('kode_jabatan') == 0 && $p['kode_jabatan'] == 0): ?>
-                                                <!-- <a href="<?php //echo base_url("/daftarmid/editipp/{$p['id']}") ?>" class="btn btn-sm btn-warning">
+                                                <!-- <a href="<?php //echo base_url("/DaftarMid/editipp/{$p['id']}") ?>" class="btn btn-sm btn-warning">
                                                     <i class="fas fa-pen-square"></i> Edit
                                                 </a>
-                                                <a href="<?php //echo base_url("/daftarmid/delete/{$p['id']}") ?>" class="btn btn-sm btn-danger delete-button">
+                                                <a href="<?php //echo base_url("/DaftarMid/delete/{$p['id']}") ?>" class="btn btn-sm btn-danger delete-button">
                                                     <i class="fas fa-trash"></i> Delete
                                                 </a> -->
                                             <?php // endif; ?>
                                             <?php if (session()->get('npk') == 0): ?>
-                                                <a href="<?= base_url('daftarmid/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; padding: 5px 10px;">Log</a>
+                                                <a href="<?= base_url('DaftarMid/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; padding: 5px 10px;">Log</a>
                                             <?php endif ?>
                                             
                                             <?php
@@ -577,7 +577,7 @@
 
                                                 if ($allowAccessPdf == true) {
                                                     echo'
-                                                        <a href="' . base_url('daftarmid/midyearpdf/' . $p['id']) . '" target="_blank">
+                                                        <a href="' . base_url('DaftarMid/midyearpdf/' . $p['id']) . '" target="_blank">
                                                             <i class="fas fa-file-pdf" style="color: red; font-size: 20px;"></i>
                                                         </a>';
                                                 }

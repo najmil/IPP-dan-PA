@@ -1714,7 +1714,7 @@
                     <?php endif; ?>
 
                     <div class="mt-3" id="submitBtnContainer">
-                        <!-- <a href="<?php //echo base_url('daftarstrong/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a> -->
+                        <!-- <a href="<?php //echo base_url('DaftarStrong/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a> -->
                             <?php      
                                 // dd(!$is_approved_before);                          
                                 if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_submitted && !$is_approved && !$is_approved_before) {
@@ -1731,7 +1731,7 @@
                                         if ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] != [3651, 3659]) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($strongweakmain['approval_kasie_strongweak'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKasie/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKasie/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kasie" data-kode_jabatan="8" style="width: 150px; height: 30px;">
@@ -1746,7 +1746,7 @@
                                     if (session()->get('kode_jabatan') == 3) {
                                         if ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] != [3651, 3659]) {
                                             if ($strongweakmain['approval_kasie_strongweak'] == 1 && empty($strongweakmain['approval_kadept_strongweak'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
                                                 echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadept" style="width: 150px; height: 30px;">
@@ -1754,7 +1754,7 @@
                                                 </button>';
                                             }
                                         } elseif (($strongweakmain['kode_jabatan'] == 4 || ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] == [3651, 3659])) && empty($strongweakmain['approval_kadept_strongweak'])) {
-                                            echo '<a href="' . base_url("/daftarstrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarStrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
                                             echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadept" data-kode_jabatan="4" style="width: 150px; height: 30px;">
@@ -1769,7 +1769,7 @@
                                     if (session()->get('kode_jabatan') == 2) {
                                         if ($strongweakmain['kode_jabatan'] == 4 || ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] == [3651, 3659])) {
                                             if ($strongweakmain['approval_kadept_strongweak'] == 1 && empty($strongweakmain['approval_kadiv_strongweak'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadiv" data-kode_jabatan="4" style="width: 150px; height: 30px;">
@@ -1780,7 +1780,7 @@
 
                                         if ($strongweakmain['kode_jabatan'] == 3) {
                                             if (session()->get('kode_jabatan') == 2 && empty($strongweakmain['approval_kadiv_strongweak'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadept" data-kode_jabatan="3" style="width: 150px; height: 30px;">
@@ -1795,7 +1795,7 @@
                                     if (session()->get('kode_jabatan') == 1) {
                                         if ($strongweakmain['kode_jabatan'] == 3) {
                                             if ($strongweakmain['approval_kadiv_strongweak'] == 1 && empty($strongweakmain['approval_bod_strongweak'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "direktur" data-kode_jabatan="3" style="width: 150px; height: 30px;">
@@ -1806,7 +1806,7 @@
 
                                         if ($strongweakmain['kode_jabatan'] == 2) {
                                             if (session()->get('kode_jabatan') == 1 && empty($strongweakmain['approval_bod_strongweak'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "direktur" data-kode_jabatan="2" style="width: 150px; height: 30px;">
@@ -1822,7 +1822,7 @@
                                         if ($strongweakmain['kode_jabatan'] == 2) {
                                             echo '<td class="text-center">';
                                             if (empty($strongweakmain['approval_presdir_strongweak'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approvePresdir/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approvePresdir/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "presdir" data-kode_jabatan="2" data-kode_jabatan="2" style="width: 150px; height: 30px;">
@@ -1847,7 +1847,7 @@
                                         if ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] != [3651, 3659]) {
                                             echo '<td class="text-center">';
                                             if (session()->get('kode_jabatan') == 4 && empty($strongweakmain['approval_kasie_oneyear'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKasie/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKasie/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kasie" data-kode_jabatan="8" data-kode_jabatan="8" style="width: 150px; height: 30px;">
@@ -1862,7 +1862,7 @@
                                     if (session()->get('kode_jabatan') == 3) {
                                         if ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] != [3651, 3659]) {
                                             if ($strongweakmain['approval_kasie_oneyear'] == 1 && empty($strongweakmain['approval_kadept_oneyear'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
                                                 echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadept" data-kode_jabatan="8" data-kode_jabatan="8" style="width: 150px; height: 30px;">
@@ -1870,7 +1870,7 @@
                                                 </button>';
                                             }
                                         } elseif (($strongweakmain['kode_jabatan'] == 4 || ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] == [3651, 3659])) && empty($strongweakmain['approval_kadept_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarstrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarStrong/approveKadept/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                     </a>';
                                             echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadept" data-kode_jabatan="4" data-kode_jabatan="4" style="width: 150px; height: 30px;">
@@ -1885,7 +1885,7 @@
                                     if (session()->get('kode_jabatan') == 2) {
                                         if ($strongweakmain['kode_jabatan'] == 4 || ($strongweakmain['kode_jabatan'] == 8 && $strongweakmain['created_by'] == [3651, 3659])) {
                                             if ($strongweakmain['approval_kadept_oneyear'] == 1 && empty($strongweakmain['approval_kadiv_oneyear'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadiv" data-kode_jabatan="4" data-kode_jabatan="4" style="width: 150px; height: 30px;">
@@ -1896,7 +1896,7 @@
 
                                         if ($strongweakmain['kode_jabatan'] == 3) {
                                             if (session()->get('kode_jabatan') == 2 && empty($strongweakmain['approval_kadiv_oneyear'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveKadiv/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "kadiv" data-kode_jabatan="3" data-kode_jabatan="3" style="width: 150px; height: 30px;">
@@ -1911,7 +1911,7 @@
                                     if (session()->get('kode_jabatan') == 1) {
                                         if ($strongweakmain['kode_jabatan'] == 3) {
                                             if ($strongweakmain['approval_kadiv_oneyear'] == 1 && empty($strongweakmain['approval_bod_oneyear'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "direktur" data-kode_jabatan="3" data-kode_jabatan="3" style="width: 150px; height: 30px;">
@@ -1922,7 +1922,7 @@
 
                                         if ($strongweakmain['kode_jabatan'] == 2) {
                                             if (session()->get('kode_jabatan') == 1 && empty($strongweakmain['approval_bod_oneyear'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approveBod/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "direktur" data-kode_jabatan="2" data-kode_jabatan="2" style="width: 150px; height: 30px;">
@@ -1938,7 +1938,7 @@
                                         if ($strongweakmain['kode_jabatan'] == 2) {
                                             echo '<td class="text-center">';
                                             if (empty($strongweakmain['approval_presdir'])) {
-                                                echo '<a href="' . base_url("/daftarstrong/approvePresdir/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                                echo '<a href="' . base_url("/DaftarStrong/approvePresdir/{$strongweakmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                     <i class="fas fa-check" style="color: white;">Approve</i>
                                                 </a>';
                                                 echo '<button class="unsubmitted-one btn btn-danger btn-sm mr-2" data-id='.$strongweakmain['id'].' data-keterangan = "presdir" data-kode_jabatan="2" data-kode_jabatan="2" style="width: 150px; height: 30px;">
@@ -3023,7 +3023,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
             $.ajax({
                 method: 'POST',
-                url: '<?= base_url('daftarstrong/update_data'); ?>',
+                url: '<?= base_url('DaftarStrong/update_data'); ?>',
                 data: {
                     id_strongweak_main      : id_strongweak_main,
                     alc_mid                 : alc_mid,
@@ -3073,7 +3073,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
             $.ajax({
                 method: 'POST',
-                url: '<?= base_url('daftarstrong/update_data_one'); ?>',
+                url: '<?= base_url('DaftarStrong/update_data_one'); ?>',
                 data: {
                     id_strongweak_main      : id_strongweak_main,
                     alc_one                 : alc_one,
@@ -3110,7 +3110,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
             console.log(id);
 
             $.ajax({
-                url: "<?= base_url("daftarstrong/unsubmit") ?>",
+                url: "<?= base_url("DaftarStrong/unsubmit") ?>",
                 type: "POST",
                 data: {id: id},
                 success: function (response) {
@@ -3130,7 +3130,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 alert ("Strength And Weakness One Year Belum Disubmit!")
             <?php } elseif ($strongweak['alc_one'] == 1) {?>
                 $.ajax({
-                    url: "<?= base_url("daftarstrong/unsubmit_one") ?>",
+                    url: "<?= base_url("DaftarStrong/unsubmit_one") ?>",
                     type: "POST",
                     data: {id: id},
                     success: function (response) {

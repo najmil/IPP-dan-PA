@@ -126,7 +126,7 @@
                                     <td>
                                         <?php if ($allowAccess): ?>
                                             <?php if (intval($m['periode']) > 2023): ?>
-                                                <a href="<?= base_url('midyear/detail/' . $m['id']) ?>" class="btn btn-primary btn-sm" style="width: 55px;">Detail</a>
+                                                <a href="<?= base_url('MidYear/detail/' . $m['id']) ?>" class="btn btn-primary btn-sm" style="width: 55px;">Detail</a>
                                             <?php endif; ?>
                                             <?php
                                                 $allowAccessPdf = false;
@@ -148,12 +148,12 @@
 
                                                 if ($allowAccessPdf == true) {
                                                     if (intval($m['periode']) < 2023) {
-                                                        echo '<a href="' . htmlspecialchars(base_url('midyear/viewPdf/' . $m['id'])) . '" target="_blank">
+                                                        echo '<a href="' . htmlspecialchars(base_url('MidYear/viewPdf/' . $m['id'])) . '" target="_blank">
                                                             <i class="fas fa-file-pdf ml-2 mr-2" style="color: red; font-size: 20px;"></i>
                                                         </a>';
                                                     } else {
                                                         echo'
-                                                        <a href="' . base_url('midyear/midyearpdf/' . $m['id']) . '" target="_blank">
+                                                        <a href="' . base_url('MidYear/midyearpdf/' . $m['id']) . '" target="_blank">
                                                             <i class="fas fa-file-pdf ml-2 mr-2" style="color: red; font-size: 20px;"></i>
                                                         </a>';
                                                     }
@@ -161,7 +161,7 @@
                                             ?>
                                             <?php// if (preg_match('/2023/', $m['periode'])): ?>
                                             <?php if (intval($m['periode']) > 2023): ?>
-                                                <a href="<?= base_url('midyear/logchanges/'.$m['id']) ?>" class="btn btn-secondary btn-sm" style="width: 55px;">Log</a>
+                                                <a href="<?= base_url('MidYear/logchanges/'.$m['id']) ?>" class="btn btn-secondary btn-sm" style="width: 55px;">Log</a>
                                             <?php endif; ?>
                                         <?php else: ?>
                                             <button class="btn btn-secondary btn-sm" style="width: 55px;" disabled>Detail</button>
@@ -246,7 +246,7 @@
                 formData.append('file', fileInput);
 
                 $.ajax({
-                    url: '<?= base_url('/midyear/datalama') ?>',
+                    url: '<?= base_url('/MidYear/datalama') ?>',
                     type: 'POST',
                     data: formData,
                     contentType: false,

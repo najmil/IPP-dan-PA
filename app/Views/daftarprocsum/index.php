@@ -10,35 +10,35 @@
                     <?php if(session()->get('npk') == 0){
                         if ($contentdept == 'ehs' || $contentdept == 'mtc'){
                             echo'
-                                <a href="'. base_url('daftarprocsum/index').'?content=plantserv'.'">
+                                <a href="'. base_url('DaftarProcsum/index').'?content=plantserv'.'">
                                         <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                     </a>
                                     Daftar Process and Summary Karyawan
                             ';
                         } elseif ($contentdept == 'mkt' || $contentdept == 'fincont' || $contentdept == 'mis'){
                             echo'
-                                <a href="'. base_url('daftarprocsum/index').'?content=fin'.'">
+                                <a href="'. base_url('DaftarProcsum/index').'?content=fin'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Process and Summary Karyawan
                             ';
                         } elseif ($contentdept == 'productsatu' || $contentdept == 'productdua' || $contentdept == 'ppic' || $contentdept == 'spv'){
                             echo'
-                                <a href="'. base_url('daftarprocsum/index').'?content=plant'.'">
+                                <a href="'. base_url('DaftarProcsum/index').'?content=plant'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Process and Summary Karyawan
                             ';
                         } elseif ($contentdept == 'hr' || $contentdept == 'procurement'){
                             echo'
-                                <a href="'. base_url('daftarprocsum/index').'?content=adm'.'">
+                                <a href="'. base_url('DaftarProcsum/index').'?content=adm'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Process and Summary Karyawan
                             ';
                         } elseif ($contentdept == 'qa' || $contentdept == 'producteng' || $contentdept == 'processeng'){
                             echo'
-                                <a href="'. base_url('daftarprocsum/index').'?content=eng'.'">
+                                <a href="'. base_url('DaftarProcsum/index').'?content=eng'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar Process and Summary Karyawan
@@ -74,7 +74,7 @@
                         if(session()->get('npk') == 0){
                             if ($content == 'plantserv' || $contentdept == 'ehs' || $contentdept == 'mtc'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarprocsum/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarProcsum/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="ehs">EHS</option>
@@ -85,7 +85,7 @@
                                 ';
                             } elseif ($content == 'fin' || $contentdept == 'mkt' || $contentdept == 'fincont' || $contentdept == 'mis'){
                                 echo '
-                                    <form class="mb-3" id="content-form" id="content-form" action="'. base_url('/daftarprocsum/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" id="content-form" action="'. base_url('/DaftarProcsum/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="mkt">Marketing</option>
@@ -97,7 +97,7 @@
                                 ';
                             } elseif ($content == 'adm' || $contentdept == 'hr' || $contentdept == 'procurement'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarprocsum/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarProcsum/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option style="height: 38px;" value="hr">HRD, GA, IR & CSR</option>
@@ -108,7 +108,7 @@
                                 ';
                             } elseif ($content == 'plant' || $contentdept == 'productsatu' || $contentdept == 'productdua' || $contentdept == 'ppic' || $contentdept == 'spv') {
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarprocsum/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarProcsum/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="productsatu">Production 1</option>
@@ -121,7 +121,7 @@
                                 ';
                             } elseif ($content == 'eng' || $contentdept == 'qa' || $contentdept == 'producteng' || $contentdept == 'processeng'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarprocsum/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarProcsum/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="qa">Quality Assurane</option>
@@ -416,7 +416,7 @@
                                                         approved at: <?= $p['approval_date_kasie_midyear']; ?>
                                                     </div>
                                                 <?php endif ?>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveKasie/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveKasie/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                                 <?php elseif (empty($p['approval_kasie_midyear'])): ?>
@@ -446,7 +446,7 @@
                                                         approved at: <?= $p['approval_date_kasie_oneyear']; ?>
                                                     </div>
                                                 <?php endif ?>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveKasie/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveKasie/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                                 <?php elseif (empty($p['approval_kasie_oneyear'])): ?>
@@ -489,7 +489,7 @@
                                         <?php if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]): ?>
                                             <?php if ($p['approval_kasie_midyear'] == 1 && empty($p['approval_kadept_midyear'])): ?>
                                                 <?php $disableDetail = true; ?>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveKadept/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveKadept/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                             <?php elseif (empty($p['approval_kadept_midyear'])): ?>
@@ -521,7 +521,7 @@
                                                             <?= $p['approval_kadept_midyear'] ? "Approved" : "Pending" ?>
                                                         </span>
                                                     <?php endif; ?>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveKadept/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveKadept/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                             <?php endif; ?>
@@ -558,7 +558,7 @@
                                                 <?php $disableDetail = true; 
                                                     if($isWithinOnePeriode){
                                                         // echo 
-                                                        // '<a href="' . base_url("/daftarprocsum/approveKadeptOne/" . $p['id']) . '" class="approve-button">
+                                                        // '<a href="' . base_url("/DaftarProcsum/approveKadeptOne/" . $p['id']) . '" class="approve-button">
                                                         //     <i class="fas fa-check-circle" style="color: green;"></i>
                                                         // </a>';
 
@@ -595,7 +595,7 @@
                                                     </div>
                                                 <?php endif ?>
                                                 <?php if ($isWithinOnePeriode): ?>
-                                                    <!-- <a href="<?php// base_url("/daftarprocsum/approveKadeptOne/" . $p['id']) ?>" class="approve-button">
+                                                    <!-- <a href="<?php// base_url("/DaftarProcsum/approveKadeptOne/" . $p['id']) ?>" class="approve-button">
                                                         <i class="fas fa-check-circle" style="color: green;"></i>
                                                     </a> -->
                                                     <?php if (empty($p['approval_kadept_oneyear'])): ?>
@@ -654,7 +654,7 @@
                                             <?php if ($p['approval_kadept_midyear'] == 1 && empty($p['approval_kadiv_midyear'])): ?>
                                                 <?php $disableDetail = true; ?>
                                                 <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_midyear']; ?></div>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveKadiv/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveKadiv/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
@@ -714,7 +714,7 @@
                                                 <?php if (isset($p['approval_date_kadiv_oneyear'])) : ?>
                                                     <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kadiv_oneyear']; ?></div>
                                                 <?php endif; ?>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveKadiv/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveKadiv/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                                 <span class="badge badge-secondary btn-sm">Pending</span>
@@ -784,7 +784,7 @@
                                             <?php if ($p['approval_kadiv_midyear'] == 1 && empty($p['approval_bod_midyear'])): ?>
                                                 <?php $disableDetail = true; ?>
                                                 <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_bod_midyear']; ?></div>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                             <?php //elseif (empty($p['approval_bod_midyear'])): ?>
@@ -806,7 +806,7 @@
                                                         approved at: <?= $p['approval_date_bod_midyear']; ?>
                                                     </div>
                                                 <?php endif ?>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                                 <?php elseif (empty($p['approval_bod_midyear'])): ?>
@@ -862,7 +862,7 @@
                                             <?php if ($p['approval_kadiv_oneyear'] == 1 && empty($p['approval_bod_oneyear'])): ?>
                                                 <?php $disableDetail = true; ?>
                                                 <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_bod_oneyear']; ?></div>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                             <?php// elseif (empty($p['approval_bod_oneyear'])): ?>
@@ -884,7 +884,7 @@
                                                         approved at: <?= $p['approval_date_bod_oneyear']; ?>
                                                     </div>
                                                 <?php endif ?>
-                                                <!-- <a href="<?php// base_url("/daftarprocsum/approveBod/{$p['id']}") ?>" class="approve-button">
+                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveBod/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->
                                                 <?php// elseif (empty($p['approval_bod_oneyear'])): ?>
@@ -930,7 +930,7 @@
                                                     approved at: <?= $p['approval_date_presdir_midyear']; ?>
                                                 </div>
                                             <?php endif ?>
-                                            <!-- <a href="<?php// base_url("/daftarprocsum/approvePresdir/{$p['id']}") ?>" class="approve-button">
+                                            <!-- <a href="<?php// base_url("/DaftarProcsum/approvePresdir/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
                                         <?php elseif (empty($p['approval_presdir_midyear'])): ?>
@@ -963,7 +963,7 @@
                                                     approved at: <?= $p['approval_date_presdir_oneyear']; ?>
                                                 </div>
                                             <?php endif ?>
-                                            <!-- <a href="<?php// base_url("/daftarprocsum/approvePresdir/{$p['id']}") ?>" class="approve-button">
+                                            <!-- <a href="<?php// base_url("/DaftarProcsum/approvePresdir/{$p['id']}") ?>" class="approve-button">
                                                 <i class="fas fa-check-circle" style="color: green;"></i>
                                             </a> -->
                                         <?php elseif (empty($p['approval_presdir_oneyear'])): ?>
@@ -982,17 +982,17 @@
 
                                 <?php if ($disableDetail): ?>
                                     <td class="text-center">
-                                        <a href="<?= base_url("/daftarprocsum/detail/{$p['id']}") ?>" class="btn btn-sm btn-warning mt-2"> Detail </a>
+                                        <a href="<?= base_url("/DaftarProcsum/detail/{$p['id']}") ?>" class="btn btn-sm btn-warning mt-2"> Detail </a>
                                         <?php // if (session()->get('kode_jabatan') == 0 && $p['kode_jabatan'] == 0): ?>
-                                            <!-- <a href="<?php //echo base_url("/daftarprocsum/editipp/{$p['id']}") ?>" class="btn btn-sm btn-warning">
+                                            <!-- <a href="<?php //echo base_url("/DaftarProcsum/editipp/{$p['id']}") ?>" class="btn btn-sm btn-warning">
                                                 <i class="fas fa-pen-square"></i> Edit
                                             </a>
-                                            <a href="<?php //echo base_url("/daftarprocsum/delete/{$p['id']}") ?>" class="btn btn-sm btn-danger delete-button">
+                                            <a href="<?php //echo base_url("/DaftarProcsum/delete/{$p['id']}") ?>" class="btn btn-sm btn-danger delete-button">
                                                 <i class="fas fa-trash"></i> Delete
                                             </a> -->
                                         <?php // endif; ?>
                                         <?php if (session()->get('npk') == 0): ?>
-                                            <a href="<?= base_url('daftarprocsum/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; padding: 5px 10px; width: 53px;">Log</a>
+                                            <a href="<?= base_url('DaftarProcsum/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; padding: 5px 10px; width: 53px;">Log</a>
                                         <?php endif; ?>
                                         <?php
                                             $allowAccessPdf = false;
@@ -1014,7 +1014,7 @@
 
                                             if ($allowAccessPdf == true) {
                                                 echo'
-                                                    <a href="' . base_url('daftarprocsum/generatePdf/' . $p['id']) . '" target="_blank">
+                                                    <a href="' . base_url('DaftarProcsum/generatePdf/' . $p['id']) . '" target="_blank">
                                                         <i class="fas fa-file-pdf mt-2" style="color: red; font-size: 20px;"></i>
                                                     </a>';
                                             }
