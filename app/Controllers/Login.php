@@ -60,6 +60,7 @@ class Login extends BaseController
         $this->loginModel = new LoginModel();
     
         $data = $this->request->getPost();
+        // var_dump($data).die();
         $validate = $this->validation->run($data, 'masuk');
         $errors = $this->validation->getErrors();
     
@@ -97,7 +98,7 @@ class Login extends BaseController
                     'division' => $authData['divisi'],
                     'department' => $authData['departement'],
                     'password' => $data['password'],
-                    'type_karyawan' => $data['type_karyawan']
+                    'type_karyawan' => $authData['type_karyawan']
                 ];
     
                 session()->set($session);
