@@ -87,6 +87,7 @@ class Strongweak extends BaseController
         $id_department = session()->get('id_department');
         $id_section = session()->get('id_section');
         $kode_jabatan = session()->get('kode_jabatan');
+        $type_karyawan = session()->get('type_karyawan');
         $dateTimeNow = new \DateTime();
         $created_at = $dateTimeNow->format('Y-m-d H:i:s');
         $updated_at = $dateTimeNow->format('Y-m-d H:i:s');
@@ -116,7 +117,8 @@ class Strongweak extends BaseController
                     'id_department' => $id_department,
                     'id_division' => $id_division,
                     'id_section' => $id_section,
-                    'kode_jabatan' => $kode_jabatan
+                    'kode_jabatan' => $kode_jabatan,
+                    'type_karyawan' => $type_karyawan
                 ];
     
                 $this->strongweakmain->insert($data);
