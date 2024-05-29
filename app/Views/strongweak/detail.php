@@ -43,7 +43,7 @@
                                             <?php if (isset($strongweak['alc_mid'])):?>
                                                 <!-- <textarea class="form-control" id="strong_input" style="margin: 0; width: 100%; height: 300px;" name="strong_mid" readonly><?php// echo $strongweak['strong_mid']; ?></textarea> -->
                                                 <div class="form-group row">
-                                                    <span class="col-sm-4"><b for="alc_mid_text"><?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?></b></span>
+                                                    <span class="col-sm-4"><b for="alc_mid_text"><?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b></b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <span id="alc_mid_text" data-value="<?= $strongweak['alc_mid']; ?>"><?= $strongweak['alc_mid']; ?></span>
@@ -82,7 +82,7 @@
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="alc_mid" id="alc_mid" onchange="updateOptions()" style="width: 100%;">
                                                             <?php if (session()->get('type_karyawan') !== 'EXPERT'): ?>
-                                                                <option value="" disable>-- Pilih Kategori <?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?> --</option>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
                                                                 <option value="Vision & Business Sense">Vision & Business Sense</option>
                                                                 <option value="Customer Focus">Customer Focus</option>
                                                                 <option value="Interpersonal Skill">Interpesonal Skill</option>
@@ -92,7 +92,7 @@
                                                                 <option value="Teamwork">Teamwork</option>
                                                                 <option value="Drive & Courage">Drive & Courage</option>
                                                             <?php elseif (session()->get('type_karyawan') === 'EXPERT'): ?>
-                                                                <option value="" disable>-- Pilih Kategori ALC --</option>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
                                                                 <option value="Innovation">Innovation</option>
                                                                 <option value="Analysis and Judgement">Analysis and Judgement</option>
                                                                 <option value="Planning and Driving Action">Planning and Driving Action</option>
@@ -475,7 +475,7 @@
                                             <?php if (isset($strongweak['weak_alc_mid'])): ?>
                                                 <!-- <textarea class="form-control" id="weak_input" style="margin: 0; width: 100%; height: 300px;" name="weak_mid" readonly><?php //echo $strongweak['weak_mid']; ?></textarea> -->
                                                 <div class="form-group row">
-                                                    <span class="col-sm-4"><b for="sub_alc_mid"><?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?></b></span>
+                                                    <span class="col-sm-4"><b for="sub_alc_mid"><?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b></b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <span id="weak_alc_mid_text"><?= $strongweak['weak_alc_mid']; ?></span>
@@ -509,11 +509,11 @@
                                                 <!-- <textarea name="weak_mid" id="weak_mid_input" cols="30" rows="10" class="form-control <?php // isset($errors['weak_mid']) ? 'is-invalid' : ''; ?>" autofocus></textarea> -->
                                                 <!-- ALC WEAK POINT -->
                                                 <div class="form-group row">
-                                                    <span class="col-sm-4"><b for="alc_mid"><?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?></b><b style="color: red; font-size: 15px; vertical-align: top; margin-left: 5px;">*</b></span>
+                                                    <span class="col-sm-4"><b for="alc_mid"><?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b></b><b style="color: red; font-size: 15px; vertical-align: top; margin-left: 5px;">*</b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="weak_alc_mid-input" id="weak_alc_mid-input" onchange="updateOptionsWeak()" style="width: 100%;">
-                                                            <option value="" disable>-- Pilih Kategori <?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?> --</option>
+                                                            <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
                                                             <option value="Vision & Business Sense">Vision & Business Sense</option>
                                                             <option value="Customer Focus">Customer Focus</option>
                                                             <option value="Interpersonal Skill">Interpersonal Skill</option>
@@ -926,7 +926,7 @@
                                         <div class="card-body">
                                             <?php if (isset($strongweak['alc_one'])):?>
                                                 <div class="form-group row">
-                                                    <span class="col-sm-4"><b for="alc_mid"><?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?></b></span>
+                                                    <span class="col-sm-4"><b for="alc_mid"><?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b></b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <span id="alc_one_text" data-value="<?= $strongweak['alc_one'] ?>"><?= $strongweak['alc_one']; ?></span>
@@ -960,11 +960,11 @@
                                                 <!-- <label class="form-label" for="strong_one">Strong Point</label> -->
                                                 <!-- ALC STRONG POINT -->
                                                 <div class="form-group row">
-                                                    <span class="col-sm-4"><b ><?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?></b><b style="color: red; font-size: 15px; vertical-align: top; margin-left: 5px;">*</b></span>
+                                                    <span class="col-sm-4"><b ><?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b></b><b style="color: red; font-size: 15px; vertical-align: top; margin-left: 5px;">*</b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="alc_one" id="alc_one" onchange="updateOptionsOne()" style="width: 100%;" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?>>
-                                                            <option value="" disable>-- Pilih Kategori <?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?> --</option>
+                                                            <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
                                                             <option value="Vision & Business Sense">Vision & Business Sense</option>
                                                             <option value="Customer Focus">Customer Focus</option>
                                                             <option value="Interpersonal Skill">Interpersonal Skill</option>
@@ -1354,7 +1354,7 @@
                                             <?php if (isset($strongweak['weak_alc_one'])): ?>
                                                 <!-- <textarea class="form-control" id="weak_input" style="margin: 0; width: 100%; height: 300px;" name="weak_one" readonly><?php //echo $strongweak['weak_one']; ?></textarea> -->
                                                 <div class="form-group row">
-                                                    <span class="col-sm-4"><b>ALC</b></span>
+                                                    <span class="col-sm-4"><b><?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b></b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <span id="weak_alc_one_text"><?= $strongweak['weak_alc_one']; ?></span>
@@ -1388,11 +1388,11 @@
                                                 <!-- <textarea name="weak_one" id="weak_one_input" cols="30" rows="10" class="form-control <?php // isset($errors['weak_one']) ? 'is-invalid' : ''; ?>" autofocus></textarea> -->
                                                 <!-- ALC WEAK POINT -->
                                                 <div class="form-group row">
-                                                    <span class="col-sm-4"><b for="alc_mid">ALC</b><b style="color: red; font-size: 15px; vertical-align: top; margin-left: 5px;">*</b></span>
+                                                    <span class="col-sm-4"><b for="alc_mid"><?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b></b><b style="color: red; font-size: 15px; vertical-align: top; margin-left: 5px;">*</b></span>
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="weak_alc_one" id="weak_alc_one-input" onchange="updateOptionsWeakOne()" style="width: 100%;" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?>>
-                                                            <option value="" disable>-- Pilih Kategori ALC --</option>
+                                                            <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
                                                             <option value="Vision & Business Sense">Vision & Business Sense</option>
                                                             <option value="Customer Focus">Customer Focus</option>
                                                             <option value="Interpersonal Skill">Interpersonal Skill</option>
