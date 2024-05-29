@@ -83,15 +83,24 @@
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="alc_mid" id="alc_mid" onchange="updateOptions()" style="width: 100%;">
-                                                            <option value="" disable>-- Pilih Kategori <?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?> --</option>
-                                                            <option value="Vision & Business Sense">Vision & Business Sense</option>
-                                                            <option value="Customer Focus">Customer Focus</option>
-                                                            <option value="Interpersonal Skill">Interpesonal Skill</option>
-                                                            <option value="Analysis & Judgement">Analysis & Judgement</option>
-                                                            <option value="Planning & Driving Action">Planning & Driving Action</option>
-                                                            <option value="Leading & Motivating">Leading & Motivating</option>
-                                                            <option value="Teamwork">Teamwork</option>
-                                                            <option value="Drive & Courage">Drive & Courage</option>
+                                                        <?php if (session()->get('type_karyawan') !== 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Vision & Business Sense">Vision & Business Sense</option>
+                                                                <option value="Customer Focus">Customer Focus</option>
+                                                                <option value="Interpersonal Skill">Interpesonal Skill</option>
+                                                                <option value="Analysis & Judgement">Analysis & Judgement</option>
+                                                                <option value="Planning & Driving Action">Planning & Driving Action</option>
+                                                                <option value="Leading & Motivating">Leading & Motivating</option>
+                                                                <option value="Teamwork">Teamwork</option>
+                                                                <option value="Drive & Courage">Drive & Courage</option>
+                                                            <?php elseif (session()->get('type_karyawan') === 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Innovation">Innovation</option>
+                                                                <option value="Analysis and Judgement">Analysis and Judgement</option>
+                                                                <option value="Planning and Driving Action">Planning and Driving Action</option>
+                                                                <option value="Communication and Customer Focus">Communication and Customer Focus</option>
+                                                                <option value="Drive, Courage, and Integrity">Drive, Courage, and Integrity</option>
+                                                            <?php endif ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -506,15 +515,24 @@
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="weak_alc_mid-input" id="weak_alc_mid-input" onchange="updateOptionsWeak()" style="width: 100%;">
-                                                            <option value="" disable>-- Pilih Kategori <?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?> --</option>
-                                                            <option value="Vision & Business Sense">Vision & Business Sense</option>
-                                                            <option value="Customer Focus">Customer Focus</option>
-                                                            <option value="Interpersonal Skill">Interpersonal Skill</option>
-                                                            <option value="Analysis & Judgement">Analysis & Judgement</option>
-                                                            <option value="Planning & Driving Action">Planning & Driving Action</option>
-                                                            <option value="Leading & Motivating">Leading & Motivating</option>
-                                                            <option value="Teamwork">Teamwork</option>
-                                                            <option value="Drive & Courage">Drive & Courage</option>
+                                                        <?php if (session()->get('type_karyawan') !== 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Vision & Business Sense">Vision & Business Sense</option>
+                                                                <option value="Customer Focus">Customer Focus</option>
+                                                                <option value="Interpersonal Skill">Interpesonal Skill</option>
+                                                                <option value="Analysis & Judgement">Analysis & Judgement</option>
+                                                                <option value="Planning & Driving Action">Planning & Driving Action</option>
+                                                                <option value="Leading & Motivating">Leading & Motivating</option>
+                                                                <option value="Teamwork">Teamwork</option>
+                                                                <option value="Drive & Courage">Drive & Courage</option>
+                                                            <?php elseif (session()->get('type_karyawan') === 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Innovation">Innovation</option>
+                                                                <option value="Analysis and Judgement">Analysis and Judgement</option>
+                                                                <option value="Planning and Driving Action">Planning and Driving Action</option>
+                                                                <option value="Communication and Customer Focus">Communication and Customer Focus</option>
+                                                                <option value="Drive, Courage, and Integrity">Drive, Courage, and Integrity</option>
+                                                            <?php endif ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -951,15 +969,24 @@
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="alc_one" id="alc_one" onchange="updateOptionsOne()" style="width: 100%;" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?>>
-                                                            <option value="" disable>-- Pilih Kategori <?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?> --</option>
-                                                            <option value="Vision & Business Sense">Vision & Business Sense</option>
-                                                            <option value="Customer Focus">Customer Focus</option>
-                                                            <option value="Interpersonal Skill">Interpersonal Skill</option>
-                                                            <option value="Analysis & Judgement">Analysis & Judgement</option>
-                                                            <option value="Planning & Driving Action">Planning & Driving Action</option>
-                                                            <option value="Leading & Motivating">Leading & Motivating</option>
-                                                            <option value="Teamwork">Teamwork</option>
-                                                            <option value="Drive & Courage">Drive & Courage</option>
+                                                        <?php if (session()->get('type_karyawan') !== 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Vision & Business Sense">Vision & Business Sense</option>
+                                                                <option value="Customer Focus">Customer Focus</option>
+                                                                <option value="Interpersonal Skill">Interpesonal Skill</option>
+                                                                <option value="Analysis & Judgement">Analysis & Judgement</option>
+                                                                <option value="Planning & Driving Action">Planning & Driving Action</option>
+                                                                <option value="Leading & Motivating">Leading & Motivating</option>
+                                                                <option value="Teamwork">Teamwork</option>
+                                                                <option value="Drive & Courage">Drive & Courage</option>
+                                                            <?php elseif (session()->get('type_karyawan') === 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Innovation">Innovation</option>
+                                                                <option value="Analysis and Judgement">Analysis and Judgement</option>
+                                                                <option value="Planning and Driving Action">Planning and Driving Action</option>
+                                                                <option value="Communication and Customer Focus">Communication and Customer Focus</option>
+                                                                <option value="Drive, Courage, and Integrity">Drive, Courage, and Integrity</option>
+                                                            <?php endif ?>
                                                         </select>
                                                     </div>
                                                 </div> 
@@ -1377,15 +1404,24 @@
                                                     <span class="col-sm-1"><b>:</b></span>
                                                     <div class="col-sm-7">
                                                         <select class="form-control mb-2" name="weak_alc_one" id="weak_alc_one-input" onchange="updateOptionsWeakOne()" style="width: 100%;" <?= $isWithinMidPeriode || !$isWithinOnePeriode ? 'disabled': '';?>>
-                                                            <option value="" disable>-- Pilih Kategori <?= $strongweakmain['type_karyawan'] === 'EXPERT' ? 'EBC' : 'ALC' ?> --</option>
-                                                            <option value="Vision & Business Sense">Vision & Business Sense</option>
-                                                            <option value="Customer Focus">Customer Focus</option>
-                                                            <option value="Interpersonal Skill">Interpersonal Skill</option>
-                                                            <option value="Analysis & Judgement">Analysis & Judgement</option>
-                                                            <option value="Planning & Driving Action">Planning & Driving Action</option>
-                                                            <option value="Leading & Motivating">Leading & Motivating</option>
-                                                            <option value="Teamwork">Teamwork</option>
-                                                            <option value="Drive & Courage">Drive & Courage</option>
+                                                        <?php if (session()->get('type_karyawan') !== 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Vision & Business Sense">Vision & Business Sense</option>
+                                                                <option value="Customer Focus">Customer Focus</option>
+                                                                <option value="Interpersonal Skill">Interpesonal Skill</option>
+                                                                <option value="Analysis & Judgement">Analysis & Judgement</option>
+                                                                <option value="Planning & Driving Action">Planning & Driving Action</option>
+                                                                <option value="Leading & Motivating">Leading & Motivating</option>
+                                                                <option value="Teamwork">Teamwork</option>
+                                                                <option value="Drive & Courage">Drive & Courage</option>
+                                                            <?php elseif (session()->get('type_karyawan') === 'EXPERT'): ?>
+                                                                <option value="" disable>-- Pilih Kategori <?= session()->get('type_karyawan') === 'EXPERT' ? 'EBC' : 'ALC' ?></b> --</option>
+                                                                <option value="Innovation">Innovation</option>
+                                                                <option value="Analysis and Judgement">Analysis and Judgement</option>
+                                                                <option value="Planning and Driving Action">Planning and Driving Action</option>
+                                                                <option value="Communication and Customer Focus">Communication and Customer Focus</option>
+                                                                <option value="Drive, Courage, and Integrity">Drive, Courage, and Integrity</option>
+                                                            <?php endif ?>
                                                         </select>
                                                     </div> 
                                                 </div> 
