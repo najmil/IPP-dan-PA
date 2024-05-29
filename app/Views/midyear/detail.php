@@ -274,7 +274,7 @@
                 }
 
                 $.ajax({
-                    url: "<?= site_url('midyear/save_data'); ?>",
+                    url: "<?= site_url('MidYear/save_data'); ?>",
                     type: 'POST',
                     data: {
                         id: id,
