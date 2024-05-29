@@ -1756,8 +1756,6 @@
                                                                     ';
                                                                 }
                                                             }
-
-                                                            // dd(session()->get('id_department'));
                                                         ?>
                                                     </div>
                                                 </div>

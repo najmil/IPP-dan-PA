@@ -96,7 +96,8 @@ class Login extends BaseController
                     'section' => $authData['section'],
                     'division' => $authData['divisi'],
                     'department' => $authData['departement'],
-                    'password' => $data['password']
+                    'password' => $data['password'],
+                    'type_karyawan' => $data['type_karyawan']
                 ];
     
                 session()->set($session);
@@ -119,7 +120,7 @@ class Login extends BaseController
                         'department' => session()->get('department'),
                         'section' => session()->get('section'),
                         // 'password' => $data['password'],
-                        'kode_jabatan' => session()->get('kode_jabatan'),
+                        'kode_jabatan' => session()->get('kode_jabatan')
                     ];
                     
                     $this->loginModel->insert($datauser);
