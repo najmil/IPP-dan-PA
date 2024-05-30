@@ -45,14 +45,14 @@ class IppModel extends Model{
         return $result;
     }
 
-    public function getMidyear($id) {
+    public function getMidyear($npk) {
         $currentYear = date('Y');
         $currentDate = date('Y-m-d H:i:s');
 
         $this->select('main.*');
         // $this->join('users', 'users.npk = main.created_by', 'left');
         
-        $result = $this->where('main.created_by', $id)
+        $result = $this->where('main.created_by', $npk)
                         ->groupStart()
                             ->where('main.periode NOT LIKE', '%One Year')
                             ->groupStart()

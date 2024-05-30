@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -3033,6 +3033,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
             $('#submitBtn').hide();
             $('.approve-button').hide();
             $('#save-edit').show();
+            $('.unsubmitted').hide();
         });
 
         $('#edit-one').on('click', function () {
@@ -3440,6 +3441,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
             $('#submitone').hide();
             $('.approve-button').hide();
             $('#save-edit-one').show();
+            $('.unsubmitted-one').hide();
         });       
 
         // Function untuk menyimpan data saat tombol "Save-Edit" diklik saat mid  year

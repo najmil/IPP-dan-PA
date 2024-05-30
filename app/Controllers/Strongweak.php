@@ -335,6 +335,7 @@ class Strongweak extends BaseController
         $weak_technical_mid = $this->request->getVar('weak_technical_mid');
         $weak_mid_alc       = $this->request->getVar('weak_mid_alc');
         $weak_technical_value_mid = $this->request->getVar('weak_technical_value_mid');
+        $isValueChanged = false;
 
         $row = $this->strongweakmodel->getSavedData($id_strongweak_main);
         if($row){

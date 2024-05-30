@@ -1122,53 +1122,65 @@ class DaftarStrong extends BaseController
         $is_approved = null;
         if($isWithinMidPeriode){
             if (session()->get('kode_jabatan') == 3) {
-                if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
+                if($mainData['kode_jabatan'] == 8){
                     $is_approved_before = !$mainData['approval_kasie_strongweak'];
+                } else if($mainData['kode_jabatan'] == 4) {
+                    $is_approved = empty($mainData['approval_kadept_strongweak']);
+                    $is_approved_before = true;
                 }
-                $is_approved = $mainData['approval_kadept_strongweak'];
                 // dd($is_approved);
             } elseif (session()->get('kode_jabatan') == 2) {
                 if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                    $is_approved_before = !$mainData['approval_kadept_strongweak'];
+                    $is_approved_before = $mainData['approval_kadept_strongweak'];
+                } elseif ($mainData['kode_jabatan'] == 3){
+                    $is_approved = empty($mainData['approval_kadiv_strongweak']);
+                    $is_approved_before = true;
                 }
-                $is_approved = $mainData['approval_kadiv_strongweak'];
             } elseif (session()->get('kode_jabatan') == 1) {
-                if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                    $is_approved_before = !$mainData['approval_kadiv_strongweak'];
+                if(($mainData['kode_jabatan'] == 3 && $mainData['id_department'] != 27) || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27)){
+                    $is_approved_before = $mainData['approval_kadiv_strongweak'];
+                } elseif ($mainData['kode_jabatan'] == 3 && $mainData['id_department'] == 27){
+                    $is_approved_before = true;
                 }
-                $is_approved = $mainData['approval_bod_strongweak'];
+                $is_approved = empty($mainData['approval_bod_strongweak']);
             } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-                $is_approved_before = !$mainData['approval_bod_strongweak'];
-                $is_approved = !$mainData['approval_presdir_strongweak'];
+                $is_approved_before = $mainData['approval_bod_strongweak'];
+                $is_approved = empty($mainData['approval_presdir_strongweak']);
             } elseif (session()->get('kode_jabatan') == 4){
-                $is_approved = !$mainData['approval_kasie_strongweak'];
+                $is_approved = empty($mainData['approval_kasie_strongweak']);
                 $is_approved_before = true;
             }
         } elseif($isWithinOnePeriode){
             if (session()->get('kode_jabatan') == 3) {
-                if($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]){
+                if($mainData['kode_jabatan'] == 8){
                     $is_approved_before = !$mainData['approval_kasie_oneyear'];
+                } else if($mainData['kode_jabatan'] == 4) {
+                    $is_approved = empty($mainData['approval_kadept_oneyear']);
+                    $is_approved_before = true;
                 }
-                $is_approved = $mainData['approval_kadept_oneyear'];
+                // dd($is_approved);
             } elseif (session()->get('kode_jabatan') == 2) {
                 if($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])){
-                    $is_approved_before = !$mainData['approval_kadept_oneyear'];
+                    $is_approved_before = $mainData['approval_kadept_oneyear'];
+                } elseif ($mainData['kode_jabatan'] == 3){
+                    $is_approved = empty($mainData['approval_kadiv_oneyear']);
+                    $is_approved_before = true;
                 }
-                $is_approved = $mainData['approval_kadiv_oneyear'];
             } elseif (session()->get('kode_jabatan') == 1) {
-                if($mainData['kode_jabatan'] == 3 || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 5)){
-                    $is_approved_before = !$mainData['approval_kadiv_oneyear'];
+                if(($mainData['kode_jabatan'] == 3 && $mainData['id_department'] != 27) || ($mainData['kode_jabatan'] == 4 && $mainData['id_department'] == 27)){
+                    $is_approved_before = $mainData['approval_kadiv_oneyear'];
+                } elseif ($mainData['kode_jabatan'] == 3 && $mainData['id_department'] == 27){
+                    $is_approved_before = true;
                 }
-                $is_approved = $mainData['approval_bod_oneyear'];
+                $is_approved = empty($mainData['approval_bod_oneyear']);
             } elseif (session()->get('kode_jabatan') == 0 && session()->get('npk') == 4280) {
-                $is_approved_before = !$mainData['approval_bod_oneyear'];
-                $is_approved = !$mainData['approval_presdir_oneyear'];
+                $is_approved_before = $mainData['approval_bod_oneyear'];
+                $is_approved = empty($mainData['approval_presdir_oneyear']);
             } elseif (session()->get('kode_jabatan') == 4){
-                $is_approved = !$mainData['approval_kasie_oneyear'];
+                $is_approved = empty($mainData['approval_kasie_oneyear']);
                 $is_approved_before = true;
             }
         }
-
         
         $data = [
             'tittle'             => 'Detail Strength and Weakness',

@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <?php if ($kode_jabatan != 8 ) : ?>
             <div class="card" style="overflow-y: auto;">
@@ -281,7 +281,7 @@
                                         $isWithinMidPeriode = false;
                                     }
 
-                                    if (session()->get('npk') != 0 && $isWithinMidPeriode && !$is_approved && !$is_approved_before) {
+                                    if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved && $is_approved_before) {
                                         if ($is_submitted){
                                             // dd($isWithinOnePeriode);
                                             echo'
@@ -396,7 +396,7 @@
                                                 }
                                                 // The end of approval presdir
                                         };
-                                    } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && !$is_approved && !$is_approved_before) {
+                                    } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && $is_approved && $is_approved_before) {
                                         if($is_submitted_oneyear == 1){
                                             // dd($isWithinOnePeriode);
                                             echo'<button type="button" id="edit-one" class="btn btn-warning btn-sm mb-2 mr-2" style="width: 100px; height: 30px;">
@@ -676,8 +676,8 @@
                                 <a href="<?= base_url('DaftarProcsum/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                             <?php } ?>
                             <?php
-                            // dd(!$is_approved);
-                                if (session()->get('npk') != 0 && $isWithinMidPeriode && !$is_approved && !$is_approved_before) {
+                            // dd($is_approved);
+                                if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved && $is_approved_before) {
                                     if ($is_submitted){
                                         echo '
                                         <button type="button" id="edit" class="btn btn-warning btn-sm mb-2 mr-2" style="width: 100px; height: 30px;">
@@ -791,7 +791,7 @@
                                         }
                                         // The end of approval presdir
                                     }
-                                } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && !$is_approved && !$is_approved_before) {
+                                } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && $is_approved && $is_approved_before) {
                                     if($is_submitted_oneyear == 1){
                                         dd($daftarprocsum);
                                         echo'<button type="button" id="edit-one" class="btn btn-warning btn-sm mb-2 mr-2" style="width: 100px; height: 30px;">
@@ -1307,6 +1307,7 @@
             $('#save-edit').show();
             $('#submit').hide();
             $('.approve-button').hide();
+            $('.unsubmitted').hide();
         });
 
         // Funtion for the #edit-one button
@@ -1333,6 +1334,7 @@
             $('#save-edit').show();
             $('#submit').hide();
             $('.approve-button').hide();
+            $('.unsubmitted-one').hide();
         });
 
         // Function to save the edit input
