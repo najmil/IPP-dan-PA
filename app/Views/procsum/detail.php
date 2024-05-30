@@ -208,7 +208,7 @@
                         </div>
                         <?php if($kode_jabatan == 8 || ($kode_jabatan == 4 && $npk == [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])): ?>
                             <div class="d-flex justify-content-center">
-                                <a href="<?= base_url('procsum/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
+                                <a href="<?= base_url('Procsum/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                                 <?php
                                     $periodeModel = new \App\Models\PeriodeModel();
                                     $periodeMid = $periodeModel->getLatestMidPeriode();
@@ -404,7 +404,7 @@
                     <!-- Button Save -->
                     <?php if($kode_jabatan != 8 || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])): ?>
                         <div class="d-flex justify-content-center">
-                            <a href="<?= base_url('procsum/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
+                            <a href="<?= base_url('Procsum/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                             <?php
                                 $periodeModel = new \App\Models\PeriodeModel();
                                 $periodeMid = $periodeModel->getLatestMidPeriode();
@@ -936,7 +936,7 @@
             }
 
             $.ajax({
-                url: '<?= base_url('procsum/save_edit'); ?>',
+                url: '<?= base_url('Procsum/save_edit'); ?>',
                 type: 'post',
                 data: {
                     id_procsum_main: id_procsum_main,
@@ -1050,7 +1050,7 @@
             // console.log(plan_mid);
 
             $.ajax({
-                url: '<?= base_url('procsum/save_one'); ?>',
+                url: '<?= base_url('Procsum/save_one'); ?>',
                 type: 'post',
                 data: {
                     id_procsum_main: id_procsum_main,
@@ -1205,7 +1205,7 @@
             };
 
             $.ajax({
-                url: '<?= site_url('procsum/insert_data'); ?>',
+                url: '<?= site_url('Procsum/insert_data'); ?>',
                 type: 'post',
                 data: formData,
                 beforeSend: function(){
@@ -1276,7 +1276,7 @@
             };
 
             $.ajax({
-                url: '<?= site_url('procsum/insert_data'); ?>',
+                url: '<?= site_url('Procsum/insert_data'); ?>',
                 type: 'post',
                 data: formData,
                 beforeSend: function(){
@@ -1407,7 +1407,7 @@
             };
 
             $.ajax({
-                url: '<?= base_url('procsum/save_temporarily'); ?>',
+                url: '<?= base_url('Procsum/save_temporarily'); ?>',
                 type: 'post',
                 data: formData,
                 beforeSend: function(){

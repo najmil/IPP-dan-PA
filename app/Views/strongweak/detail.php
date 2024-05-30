@@ -1817,7 +1817,7 @@
                     <?php endif; ?>
 
                     <div class="mt-3" id="submitBtnContainer">
-                        <a href="<?= base_url('strongweak/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
+                        <a href="<?= base_url('Strongweak/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                             <?php      
                                 // dd($is_submitted);                          
                                 if ($isWithinMidPeriode && !$is_submitted) {
@@ -3251,7 +3251,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
             $.ajax({
                 method: 'POST',
-                url: '<?= base_url('strongweak/update_data'); ?>',
+                url: '<?= base_url('Strongweak/update_data'); ?>',
                 data: {
                     id_strongweak_main      : id_strongweak_main,
                     alc_mid                 : alc_mid,
@@ -3301,7 +3301,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
             $.ajax({
                 method: 'POST',
-                url: '<?= base_url('strongweak/update_data_one'); ?>',
+                url: '<?= base_url('Strongweak/update_data_one'); ?>',
                 data: {
                     id_strongweak_main      : id_strongweak_main,
                     alc_one                 : alc_one,
@@ -3370,7 +3370,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url('strongweak/save_data'); ?>',
+                url: '<?= base_url('Strongweak/save_data'); ?>',
                 data: {
                     id_strongweak_main       : id_strongweak_main,
                     note_mid                 : note_mid,
@@ -3441,7 +3441,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
 
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url('strongweak/save_data_one'); ?>',
+                url: '<?= base_url('Strongweak/save_data_one'); ?>',
                 data: {
                     id_strongweak_main       : id_strongweak_main,
                     alc_one                  : alc_one,
@@ -3473,7 +3473,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
             var id_strongweak_main  = $('#id_strongweak_main').val();
 
             $.ajax({
-                url: '<?= base_url('strongweak/submit_data'); ?>',
+                url: '<?= base_url('Strongweak/submit_data'); ?>',
                 type: 'post',
                 data: {
                     id_strongweak_main  : id_strongweak_main
@@ -3497,7 +3497,7 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
             var id_strongweak_main  = $('#id_strongweak_main').val();
 
             $.ajax({
-                url: '<?= base_url('strongweak/submit_data_one'); ?>',
+                url: '<?= base_url('Strongweak/submit_data_one'); ?>',
                 type: 'post',
                 data: {
                     id_strongweak_main  : id_strongweak_main

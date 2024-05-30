@@ -108,7 +108,7 @@
 
                     <div class="d-flex justify-content mt-3">
                         <?php if (session()->get('npk') !== 0) { ?>
-                            <a href="<?= base_url('daftarone/index') ?>" class="btn btn-primary mr-2 text-center" style="width: 100px; height: 30px;">Back</a>
+                            <a href="<?= base_url('DaftarOne/index') ?>" class="btn btn-primary mr-2 text-center" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
                             // dd($is_approved);
@@ -119,7 +119,7 @@
                                     if ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]) {
                                         echo '<td class="text-center">';
                                         if (session()->get('kode_jabatan') == 4 && empty($mainData['approval_kasie_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approveKasie/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approveKasie/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -131,7 +131,7 @@
                                 if (session()->get('kode_jabatan') == 3) {
                                     if ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] != [3651, 3659]) {
                                         if ($mainData['approval_kasie_oneyear'] == 1 && empty($mainData['approval_kadept_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -139,7 +139,7 @@
 
                                     if ($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && in_array($mainData['created_by'], [3651, 3659]))) {
                                         if (session()->get('kode_jabatan') == 3 && empty($mainData['approval_kadept_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approveKadept/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -151,7 +151,7 @@
                                 if (session()->get('kode_jabatan') == 2) {
                                     if ($mainData['kode_jabatan'] == 4 || ($mainData['kode_jabatan'] == 8 && $mainData['created_by'] == [3651, 3659])) {
                                         if ($mainData['approval_kadept_oneyear'] == 1 && empty($mainData['approval_kadiv_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -159,7 +159,7 @@
 
                                     if ($mainData['kode_jabatan'] == 3) {
                                         if (session()->get('kode_jabatan') == 2 && empty($mainData['approval_kadiv_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approveKadiv/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -171,7 +171,7 @@
                                 if (session()->get('kode_jabatan') == 1) {
                                     if ($mainData['kode_jabatan'] == 3) {
                                         if ($mainData['approval_kadiv_oneyear'] == 1 && empty($mainData['approval_bod_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -179,7 +179,7 @@
 
                                     if ($mainData['kode_jabatan'] == 2) {
                                         if (session()->get('kode_jabatan') == 1 && empty($mainData['approval_bod_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approveBod/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -192,7 +192,7 @@
                                     if ($mainData['kode_jabatan'] == 2) {
                                         echo '<td class="text-center">';
                                         if (empty($mainData['approval_presdir_oneyear'])) {
-                                            echo '<a href="' . base_url("/daftarone/approvePresdir/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarOne/approvePresdir/{$mainData['id']}") . '" class="approve-button btn btn-danger btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -265,7 +265,7 @@
 
             if(isConfirmed) {
                 $.ajax({
-                    url: "<?= base_url("daftarone/unsubmit") ?>",
+                    url: "<?= base_url("DaftarOne/unsubmit") ?>",
                     type: "POST",
                     data: {id: id},
                     success: function (response) {
@@ -335,7 +335,7 @@
 
             // Mengirim data ke server untuk disimpan, termasuk ID
             $.ajax({
-                url: "<?= site_url('daftarone/save_data'); ?>",
+                url: "<?= site_url('DaftarOne/save_data'); ?>",
                 type: 'POST',
                 data: {
                     id: id,

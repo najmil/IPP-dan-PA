@@ -109,7 +109,7 @@
 
                     <div class="d-flex justify-content mt-3">
                         <?php if(session()->get('npk') != 0) { ?>
-                            <a href="<?= base_url('daftarmid/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
+                            <a href="<?= base_url('DaftarMid/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a>
                         <?php } ?>
                         <?php
                             if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_approved_before && $is_approved && $midmain['is_submitted'] == 1) {
@@ -119,7 +119,7 @@
                                     if ($midmain['kode_jabatan'] == 8) {
                                         echo '<td class="text-center">';
                                         if (session()->get('kode_jabatan') == 4 && empty($midmain['approval_kasie_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKasie/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarMid/approveKasie/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -132,13 +132,13 @@
                                 if (session()->get('kode_jabatan') == 3) {
                                     if ($midmain['kode_jabatan'] == 8) {
                                         if ($midmain['approval_kasie_midyear'] == 1 && empty($midmain['approval_kadept_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarMid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
                                     } elseif ($midmain['kode_jabatan'] == 4 && empty($midmain['approval_kadept_midyear'])) {
                                         // dd($midmain['id']);
-                                        echo '<a href="' . base_url("/daftarmid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                        echo '<a href="' . base_url("/DaftarMid/approveKadept/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                             <i class="fas fa-check" style="color: white;">Approve</i>
                                         </a>';
                                     }
@@ -149,7 +149,7 @@
                                 if (session()->get('kode_jabatan') == 2) {
                                     if ($midmain['kode_jabatan'] == 4 || ($midmain['kode_jabatan'] == 8 && $midmain['created_by'] == [3651, 3659])) {
                                         if ($midmain['approval_kadept_midyear'] == 1 && empty($midmain['approval_kadiv_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarMid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -157,7 +157,7 @@
 
                                     if ($midmain['kode_jabatan'] == 3) {
                                         if (session()->get('kode_jabatan') == 2 && empty($midmain['approval_kadiv_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarMid/approveKadiv/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -170,7 +170,7 @@
                                     if ($midmain['kode_jabatan'] == 3) {
                                         // dd($midmain['approval_bod_midyear']);
                                         if ($midmain['approval_kadiv_midyear'] == 1 && empty($midmain['approval_bod_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarMid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -178,7 +178,7 @@
 
                                     if ($midmain['kode_jabatan'] == 2) {
                                         if (session()->get('kode_jabatan') == 1 && empty($midmain['approval_bod_midyear'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarMid/approveBod/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -191,7 +191,7 @@
                                     if ($midmain['kode_jabatan'] == 2) {
                                         echo '<td class="text-center">';
                                         if (empty($midmain['approval_presdir'])) {
-                                            echo '<a href="' . base_url("/daftarmid/approvePresdir/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
+                                            echo '<a href="' . base_url("/DaftarMid/approvePresdir/{$midmain['id']}") . '" class="approve-button btn btn-success btn-sm mr-2" style="width: 100px; height: 30px;">
                                                 <i class="fas fa-check" style="color: white;">Approve</i>
                                             </a>';
                                         }
@@ -326,7 +326,7 @@
             console.log(id);
 
             $.ajax({
-                url: "<?= base_url("daftarmid/unsubmit") ?>",
+                url: "<?= base_url("DaftarMid/unsubmit") ?>",
                 type: "POST",
                 data: {id: id},
                 success: function (response) {
@@ -435,7 +435,7 @@
             }
 
             $.ajax({
-                url: "<?= site_url('daftarmid/save_data'); ?>",
+                url: "<?= site_url('DaftarMid/save_data'); ?>",
                 type: 'POST',
                 data: {
                     id: id,
@@ -492,7 +492,7 @@
                 var kode_jabatan = $(this).data('kode_jabatan');
 
                 $.ajax({
-                    url: "<?= base_url("daftarmid/cancelapproval") ?>",
+                    url: "<?= base_url("DaftarMid/cancelapproval") ?>",
                     type: "POST",
                     data: {id: id, keterangan: keterangan, kode_jabatan: kode_jabatan},
                     success: function (response) {
