@@ -410,25 +410,23 @@
                                     <?php if ($p['kode_jabatan'] == 8 && $p['created_by'] != [3651, 3659]): ?>
                                         <!-- MID YEAR -->
                                         <td class="text-center">
-                                            <?php if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie_midyear'])): ?>
+                                            <?php if (!empty($p['approval_date_kasie_midyear'])): ?>
+                                                <div class="text-muted" style="font-size: 8px">
+                                                    approved at: <?= $p['approval_date_kasie_midyear']; ?>
+                                                </div>
+                                            <!-- <a href="<?php// base_url("/DaftarProcsum/approveKasie/{$p['id']}") ?>" class="approve-button">
+                                                <i class="fas fa-check-circle" style="color: green;"></i>
+                                            </a> -->
+                                            <?php elseif (empty($p['approval_kasie_midyear'])): ?>
+                                                <span class="badge badge-secondary btn-sm">Pending</span>
+                                            <?php else: ?>
                                                 <?php if (!empty($p['approval_date_kasie_midyear'])): ?>
-                                                    <div class="text-muted" style="font-size: 8px">
-                                                        approved at: <?= $p['approval_date_kasie_midyear']; ?>
-                                                    </div>
-                                                <?php endif ?>
-                                                <!-- <a href="<?php// base_url("/DaftarProcsum/approveKasie/{$p['id']}") ?>" class="approve-button">
-                                                    <i class="fas fa-check-circle" style="color: green;"></i>
-                                                </a> -->
-                                                <?php elseif (empty($p['approval_kasie_midyear'])): ?>
-                                                    <span class="badge badge-secondary btn-sm">Pending</span>
-                                                <?php else: ?>
-                                                    <?php if (!empty($p['approval_date_kasie_midyear'])): ?>
-                                                        <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kasie_midyear']; ?></div>
-                                                        <span class="badge <?= $p['approval_kasie_midyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
-                                                            <?= $p['approval_kasie_midyear'] ? "Approved" : "Pending" ?>
-                                                        </span>
-                                                    <?php endif; ?>
+                                                    <div class="text-muted" style="font-size: 8px">approved at: <?= $p['approval_date_kasie_midyear']; ?></div>
+                                                    <span class="badge <?= $p['approval_kasie_midyear'] ? 'badge-primary' : 'badge-secondary' ?> btn-sm">
+                                                        <?= $p['approval_kasie_midyear'] ? "Approved" : "Pending" ?>
+                                                    </span>
                                                 <?php endif; ?>
+                                            <?php endif; ?>
                                         </td>
                                         <td class="text-center">
                                             <?php if ($p['approval_kadept_midyear'] == 1): ?>
@@ -440,12 +438,10 @@
 
                                         <!-- ONE YEAR -->
                                         <td class="text-center">
-                                            <?php if (session()->get('kode_jabatan') == 4 && empty($p['approval_kasie_oneyear'])): ?>
                                                 <?php if (!empty($p['approval_date_kasie_oneyear'])): ?>
                                                     <div class="text-muted" style="font-size: 8px">
                                                         approved at: <?= $p['approval_date_kasie_oneyear']; ?>
                                                     </div>
-                                                <?php endif ?>
                                                 <!-- <a href="<?php// base_url("/DaftarProcsum/approveKasie/{$p['id']}") ?>" class="approve-button">
                                                     <i class="fas fa-check-circle" style="color: green;"></i>
                                                 </a> -->

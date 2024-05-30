@@ -376,7 +376,7 @@
                           <!-- Daftar pengisi one year result -->
                           <li class="nav-item">
                             <?php if (session()->get('npk') != 0): ?>
-                              <a href="<?= base_url('daftarOne/index'); ?>" class="nav-link" style="width: 250px;">
+                              <a href="<?= base_url('DaftarOne/index'); ?>" class="nav-link" style="width: 250px;">
                               <i class="far fa-circle nav-icon"></i>
                               <p>
                                 Daftar One Year Result
@@ -403,7 +403,7 @@
                             <?php if (session()->get('kode_jabatan') == 0 && session()->get('npk') == 0): ?>
                               <ul class="nav nav-treeview">
                                 <li class="nav-item ml-3">
-                                  <a href="<?= base_url('daftarOne/index'); ?>?content=plantserv" class="nav-link list-one" data-content="plantserv">
+                                  <a href="<?= base_url('DaftarOne/index'); ?>?content=plantserv" class="nav-link list-one" data-content="plantserv">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant Service 
@@ -414,7 +414,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= base_url('daftarOne/index'); ?>?content=fin" class="nav-link list-one" data-content="fin">
+                                  <a href="<?= base_url('DaftarOne/index'); ?>?content=fin" class="nav-link list-one" data-content="fin">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       FIN, ACC, MARK & MIS
@@ -425,7 +425,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= base_url('daftarOne/index'); ?>?content=adm" class="nav-link list-one" data-content="adm">
+                                  <a href="<?= base_url('DaftarOne/index'); ?>?content=adm" class="nav-link list-one" data-content="adm">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Administration
@@ -436,7 +436,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= base_url('daftarOne/index'); ?>?content=plant" class="nav-link list-one" data-content="plant">
+                                  <a href="<?= base_url('DaftarOne/index'); ?>?content=plant" class="nav-link list-one" data-content="plant">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Plant
@@ -447,7 +447,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= base_url('daftarOne/index'); ?>?content=eng" class="nav-link list-one" data-content="eng">
+                                  <a href="<?= base_url('DaftarOne/index'); ?>?content=eng" class="nav-link list-one" data-content="eng">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Engineering
@@ -458,7 +458,7 @@
                                   </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                  <a href="<?= base_url('daftarOne/index'); ?>?content=isd" class="nav-link list-one" data-content="isd">
+                                  <a href="<?= base_url('DaftarOne/index'); ?>?content=isd" class="nav-link list-one" data-content="isd">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>
                                       Industrial System Development
@@ -774,7 +774,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= base_url(); ?>daftarone/index?content=' + content;
+        window.location.href = '<?= base_url(); ?>DaftarOne/index?content=' + content;
     });
   });
   

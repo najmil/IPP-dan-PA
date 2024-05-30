@@ -9,35 +9,35 @@
                     <?php if(session()->get('npk') == 0){
                         if ($contentdept == 'ehs' || $contentdept == 'mtc'){
                             echo'
-                                <a href="'. base_url('daftarone/index').'?content=plantserv'.'">
+                                <a href="'. base_url('DaftarOne/index').'?content=plantserv'.'">
                                         <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                     </a>
                                     Daftar One Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'mkt' || $contentdept == 'fincont' || $contentdept == 'mis'){
                             echo'
-                                <a href="'. base_url('daftarone/index').'?content=fin'.'">
+                                <a href="'. base_url('DaftarOne/index').'?content=fin'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar One Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'productsatu' || $contentdept == 'productdua' || $contentdept == 'ppic' || $contentdept == 'spv'){
                             echo'
-                                <a href="'. base_url('daftarone/index').'?content=plant'.'">
+                                <a href="'. base_url('DaftarOne/index').'?content=plant'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar One Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'hr' || $contentdept == 'procurement'){
                             echo'
-                                <a href="'. base_url('daftarone/index').'?content=adm'.'">
+                                <a href="'. base_url('DaftarOne/index').'?content=adm'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar One Year Result Karyawan
                             ';
                         } elseif ($contentdept == 'qa' || $contentdept == 'producteng' || $contentdept == 'processeng'){
                             echo'
-                                <a href="'. base_url('daftarone/index').'?content=eng'.'">
+                                <a href="'. base_url('DaftarOne/index').'?content=eng'.'">
                                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                                 </a>
                                 Daftar One Year Result Karyawan
@@ -52,7 +52,7 @@
                         if(session()->get('npk') == 0){
                             if ($content == 'plantserv' || $contentdept == 'ehs' || $contentdept == 'mtc'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarone/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarOne/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="ehs">EHS</option>
@@ -63,7 +63,7 @@
                                 ';
                             } elseif ($content == 'fin' || $contentdept == 'mkt' || $contentdept == 'fincont' || $contentdept == 'mis'){
                                 echo '
-                                    <form class="mb-3" id="content-form" id="content-form" action="'. base_url('/daftarone/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" id="content-form" action="'. base_url('/DaftarOne/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="mkt">Marketing</option>
@@ -75,7 +75,7 @@
                                 ';
                             } elseif ($content == 'adm' || $contentdept == 'hr' || $contentdept == 'procurement'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarone/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarOne/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option style="height: 38px;" value="hr">HRD, GA, IR & CSR</option>
@@ -86,7 +86,7 @@
                                 ';
                             } elseif ($content == 'plant' || $contentdept == 'productsatu' || $contentdept == 'productdua' || $contentdept == 'ppic' || $contentdept == 'spv') {
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarone/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarOne/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="productsatu">Production 1</option>
@@ -99,7 +99,7 @@
                                 ';
                             } elseif ($content == 'eng' || $contentdept == 'qa' || $contentdept == 'producteng' || $contentdept == 'processeng'){
                                 echo '
-                                    <form class="mb-3" id="content-form" action="'. base_url('/daftarone/index') .'" method="GET">
+                                    <form class="mb-3" id="content-form" action="'. base_url('/DaftarOne/index') .'" method="GET">
                                         <select id="content-dept-select" style="width: 200px; height: 40px;" name="contentdept">
                                             <option value="" disabled selected>-- Pilih Departemen --</option>
                                             <option value="qa">Quality Assurane</option>
@@ -548,17 +548,17 @@
                                     <td class="text-center">
                                         <?php if (session()->get('npk') != 0): ?>
                                             <?php if ($disableDetail): ?>
-                                                <a href="<?= base_url("/daftarone/detail/{$p['id']}") ?>" class="btn btn-warning btn-sm" style="width: 55px;">Detail</a>
+                                                <a href="<?= base_url("/DaftarOne/detail/{$p['id']}") ?>" class="btn btn-warning btn-sm" style="width: 55px;">Detail</a>
                                             <?php else: ?>
                                                 <button class="btn btn-secondary btn-sm" style="width: 55px;">Detail</button>
                                             <?php endif ?>
                                         <?php elseif (session()->get('npk') == 0): ?>
-                                            <a href="<?= base_url("/daftarone/detail/{$p['id']}") ?>" class="btn btn-warning btn-sm" style="width: 55px;">Detail</a>
+                                            <a href="<?= base_url("/DaftarOne/detail/{$p['id']}") ?>" class="btn btn-warning btn-sm" style="width: 55px;">Detail</a>
                                         <?php endif ?>
 
                                         
                                         <?php if (session()->get('npk') == 0): ?>
-                                            <a href="<?= base_url('daftarone/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; padding: 5px 10px; width: 55px;">Log</a>
+                                            <a href="<?= base_url('DaftarOne/logchanges/'.$p['id']) ?>" class="btn btn-secondary btn-sm mt-2" style="font-size: 12px; padding: 5px 10px; width: 55px;">Log</a>
                                         <?php endif ?>
 
                                         <?php
@@ -581,7 +581,7 @@
 
                                             if ($allowAccessPdf == true) {
                                                 echo'
-                                                    <a href="' . base_url('daftarone/oneyearpdf/' . $p['id']) . '" target="_blank">
+                                                    <a href="' . base_url('DaftarOne/oneyearpdf/' . $p['id']) . '" target="_blank">
                                                         <i class="fas fa-file-pdf mt-2" style="color: red; font-size: 20px;"></i>
                                                     </a>';
                                             }
@@ -666,7 +666,7 @@
         var $nama = $('#nama').val();
 
         $.ajax({
-            url: "<?php echo site_url("ipp/save") ?>",
+            url: "<?php echo site_url("Ipp/save") ?>",
             type: "POST",
             data: {
                 created_by: $created_by,
@@ -691,7 +691,7 @@
     function hapus($id){
         var result = confirm('Apakah anda yakin untuk menghapus data ini?');
         if (result){
-            window.location="<?php echo site_url("ipp/hapus") ?>/"+ $id;
+            window.location="<?php echo site_url("Ipp/hapus") ?>/"+ $id;
         }
     }
 </script>

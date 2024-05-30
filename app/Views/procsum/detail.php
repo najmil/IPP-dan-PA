@@ -895,10 +895,11 @@
             }
 
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
+            var npk = parseInt("<?= session()->get('npk'); ?>");
             let isAlertShown = false;
 
             if(isWithinMidPeriode){
-                if (kode_jabatan != 8 || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
+                if (kode_jabatan != 8 || (kode_jabatan == 4 && npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
                     if (plan_mid === "" || do_mid === "" || check_mid === "" || act_mid === "" || teamwork_mid === "" || cust_mid === "" || passion_mid === "" || gc_mid === "" || delegating_mid === "" || couch_mid === "" || develop_mid === "" || plan_mid === "0" || do_mid === "0" || check_mid === "0" || act_mid === "0" || teamwork_mid === "0" || cust_mid === "0" || passion_mid === "0" || gc_mid === "0" || delegating_mid === "0" || couch_mid === "0" || develop_mid === "0"){
                         if (!isAlertShown) {
                             alert('Fields must be filled.');
@@ -916,7 +917,7 @@
                     }
                 }
             } else if(isWithinOnePeriode){
-                if (kode_jabatan != 8 || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
+                if (kode_jabatan != 8 || (kode_jabatan == 4 && npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
                     if  (plan_one === "" || do_one === "" || check_one === "" || act_one === "" || teamwork_one === "" || cust_one === "" || passion_one === "" || gc_one === "" || delegating_one === "" || couch_one === "" || develop_one === "" || plan_one === "0" || do_one === "0" || check_one === "0" || act_one === "0" || teamwork_one === "0" || cust_one === "0" || passion_one === "0" || gc_one === "0" || delegating_one === "0" || couch_one === "0" || develop_one === "0"){
                         if (!isAlertShown) {
                             alert('Fields must be filled.');
@@ -1029,8 +1030,9 @@
             }
             
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
+            var npk = parseInt("<?= session()->get('npk'); ?>");
             let isAlertShown = false;
-                if (kode_jabatan != 8 || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
+                if (kode_jabatan != 8 || (kode_jabatan == 4 && npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
                     if  (plan_one === "" || do_one === "" || check_one === "" || act_one === "" || teamwork_one === "" || cust_one === "" || passion_one === "" || gc_one === "" || delegating_one === "" || couch_one === "" || develop_one === "" || plan_one === "0" || do_one === "0" || check_one === "0" || act_one === "0" || teamwork_one === "0" || cust_one === "0" || passion_one === "0" || gc_one === "0" || delegating_one === "0" || couch_one === "0" || develop_one === "0"){
                         if (!isAlertShown) {
                             alert('Fields must be filled.');
@@ -1127,9 +1129,10 @@
             var oneyear_value   = $('.oneyear_value').text();
 
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
+            var npk = parseInt("<?= session()->get('npk'); ?>");
             let isAlertShown = false;
             if(isWithinMidPeriode){
-                if (kode_jabatan != 8 || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
+                if (kode_jabatan != 8 || (kode_jabatan == 4 && npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
                     if (plan_mid === "" || do_mid === "" || check_mid === "" || act_mid === "" || teamwork_mid === "" || cust_mid === "" || passion_mid === "" || gc_mid === "" || delegating_mid === "" || couch_mid === "" || develop_mid === "" || plan_mid === "0" || do_mid === "0" || check_mid === "0" || act_mid === "0" || teamwork_mid === "0" || cust_mid === "0" || passion_mid === "0" || gc_mid === "0" || delegating_mid === "0" || couch_mid === "0" || develop_mid === "0"){
                         if (!isAlertShown) {
                             alert('Fields must be filled.');
@@ -1147,7 +1150,7 @@
                     }
                 }
             } else if(isWithinOnePeriode){
-                if (kode_jabatan != 8 || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
+                if (kode_jabatan != 8 || (kode_jabatan == 4 && npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
                     if  (plan_one === "" || do_one === "" || check_one === "" || act_one === "" || teamwork_one === "" || cust_one === "" || passion_one === "" || gc_one === "" || delegating_one === "" || couch_one === "" || develop_one === "" || plan_one === "0" || do_one === "0" || check_one === "0" || act_one === "0" || teamwork_one === "0" || cust_one === "0" || passion_one === "0" || gc_one === "0" || delegating_one === "0" || couch_one === "0" || develop_one === "0"){
                         if (!isAlertShown) {
                             alert('Fields must be filled.');
@@ -1349,8 +1352,9 @@
             }
       
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
+            var npk = parseInt("<?= session()->get('npk'); ?>");
             let isAlertShown = false;
-            if (kode_jabatan != 8 || ($kode_jabatan == 4 && $npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
+            if (kode_jabatan != 8 || (kode_jabatan == 4 && npk != [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592])){
                 if (plan_mid === "" || do_mid === "" || check_mid === "" || act_mid === "" || teamwork_mid === "" || cust_mid === "" || passion_mid === "" || gc_mid === "" || delegating_mid === "" || couch_mid === "" || develop_mid === ""){
                     if (!isAlertShown) {
                         alert('Fields must be filled.');
@@ -1485,6 +1489,7 @@
             sum_oneyear_total !== 0 ? $(".sum_oneyear_total").val(sum_oneyear_total.toFixed(2)) : '';
             
             var kode_jabatan = parseInt("<?= $kode_jabatan; ?>");
+            var npk = parseInt("<?= session()->get('npk'); ?>");
 
             var percentage_b1_average = 0;
             if (kode_jabatan === 2) {
@@ -1493,7 +1498,7 @@
                 percentage_b1_average = 0.35; 
             } else if (kode_jabatan === 4) {
                 percentage_b1_average = 0.4;
-            } else if (kode_jabatan === 8 || ($kode_jabatan === 4 && [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592].includes($npk))) {
+            } else if (kode_jabatan === 8 || (kode_jabatan === 4 && [4277, 3651, 3659, 2354, 2352, 2070, 1814, 2592].includes(npk))) {
                 percentage_b1_average = 0.5;
             }
 

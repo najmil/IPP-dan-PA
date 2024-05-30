@@ -166,7 +166,6 @@
                             }
                         },
                         success: function (response) {
-                            console.log(response);
                             toastr.success('Log In Successful!');
                             // Redirect to the desired page
                             window.location = '<?= base_url('home/index'); ?>';

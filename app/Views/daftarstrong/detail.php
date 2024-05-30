@@ -1798,8 +1798,8 @@
                     <div class="mt-3" id="submitBtnContainer">
                         <!-- <a href="<?php //echo base_url('DaftarStrong/index') ?>" class="btn btn-primary mr-2 btn-sm" style="width: 100px; height: 30px;">Back</a> -->
                             <?php      
-                                // dd(!$is_approved_before);                          
-                                if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_submitted && !$is_approved && !$is_approved_before) {
+                                // dd($is_approved_before);                          
+                                if (session()->get('npk') != 0 && $isWithinMidPeriode && $is_submitted && $is_approved && $is_approved_before) {
                                     echo '
                                     <button type="button" id="edit" class="btn btn-warning btn-sm mr-2 ml-2" style="width: 100px; height: 30px;">
                                         Edit All
@@ -1915,7 +1915,7 @@
                                     }
                                     // The end of approval presdir
                                     
-                                } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && $is_submitted_one && !$is_approved && !$is_approved_before){
+                                } elseif (session()->get('npk') != 0 && $isWithinOnePeriode && $is_submitted_one && $is_approved && $is_approved_before){
                                     echo '
                                     <button type="button" id="edit-one" class="btn btn-warning btn-sm mr-2 ml-2" style="width: 100px; height: 30px;">
                                         Edit All
@@ -3549,6 +3549,9 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                 url: "<?= base_url("DaftarStrong/unsubmit") ?>",
                 type: "POST",
                 data: {id: id},
+                beforeSend: function(){
+                    $('.unsubmitted').html('<i class="fas fa-spinner fa-spin"></i>');
+                },
                 success: function (response) {
                     var msg = response;
                     if (msg.sukses) {
@@ -3569,6 +3572,9 @@ $selectedWeakTechOne = isset($strongweak['weak_technical_one']) ? $strongweak['w
                     url: "<?= base_url("DaftarStrong/unsubmit_one") ?>",
                     type: "POST",
                     data: {id: id},
+                    beforeSend: function(){
+                        $('.unsubmitted-one').html('<i class="fas fa-spinner fa-spin"></i>');
+                    },
                     success: function (response) {
                         var msg = response;
                         if (msg.sukses) {
