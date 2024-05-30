@@ -326,7 +326,7 @@
             console.log(id);
 
             $.ajax({
-                url: "<?= base_url("DaftarMid/unsubmit") ?>",
+                url: "<?= base_url("daftarmid/unsubmit") ?>",
                 type: "POST",
                 data: {id: id},
                 success: function (response) {
@@ -339,9 +339,22 @@
         });
 
         $('.approve-button').click(function (event) {
-            console.log('clicked');
+            // console.log('clicked');
             event.preventDefault();
 
+            var isEditing = false;
+            $('.midyear_achv-input, .midyear_achv_score-input').each(function () {
+                if ($(this).is(':visible')) {
+                    isEditing = true;
+                    return false;
+                }
+            });
+
+            if (isEditing) {
+                alert('Fields must be filled.');
+                return;
+            }
+            
             var row = $(this);
             // var approvalStatus = row.siblings('.approval-status');
             var idMain = row.find('input[name="id_main[]"]').val();
@@ -492,7 +505,7 @@
                 var kode_jabatan = $(this).data('kode_jabatan');
 
                 $.ajax({
-                    url: "<?= base_url("DaftarMid/cancelapproval") ?>",
+                    url: "<?= base_url("daftarmid/cancelapproval") ?>",
                     type: "POST",
                     data: {id: id, keterangan: keterangan, kode_jabatan: kode_jabatan},
                     success: function (response) {
