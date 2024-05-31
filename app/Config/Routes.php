@@ -7,8 +7,6 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->group('', ['filter' => 'afterlogin'], function($routes){
     $routes->get('/', 'Home::index');
-    $routes->get('daftarone/index', 'DaftarOne::index');
-    $routes->get('daftarone/detail(:num)', 'DaftarOne::index/$1');
 });
 $routes->group('', ['filter' => 'beforelogin'], function($routes){
     $routes->get('/login', 'Login::index');

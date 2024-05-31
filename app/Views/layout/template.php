@@ -774,7 +774,7 @@
         e.preventDefault();
         var content = this.getAttribute('data-content');
 
-        window.location.href = '<?= base_url(); ?>DaftarOne/index?content=' + content;
+        window.location.href = '<?= base_url(); ?>daftarone/index?content=' + content;
     });
   });
   
